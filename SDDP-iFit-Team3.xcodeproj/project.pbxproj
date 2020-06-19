@@ -13,6 +13,11 @@
 		09B1B93A249322AD00D14CE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B1B938249322AD00D14CE6 /* Main.storyboard */; };
 		09B1B93C249322B200D14CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B1B93B249322B200D14CE6 /* Assets.xcassets */; };
 		09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B1B93D249322B200D14CE6 /* LaunchScreen.storyboard */; };
+		7D6080E5249CFD64001F3E6E /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E3249CFD64001F3E6E /* Dashboard.storyboard */; };
+		7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */; };
+		7D6080EB249CFF7C001F3E6E /* Fitness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */; };
+		7D6080EE249D01B8001F3E6E /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080EC249D01B8001F3E6E /* Community.storyboard */; };
+		7D6080F1249D029D001F3E6E /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080EF249D029D001F3E6E /* Game.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		09B1B93B249322B200D14CE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09B1B93E249322B200D14CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09B1B940249322B200D14CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D6080E4249CFD64001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
+		7D6080E7249CFE2F001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Scheduler.storyboard; sourceTree = "<group>"; };
+		7D6080EA249CFF7C001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Fitness.storyboard; sourceTree = "<group>"; };
+		7D6080ED249D01B8001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Community.storyboard; sourceTree = "<group>"; };
+		7D6080F0249D029D001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +66,11 @@
 		09B1B931249322AD00D14CE6 /* SDDP-iFit-Team3 */ = {
 			isa = PBXGroup;
 			children = (
+				7D6080EF249D029D001F3E6E /* Game.storyboard */,
+				7D6080EC249D01B8001F3E6E /* Community.storyboard */,
+				7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */,
+				7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */,
+				7D6080E3249CFD64001F3E6E /* Dashboard.storyboard */,
 				09B1B932249322AD00D14CE6 /* AppDelegate.swift */,
 				09B1B934249322AD00D14CE6 /* SceneDelegate.swift */,
 				09B1B936249322AD00D14CE6 /* ViewController.swift */,
@@ -125,9 +140,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D6080F1249D029D001F3E6E /* Game.storyboard in Resources */,
+				7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */,
 				09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */,
 				09B1B93C249322B200D14CE6 /* Assets.xcassets in Resources */,
 				09B1B93A249322AD00D14CE6 /* Main.storyboard in Resources */,
+				7D6080E5249CFD64001F3E6E /* Dashboard.storyboard in Resources */,
+				7D6080EE249D01B8001F3E6E /* Community.storyboard in Resources */,
+				7D6080EB249CFF7C001F3E6E /* Fitness.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +181,46 @@
 				09B1B93E249322B200D14CE6 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7D6080E3249CFD64001F3E6E /* Dashboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D6080E4249CFD64001F3E6E /* Base */,
+			);
+			name = Dashboard.storyboard;
+			sourceTree = "<group>";
+		};
+		7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D6080E7249CFE2F001F3E6E /* Base */,
+			);
+			name = Scheduler.storyboard;
+			sourceTree = "<group>";
+		};
+		7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D6080EA249CFF7C001F3E6E /* Base */,
+			);
+			name = Fitness.storyboard;
+			sourceTree = "<group>";
+		};
+		7D6080EC249D01B8001F3E6E /* Community.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D6080ED249D01B8001F3E6E /* Base */,
+			);
+			name = Community.storyboard;
+			sourceTree = "<group>";
+		};
+		7D6080EF249D029D001F3E6E /* Game.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D6080F0249D029D001F3E6E /* Base */,
+			);
+			name = Game.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
