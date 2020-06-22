@@ -17,7 +17,7 @@
 		7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */; };
 		7D6080EB249CFF7C001F3E6E /* Fitness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */; };
 		7D6080EE249D01B8001F3E6E /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080EC249D01B8001F3E6E /* Community.storyboard */; };
-		DC21E87124A0A1100022B252 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC21E87024A0A1100022B252 /* Game.storyboard */; };
+		7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7ED67E24A0E2F9001D52DA /* Game.storyboard */; };
 		DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EC24A07582003BFE6C /* Exercise.swift */; };
 		DCB218EF24A07777003BFE6C /* FitnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EE24A07777003BFE6C /* FitnessViewController.swift */; };
 /* End PBXBuildFile section */
@@ -35,7 +35,7 @@
 		7D6080E7249CFE2F001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Scheduler.storyboard; sourceTree = "<group>"; };
 		7D6080EA249CFF7C001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Fitness.storyboard; sourceTree = "<group>"; };
 		7D6080ED249D01B8001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Community.storyboard; sourceTree = "<group>"; };
-		DC21E87024A0A1100022B252 /* Game.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Game.storyboard; sourceTree = "<group>"; };
+		7D7ED67F24A0E2F9001D52DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		DCB218EC24A07582003BFE6C /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		DCB218EE24A07777003BFE6C /* FitnessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +70,7 @@
 		09B1B931249322AD00D14CE6 /* SDDP-iFit-Team3 */ = {
 			isa = PBXGroup;
 			children = (
+				7D7ED67E24A0E2F9001D52DA /* Game.storyboard */,
 				DC21E87424A0A2E20022B252 /* Controller */,
 				DC21E87324A0A2D50022B252 /* Model */,
 				DC21E87224A0A2BB0022B252 /* View */,
@@ -77,7 +78,6 @@
 				7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */,
 				7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */,
 				7D6080EC249D01B8001F3E6E /* Community.storyboard */,
-				DC21E87024A0A1100022B252 /* Game.storyboard */,
 				09B1B932249322AD00D14CE6 /* AppDelegate.swift */,
 				09B1B934249322AD00D14CE6 /* SceneDelegate.swift */,
 				09B1B936249322AD00D14CE6 /* ViewController.swift */,
@@ -170,7 +170,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC21E87124A0A1100022B252 /* Game.storyboard in Resources */,
+				7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */,
 				7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */,
 				09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */,
 				09B1B93C249322B200D14CE6 /* Assets.xcassets in Resources */,
@@ -245,6 +245,14 @@
 				7D6080ED249D01B8001F3E6E /* Base */,
 			);
 			name = Community.storyboard;
+			sourceTree = "<group>";
+		};
+		7D7ED67E24A0E2F9001D52DA /* Game.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7D7ED67F24A0E2F9001D52DA /* Base */,
+			);
+			name = Game.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
