@@ -18,6 +18,8 @@
 		7D6080EB249CFF7C001F3E6E /* Fitness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */; };
 		7D6080EE249D01B8001F3E6E /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080EC249D01B8001F3E6E /* Community.storyboard */; };
 		7D6080F1249D029D001F3E6E /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080EF249D029D001F3E6E /* Game.storyboard */; };
+		DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EC24A07582003BFE6C /* Exercise.swift */; };
+		DCB218EF24A07777003BFE6C /* FitnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EE24A07777003BFE6C /* FitnessViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		7D6080EA249CFF7C001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Fitness.storyboard; sourceTree = "<group>"; };
 		7D6080ED249D01B8001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Community.storyboard; sourceTree = "<group>"; };
 		7D6080F0249D029D001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
+		DCB218EC24A07582003BFE6C /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		DCB218EE24A07777003BFE6C /* FitnessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				09B1B93B249322B200D14CE6 /* Assets.xcassets */,
 				09B1B93D249322B200D14CE6 /* LaunchScreen.storyboard */,
 				09B1B940249322B200D14CE6 /* Info.plist */,
+				DCB218EC24A07582003BFE6C /* Exercise.swift */,
+				DCB218EE24A07777003BFE6C /* FitnessViewController.swift */,
 			);
 			path = "SDDP-iFit-Team3";
 			sourceTree = "<group>";
@@ -159,6 +165,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				09B1B937249322AD00D14CE6 /* ViewController.swift in Sources */,
+				DCB218EF24A07777003BFE6C /* FitnessViewController.swift in Sources */,
+				DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */,
 				09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
 			);
