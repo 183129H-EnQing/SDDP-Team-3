@@ -18,6 +18,7 @@
 		7D6080EB249CFF7C001F3E6E /* Fitness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */; };
 		7D6080EE249D01B8001F3E6E /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080EC249D01B8001F3E6E /* Community.storyboard */; };
 		7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7ED67E24A0E2F9001D52DA /* Game.storyboard */; };
+		7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */; };
 		DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EC24A07582003BFE6C /* Exercise.swift */; };
 		DCB218EF24A07777003BFE6C /* FitnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EE24A07777003BFE6C /* FitnessViewController.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		7D6080EA249CFF7C001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Fitness.storyboard; sourceTree = "<group>"; };
 		7D6080ED249D01B8001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Community.storyboard; sourceTree = "<group>"; };
 		7D7ED67F24A0E2F9001D52DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
+		7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SchedulerViewController.swift; path = "SDDP-iFit-Team3/SchedulerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		DCB218EC24A07582003BFE6C /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		DCB218EE24A07777003BFE6C /* FitnessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 		DC21E87424A0A2E20022B252 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -190,6 +193,7 @@
 			files = (
 				09B1B937249322AD00D14CE6 /* ViewController.swift in Sources */,
 				DCB218EF24A07777003BFE6C /* FitnessViewController.swift in Sources */,
+				7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */,
 				DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */,
 				09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
