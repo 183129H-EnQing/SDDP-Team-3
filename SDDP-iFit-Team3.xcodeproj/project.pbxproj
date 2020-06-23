@@ -21,6 +21,7 @@
 		7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */; };
 		DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EC24A07582003BFE6C /* Exercise.swift */; };
 		DCB218EF24A07777003BFE6C /* FitnessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EE24A07777003BFE6C /* FitnessViewController.swift */; };
+		DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SchedulerViewController.swift; path = "SDDP-iFit-Team3/SchedulerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		DCB218EC24A07582003BFE6C /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		DCB218EE24A07777003BFE6C /* FitnessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FitnessViewController.swift; sourceTree = "<group>"; };
+		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,8 +89,6 @@
 				09B1B93B249322B200D14CE6 /* Assets.xcassets */,
 				09B1B93D249322B200D14CE6 /* LaunchScreen.storyboard */,
 				09B1B940249322B200D14CE6 /* Info.plist */,
-				DCB218EC24A07582003BFE6C /* Exercise.swift */,
-				DCB218EE24A07777003BFE6C /* FitnessViewController.swift */,
 			);
 			path = "SDDP-iFit-Team3";
 			sourceTree = "<group>";
@@ -103,6 +103,8 @@
 		DC21E87324A0A2D50022B252 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				DCB218EC24A07582003BFE6C /* Exercise.swift */,
+				DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */,
+				DCB218EE24A07777003BFE6C /* FitnessViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				DCB218EF24A07777003BFE6C /* FitnessViewController.swift in Sources */,
 				7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */,
 				DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */,
+				DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */,
 				09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
 			);
