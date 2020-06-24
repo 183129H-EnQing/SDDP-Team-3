@@ -23,6 +23,7 @@
 		DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */; };
 		DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EC24A07582003BFE6C /* Exercise.swift */; };
 		DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */; };
+		DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */; };
 		DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanCell.swift; sourceTree = "<group>"; };
 		DCB218EC24A07582003BFE6C /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanDetailViewController.swift; sourceTree = "<group>"; };
+		DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddViewController.swift; sourceTree = "<group>"; };
 		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -120,6 +122,7 @@
 				DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */,
 				DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */,
 				DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */,
+				DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */,
 				DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */,
 				09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */,
+				DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
 				DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */,
 			);

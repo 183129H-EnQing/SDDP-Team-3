@@ -17,8 +17,19 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.title = "Training Plan"
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(changeView))
+        self.navigationItem.rightBarButtonItem = addButton
+            
         self.trainingPlanList = [ TrainingPlan(tpName: "Hello Monday", tpImage: "pull_string"),  TrainingPlan(tpName: "Welcome Friday", tpImage: "step_string")]
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func changeView(){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Fitness", bundle: nil)
+        let addVC = storyBoard.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
+        self.present(addVC, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

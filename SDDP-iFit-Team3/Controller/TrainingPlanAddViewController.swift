@@ -1,30 +1,19 @@
 //
-//  TrainingPlanDetailViewController.swift
+//  TrainingPlanAddViewController.swift
 //  SDDP-iFit-Team3
 //
-//  Created by 182452K  on 6/23/20.
+//  Created by 182452K  on 6/24/20.
 //  Copyright © 2020 SDDP_Team3. All rights reserved.
 //
 
 import UIKit
 
-class TrainingPlanDetailViewController: UIViewController {
+class TrainingPlanAddViewController: UIViewController {
 
-    @IBOutlet weak var trainingPlanImage: UIImageView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descLabel: UILabel!
-    @IBOutlet weak var repsLabel: UILabel!
-    
-    var trainingPlanItem : TrainingPlan?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.title = trainingPlanItem?.tpName
-        trainingPlanImage.image = UIImage(named: (trainingPlanItem?.tpImage)!)
-        nameLabel.text = trainingPlanItem?.tpName
-       
     }
     
 
