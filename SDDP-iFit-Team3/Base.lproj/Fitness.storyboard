@@ -173,18 +173,46 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8JE-C1-dDa">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8JE-C1-dDa">
                                 <rect key="frame" x="0.0" y="74" width="414" height="202"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Wkg-yL-L0i">
+                                <rect key="frame" x="0.0" y="271" width="414" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9O-wF-Tni">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="30"/>
+                                        <state key="normal" title="Take Picture"/>
+                                        <connections>
+                                            <action selector="takePicturePressed:" destination="JKM-Mh-9Kk" eventType="touchUpInside" id="Y7x-Sv-lqW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Quo-aa-WXZ">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="30"/>
+                                        <state key="normal" title="Select Image"/>
+                                        <connections>
+                                            <action selector="selectPicturePressed:" destination="JKM-Mh-9Kk" eventType="touchUpInside" id="eLk-I9-Tfe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Wkg-yL-L0i" firstAttribute="trailing" secondItem="gse-Id-f23" secondAttribute="trailing" id="ddY-tK-9jQ"/>
+                            <constraint firstItem="Wkg-yL-L0i" firstAttribute="leading" secondItem="gse-Id-f23" secondAttribute="leading" id="dqJ-bL-IXf"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gse-Id-f23"/>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="8JE-C1-dDa" id="Bru-Ip-5hF"/>
+                        <outlet property="selectPicture" destination="Quo-aa-WXZ" id="Knm-Bp-5yn"/>
+                        <outlet property="takePicture" destination="j9O-wF-Tni" id="kEk-5g-u82"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4C-Df-uPI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3648" y="-455"/>
+            <point key="canvasLocation" x="3647.826086956522" y="-455.35714285714283"/>
         </scene>
         <!--Training Plan Detail View Controller-->
         <scene sceneID="Ob7-nH-fqK">
