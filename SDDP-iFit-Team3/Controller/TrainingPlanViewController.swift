@@ -38,6 +38,19 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "ShowTrainingPlanDetails"){
+            let detailVC = segue.destination as! TrainingPlanDetailViewController
+            let myIndexPath = self.tableView.indexPathForSelectedRow
+            
+            if (myIndexPath != nil){
+                let trainItem = trainingPlanList[myIndexPath!.row]
+                detailVC.trainingPlanItem = trainItem
+            }
+        }
+    }
+    
 
     /*
     // MARK: - Navigation
