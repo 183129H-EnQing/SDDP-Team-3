@@ -11,14 +11,18 @@ import Foundation
 class TrainingPlan: NSObject {
     
     var tpName: String
-    var tpDesc: String
-    var tpReps : Int
-    var tpExercises: [String]
+//    var tpDesc: String
+//    var tpReps : Int
+//    var tpExercises: [String]
+    var tpImage: String
     
-    init(tpName: String, tpDesc: String, tpReps: Int, tpExercises: [String]){
+    // tpDesc: String, tpReps: Int, tpExercises: [String],
+    
+    init(tpName: String, tpImage: String){
         self.tpName = tpName
-        self.tpDesc = tpDesc
-        self.tpReps = tpReps
-        self.tpExercises = tpExercises
+//        self.tpDesc = tpDesc
+//        self.tpReps = tpReps
+//        self.tpExercises = tpExercises
+        self.tpImage = tpImage
     }
 }
