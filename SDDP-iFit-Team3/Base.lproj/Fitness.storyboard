@@ -324,6 +324,9 @@
                                 <state key="normal" title="Add Exercise">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="addExercisePressed:" destination="QhU-wP-nWm" eventType="touchUpInside" id="5Lh-n9-OMa"/>
+                                </connections>
                             </button>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R6O-Kd-TIl">
                                 <rect key="frame" x="0.0" y="25" width="414" height="44"/>

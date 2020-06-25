@@ -33,6 +33,20 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if (tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.none) {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+        }
+        else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+        }
+    }
+    
+    
+    @IBAction func addExercisePressed(_ sender: Any) {
+        
+    }
+    
 
     /*
     // MARK: - Navigation
