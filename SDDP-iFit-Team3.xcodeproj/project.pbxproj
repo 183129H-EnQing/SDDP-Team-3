@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,12 +16,14 @@
 		1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E8DA924A387B7001D9C8D /* PostCell.swift */; };
 		1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0E324A359FF003A35A9 /* Post.swift */; };
 		1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0ED24A37182003A35A9 /* PostViewController.swift */; };
+		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
 		7D6080E5249CFD64001F3E6E /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E3249CFD64001F3E6E /* Dashboard.storyboard */; };
 		7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */; };
 		7D6080EB249CFF7C001F3E6E /* Fitness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */; };
 		7D6080EE249D01B8001F3E6E /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080EC249D01B8001F3E6E /* Community.storyboard */; };
 		7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7ED67E24A0E2F9001D52DA /* Game.storyboard */; };
 		7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */; };
+		D671C057354D801529A5E555 /* Pods_SDDP_iFit_Team3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */; };
 		DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC325A3A24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift */; };
 		DC9EE49924A307660080D3A2 /* TrainingPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */; };
 		DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */; };
@@ -42,9 +44,12 @@
 		09B1B93B249322B200D14CE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09B1B93E249322B200D14CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09B1B940249322B200D14CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		189D6898487131893BCD7A6A /* Pods-SDDP-iFit-Team3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.release.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.release.xcconfig"; sourceTree = "<group>"; };
 		1B3E8DA924A387B7001D9C8D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
 		1BB0D0E324A359FF003A35A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		1BB0D0ED24A37182003A35A9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ../PostViewController.swift; sourceTree = "<group>"; };
+		37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D6080E4249CFD64001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
 		7D6080E7249CFE2F001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Scheduler.storyboard; sourceTree = "<group>"; };
 		7D6080EA249CFF7C001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Fitness.storyboard; sourceTree = "<group>"; };
@@ -58,6 +63,7 @@
 		DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanDetailViewController.swift; sourceTree = "<group>"; };
 		DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddViewController.swift; sourceTree = "<group>"; };
 		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
+		DF55D0091284AED9030526CC /* Pods-SDDP-iFit-Team3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.debug.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.debug.xcconfig"; sourceTree = "<group>"; };
 		E39EE04524A356AB00DDD571 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		E39EE04924A35CD200DDD571 /* testingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D671C057354D801529A5E555 /* Pods_SDDP_iFit_Team3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			children = (
 				09B1B931249322AD00D14CE6 /* SDDP-iFit-Team3 */,
 				09B1B930249322AD00D14CE6 /* Products */,
+				AFA3402D31D4EAF8922BF229 /* Pods */,
+				2B6521A67957ABA69FB79568 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,8 +116,26 @@
 				09B1B93B249322B200D14CE6 /* Assets.xcassets */,
 				09B1B93D249322B200D14CE6 /* LaunchScreen.storyboard */,
 				09B1B940249322B200D14CE6 /* Info.plist */,
+				7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */,
 			);
 			path = "SDDP-iFit-Team3";
+			sourceTree = "<group>";
+		};
+		2B6521A67957ABA69FB79568 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AFA3402D31D4EAF8922BF229 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF55D0091284AED9030526CC /* Pods-SDDP-iFit-Team3.debug.xcconfig */,
+				189D6898487131893BCD7A6A /* Pods-SDDP-iFit-Team3.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		DC21E87224A0A2BB0022B252 /* View */ = {
@@ -152,9 +179,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09B1B943249322B200D14CE6 /* Build configuration list for PBXNativeTarget "SDDP-iFit-Team3" */;
 			buildPhases = (
+				9AC80815CD7D0C23031CD717 /* [CP] Check Pods Manifest.lock */,
 				09B1B92B249322AC00D14CE6 /* Sources */,
 				09B1B92C249322AC00D14CE6 /* Frameworks */,
 				09B1B92D249322AC00D14CE6 /* Resources */,
+				6CB87044B3EC7BA5C6A79147 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -205,6 +234,7 @@
 			files = (
 				7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */,
 				7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */,
+				7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */,
 				09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */,
 				09B1B93C249322B200D14CE6 /* Assets.xcassets in Resources */,
 				09B1B93A249322AD00D14CE6 /* Main.storyboard in Resources */,
@@ -215,6 +245,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6CB87044B3EC7BA5C6A79147 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9AC80815CD7D0C23031CD717 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SDDP-iFit-Team3-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		09B1B92B249322AC00D14CE6 /* Sources */ = {
@@ -356,6 +428,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -409,6 +482,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -418,6 +492,7 @@
 		};
 		09B1B944249322B200D14CE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF55D0091284AED9030526CC /* Pods-SDDP-iFit-Team3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -435,6 +510,7 @@
 		};
 		09B1B945249322B200D14CE6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 189D6898487131893BCD7A6A /* Pods-SDDP-iFit-Team3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -443,6 +519,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nyp.sddp.team3.SDDP-iFit-Team3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
