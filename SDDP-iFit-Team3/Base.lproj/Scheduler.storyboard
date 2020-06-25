@@ -59,7 +59,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HsG-Yd-aNB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Ow6-Kg-V83"/>
+                    <navigationItem key="navigationItem" id="Ow6-Kg-V83">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jVS-zU-UyV">
+                            <connections>
+                                <segue destination="4uN-X6-gRl" kind="show" id="k3H-Yg-4Ml"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="e7J-Vp-mt7" id="kuh-bH-Ljb"/>
                     </connections>
@@ -67,6 +73,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="axQ-Uf-q9z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2100" y="-168.08035714285714"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eje-Js-vJr">
+            <objects>
+                <viewController id="4uN-X6-gRl" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ltp-Z6-3Hd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="3tM-uD-KWn"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KnD-3g-6AM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="uim-Za-3um"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sow-RO-yxC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2984" y="-168"/>
         </scene>
     </scenes>
 </document>
