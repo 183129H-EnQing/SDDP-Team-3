@@ -24,7 +24,9 @@ class TrainingPlanDetailViewController: UIViewController {
         self.navigationItem.title = trainingPlanItem?.tpName
         trainingPlanImage.image = UIImage(named: (trainingPlanItem?.tpImage)!)
         nameLabel.text = trainingPlanItem?.tpName
-       
+        descLabel.text = trainingPlanItem?.tpDesc
+        repsLabel.text = "\(trainingPlanItem!.tpReps)"
+        //exercises not added
     }
     
 

@@ -20,9 +20,13 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationItem.title = "Training Plan"
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(changeView))
-        self.navigationItem.rightBarButtonItem = addButton
+        let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItem.Style.plain , target: self, action: #selector(enableEdit))
+        self.navigationItem.rightBarButtonItems = [addButton, editButton]
+//        self.navigationItem.rightBarButtonItem = addButton
             
-        self.trainingPlanList = [ TrainingPlan(tpName: "Hello Monday", tpImage: "pull_string"),  TrainingPlan(tpName: "Welcome Friday", tpImage: "step_string")]
+        self.trainingPlanList = [
+            TrainingPlan(tpName: "Hello Monday", tpDesc: "for monday morning", tpReps: 10, tpExercises: [""], tpImage: "pull_string"),
+            TrainingPlan(tpName: "Welcome Friday", tpDesc: "friday evening", tpReps: 20, tpExercises: [""], tpImage: "step_string")]
         // Do any additional setup after loading the view.
     }
     
@@ -30,6 +34,20 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
         let storyBoard: UIStoryboard = UIStoryboard(name: "Fitness", bundle: nil)
         let addVC = storyBoard.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
         self.present(addVC, animated: true, completion: nil)
+    }
+    
+    @objc func enableEdit(){
+        if !self.tableView.isEditing
+        {
+            
+//            sender.setTitle("Done", for: .normal)
+            tableView.setEditing(true, animated: true)
+        }
+        else
+        {
+//            sender.setTitle("Edit", for: .normal)
+            tableView.setEditing(false, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,6 +67,7 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    //pass data to details page
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "ShowTrainingPlanDetails"){
@@ -60,6 +79,23 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
                 detailVC.trainingPlanItem = trainItem
             }
         }
+    }
+    
+    //delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if (editingStyle == .delete){
+            trainingPlanList.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    //reorder
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+        let t = trainingPlanList[sourceIndexPath.row]
+        trainingPlanList.remove(at: sourceIndexPath.row)
+        trainingPlanList.insert(t, at: destinationIndexPath.row)
     }
     
 
