@@ -17,15 +17,31 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.navigationItem.title = "Posts"
+        self.navigationItem.rightBarButtonItem =
+        UIBarButtonItem(barButtonSystemItem: .add,
+                        target: self,
+                        action: #selector(addButtonClicked))
+        
+       
         postList.append(Post(
         userName: "Paul",
         pcontent: "Keep Fit",
         pdatetime: "5.34PM",
         userLocation:"YISHUN",
-        pimageName:  "thumbnail_Semple1"))
+        pimageName:  "thumbnail_images"))
         // Do any additional setup after loading the view.
     }
     
+    @objc func addButtonClicked()
+    {
+              let s = UIStoryboard(name: "Community", bundle: nil)
+              let v = s.instantiateViewController(withIdentifier:"AddPostViewController") as! AddPostViewController
+              self.present(v, animated: true, completion: nil)
+    
+
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
     return postList.count
@@ -41,7 +57,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 cell.pcontentLabel.text = "\(p.pcontent) "
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
-                //cell.ppimageView.image = UIImage(named: p.pimageName)
+                cell.ppimageView.image = UIImage(named: p.pimageName)
 
                 return cell
         }
