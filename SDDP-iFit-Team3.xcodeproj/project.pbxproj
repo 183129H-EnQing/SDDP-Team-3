@@ -18,6 +18,7 @@
 		1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0E324A359FF003A35A9 /* Post.swift */; };
 		1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0ED24A37182003A35A9 /* PostViewController.swift */; };
 		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
+		7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */; };
 		7D6080E5249CFD64001F3E6E /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E3249CFD64001F3E6E /* Dashboard.storyboard */; };
 		7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */; };
 		7D6080EB249CFF7C001F3E6E /* Fitness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */; };
@@ -52,6 +53,7 @@
 		1BB0D0ED24A37182003A35A9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ../PostViewController.swift; sourceTree = "<group>"; };
 		37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		7D6080E4249CFD64001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
 		7D6080E7249CFE2F001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Scheduler.storyboard; sourceTree = "<group>"; };
 		7D6080EA249CFF7C001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Fitness.storyboard; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				DCB218EC24A07582003BFE6C /* Exercise.swift */,
 				DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */,
 				1BB0D0E324A359FF003A35A9 /* Post.swift */,
+				7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */,
 				DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */,
 				1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */,
+				7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */,
 				1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */,
 				1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */,
 				DC9EE49924A307660080D3A2 /* TrainingPlanViewController.swift in Sources */,
