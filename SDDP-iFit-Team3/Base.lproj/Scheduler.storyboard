@@ -62,7 +62,7 @@
                     <navigationItem key="navigationItem" id="Ow6-Kg-V83">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="jVS-zU-UyV">
                             <connections>
-                                <segue destination="4uN-X6-gRl" kind="show" id="k3H-Yg-4Ml"/>
+                                <segue destination="4uN-X6-gRl" kind="show" identifier="AddSchedule" id="k3H-Yg-4Ml"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

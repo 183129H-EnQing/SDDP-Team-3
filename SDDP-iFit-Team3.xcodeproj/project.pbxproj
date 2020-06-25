@@ -19,6 +19,7 @@
 		1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0ED24A37182003A35A9 /* PostViewController.swift */; };
 		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
 		7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */; };
+		7D1C4BFE24A4FD9000CD1F6F /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BFD24A4FD9000CD1F6F /* AddScheduleViewController.swift */; };
 		7D6080E5249CFD64001F3E6E /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E3249CFD64001F3E6E /* Dashboard.storyboard */; };
 		7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */; };
 		7D6080EB249CFF7C001F3E6E /* Fitness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */; };
@@ -54,6 +55,7 @@
 		37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
+		7D1C4BFD24A4FD9000CD1F6F /* AddScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
 		7D6080E4249CFD64001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
 		7D6080E7249CFE2F001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Scheduler.storyboard; sourceTree = "<group>"; };
 		7D6080EA249CFF7C001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Fitness.storyboard; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 			children = (
 				E39EE04924A35CD200DDD571 /* testingView.swift */,
 				7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */,
+				7D1C4BFD24A4FD9000CD1F6F /* AddScheduleViewController.swift */,
 				DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */,
 				DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */,
 				DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */,
@@ -316,6 +319,7 @@
 				E39EE04A24A35CD200DDD571 /* testingView.swift in Sources */,
 				DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
+				7D1C4BFE24A4FD9000CD1F6F /* AddScheduleViewController.swift in Sources */,
 				DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
