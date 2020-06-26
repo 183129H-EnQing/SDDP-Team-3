@@ -11,8 +11,11 @@ import UIKit
 class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var exercisePicker: UIPickerView!
+    @IBOutlet weak var hrsTextField: UITextField!
+    @IBOutlet weak var minsTextField: UITextField!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var dayPicker: UIPickerView!
+    
     var exercises: [String] = []
     var days: [String] = []
     
@@ -44,6 +47,9 @@ class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPic
         return pickerView.tag == self.exercisePicker.tag ? exercises[row] : self.days[row]
     }
 
+    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        
+    }
     /*
     // MARK: - Navigation
 

@@ -179,11 +179,17 @@
                         <viewLayoutGuide key="safeArea" id="3tM-uD-KWn"/>
                     </view>
                     <navigationItem key="navigationItem" id="KnD-3g-6AM">
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="uim-Za-3um"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="uim-Za-3um">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="4uN-X6-gRl" id="e6Q-Cl-Yjp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dayPicker" destination="WNh-q7-Cg8" id="oJl-FV-OUV"/>
                         <outlet property="exercisePicker" destination="dto-zi-Cin" id="VyG-OL-kQG"/>
+                        <outlet property="hrsTextField" destination="wyF-IV-1XN" id="G8t-fl-FJ9"/>
+                        <outlet property="minsTextField" destination="Raf-vw-XRy" id="aGe-oJ-C9p"/>
                         <outlet property="timePicker" destination="j5h-Td-CKj" id="kXj-JT-X9u"/>
                     </connections>
                 </viewController>
