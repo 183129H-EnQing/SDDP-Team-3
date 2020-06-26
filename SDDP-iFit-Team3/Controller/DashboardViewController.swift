@@ -9,22 +9,39 @@
 import UIKit
 import SwiftUI
 
-class DashboardViewController: UIViewController {
+class DashboardViewController: UIViewController,UITableViewDelegate, UITableViewDataSource {
 
+    var actvityList  = ["Challenges","Exercise"]
 
+    @IBOutlet weak var dashBoardTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return actvityList.count
+        
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // First we query the table view to see if there are // any UITableViewCells that can be reused. iOS will // create a new one if there aren't any. //
+    
+                let cell : DashBoardViewCell = tableView
+                .dequeueReusableCell (withIdentifier: "DashBoardCell", for: indexPath) as! DashBoardViewCell
+             
+   //     cell.activityName.text = actvityList[indexPath.row]
+        print("heloo world")
 
+                return cell
+        }
     
    
-    @IBSegueAction func hello(_ coder: NSCoder) -> UIViewController? {
-   
-        return UIHostingController(coder: coder, rootView: testingView())
-    }
+//    @IBSegueAction func hello(_ coder: NSCoder) -> UIViewController? {
+//   
+//        return UIHostingController(coder: coder, rootView: testingView())
+//    }
     /*
     // MARK: - Navigation
 
