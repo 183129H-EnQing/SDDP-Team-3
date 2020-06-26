@@ -17,7 +17,6 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.title = "Scheduler"
         self.testData = [
             Schedule(name: "Push Up", duration: [0, 5], day: 0, time: [10, 0]),
             Schedule(name: "Jumping Jacks", duration: [0, 10], day: 0, time: [10, 30]),
