@@ -34,8 +34,9 @@
 		DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */; };
 		DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */; };
 		DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */; };
+		E30440E624A6020F0013D053 /* DashBoardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30440E524A6020F0013D053 /* DashBoardViewCell.swift */; };
+		E30440E824A609110013D053 /* CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30440E724A609110013D053 /* CardDesign.swift */; };
 		E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39EE04524A356AB00DDD571 /* DashboardViewController.swift */; };
-		E39EE04A24A35CD200DDD571 /* testingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39EE04924A35CD200DDD571 /* testingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,8 +71,9 @@
 		DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddViewController.swift; sourceTree = "<group>"; };
 		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		DF55D0091284AED9030526CC /* Pods-SDDP-iFit-Team3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.debug.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.debug.xcconfig"; sourceTree = "<group>"; };
+		E30440E524A6020F0013D053 /* DashBoardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewCell.swift; sourceTree = "<group>"; };
+		E30440E724A609110013D053 /* CardDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDesign.swift; sourceTree = "<group>"; };
 		E39EE04524A356AB00DDD571 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
-		E39EE04924A35CD200DDD571 /* testingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +167,6 @@
 		DC21E87424A0A2E20022B252 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E39EE04924A35CD200DDD571 /* testingView.swift */,
 				7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */,
 				7D1C4BFD24A4FD9000CD1F6F /* AddScheduleViewController.swift */,
 				DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */,
@@ -177,6 +178,8 @@
 				1B3E8DA924A387B7001D9C8D /* PostCell.swift */,
 				E39EE04524A356AB00DDD571 /* DashboardViewController.swift */,
 				1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */,
+				E30440E524A6020F0013D053 /* DashBoardViewCell.swift */,
+				E30440E724A609110013D053 /* CardDesign.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -316,11 +319,12 @@
 				09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */,
 				E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */,
 				DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */,
-				E39EE04A24A35CD200DDD571 /* testingView.swift in Sources */,
 				DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
+				E30440E624A6020F0013D053 /* DashBoardViewCell.swift in Sources */,
 				7D1C4BFE24A4FD9000CD1F6F /* AddScheduleViewController.swift in Sources */,
 				DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */,
+				E30440E824A609110013D053 /* CardDesign.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
