@@ -17,6 +17,7 @@
 		1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E8DA924A387B7001D9C8D /* PostCell.swift */; };
 		1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0E324A359FF003A35A9 /* Post.swift */; };
 		1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0ED24A37182003A35A9 /* PostViewController.swift */; };
+		1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */; };
 		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
 		7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */; };
 		7D1C4BFE24A4FD9000CD1F6F /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BFD24A4FD9000CD1F6F /* AddScheduleViewController.swift */; };
@@ -54,6 +55,7 @@
 		1B3E8DA924A387B7001D9C8D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
 		1BB0D0E324A359FF003A35A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		1BB0D0ED24A37182003A35A9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ../PostViewController.swift; sourceTree = "<group>"; };
+		1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				1B3E8DA924A387B7001D9C8D /* PostCell.swift */,
 				E39EE04524A356AB00DDD571 /* DashboardViewController.swift */,
 				1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */,
+				1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */,
 				E30440E524A6020F0013D053 /* DashBoardViewCell.swift */,
 				E30440E724A609110013D053 /* CardDesign.swift */,
 			);
@@ -334,6 +337,7 @@
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
 				E30440E624A6020F0013D053 /* DashBoardViewCell.swift in Sources */,
 				7D6A42F924A7139200D82B90 /* Team3Helper.swift in Sources */,
+				1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */,
 				7D1C4BFE24A4FD9000CD1F6F /* AddScheduleViewController.swift in Sources */,
 				DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */,
 				E30440E824A609110013D053 /* CardDesign.swift in Sources */,

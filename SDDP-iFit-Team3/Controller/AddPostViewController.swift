@@ -8,17 +8,64 @@
 
 import UIKit
 
-class AddPostViewController: UIViewController {
+class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
+    @IBOutlet weak var imageview: UIImageView!
+    
+    @IBOutlet weak var takepicture: UIButton!
+    
+    @IBOutlet weak var selectpicture: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
+        self.navigationItem.title = "Add Post"
         // Do any additional setup after loading the view.
     }
     
+    
+    @IBAction func takePicturePressed(_ sender: Any) {
+        
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        
+        picker.allowsEditing = true
+        picker.sourceType = .camera
+        self.present(picker, animated: true)
+        
+    }
+    
+    
+    @IBAction func selectPcturepressed(_ sender: Any) {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        self.present(picker, animated: true)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
+    [UIImagePickerController.InfoKey : Any])
+    { let chosenImage : UIImage =
+    info[.editedImage] as! UIImage
+    self.imageview!.image = chosenImage
+    // This saves the image selected / shot by the user
+    //
+    UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil)
 
-    /*
+    // This closes the picker //
+    picker.dismiss(animated: true)
+        
+    }
+    
+    func imagePickerControllerDidCancel(
+        _ picker: UIImagePickerController)
+    {
+        picker.dismiss(animated: true)
+    }    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

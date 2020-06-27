@@ -14,8 +14,12 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 
     @IBOutlet weak var tableView: UITableView!
     
+   
+   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+     
         
         
         self.navigationItem.title = "Posts"
@@ -33,6 +37,10 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         pimageName:  "thumbnail_images"))
         // Do any additional setup after loading the view.
     }
+    
+    
+   
+    
     
     @objc func addButtonClicked()
     {
@@ -61,7 +69,20 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 
                 return cell
         }
-    //*
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "ShowPostDetails")
+     { let detailViewController = segue.destination as! EditPostViewController
+        let myIndexPath = self.tableView.indexPathForSelectedRow
+            if(myIndexPath != nil) {
+   
+           let posts = postList[myIndexPath!.row]
+                detailViewController.postItem = posts
+                
+        }
+
+            }
+     }    //*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
