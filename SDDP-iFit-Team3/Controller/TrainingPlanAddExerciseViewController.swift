@@ -8,26 +8,29 @@
 
 import UIKit
 
-class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var exerciseList : [String] = []
+    var filterList: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         exerciseList = ["Plank on forearms", "ELevated crunches", "Push-up", "Sit-up"]
+        filterList = exerciseList
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return exerciseList.count
+        return filterList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TPExerciseCell", for: indexPath)
-        let e = exerciseList[indexPath.row]
+        let e = filterList[indexPath.row]
         cell.textLabel?.text = e
         
         return cell
@@ -41,6 +44,24 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
         }
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        filterList = []
+        
+        if searchText == "" {
+            filterList = exerciseList
+        }
+        else {
+            for e in exerciseList {
+                if e.lowercased().contains(searchText.lowercased()) {
+                    filterList.append(e)
+                }
+            }
+        }
+        self.tableView.reloadData()
+    }
+    
     
     
     @IBAction func addExercisePressed(_ sender: Any) {
