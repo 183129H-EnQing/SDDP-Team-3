@@ -26,11 +26,11 @@ class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPic
         self.exercises = ["Push Up", "Jumping Jacks", "Skipping Rope", "Sit Up"]
         
         self.exercisePicker.layer.borderWidth = 1
-        self.exercisePicker.layer.borderColor = UIColor.systemGray2.cgColor
+        self.exercisePicker.layer.borderColor = UIColor.systemGray3.cgColor
         self.timePicker.layer.borderWidth = 1
-        self.timePicker.layer.borderColor = UIColor.systemGray2.cgColor
+        self.timePicker.layer.borderColor = UIColor.systemGray3.cgColor
         self.dayPicker.layer.borderWidth = 1
-        self.dayPicker.layer.borderColor = UIColor.systemGray2.cgColor
+        self.dayPicker.layer.borderColor = UIColor.systemGray3.cgColor
         
         self.days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     }
@@ -48,8 +48,56 @@ class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+        colorTextFieldBorder(textField: hrsTextField, isRed: false)
+        colorTextFieldBorder(textField: minsTextField, isRed: false)
         
+        if !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) || !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) {
+            colorTextFieldBorder(textField: hrsTextField, isRed: true)
+            colorTextFieldBorder(textField: minsTextField, isRed: true)
+            
+            let alert = Team3Helper.makeAlert("Only numbers allowed in 'Duration' text fields")
+            self.present(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        let hrs = Int(hrsTextField.text!)!
+        let mins = Int(minsTextField.text!)!
+        
+        if hrs > 24 || hrs < 0 {
+            colorTextFieldBorder(textField: hrsTextField, isRed: true)
+            
+            let alert = Team3Helper.makeAlert("Hours can only be between 0 and 24")
+            self.present(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        if mins > 59 || mins < 0 {
+            colorTextFieldBorder(textField: minsTextField, isRed: true)
+            
+            let alert = Team3Helper.makeAlert("Mins can only be between 0 and 59")
+            self.present(alert, animated: true, completion: nil)
+            
+            return
+        }
+        
+        if hrs == 0 && mins == 0 {
+            colorTextFieldBorder(textField: hrsTextField, isRed: true)
+            colorTextFieldBorder(textField: minsTextField, isRed: true)
+            
+            let alert = Team3Helper.makeAlert("Duration cannot be 0")
+            self.present(alert, animated: true, completion: nil)
+            
+            return
+        }
     }
+    
+    func colorTextFieldBorder(textField: UITextField, isRed: Bool) {
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = isRed ? UIColor.systemRed.cgColor : UIColor.systemGray3.cgColor
+    }
+    
     /*
     // MARK: - Navigation
 
