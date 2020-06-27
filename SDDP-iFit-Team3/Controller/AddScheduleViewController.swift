@@ -91,6 +91,17 @@ class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPic
             
             return
         }
+        
+        let exercise = exercises[exercisePicker.selectedRow(inComponent: 0)]
+        let time = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
+        let day = dayPicker.selectedRow(inComponent: 0)
+        
+        let viewControllers = self.navigationController?.viewControllers
+        let parent = viewControllers?[0] as! SchedulerViewController
+        parent.testData.append(Schedule(name: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!]))
+        parent.tableView.reloadData()
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     func colorTextFieldBorder(textField: UITextField, isRed: Bool) {
