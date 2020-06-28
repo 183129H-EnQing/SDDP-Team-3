@@ -35,8 +35,9 @@
 		DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */; };
 		DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */; };
 		DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */; };
-		E30440E624A6020F0013D053 /* DashBoardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30440E524A6020F0013D053 /* DashBoardViewCell.swift */; };
 		E30440E824A609110013D053 /* CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30440E724A609110013D053 /* CardDesign.swift */; };
+		E329984D24A86249003E9D4B /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329984C24A86249003E9D4B /* GoalViewController.swift */; };
+		E329984F24A865A1003E9D4B /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E329984E24A865A1003E9D4B /* GoalCell.swift */; };
 		E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39EE04524A356AB00DDD571 /* DashboardViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,8 +74,9 @@
 		DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddViewController.swift; sourceTree = "<group>"; };
 		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		DF55D0091284AED9030526CC /* Pods-SDDP-iFit-Team3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.debug.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.debug.xcconfig"; sourceTree = "<group>"; };
-		E30440E524A6020F0013D053 /* DashBoardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewCell.swift; sourceTree = "<group>"; };
 		E30440E724A609110013D053 /* CardDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDesign.swift; sourceTree = "<group>"; };
+		E329984C24A86249003E9D4B /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
+		E329984E24A865A1003E9D4B /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		E39EE04524A356AB00DDD571 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,8 +191,9 @@
 				1B3E8DA924A387B7001D9C8D /* PostCell.swift */,
 				E39EE04524A356AB00DDD571 /* DashboardViewController.swift */,
 				1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */,
-				E30440E524A6020F0013D053 /* DashBoardViewCell.swift */,
 				E30440E724A609110013D053 /* CardDesign.swift */,
+				E329984C24A86249003E9D4B /* GoalViewController.swift */,
+				E329984E24A865A1003E9D4B /* GoalCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -328,13 +331,14 @@
 				DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */,
 				DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */,
 				09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */,
+				E329984F24A865A1003E9D4B /* GoalCell.swift in Sources */,
 				E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */,
 				DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */,
 				DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
-				E30440E624A6020F0013D053 /* DashBoardViewCell.swift in Sources */,
 				7D6A42F924A7139200D82B90 /* Team3Helper.swift in Sources */,
 				7D1C4BFE24A4FD9000CD1F6F /* AddScheduleViewController.swift in Sources */,
+				E329984D24A86249003E9D4B /* GoalViewController.swift in Sources */,
 				DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */,
 				E30440E824A609110013D053 /* CardDesign.swift in Sources */,
 			);
