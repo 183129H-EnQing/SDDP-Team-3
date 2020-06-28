@@ -16,14 +16,17 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var selectpicture: UIButton!
     
+    @IBOutlet weak var addbutton: UIButton!
+    
+    @IBOutlet weak var contenttext: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        self.navigationItem.title = "Add Post"
-        // Do any additional setup after loading the view.
+              // Do any additional setup after loading the view.
     }
     
+   
     
     @IBAction func takePicturePressed(_ sender: Any) {
         
@@ -47,24 +50,39 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
-    [UIImagePickerController.InfoKey : Any])
-    { let chosenImage : UIImage =
-    info[.editedImage] as! UIImage
-    self.imageview!.image = chosenImage
-    // This saves the image selected / shot by the user
-    //
-    UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil)
-
-    // This closes the picker //
-    picker.dismiss(animated: true)
+    
+    @IBAction func addbuttonpressed(_ sender: Any) {
+        //let choosenImage = self.imageview.image!
+        let content = contenttext.text!
+        let datetime = "5.34"
+    
+        let postcntl = self.navigationController?.viewControllers
+        let addPost = postcntl?[0] as! PostViewController
+        addPost.postList.append(Post(userName: "unknown", pcontent:  content , pdatetime: datetime, userLocation: "yishun", pimageName: "choosenImage" ))
+        addPost.tableView.reloadData()
         
+        self.navigationController?.popViewController(animated: true)
     }
     
-    func imagePickerControllerDidCancel(
-        _ picker: UIImagePickerController)
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
+    [UIImagePickerController.InfoKey : Any])
     {
-        picker.dismiss(animated: true)
+            let chosenImage : UIImage =
+            info[.editedImage] as! UIImage
+            self.imageview!.image = chosenImage
+            // This saves the image selected / shot by the user
+            //
+            UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil)
+
+            // This closes the picker //
+            picker.dismiss(animated: true)
+                
+            }
+            
+            func imagePickerControllerDidCancel(
+                _ picker: UIImagePickerController)
+            {
+                picker.dismiss(animated: true)
     }    /*
     // MARK: - Navigation
 
