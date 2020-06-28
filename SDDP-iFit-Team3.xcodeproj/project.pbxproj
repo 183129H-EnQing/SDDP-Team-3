@@ -193,8 +193,7 @@
 				1B3E8DA924A387B7001D9C8D /* PostCell.swift */,
 				E39EE04524A356AB00DDD571 /* DashboardViewController.swift */,
 				1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */,
-<<<<<<< HEAD
-=======
+
 				1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */,
 				E30440E524A6020F0013D053 /* DashBoardViewCell.swift */,
 >>>>>>> master
