@@ -13,6 +13,7 @@
 		09B1B93A249322AD00D14CE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B1B938249322AD00D14CE6 /* Main.storyboard */; };
 		09B1B93C249322B200D14CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B1B93B249322B200D14CE6 /* Assets.xcassets */; };
 		09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B1B93D249322B200D14CE6 /* LaunchScreen.storyboard */; };
+		1B11D96124A8AF7700D605F8 /* DashBoardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11D96024A8AF7700D605F8 /* DashBoardViewCell.swift */; };
 		1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */; };
 		1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E8DA924A387B7001D9C8D /* PostCell.swift */; };
 		1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0E324A359FF003A35A9 /* Post.swift */; };
@@ -36,7 +37,6 @@
 		DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */; };
 		DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */; };
 		DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */; };
-		E30440E624A6020F0013D053 /* DashBoardViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30440E524A6020F0013D053 /* DashBoardViewCell.swift */; };
 		E30440E824A609110013D053 /* CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30440E724A609110013D053 /* CardDesign.swift */; };
 		E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39EE04524A356AB00DDD571 /* DashboardViewController.swift */; };
 /* End PBXBuildFile section */
@@ -51,6 +51,7 @@
 		09B1B93E249322B200D14CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09B1B940249322B200D14CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		189D6898487131893BCD7A6A /* Pods-SDDP-iFit-Team3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.release.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.release.xcconfig"; sourceTree = "<group>"; };
+		1B11D96024A8AF7700D605F8 /* DashBoardViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashBoardViewCell.swift; sourceTree = "<group>"; };
 		1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		1B3E8DA924A387B7001D9C8D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
 		1BB0D0E324A359FF003A35A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddViewController.swift; sourceTree = "<group>"; };
 		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		DF55D0091284AED9030526CC /* Pods-SDDP-iFit-Team3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.debug.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.debug.xcconfig"; sourceTree = "<group>"; };
-		E30440E524A6020F0013D053 /* DashBoardViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardViewCell.swift; sourceTree = "<group>"; };
 		E30440E724A609110013D053 /* CardDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDesign.swift; sourceTree = "<group>"; };
 		E39EE04524A356AB00DDD571 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -192,7 +192,7 @@
 				E39EE04524A356AB00DDD571 /* DashboardViewController.swift */,
 				1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */,
 				1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */,
-				E30440E524A6020F0013D053 /* DashBoardViewCell.swift */,
+				1B11D96024A8AF7700D605F8 /* DashBoardViewCell.swift */,
 				E30440E724A609110013D053 /* CardDesign.swift */,
 			);
 			path = Controller;
@@ -334,8 +334,8 @@
 				E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */,
 				DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */,
 				DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */,
+				1B11D96124A8AF7700D605F8 /* DashBoardViewCell.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
-				E30440E624A6020F0013D053 /* DashBoardViewCell.swift in Sources */,
 				7D6A42F924A7139200D82B90 /* Team3Helper.swift in Sources */,
 				1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */,
 				7D1C4BFE24A4FD9000CD1F6F /* AddScheduleViewController.swift in Sources */,
