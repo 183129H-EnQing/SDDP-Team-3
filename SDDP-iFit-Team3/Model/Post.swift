@@ -16,7 +16,7 @@ import UIKit
         var pimageName: String
         var userLocation: String
 
-    init(userName: String, pcontent:String, pdatetime:String, userLocation:String,  pimageName: String)
+    init(userName: String, pcontent:String, pdatetime:String, userLocation:String,  pimageName:String)
      {
         self.userName = userName
         self.pcontent = pcontent

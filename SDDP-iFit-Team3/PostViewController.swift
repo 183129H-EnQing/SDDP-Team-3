@@ -65,7 +65,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 cell.pcontentLabel.text = "\(p.pcontent) "
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
-                cell.ppimageView.image = UIImage(named: p.pimageName)
+                cell.ppimageView.image = UIImage(named:p.pimageName)
 
                 return cell
         }
@@ -82,7 +82,20 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         }
 
             }
-     }    //*
+     }
+    
+      @IBAction func unwindToPostList(sender: UIStoryboardSegue) {
+           if let sourceViewController = sender.source as? AddPostViewController, let posts = sourceViewController.postItem {
+                 
+                 // Add a new meal.
+                 let newIndexPath = IndexPath(row: postList.count, section: 0)
+                 
+                 postList.append(posts)
+                 tableView.insertRows(at: [newIndexPath], with: .automatic)
+             }
+      }
+    
+    //*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import os.log
 class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     @IBOutlet weak var imageview: UIImageView!
@@ -18,7 +18,10 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var addbutton: UIButton!
     
+   
     @IBOutlet weak var contenttext: UITextField!
+    
+    var postItem : Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,20 +53,43 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         
     }
     
-    
-    @IBAction func addbuttonpressed(_ sender: Any) {
-        //let choosenImage = self.imageview.image!
-        let content = contenttext.text!
-        let datetime = "5.34"
-    
-        let postcntl = self.navigationController?.viewControllers
-        let addPost = postcntl?[0] as! PostViewController
-        addPost.postList.append(Post(userName: "unknown", pcontent:  content , pdatetime: datetime, userLocation: "yishun", pimageName: "choosenImage" ))
-        addPost.tableView.reloadData()
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         
+           super.prepare(for: segue, sender: sender)
+           
+         
+           guard let button = sender as? UIButton, button === addbutton else {
+               os_log("The add button was not pressed, cancelling", log: OSLog.default, type: .debug)
+               return
+           }
         
-        self.navigationController?.popViewController(animated: true)
+        
+        let content = contenttext.text ?? ""
+        
+        //let photo = imageview.image
+        
+     
+        postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: "5.34", userLocation: "yishun", pimageName: "")
+        
     }
     
+  
+    
+    @IBAction func addbuttonpressed(_ sender: Any) {
+        
+          //let content = contenttext.text!
+          //let datetime = "5.34"
+          
+              //let postcntl = self.navigationController?.viewControllers
+             // let addPost = postcntl?[0] as! PostViewController
+             // addPost.postList.append(Post(userName: "unknown", pcontent:  content , pdatetime: datetime, userLocation: "yishun", pimageName: "" ))
+             // addPost.tableView.reloadData()
+              
+              //self.navigationController?.popViewController(animated: true)
+        //
+    }
+    
+   
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
     [UIImagePickerController.InfoKey : Any])
     {
