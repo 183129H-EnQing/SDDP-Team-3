@@ -19,16 +19,23 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
 
         // Do any additional setup after loading the view.
         self.schedules = [
+            2: [
+                Schedule(exerciseName: "Jumping Jacks", duration: [2,50], day: 2, time: [0, 10])
+            ],
             0: [
                 Schedule(exerciseName: "Push Up", duration: [0, 5], day: 0, time: [10, 0]),
                 Schedule(exerciseName: "Jumping Jacks", duration: [0, 10], day: 0, time: [10, 30]),
                 Schedule(exerciseName: "Skipping Rope", duration: [1, 10], day: 0, time: [12, 50])
+            ],
+            1: [
+                Schedule(exerciseName: "Push Up", duration: [0, 5], day: 1, time: [10, 0])
             ]
         ]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.schedules[section]!.count
+        let day = getDayInSchedules(section: section)
+        return self.schedules[day]!.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,12 +43,15 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return AddScheduleViewController.days[section]
+        let day = getDayInSchedules(section: section)
+        return AddScheduleViewController.days[day]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath)
-        let schedule = self.schedules[indexPath.section]![indexPath.row]
+        
+        let day = getDayInSchedules(section: indexPath.section)
+        let schedule = self.schedules[day]![indexPath.row]
         
         // Set exercise as title label,sStyle the duration string
         let duration = (schedule.duration[0] > 0 ? "\(schedule.duration[0]) hrs " : "") + "\(schedule.duration[1]) mins"
@@ -49,7 +59,8 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Convert from 24 hour to 12 hour time and style the time string
         let timeHour = schedule.time[0]
-        let timeMin = schedule.time[1]
+        let timeMin: Int = schedule.time[1]
+        print("timeMin: \(timeMin), > \(timeMin > 10)")
         let hourHand = timeHour > 12 ? timeHour - 1 : (timeHour > 0 ? timeHour : 12)
         let minuteHand = timeMin > 10 ? "\(timeMin)" : "0\(timeMin)"
         let timeType = (schedule.time[0] > 11 ? "PM" : "AM")
@@ -61,8 +72,33 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("deleting!")
+            let section = indexPath.section
+            let day = getDayInSchedules(section: section)
+            
+            print("Before: \(schedules)")
+            print("Day: \(day), Section: \(section), Row: \(indexPath.row)")
+            print("Count: \(self.schedules[day]!.count)")
+            
+            self.schedules[day]?.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            print("Count: \(self.schedules[day]!.count)")
+            if self.schedules[day]!.count == 0 {
+                self.schedules.removeValue(forKey: day)
+            }
+            
+            tableView.reloadData()
+            print("After: \(schedules)")
         }
+    }
+    
+    func getDayInSchedules(section: Int) -> Int {
+        let day = Array(self.schedules.keys).sorted(by: {
+            (a,b) in
+            return a < b
+        })[section]
+        
+        return day
     }
     
     /*
