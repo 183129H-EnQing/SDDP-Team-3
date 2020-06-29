@@ -2,7 +2,7 @@
 //  GoalCell.swift
 //  SDDP-iFit-Team3
 //
-//  Created by 182381J  on 6/27/20.
+//  Created by ITP312Grp1 on 29/6/20.
 //  Copyright © 2020 SDDP_Team3. All rights reserved.
 //
 
