@@ -118,7 +118,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TItle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8X-oJ-eLX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N8X-oJ-eLX">
                                 <rect key="frame" x="37" y="306" width="34" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -166,6 +166,9 @@
                                 <state key="normal" title="Add Plan">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="addTrainingPressed:" destination="JKM-Mh-9Kk" eventType="touchUpInside" id="1gS-xr-sRM"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9xn-vX-uIw">
                                 <rect key="frame" x="273" y="499" width="97" height="34"/>
@@ -213,9 +216,12 @@
                         <viewLayoutGuide key="safeArea" id="gse-Id-f23"/>
                     </view>
                     <connections>
+                        <outlet property="descLabel" destination="Qeg-NQ-ljb" id="T2M-z3-fLG"/>
                         <outlet property="imageView" destination="8JE-C1-dDa" id="Bru-Ip-5hF"/>
+                        <outlet property="repsLabel" destination="9xn-vX-uIw" id="ffi-AF-7x3"/>
                         <outlet property="selectPicture" destination="Quo-aa-WXZ" id="Knm-Bp-5yn"/>
                         <outlet property="takePicture" destination="j9O-wF-Tni" id="kEk-5g-u82"/>
+                        <outlet property="titleLabel" destination="jFJ-wg-jhp" id="3UC-co-Zh8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4C-Df-uPI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

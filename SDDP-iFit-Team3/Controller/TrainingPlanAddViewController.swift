@@ -14,6 +14,12 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var takePicture: UIButton!
     @IBOutlet weak var selectPicture: UIButton!
     
+    @IBOutlet weak var titleLabel: UITextField!
+    @IBOutlet weak var descLabel: UITextField!
+    @IBOutlet weak var repsLabel: UITextField!
+    
+    var newTrainingPlan : [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -67,6 +73,12 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         picker.dismiss(animated: true)
     }
     
+    @IBAction func addTrainingPressed(_ sender: Any) {
+//        newTrainingPlan = [TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: [""], tpImage: "")]
+        
+        newTrainingPlan = [titleLabel.text!, descLabel.text!, repsLabel.text!]
+        print(newTrainingPlan)
+    }
     /*
     // MARK: - Navigation
 

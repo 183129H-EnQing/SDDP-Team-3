@@ -16,11 +16,14 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
     var exerciseList : [String] = []
     var filterList: [String] = []
     
+    var tickExercise: [String] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        exerciseList = ["Plank on forearms", "ELevated crunches", "Push-up", "Sit-up"]
+        exerciseList = ["Plank on forearms", "Elevated crunches", "Push-up", "Sit-up"]
         filterList = exerciseList
     }
     
@@ -39,6 +42,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.none) {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+            tickExercise.append(exerciseList[indexPath.row])
         }
         else {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
@@ -65,7 +69,12 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
     
     
     @IBAction func addExercisePressed(_ sender: Any) {
+//        print(tickExercise)
         
+        dismiss(animated: true, completion: nil)
+        let addTPVC = self.storyboard?.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
+        self.navigationController?.pushViewController(addTPVC, animated: true)
+        self.present(addTPVC, animated: true, completion: nil)
     }
     
 
