@@ -1,5 +1,5 @@
 //
-//  GoalViewController.swift
+//  AchievementViewController.swift
 //  SDDP-iFit-Team3
 //
 //  Created by ITP312Grp1 on 29/6/20.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GoalViewController: UIViewController {
+class AchievementViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

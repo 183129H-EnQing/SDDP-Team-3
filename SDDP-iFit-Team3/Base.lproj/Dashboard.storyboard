@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,14 +30,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q5I-cd-wkJ">
-                                <rect key="frame" x="0.0" y="78" width="414" height="752"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="bAZ-TN-wqx">
+                                <rect key="frame" x="21" y="54" width="372" height="798"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZY-as-Rqu" userLabel="Challenges Stack View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="372" height="125"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wR2-nn-wPc" customClass="CardDesign" customModule="SDDP_iFit_Team3" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="372" height="125"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Challenges" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8u-Yd-K48">
                                                         <rect key="frame" x="0.0" y="8" width="85" height="21"/>
@@ -54,14 +54,19 @@
                                             </view>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Others" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYa-Ac-bVJ">
-                                        <rect key="frame" x="21" y="133" width="372" height="20.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uao-tT-Dgy">
+                                        <rect key="frame" x="0.0" y="150" width="372" height="266"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Others" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYa-Ac-bVJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="372" height="266"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="AET-5T-wrJ" userLabel="First Row Stack View">
-                                        <rect key="frame" x="21" y="161" width="372" height="166"/>
+                                        <rect key="frame" x="0.0" y="441" width="372" height="166"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O13-Gl-7fH" customClass="CardDesign" customModule="SDDP_iFit_Team3" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="175.66666666666666" height="166"/>
@@ -79,8 +84,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fGH-6G-a6E" customClass="CardDesign" customModule="SDDP_iFit_Team3" customModuleProvider="target">
                                                 <rect key="frame" x="196.66666666666663" y="0.0" width="175.33333333333337" height="166"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t96-sr-6GL">
-                                                        <rect key="frame" x="34" y="53" width="57" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Goal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t96-sr-6GL">
+                                                        <rect key="frame" x="33.999999999999886" y="53" width="35" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -95,13 +100,13 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="cHb-Mv-3qg" userLabel="Second Row Stack View">
-                                        <rect key="frame" x="21" y="342" width="372" height="166"/>
+                                        <rect key="frame" x="0.0" y="632" width="372" height="166"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULf-Vt-Tj0" customClass="CardDesign" customModule="SDDP_iFit_Team3" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="175.66666666666666" height="166"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjY-ig-4sj">
-                                                        <rect key="frame" x="34" y="53" width="57" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Acheivement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjY-ig-4sj">
+                                                        <rect key="frame" x="34" y="53" width="100" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -113,8 +118,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hiX-Gx-wHo" customClass="CardDesign" customModule="SDDP_iFit_Team3" customModuleProvider="target">
                                                 <rect key="frame" x="196.66666666666663" y="0.0" width="175.33333333333337" height="166"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxm-tx-mEZ">
-                                                        <rect key="frame" x="34" y="53" width="57" height="21"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Leaderboard" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uxm-tx-mEZ">
+                                                        <rect key="frame" x="33.999999999999886" y="53" width="98" height="21"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
@@ -130,31 +135,14 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="tYa-Ac-bVJ" firstAttribute="leading" secondItem="Q5I-cd-wkJ" secondAttribute="leading" constant="21" id="1nM-vE-Ctc"/>
-                                    <constraint firstItem="AET-5T-wrJ" firstAttribute="top" secondItem="tYa-Ac-bVJ" secondAttribute="bottom" constant="7.5" id="25u-Hd-Xcs"/>
-                                    <constraint firstItem="cHb-Mv-3qg" firstAttribute="leading" secondItem="Q5I-cd-wkJ" secondAttribute="leading" constant="21" id="2xf-A7-brH"/>
-                                    <constraint firstItem="tYa-Ac-bVJ" firstAttribute="top" secondItem="oZY-as-Rqu" secondAttribute="bottom" constant="8" id="7yN-q0-6Wy"/>
-                                    <constraint firstItem="oZY-as-Rqu" firstAttribute="top" secondItem="Q5I-cd-wkJ" secondAttribute="top" id="8Go-Uz-gIC"/>
-                                    <constraint firstItem="oZY-as-Rqu" firstAttribute="leading" secondItem="Q5I-cd-wkJ" secondAttribute="leading" id="8vs-0u-fM6"/>
-                                    <constraint firstAttribute="trailing" secondItem="cHb-Mv-3qg" secondAttribute="trailing" constant="21" id="QwF-2t-Dt5"/>
-                                    <constraint firstItem="AET-5T-wrJ" firstAttribute="leading" secondItem="Q5I-cd-wkJ" secondAttribute="leading" constant="21" id="RYE-q1-Uyw"/>
-                                    <constraint firstItem="cHb-Mv-3qg" firstAttribute="top" secondItem="AET-5T-wrJ" secondAttribute="bottom" constant="15" id="Wpi-gV-xdV"/>
-                                    <constraint firstItem="oZY-as-Rqu" firstAttribute="top" secondItem="Q5I-cd-wkJ" secondAttribute="top" id="amh-lL-1K5"/>
-                                    <constraint firstAttribute="trailing" secondItem="AET-5T-wrJ" secondAttribute="trailing" constant="21" id="fxr-dF-JdL"/>
-                                    <constraint firstAttribute="bottom" secondItem="oZY-as-Rqu" secondAttribute="bottom" id="hHW-Fn-M2K"/>
-                                    <constraint firstAttribute="trailing" secondItem="oZY-as-Rqu" secondAttribute="trailing" id="o3A-jc-qbe"/>
-                                    <constraint firstItem="oZY-as-Rqu" firstAttribute="width" secondItem="Q5I-cd-wkJ" secondAttribute="width" id="wLx-AO-QHH"/>
-                                    <constraint firstAttribute="trailing" secondItem="tYa-Ac-bVJ" secondAttribute="trailing" constant="21" id="yJG-a1-lgj"/>
-                                </constraints>
-                            </scrollView>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Q5I-cd-wkJ" firstAttribute="leading" secondItem="TfB-1W-gQu" secondAttribute="leading" id="dEg-br-QUv"/>
-                            <constraint firstItem="Q5I-cd-wkJ" firstAttribute="top" secondItem="TfB-1W-gQu" secondAttribute="top" constant="78" id="eae-eC-oFA"/>
-                            <constraint firstAttribute="trailing" secondItem="Q5I-cd-wkJ" secondAttribute="trailing" id="hDg-4m-Jgg"/>
-                            <constraint firstAttribute="bottom" secondItem="Q5I-cd-wkJ" secondAttribute="bottom" constant="66" id="o0r-JG-xmJ"/>
+                            <constraint firstItem="Er0-C1-aK9" firstAttribute="bottom" secondItem="bAZ-TN-wqx" secondAttribute="bottom" constant="10" id="6Xv-Wp-J93"/>
+                            <constraint firstAttribute="trailing" secondItem="bAZ-TN-wqx" secondAttribute="trailing" constant="21" id="XwJ-qf-f9c"/>
+                            <constraint firstItem="bAZ-TN-wqx" firstAttribute="top" secondItem="Er0-C1-aK9" secondAttribute="top" constant="10" id="dDb-iV-aco"/>
+                            <constraint firstItem="bAZ-TN-wqx" firstAttribute="leading" secondItem="Er0-C1-aK9" secondAttribute="leading" constant="21" id="k8Q-js-SkW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Er0-C1-aK9"/>
                     </view>
