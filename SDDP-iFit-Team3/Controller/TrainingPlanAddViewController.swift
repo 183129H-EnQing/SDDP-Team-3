@@ -19,11 +19,13 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var repsLabel: UITextField!
     
     var newTrainingPlan : [String] = []
+    var exerciseListFrom : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print("safe", exerciseListFrom)
         
         // We check if this device has a camera
         //

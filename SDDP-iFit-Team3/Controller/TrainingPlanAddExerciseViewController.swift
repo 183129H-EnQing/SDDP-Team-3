@@ -65,16 +65,20 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         }
         self.tableView.reloadData()
     }
-    
-    
+
     
     @IBAction func addExercisePressed(_ sender: Any) {
 //        print(tickExercise)
         
-        dismiss(animated: true, completion: nil)
         let addTPVC = self.storyboard?.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
-        self.navigationController?.pushViewController(addTPVC, animated: true)
-        self.present(addTPVC, animated: true, completion: nil)
+        
+        addTPVC.exerciseListFrom = tickExercise
+        
+        dismiss(animated: true, completion: nil)
+        
+        
+//        self.navigationController?.pushViewController(addTPVC, animated: true)
+//        self.present(addTPVC, animated: true, completion: nil)
     }
     
 
