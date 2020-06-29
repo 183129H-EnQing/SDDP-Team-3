@@ -10,29 +10,40 @@ import UIKit
 
 class SchedulerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var testData: [Schedule] = []
+    // {day as Integer: Array of Schedule}
+    var schedules: [Int: [Schedule]] = [:]
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.testData = [
-            Schedule(name: "Push Up", duration: [0, 5], day: 0, time: [10, 0]),
-            Schedule(name: "Jumping Jacks", duration: [0, 10], day: 0, time: [10, 30]),
-            Schedule(name: "Skipping Rope", duration: [1, 10], day: 0, time: [12, 50])
+        self.schedules = [
+            0: [
+                Schedule(exerciseName: "Push Up", duration: [0, 5], day: 0, time: [10, 0]),
+                Schedule(exerciseName: "Jumping Jacks", duration: [0, 10], day: 0, time: [10, 30]),
+                Schedule(exerciseName: "Skipping Rope", duration: [1, 10], day: 0, time: [12, 50])
+            ]
         ]
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.testData.count
+        return self.schedules[section]!.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.schedules.keys.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return AddScheduleViewController.days[section]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduleCell", for: indexPath)
-        let schedule = self.testData[indexPath.row]
+        let schedule = self.schedules[indexPath.section]![indexPath.row]
         
-        // Style the duration string
+        // Set exercise as title label,sStyle the duration string
         let duration = (schedule.duration[0] > 0 ? "\(schedule.duration[0]) hrs " : "") + "\(schedule.duration[1]) mins"
         cell.textLabel?.text = "\(schedule.name) - \(duration)"
         
@@ -48,6 +59,12 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell;
     }
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            print("deleting!")
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

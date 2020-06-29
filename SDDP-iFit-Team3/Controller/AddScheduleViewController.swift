@@ -17,7 +17,7 @@ class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPic
     @IBOutlet weak var dayPicker: UIPickerView!
     
     var exercises: [String] = []
-    var days: [String] = []
+    static var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +31,6 @@ class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPic
         self.timePicker.layer.borderColor = UIColor.systemGray3.cgColor
         self.dayPicker.layer.borderWidth = 1
         self.dayPicker.layer.borderColor = UIColor.systemGray3.cgColor
-        
-        self.days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -40,11 +38,11 @@ class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPic
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerView.tag == self.exercisePicker.tag ? self.exercises.count : self.days.count
+        return pickerView.tag == self.exercisePicker.tag ? self.exercises.count : AddScheduleViewController.days.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerView.tag == self.exercisePicker.tag ? exercises[row] : self.days[row]
+        return pickerView.tag == self.exercisePicker.tag ? exercises[row] : AddScheduleViewController.days[row]
     }
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
@@ -98,7 +96,12 @@ class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPic
         
         let viewControllers = self.navigationController?.viewControllers
         let parent = viewControllers?[0] as! SchedulerViewController
-        parent.testData.append(Schedule(name: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!]))
+        
+        // check if the object got the day, if don't have create an empty array
+        if !parent.schedules.keys.contains(day) {
+            parent.schedules[day] = []
+        }
+        parent.schedules[day]!.append(Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!]))
         parent.tableView.reloadData()
         
         self.navigationController?.popViewController(animated: true)
