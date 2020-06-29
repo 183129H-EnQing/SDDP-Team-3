@@ -13,12 +13,12 @@ class TrainingPlan: NSObject {
     var tpName: String
     var tpDesc: String
     var tpReps : Int
-    var tpExercises: [String?]
+    var tpExercises: [String]
     var tpImage: String
     
     
     
-    init(tpName: String, tpDesc: String, tpReps: Int, tpExercises: [String?], tpImage: String){
+    init(tpName: String, tpDesc: String, tpReps: Int, tpExercises: [String], tpImage: String){
         self.tpName = tpName
         self.tpDesc = tpDesc
         self.tpReps = tpReps

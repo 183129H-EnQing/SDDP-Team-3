@@ -8,12 +8,13 @@
 
 import UIKit
 
-class TrainingPlanDetailViewController: UIViewController {
+class TrainingPlanDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var trainingPlanImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var repsLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     var trainingPlanItem : TrainingPlan?
     
@@ -27,6 +28,18 @@ class TrainingPlanDetailViewController: UIViewController {
         descLabel.text = trainingPlanItem?.tpDesc
         repsLabel.text = "\(trainingPlanItem!.tpReps)"
         //exercises not added
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (trainingPlanItem?.tpExercises.count)!
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TPExercise", for: indexPath)
+        let t = trainingPlanItem?.tpExercises[indexPath.row]
+        cell.textLabel?.text = t
+        
+        return cell
     }
     
 

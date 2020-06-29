@@ -42,7 +42,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if (tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.none) {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
-            tickExercise.append(exerciseList[indexPath.row])
+            tickExercise.append(filterList[indexPath.row])
         }
         else {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
@@ -68,11 +68,13 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
 
     
     @IBAction func addExercisePressed(_ sender: Any) {
-//        print(tickExercise)
+        print(tickExercise)
         
         let addTPVC = self.storyboard?.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
         
         addTPVC.exerciseListFrom = tickExercise
+        
+//        addTPVC.tableView.reloadData()
         
         dismiss(animated: true, completion: nil)
         
