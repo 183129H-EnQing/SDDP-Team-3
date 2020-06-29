@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var takePicture: UIButton!
@@ -17,9 +17,10 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var descLabel: UITextField!
     @IBOutlet weak var repsLabel: UITextField!
+    @IBOutlet weak var tableView: UITableView!
     
     var newTrainingPlan : [String] = []
-    var exerciseListFrom : [String] = []
+    var exerciseListFrom : [String] = ["he"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +74,18 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     func imagePickerControllerDidCancel(
     _ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return exerciseListFrom.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TPShowTickExerciseCell", for: indexPath)
+        let t = exerciseListFrom[indexPath.row]
+        cell.textLabel?.text = t
+        
+        return cell
     }
     
     @IBAction func addTrainingPressed(_ sender: Any) {
