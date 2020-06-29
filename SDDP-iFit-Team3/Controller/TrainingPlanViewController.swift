@@ -25,8 +25,8 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
 //        self.navigationItem.rightBarButtonItem = addButton
             
         self.trainingPlanList = [
-            TrainingPlan(tpName: "Hello Monday", tpDesc: "for monday morning", tpReps: 10, tpExercises: [""], tpImage: "pull_string"),
-            TrainingPlan(tpName: "Welcome Friday", tpDesc: "friday evening", tpReps: 20, tpExercises: [""], tpImage: "step_string")]
+            TrainingPlan(tpName: "Hello Monday", tpDesc: "for monday morning", tpReps: 10, tpExercises: ["Jumping Jack", "Sit-Up"], tpImage: "pull_string"),
+            TrainingPlan(tpName: "Welcome Friday", tpDesc: "friday evening", tpReps: 20, tpExercises: ["Plank on forearms"], tpImage: "step_string")]
         // Do any additional setup after loading the view.
     }
     

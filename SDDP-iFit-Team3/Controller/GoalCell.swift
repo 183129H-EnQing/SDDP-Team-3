@@ -10,9 +10,16 @@ import UIKit
 
 class GoalCell: UITableViewCell {
 
+    @IBOutlet weak var goalTitle: UILabel!
+    @IBOutlet weak var dateRange: UILabel!
+    @IBOutlet weak var duration: UILabel!
+    
+    @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var percentageLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+  
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

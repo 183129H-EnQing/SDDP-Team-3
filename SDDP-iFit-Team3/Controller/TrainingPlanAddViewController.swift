@@ -8,16 +8,25 @@
 
 import UIKit
 
-class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate,  UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var takePicture: UIButton!
     @IBOutlet weak var selectPicture: UIButton!
     
+    @IBOutlet weak var titleLabel: UITextField!
+    @IBOutlet weak var descLabel: UITextField!
+    @IBOutlet weak var repsLabel: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var newTrainingPlan : [String] = []
+    var exerciseListFrom : [String] = ["he"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print("safe", exerciseListFrom)
         
         // We check if this device has a camera
         //
@@ -65,6 +74,29 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     func imagePickerControllerDidCancel(
     _ picker: UIImagePickerController) {
         picker.dismiss(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return exerciseListFrom.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TPShowTickExerciseCell", for: indexPath)
+        let t = exerciseListFrom[indexPath.row]
+        cell.textLabel?.text = t
+        
+        return cell
+    }
+    
+    func refreshExercise(){
+        //assign list 
+    }
+    
+    @IBAction func addTrainingPressed(_ sender: Any) {
+//        newTrainingPlan = [TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: [""], tpImage: "")]
+        
+        newTrainingPlan = [titleLabel.text!, descLabel.text!, repsLabel.text!]
+        print(newTrainingPlan)
     }
     
     /*

@@ -15,8 +15,8 @@ class Schedule {
     var day: Int; // Commment: 0 to 6, Monday to Sunday
     var time: [Int]; // hour:minute, will be in 24hr-style
     
-    init(name: String, duration: [Int], day: Int, time: [Int]) {
-        self.name = name;
+    init(exerciseName: String, duration: [Int], day: Int, time: [Int]) {
+        self.name = exerciseName;
         self.duration = duration;
         self.day = day;
         self.time = time;
