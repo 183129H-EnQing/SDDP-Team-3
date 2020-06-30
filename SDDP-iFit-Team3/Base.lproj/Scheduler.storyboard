@@ -42,6 +42,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="4uN-X6-gRl" kind="show" identifier="EditSchedule" id="pJH-oV-vn5"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -74,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="2100" y="-168.08035714285714"/>
         </scene>
-        <!--Add Schedule View Controller-->
+        <!--Scheduler Details View Controller-->
         <scene sceneID="eje-Js-vJr">
             <objects>
-                <viewController id="4uN-X6-gRl" customClass="AddScheduleViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="4uN-X6-gRl" customClass="SchedulerDetailsViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ltp-Z6-3Hd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,12 +129,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="j5h-Td-CKj">
-                                <rect key="frame" x="20" y="255.5" width="374" height="280"/>
+                                <rect key="frame" x="20" y="255.5" width="374" height="396"/>
                             </datePicker>
                             <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WNh-q7-Cg8">
-                                <rect key="frame" x="20" y="572" width="374" height="216"/>
+                                <rect key="frame" x="20" y="688" width="374" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="5Ni-3W-Qqz"/>
+                                    <constraint firstAttribute="height" constant="100" id="h74-4q-AY1"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="4uN-X6-gRl" id="m09-IL-BDe"/>
@@ -139,10 +142,7 @@
                                 </connections>
                             </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8C-wp-4r3">
-                                <rect key="frame" x="20" y="543.5" width="374" height="20.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20.5" id="VSu-Xa-t6O"/>
-                                </constraints>
+                                <rect key="frame" x="20" y="659.5" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -198,4 +198,7 @@
             <point key="canvasLocation" x="2982.608695652174" y="-168.08035714285714"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="pJH-oV-vn5"/>
+    </inferredMetricsTieBreakers>
 </document>

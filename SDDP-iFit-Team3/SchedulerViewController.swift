@@ -44,7 +44,7 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let day = getDayInSchedules(section: section)
-        return AddScheduleViewController.days[day]
+        return SchedulerDetailsViewController.days[day]
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -55,14 +55,13 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Set exercise as title label,sStyle the duration string
         let duration = (schedule.duration[0] > 0 ? "\(schedule.duration[0]) hrs " : "") + "\(schedule.duration[1]) mins"
-        cell.textLabel?.text = "\(schedule.name) - \(duration)"
+        cell.textLabel?.text = "\(schedule.exerciseName) - \(duration)"
         
         // Convert from 24 hour to 12 hour time and style the time string
         let timeHour = schedule.time[0]
         let timeMin: Int = schedule.time[1]
-        print("timeMin: \(timeMin), > \(timeMin > 10)")
         let hourHand = timeHour > 12 ? timeHour - 1 : (timeHour > 0 ? timeHour : 12)
-        let minuteHand = timeMin > 10 ? "\(timeMin)" : "0\(timeMin)"
+        let minuteHand = timeMin > 9 ? "\(timeMin)" : "0\(timeMin)"
         let timeType = (schedule.time[0] > 11 ? "PM" : "AM")
         
         cell.detailTextLabel?.text =  "\(hourHand):\(minuteHand) \(timeType)"
@@ -101,14 +100,17 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         return day
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "EditSchedule" {
+            let detailViewController = segue.destination as! SchedulerDetailsViewController
+            let indexPath = self.tableView.indexPathForSelectedRow
+            
+            if indexPath != nil {
+                let day = getDayInSchedules(section: indexPath!.section)
+                let schedule = self.schedules[day]![indexPath!.row]
+                detailViewController.schedule = schedule
+            }
+        }
     }
-    */
 
 }

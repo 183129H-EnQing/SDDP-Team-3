@@ -8,13 +8,15 @@
 
 import UIKit
 
-class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var exercisePicker: UIPickerView!
     @IBOutlet weak var hrsTextField: UITextField!
     @IBOutlet weak var minsTextField: UITextField!
     @IBOutlet weak var timePicker: UIDatePicker!
     @IBOutlet weak var dayPicker: UIPickerView!
+    
+    var schedule: Schedule?
     
     var exercises: [String] = []
     static var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
@@ -33,16 +35,30 @@ class AddScheduleViewController: UIViewController, UIPickerViewDataSource, UIPic
         self.dayPicker.layer.borderColor = UIColor.systemGray3.cgColor
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let unwrapSchedule = self.schedule {
+            let exercise: Int = self.exercises.firstIndex(of: unwrapSchedule.exerciseName)!
+            
+            self.exercisePicker.selectRow(exercise, inComponent: 0, animated: true)
+            
+            self.hrsTextField.text = "\(unwrapSchedule.duration[0])"
+            self.minsTextField.text = "\(unwrapSchedule.duration[1])"
+            
+            self.dayPicker.selectRow(unwrapSchedule.day, inComponent: 0, animated: true)
+        }
+    }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerView.tag == self.exercisePicker.tag ? self.exercises.count : AddScheduleViewController.days.count
+        return pickerView.tag == self.exercisePicker.tag ? self.exercises.count : SchedulerDetailsViewController.days.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerView.tag == self.exercisePicker.tag ? exercises[row] : AddScheduleViewController.days[row]
+        return pickerView.tag == self.exercisePicker.tag ? exercises[row] : SchedulerDetailsViewController.days[row]
     }
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {

@@ -26,7 +26,7 @@
 		343BEC9C24A97FB70041352F /* AchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9B24A97FB70041352F /* AchievementViewController.swift */; };
 		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
 		7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */; };
-		7D1C4BFE24A4FD9000CD1F6F /* AddScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BFD24A4FD9000CD1F6F /* AddScheduleViewController.swift */; };
+		7D1C4BFE24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BFD24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift */; };
 		7D6080E5249CFD64001F3E6E /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E3249CFD64001F3E6E /* Dashboard.storyboard */; };
 		7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */; };
 		7D6080EB249CFF7C001F3E6E /* Fitness.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */; };
@@ -70,7 +70,7 @@
 		37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
-		7D1C4BFD24A4FD9000CD1F6F /* AddScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddScheduleViewController.swift; sourceTree = "<group>"; };
+		7D1C4BFD24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerDetailsViewController.swift; sourceTree = "<group>"; };
 		7D6080E4249CFD64001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Dashboard.storyboard; sourceTree = "<group>"; };
 		7D6080E7249CFE2F001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Scheduler.storyboard; sourceTree = "<group>"; };
 		7D6080EA249CFF7C001F3E6E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Fitness.storyboard; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */,
-				7D1C4BFD24A4FD9000CD1F6F /* AddScheduleViewController.swift */,
+				7D1C4BFD24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift */,
 				DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */,
 				DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */,
 				DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */,
@@ -357,7 +357,7 @@
 				7D6A42F924A7139200D82B90 /* Team3Helper.swift in Sources */,
 				343BEC9A24A97F8A0041352F /* ActivityViewController.swift in Sources */,
 				1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */,
-				7D1C4BFE24A4FD9000CD1F6F /* AddScheduleViewController.swift in Sources */,
+				7D1C4BFE24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift in Sources */,
 				DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */,
 				E30440E824A609110013D053 /* CardDesign.swift in Sources */,
 				343BEC9C24A97FB70041352F /* AchievementViewController.swift in Sources */,
