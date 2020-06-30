@@ -45,6 +45,13 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             self.hrsTextField.text = "\(unwrapSchedule.duration[0])"
             self.minsTextField.text = "\(unwrapSchedule.duration[1])"
             
+            // set default time: https://stackoverflow.com/a/28986143
+            let calender = Calendar.current
+            var components = calender.dateComponents([.hour, .minute], from: Date())
+            components.hour = unwrapSchedule.time[0]
+            components.minute = unwrapSchedule.time[1]
+            self.timePicker.setDate(calender.date(from: components)!, animated: true)
+            
             self.dayPicker.selectRow(unwrapSchedule.day, inComponent: 0, animated: true)
         }
     }
