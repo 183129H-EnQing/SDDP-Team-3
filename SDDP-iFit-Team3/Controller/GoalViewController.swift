@@ -17,7 +17,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        goalList.append(Goal(goalTitle: "10KM", activityName: "Running", date: "1/7/2020", duration: 7, progressPercent: 10, totalExerciseAmount: 10))
+        goalList.append(Goal(goalTitle: "10KM", activityName: "Running", date: "1/7/2020", duration: 7, progressPercent: 5, totalExerciseAmount: 10))
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,15 +33,14 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 
                 let g = goalList[indexPath.row]
         cell.goalTitle.text = g.goalTitle;
-        cell.percentageLabel.text = "80%"
+        cell.percentageLabel.text = "\(g.progressPercent * 10)%";
         cell.duration.text = "\(g.duration) "
 
-        cell.dateRange.text = "\(g.date)"
-        cell.progressView.setProgress(8, animated: false)
+        cell.dateRange.text = "\(g.date)" 
+        cell.progressView.setProgress(Float(g.progressPercent) / 10 , animated: false)
         
         cell.progressView.transform = cell.progressView.transform.scaledBy(x: 1, y: 15)
-    
-         print("heloo world")
+   
 
                  return cell
          }
