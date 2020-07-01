@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import os.log
 
 class EditPostViewController: UIViewController {
     
@@ -14,14 +15,31 @@ class EditPostViewController: UIViewController {
     
     @IBOutlet weak var postimage: UIImageView!
     
+    @IBOutlet weak var saveButton: UIButton!
+    
     var postItem : Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+          //self.navigationItem.rightBarButtonItem =
+             // UIBarButtonItem(barButtonSystemItem: .save,
+                              //target: self,
+                              //action: #selector(saveButtonclicked))
+              
         // Do any additional setup after loading the view.
+         if let postss = postItem  {
+               textcontent.text = postss.pcontent
+               
+               
+               
+           }
     }
-    
+    // @objc func saveButtonclicked()
+       //{
+                
+
+      // }
     override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
@@ -31,8 +49,28 @@ class EditPostViewController: UIViewController {
     self.navigationItem.title = "Edit Post"
         
     }
-
-    /*
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            
+              super.prepare(for: segue, sender: sender)
+              
+            
+              guard let button = sender as? UIButton, button === saveButton else {
+                  os_log("The add button was not pressed, cancelling", log: OSLog.default, type: .debug)
+                  return
+              }
+           
+           
+           let content = textcontent.text ?? ""
+        
+        
+           
+           //let photo = imageview.image
+           
+        
+           postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: "5.34", userLocation: "yishun", pimageName: "")
+           
+       }    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

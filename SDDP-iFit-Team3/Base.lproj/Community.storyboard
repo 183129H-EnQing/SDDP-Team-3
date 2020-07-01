@@ -125,17 +125,29 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Gallery"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zp5-zq-bYR">
+                                <rect key="frame" x="184" y="479" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <segue destination="iUf-i9-2Qu" kind="unwind" unwindAction="unwindToPostListEditWithSender:" id="yME-uY-ueh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="H5c-Us-fqx"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="leD-10-XZR"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="postimage" destination="hwt-bh-qbN" id="ppu-8f-I9A"/>
+                        <outlet property="saveButton" destination="zp5-zq-bYR" id="7ag-OT-9Z8"/>
                         <outlet property="textcontent" destination="4Uf-0I-47N" id="17i-zD-jJ7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aa8-2Y-rE1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="iUf-i9-2Qu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1560.8695652173915" y="254.46428571428569"/>
         </scene>

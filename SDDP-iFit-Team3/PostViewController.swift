@@ -86,15 +86,29 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
       @IBAction func unwindToPostList(sender: UIStoryboardSegue) {
            if let sourceViewController = sender.source as? AddPostViewController, let posts = sourceViewController.postItem {
-                 
-                 // Add a new meal.
-                 let newIndexPath = IndexPath(row: postList.count, section: 0)
-                 
-                 postList.append(posts)
-                 tableView.insertRows(at: [newIndexPath], with: .automatic)
+                
+            
+                                 // Add a new meal.
+                         let newIndexPath = IndexPath(row: postList.count, section: 0)
+                         
+                         postList.append(posts)
+                         tableView.insertRows(at: [newIndexPath], with: .automatic)
+            
              }
       }
     
+     @IBAction func unwindToPostListEdit(sender: UIStoryboardSegue) {
+              if let sourceViewController = sender.source as? EditPostViewController, let posts = sourceViewController.postItem {
+                   
+               
+                     if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                               // Update an existing meal.
+                                postList[selectedIndexPath.row] = posts
+                               tableView.reloadRows(at: [selectedIndexPath], with: .none)
+                           }
+                    
+                }
+         }
     //*
     // MARK: - Navigation
 

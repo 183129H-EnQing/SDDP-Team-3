@@ -26,6 +26,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+       // updateSaveButtonState()
               // Do any additional setup after loading the view.
     }
     
@@ -72,7 +73,11 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: "5.34", userLocation: "yishun", pimageName: "")
         
     }
-    
+    private func updateSaveButtonState() {
+        // Disable the Save button if the text field is empty.
+        let text = contenttext.text ?? ""
+        addbutton.isEnabled = !text.isEmpty
+    }
   
     
     @IBAction func addbuttonpressed(_ sender: Any) {
