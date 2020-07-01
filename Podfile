@@ -8,5 +8,7 @@ target 'SDDP-iFit-Team3' do
   # Pods for SDDP-iFit-Team3
   pod 'Firebase/Firestore'
   pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Auth'
+
 
 end
