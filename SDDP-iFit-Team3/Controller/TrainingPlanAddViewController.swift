@@ -26,7 +26,6 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("safe", exerciseListFrom)
         
         // We check if this device has a camera
         //

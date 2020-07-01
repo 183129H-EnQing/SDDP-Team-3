@@ -81,6 +81,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
             
             if success{
                 addTPVC.exerciseListFrom = tickExercise
+                print("EEEEE ", addTPVC.exerciseListFrom)
                 addTPVC.tableView.reloadData()
             }
         }
