@@ -65,6 +65,11 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         }
         self.tableView.reloadData()
     }
+    
+    func requestData(data: String, completionHandler: (_ success: Bool) -> Void){
+        
+        completionHandler(true)
+    }
 
     
     @IBAction func addExercisePressed(_ sender: Any) {
@@ -72,7 +77,15 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         
         let addTPVC = self.storyboard?.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
         
-        addTPVC.exerciseListFrom = tickExercise
+        addTPVC.requestExercise(data: "test") { (success) in
+            
+            if success{
+                addTPVC.exerciseListFrom = tickExercise
+                addTPVC.tableView.reloadData()
+            }
+        }
+        
+//        addTPVC.exerciseListFrom = tickExercise
         
 //        addTPVC.tableView.reloadData()
         
