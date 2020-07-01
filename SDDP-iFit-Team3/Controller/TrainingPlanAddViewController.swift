@@ -98,7 +98,7 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         print(newTrainingPlan)
     }
     
-    func requestExercise(data: String, _ completionHandler: (_ success: Bool) -> Void) {
+    func requestExercise(_ completionHandler: (_ success: Bool) -> Void) {
         
         completionHandler(true)
         

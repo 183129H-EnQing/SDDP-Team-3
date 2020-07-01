@@ -31,9 +31,13 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     @objc func changeView(){
-        let storyBoard: UIStoryboard = UIStoryboard(name: "Fitness", bundle: nil)
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Fitness", bundle: Bundle.main)
         let addVC = storyBoard.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
-        self.present(addVC, animated: true, completion: nil)
+        
+        navigationController?.pushViewController(addVC, animated: true)
+        
+        //modal
+//        self.present(addVC, animated: true, completion: nil)
     }
     
     @objc func enableEdit(){

@@ -77,7 +77,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         
         let addTPVC = self.storyboard?.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
         
-        addTPVC.requestExercise(data: "test") { (success) in
+        addTPVC.requestExercise{ (success) in
             
             if success{
                 addTPVC.exerciseListFrom = tickExercise
