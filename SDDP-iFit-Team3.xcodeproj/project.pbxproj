@@ -46,6 +46,10 @@
 		DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */; };
 		DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */; };
 		E30440E824A609110013D053 /* CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30440E724A609110013D053 /* CardDesign.swift */; };
+		E320D17524AC6F95003DDA96 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17424AC6F95003DDA96 /* Goal.swift */; };
+		E320D17724AC6FBA003DDA96 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17624AC6FBA003DDA96 /* Challenge.swift */; };
+		E320D17924AC6FD0003DDA96 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17824AC6FD0003DDA96 /* Leaderboard.swift */; };
+		E320D17B24AC7128003DDA96 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17A24AC7128003DDA96 /* Activity.swift */; };
 		E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39EE04524A356AB00DDD571 /* DashboardViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,6 +97,10 @@
 		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		DF55D0091284AED9030526CC /* Pods-SDDP-iFit-Team3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.debug.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.debug.xcconfig"; sourceTree = "<group>"; };
 		E30440E724A609110013D053 /* CardDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDesign.swift; sourceTree = "<group>"; };
+		E320D17424AC6F95003DDA96 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
+		E320D17624AC6FBA003DDA96 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
+		E320D17824AC6FD0003DDA96 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
+		E320D17A24AC7128003DDA96 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		E39EE04524A356AB00DDD571 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -190,6 +198,10 @@
 				DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */,
 				1BB0D0E324A359FF003A35A9 /* Post.swift */,
 				7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */,
+				E320D17424AC6F95003DDA96 /* Goal.swift */,
+				E320D17624AC6FBA003DDA96 /* Challenge.swift */,
+				E320D17824AC6FD0003DDA96 /* Leaderboard.swift */,
+				E320D17A24AC7128003DDA96 /* Activity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -343,11 +355,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E320D17B24AC7128003DDA96 /* Activity.swift in Sources */,
 				343BEC9424A97F010041352F /* GoalViewController.swift in Sources */,
 				1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */,
 				DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */,
 				1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */,
 				7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */,
+				E320D17524AC6F95003DDA96 /* Goal.swift in Sources */,
 				7DEE53CE24AC632800CE6293 /* LoginViewController.swift in Sources */,
 				1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */,
 				343BEC9224A97E570041352F /* GoalCell.swift in Sources */,
@@ -355,6 +369,8 @@
 				1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */,
 				DC9EE49924A307660080D3A2 /* TrainingPlanViewController.swift in Sources */,
 				7DEE53CC24AC5A5400CE6293 /* UserAuthentication.swift in Sources */,
+				E320D17924AC6FD0003DDA96 /* Leaderboard.swift in Sources */,
+				E320D17724AC6FBA003DDA96 /* Challenge.swift in Sources */,
 				09B1B937249322AD00D14CE6 /* ViewController.swift in Sources */,
 				343BEC9624A97F320041352F /* ChallengeViewController.swift in Sources */,
 				7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */,

@@ -12,18 +12,12 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 
    
     @IBOutlet weak var goalTableView: UITableView!
-    var goalList : [Post] = []
+    var goalList : [Goal] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        goalList.append(Post(
-           userName: "Paul",
-           pcontent: "Keep Fit",
-           pdatetime: "5.34PM",
-           userLocation:"YISHUN",
-           pimageName:  "thumbnail_images"))
-        // Do any additional setup after loading the view.
+        goalList.append(Goal(goalTitle: "10KM", activityName: "Running", date: "1/7/2020", duration: 7, progressPercent: 10, totalExerciseAmount: 10))
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -37,12 +31,12 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                  let cell : GoalCell = tableView
                  .dequeueReusableCell (withIdentifier: "GoalCell", for: indexPath) as! GoalCell
 
-                let p = goalList[indexPath.row]
-                          cell.goalTitle.text = p.userName
+                let g = goalList[indexPath.row]
+        cell.goalTitle.text = g.goalTitle;
         cell.percentageLabel.text = "80%"
-        cell.duration.text = "\(p.pcontent) "
-                          cell.dateRange.text = "\(p.userLocation)"
-        
+        cell.duration.text = "\(g.duration) "
+
+        cell.dateRange.text = "\(g.date)"
         cell.progressView.setProgress(8, animated: false)
         
         cell.progressView.transform = cell.progressView.transform.scaledBy(x: 1, y: 15)
