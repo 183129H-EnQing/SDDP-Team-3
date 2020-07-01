@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Dhi-Dy-WLG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="16J-tT-DLO">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -180,24 +180,72 @@
                     <view key="view" contentMode="scaleToFill" id="r7U-y2-z1V">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7h8-A6-JKc">
+                                <rect key="frame" x="20" y="750" width="374" height="30"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="jaG-CE-iWT" kind="show" id="4jp-WQ-dC9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izg-gh-3xZ">
+                                <rect key="frame" x="20" y="689" width="374" height="30"/>
+                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="EqQ-5R-rEG" kind="show" id="Ihb-7j-hZQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="4OM-Rw-1Hm" firstAttribute="bottom" secondItem="7h8-A6-JKc" secondAttribute="bottom" constant="82" id="7h1-oR-Ank"/>
+                            <constraint firstItem="4OM-Rw-1Hm" firstAttribute="trailing" secondItem="7h8-A6-JKc" secondAttribute="trailing" constant="20" id="Lxr-Ab-VfM"/>
+                            <constraint firstItem="7h8-A6-JKc" firstAttribute="leading" secondItem="4OM-Rw-1Hm" secondAttribute="leading" constant="20" id="PUo-ug-dtc"/>
+                            <constraint firstItem="4OM-Rw-1Hm" firstAttribute="trailing" secondItem="izg-gh-3xZ" secondAttribute="trailing" constant="20" id="Z8z-uK-9Cy"/>
+                            <constraint firstItem="7h8-A6-JKc" firstAttribute="top" secondItem="izg-gh-3xZ" secondAttribute="bottom" constant="31" id="fLH-nO-TcR"/>
+                            <constraint firstItem="izg-gh-3xZ" firstAttribute="leading" secondItem="4OM-Rw-1Hm" secondAttribute="leading" constant="20" id="taQ-8i-uMO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4OM-Rw-1Hm"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Welcome" id="aKl-0r-sXG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iln-hW-wqh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2336" y="-364"/>
+            <point key="canvasLocation" x="-2336.231884057971" y="-364.28571428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Ngh-xJ-Ve8">
+            <objects>
+                <navigationController id="16J-tT-DLO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PZ5-eC-Ed5">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="lll-Z2-uvq" kind="relationship" relationship="rootViewController" id="6KG-NQ-Nvh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2go-vV-gIc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3278" y="-364"/>
         </scene>
         <!--Register-->
         <scene sceneID="Njw-E2-W7M">
             <objects>
-                <viewController title="Register" id="jaG-CE-iWT" sceneMemberID="viewController">
+                <viewController title="Register" id="jaG-CE-iWT" customClass="RegisterViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tL9-BU-UGd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="RjC-qg-Tzn"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Register" id="QkW-bs-NXJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tNU-od-2kx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -206,13 +254,14 @@
         <!--Login-->
         <scene sceneID="ziE-ma-BSx">
             <objects>
-                <viewController title="Login" id="EqQ-5R-rEG" sceneMemberID="viewController">
+                <viewController title="Login" id="EqQ-5R-rEG" customClass="LoginViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QkP-Oa-2y7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="jAe-az-fp2"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Login" id="stI-ay-nhq"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ou4-WV-OhT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
