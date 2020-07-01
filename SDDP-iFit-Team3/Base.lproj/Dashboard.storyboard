@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,7 +66,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="bAZ-TN-wqx">
-                                <rect key="frame" x="21" y="54" width="372" height="668"/>
+                                <rect key="frame" x="21" y="54" width="372" height="778"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oZY-as-Rqu" userLabel="Challenges Stack View">
                                         <rect key="frame" x="0.0" y="0.0" width="372" height="125"/>
@@ -100,10 +100,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uao-tT-Dgy">
-                                        <rect key="frame" x="0.0" y="150" width="372" height="136"/>
+                                        <rect key="frame" x="0.0" y="150" width="372" height="246"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjT-CI-Cwg">
-                                                <rect key="frame" x="0.0" y="0.0" width="372" height="136"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="372" height="246"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Others" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYa-Ac-bVJ">
                                                         <rect key="frame" x="8" y="0.0" width="153" height="74"/>
@@ -118,7 +118,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="AET-5T-wrJ" userLabel="First Row Stack View">
-                                        <rect key="frame" x="0.0" y="311" width="372" height="166"/>
+                                        <rect key="frame" x="0.0" y="421" width="372" height="166"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O13-Gl-7fH" customClass="CardDesign" customModule="SDDP_iFit_Team3" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="175.66666666666666" height="166"/>
@@ -176,7 +176,7 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="cHb-Mv-3qg" userLabel="Second Row Stack View">
-                                        <rect key="frame" x="0.0" y="502" width="372" height="166"/>
+                                        <rect key="frame" x="0.0" y="612" width="372" height="166"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ULf-Vt-Tj0" customClass="CardDesign" customModule="SDDP_iFit_Team3" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="175.66666666666666" height="166"/>
@@ -233,7 +233,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Er0-C1-aK9" firstAttribute="bottom" secondItem="bAZ-TN-wqx" secondAttribute="bottom" constant="140" id="6Xv-Wp-J93"/>
+                            <constraint firstItem="Er0-C1-aK9" firstAttribute="bottom" secondItem="bAZ-TN-wqx" secondAttribute="bottom" constant="30" id="6Xv-Wp-J93"/>
                             <constraint firstAttribute="trailing" secondItem="bAZ-TN-wqx" secondAttribute="trailing" constant="21" id="XwJ-qf-f9c"/>
                             <constraint firstItem="bAZ-TN-wqx" firstAttribute="top" secondItem="Er0-C1-aK9" secondAttribute="top" constant="10" id="dDb-iV-aco"/>
                             <constraint firstItem="bAZ-TN-wqx" firstAttribute="leading" secondItem="Er0-C1-aK9" secondAttribute="leading" constant="21" id="k8Q-js-SkW"/>
