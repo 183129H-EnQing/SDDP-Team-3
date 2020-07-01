@@ -34,6 +34,7 @@
 		7D6A42F924A7139200D82B90 /* Team3Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A42F824A7139200D82B90 /* Team3Helper.swift */; };
 		7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7ED67E24A0E2F9001D52DA /* Game.storyboard */; };
 		7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */; };
+		7DEE53CC24AC5A5400CE6293 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */; };
 		D671C057354D801529A5E555 /* Pods_SDDP_iFit_Team3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */; };
 		DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC325A3A24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift */; };
 		DC9EE49924A307660080D3A2 /* TrainingPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */; };
@@ -78,6 +79,7 @@
 		7D6A42F824A7139200D82B90 /* Team3Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team3Helper.swift; sourceTree = "<group>"; };
 		7D7ED67F24A0E2F9001D52DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SchedulerViewController.swift; path = "SDDP-iFit-Team3/SchedulerViewController.swift"; sourceTree = SOURCE_ROOT; };
+		7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
 		DC325A3A24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddExerciseViewController.swift; sourceTree = "<group>"; };
 		DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanViewController.swift; sourceTree = "<group>"; };
 		DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanCell.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				7D6A42F824A7139200D82B90 /* Team3Helper.swift */,
+				7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				343BEC9824A97F4C0041352F /* LeaderboardViewController.swift in Sources */,
 				1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */,
 				DC9EE49924A307660080D3A2 /* TrainingPlanViewController.swift in Sources */,
+				7DEE53CC24AC5A5400CE6293 /* UserAuthentication.swift in Sources */,
 				09B1B937249322AD00D14CE6 /* ViewController.swift in Sources */,
 				343BEC9624A97F320041352F /* ChallengeViewController.swift in Sources */,
 				7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */,
