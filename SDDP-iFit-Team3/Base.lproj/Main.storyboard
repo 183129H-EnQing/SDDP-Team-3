@@ -282,6 +282,9 @@
                                 <state key="normal" title="Register">
                                     <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 </state>
+                                <connections>
+                                    <action selector="registerButtonPressed:" destination="jaG-CE-iWT" eventType="touchUpInside" id="UiN-Y7-Ujw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
