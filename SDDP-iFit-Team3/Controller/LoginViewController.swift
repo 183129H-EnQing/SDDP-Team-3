@@ -10,6 +10,8 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,6 +19,14 @@ class LoginViewController: UIViewController {
     }
     
 
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        let tabBarController = self.storyboard?.instantiateViewController(identifier: "TabBarController")
+        
+        // https://stackoverflow.com/a/22301820
+        //self.navigationController?.setViewControllers([tabBarController!], animated:true)
+        
+        UIApplication.shared.windows[0].rootViewController = tabBarController
+    }
     /*
     // MARK: - Navigation
 
