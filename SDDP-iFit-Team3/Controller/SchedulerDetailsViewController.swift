@@ -17,6 +17,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     @IBOutlet weak var dayPicker: UIPickerView!
     
     var schedule: Schedule?
+    var scheduleIndex: Int?
     
     var exercises: [String] = []
     static var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
@@ -124,7 +125,23 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         if !parent.schedules.keys.contains(day) {
             parent.schedules[day] = []
         }
-        parent.schedules[day]!.append(Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!]))
+        
+        let newSchedule = Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
+        // If not nil, is editing. Else if it is nil, is adding
+        if self.schedule != nil {
+            if day != self.schedule?.day { // if change the day, means must remove
+                // we remove from the old day at the old index
+                parent.schedules[self.schedule!.day]?.remove(at: self.scheduleIndex!)
+                
+                // we appened at the new day
+                parent.schedules[day]!.append(newSchedule)
+            } else {
+                // user only changed other things, not the day, so just need to replace at the index
+                parent.schedules[day]![self.scheduleIndex!] = newSchedule
+            }
+        } else {
+            parent.schedules[day]!.append(newSchedule)
+        }
         parent.tableView.reloadData()
         
         self.navigationController?.popViewController(animated: true)
