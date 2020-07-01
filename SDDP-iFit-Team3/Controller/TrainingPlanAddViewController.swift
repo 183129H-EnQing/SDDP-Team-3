@@ -26,7 +26,6 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("safe", exerciseListFrom)
         
         // We check if this device has a camera
         //
@@ -99,8 +98,15 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         print(newTrainingPlan)
     }
     
+    func requestExercise(data: String, _ completionHandler: (_ success: Bool) -> Void) {
+        
+        completionHandler(true)
+        
+//        completionHandler(result, error)
+    }
+    
     /*
-    // MARK: - Navigation
+    // MARK: - Navigations
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
