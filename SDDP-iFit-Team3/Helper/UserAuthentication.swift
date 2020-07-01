@@ -13,10 +13,7 @@ import FirebaseAuth
 
 class UserAuthentication {
     
-    static func registerUser(username: String, email: String, password: String) {
-        return Auth.auth().createUser(withEmail: email, password: password) {
-            (authResult, error) in
-            
-        }
+    static func registerUser(username: String, email: String, password: String, onComplete: AuthDataResultCallback?) {
+        return Auth.auth().createUser(withEmail: email, password: password, completion: onComplete)
     }
 }

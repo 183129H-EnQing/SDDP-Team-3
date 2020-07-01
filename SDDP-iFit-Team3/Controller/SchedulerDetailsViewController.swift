@@ -70,12 +70,12 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     }
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        colorTextFieldBorder(textField: hrsTextField, isRed: false)
-        colorTextFieldBorder(textField: minsTextField, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: false)
         
         if !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) || !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) {
-            colorTextFieldBorder(textField: hrsTextField, isRed: true)
-            colorTextFieldBorder(textField: minsTextField, isRed: true)
+            Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
+            Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
             
             let alert = Team3Helper.makeAlert("Only numbers allowed in 'Duration' text fields")
             self.present(alert, animated: true, completion: nil)
@@ -87,7 +87,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         let mins = Int(minsTextField.text!)!
         
         if hrs > 24 || hrs < 0 {
-            colorTextFieldBorder(textField: hrsTextField, isRed: true)
+            Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
             
             let alert = Team3Helper.makeAlert("Hours can only be between 0 and 24")
             self.present(alert, animated: true, completion: nil)
@@ -96,7 +96,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         }
         
         if mins > 59 || mins < 0 {
-            colorTextFieldBorder(textField: minsTextField, isRed: true)
+            Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
             
             let alert = Team3Helper.makeAlert("Mins can only be between 0 and 59")
             self.present(alert, animated: true, completion: nil)
@@ -105,8 +105,8 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         }
         
         if hrs == 0 && mins == 0 {
-            colorTextFieldBorder(textField: hrsTextField, isRed: true)
-            colorTextFieldBorder(textField: minsTextField, isRed: true)
+            Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
+            Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
             
             let alert = Team3Helper.makeAlert("Duration cannot be 0")
             self.present(alert, animated: true, completion: nil)
@@ -145,11 +145,6 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         parent.tableView.reloadData()
         
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    func colorTextFieldBorder(textField: UITextField, isRed: Bool) {
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = isRed ? UIColor.systemRed.cgColor : UIColor.systemGray3.cgColor
     }
     
     /*
