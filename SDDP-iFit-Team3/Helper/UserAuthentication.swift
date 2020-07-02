@@ -16,4 +16,8 @@ class UserAuthentication {
     static func registerUser(username: String, email: String, password: String, onComplete: AuthDataResultCallback?) {
         return Auth.auth().createUser(withEmail: email, password: password, completion: onComplete)
     }
+    
+    static func loginUser(email: String, password: String, onComplete: AuthDataResultCallback?) {
+        return Auth.auth().signIn(withEmail: email, password: password, completion: onComplete)
+    }
 }

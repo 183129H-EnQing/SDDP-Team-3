@@ -55,6 +55,8 @@ class RegisterViewController: UIViewController {
                 return
             }
             
+            // Add Username
+            
             print("\(user.email!) successfully created!")
             print("\(user.providerID) successfully created!")
             self.navigationController?.popViewController(animated: true)
