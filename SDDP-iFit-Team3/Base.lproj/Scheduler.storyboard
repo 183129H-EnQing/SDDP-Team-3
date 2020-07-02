@@ -52,12 +52,20 @@
                                     <outlet property="delegate" destination="jMY-FQ-tkv" id="adr-Xc-9Vr"/>
                                 </connections>
                             </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No schedules created" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cUK-4Q-TgL">
+                                <rect key="frame" x="123.5" y="437.5" width="167" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="e7J-Vp-mt7" firstAttribute="top" secondItem="HsG-Yd-aNB" secondAttribute="top" id="2Yz-YM-Yun"/>
+                            <constraint firstItem="cUK-4Q-TgL" firstAttribute="centerX" secondItem="hZv-WZ-7eG" secondAttribute="centerX" id="U98-QM-YW9"/>
                             <constraint firstItem="e7J-Vp-mt7" firstAttribute="leading" secondItem="HsG-Yd-aNB" secondAttribute="leading" id="iSt-lM-2eb"/>
                             <constraint firstItem="e7J-Vp-mt7" firstAttribute="trailing" secondItem="HsG-Yd-aNB" secondAttribute="trailing" id="r7I-Nf-yCI"/>
+                            <constraint firstItem="cUK-4Q-TgL" firstAttribute="centerY" secondItem="hZv-WZ-7eG" secondAttribute="centerY" id="rfl-1R-dcd"/>
                             <constraint firstItem="e7J-Vp-mt7" firstAttribute="bottom" secondItem="HsG-Yd-aNB" secondAttribute="bottom" id="tI2-aI-3fX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HsG-Yd-aNB"/>
@@ -70,6 +78,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="noSchedulesLabel" destination="cUK-4Q-TgL" id="fUZ-Ud-jTW"/>
                         <outlet property="tableView" destination="e7J-Vp-mt7" id="kuh-bH-Ljb"/>
                     </connections>
                 </viewController>
@@ -199,6 +208,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="pJH-oV-vn5"/>
+        <segue reference="k3H-Yg-4Ml"/>
     </inferredMetricsTieBreakers>
 </document>

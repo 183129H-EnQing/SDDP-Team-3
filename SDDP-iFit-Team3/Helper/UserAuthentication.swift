@@ -20,4 +20,8 @@ class UserAuthentication {
     static func loginUser(email: String, password: String, onComplete: AuthDataResultCallback?) {
         return Auth.auth().signIn(withEmail: email, password: password, completion: onComplete)
     }
+    
+    static func getLoggedInUser() -> User? {
+        return Auth.auth().currentUser
+    }
 }
