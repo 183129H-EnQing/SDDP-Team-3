@@ -52,6 +52,7 @@
 		E320D17924AC6FD0003DDA96 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17824AC6FD0003DDA96 /* Leaderboard.swift */; };
 		E320D17B24AC7128003DDA96 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17A24AC7128003DDA96 /* Activity.swift */; };
 		E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39EE04524A356AB00DDD571 /* DashboardViewController.swift */; };
+		E3CA068C24ADCA6000339A39 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,7 @@
 		E320D17824AC6FD0003DDA96 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
 		E320D17A24AC7128003DDA96 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		E39EE04524A356AB00DDD571 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				343BEC9724A97F4C0041352F /* LeaderboardViewController.swift */,
 				343BEC9924A97F8A0041352F /* ActivityViewController.swift */,
 				343BEC9B24A97FB70041352F /* AchievementViewController.swift */,
+				E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				E320D17524AC6F95003DDA96 /* Goal.swift in Sources */,
 				7DEE53CE24AC632800CE6293 /* LoginViewController.swift in Sources */,
 				1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */,
+				E3CA068C24ADCA6000339A39 /* AddGoalViewController.swift in Sources */,
 				343BEC9224A97E570041352F /* GoalCell.swift in Sources */,
 				343BEC9824A97F4C0041352F /* LeaderboardViewController.swift in Sources */,
 				1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */,

@@ -347,7 +347,11 @@
                         <viewLayoutGuide key="safeArea" id="uZ8-n2-Sbd"/>
                     </view>
                     <navigationItem key="navigationItem" id="5Yg-Su-cky">
-                        <barButtonItem key="rightBarButtonItem" title="Create" id="9W1-y6-EF7" userLabel="Create"/>
+                        <barButtonItem key="rightBarButtonItem" title="Create" id="9W1-y6-EF7" userLabel="Create">
+                            <connections>
+                                <segue destination="tOO-yy-x3v" kind="show" id="5mr-IV-k75"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="goalTableView" destination="vfM-WI-cwl" id="Z5g-1o-CY7"/>
@@ -357,12 +361,12 @@
             </objects>
             <point key="canvasLocation" x="4001" y="-1133"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Goal View Controller-->
         <scene sceneID="06b-PI-gEL">
             <objects>
-                <viewController id="tOO-yy-x3v" sceneMemberID="viewController">
+                <viewController id="tOO-yy-x3v" customClass="AddGoalViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mFQ-72-YqO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Goal Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gkb-h2-ndX">
@@ -452,10 +456,13 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4l-OY-34H">
                                 <rect key="frame" x="16" y="318" width="333" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="3lQ-FF-JiD"/>
-                                </constraints>
-                                <state key="normal" title="Start Goal"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Start Goal">
+                                    <color key="titleColor" systemColor="secondarySystemBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="addGoalPressed:" destination="tOO-yy-x3v" eventType="touchUpInside" id="uLR-hg-kju"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -494,7 +501,6 @@
                             <constraint firstItem="NEW-zn-Nld" firstAttribute="leading" secondItem="uAr-nJ-UPv" secondAttribute="trailing" constant="51" id="hqW-FG-YC4"/>
                             <constraint firstItem="uAr-nJ-UPv" firstAttribute="leading" secondItem="DeL-Gf-xiV" secondAttribute="leading" constant="16" id="iDf-NJ-abG"/>
                             <constraint firstItem="DeL-Gf-xiV" firstAttribute="trailing" secondItem="hOJ-tC-otd" secondAttribute="trailing" constant="26" id="iJT-Gc-ljT"/>
-                            <constraint firstItem="DeL-Gf-xiV" firstAttribute="bottom" secondItem="G4l-OY-34H" secondAttribute="bottom" constant="319" id="lkp-97-yR2"/>
                             <constraint firstItem="G4l-OY-34H" firstAttribute="leading" secondItem="DeL-Gf-xiV" secondAttribute="leading" constant="16" id="pTN-qM-bKG"/>
                             <constraint firstItem="Km6-RB-mI5" firstAttribute="leading" secondItem="hev-ph-Pau" secondAttribute="trailing" constant="149" id="qKX-Nw-Kwm"/>
                             <constraint firstItem="hev-ph-Pau" firstAttribute="top" secondItem="7dZ-DE-L6p" secondAttribute="bottom" constant="34.5" id="t52-sX-AVf"/>
@@ -508,6 +514,13 @@
                         <viewLayoutGuide key="safeArea" id="DeL-Gf-xiV"/>
                     </view>
                     <navigationItem key="navigationItem" id="TQ2-CI-tEr"/>
+                    <connections>
+                        <outlet property="activityName" destination="fN4-Yn-4rV" id="laf-L2-BQS"/>
+                        <outlet property="datePicker" destination="Km6-RB-mI5" id="Go2-oP-pqm"/>
+                        <outlet property="duration" destination="NEW-zn-Nld" id="iWN-wc-C9U"/>
+                        <outlet property="goalTitle" destination="hOJ-tC-otd" id="dQA-uV-EMU"/>
+                        <outlet property="totalExerciseAmount" destination="7q3-dX-QnZ" id="srx-st-7ew"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1oj-gb-1Lr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
