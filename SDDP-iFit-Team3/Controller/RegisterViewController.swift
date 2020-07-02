@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
 class RegisterViewController: UIViewController {
 
-    @IBOutlet weak var usernameTextFIeld: UITextField!
+    @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -33,15 +34,15 @@ class RegisterViewController: UIViewController {
 
     @IBAction func registerButtonPressed(_ sender: Any) {
         let email = emailTextField.text!;
-        let username = usernameTextFIeld.text!;
+        let username = usernameTextField.text!;
         let password = passwordTextField.text!;
         
-        Team3Helper.colorTextFieldBorder(textField: usernameTextFIeld, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: usernameTextField, isRed: false)
         Team3Helper.colorTextFieldBorder(textField: emailTextField, isRed: false)
         Team3Helper.colorTextFieldBorder(textField: passwordTextField, isRed: false)
         
         if username == "" {
-            Team3Helper.colorTextFieldBorder(textField: usernameTextFIeld, isRed: true)
+            Team3Helper.colorTextFieldBorder(textField: usernameTextField, isRed: true)
             self.present(Team3Helper.makeAlert("Username cannot be empty"), animated: true)
             return
         }
@@ -66,7 +67,7 @@ class RegisterViewController: UIViewController {
         }
                 
         if isUsernameTaken {
-            Team3Helper.colorTextFieldBorder(textField: usernameTextFIeld, isRed: true)
+            Team3Helper.colorTextFieldBorder(textField: usernameTextField, isRed: true)
             self.present(Team3Helper.makeAlert("Username is taken!"), animated: true)
             return
         }
@@ -75,13 +76,19 @@ class RegisterViewController: UIViewController {
             (authResult, err) in
             // https://github.com/firebase/quickstart-ios/blob/9ece2b1bbd4beaedaf53c782f518de8cfc38bed2/authentication/AuthenticationExampleSwift/EmailViewController.swift#L159-L170
             guard let user = authResult?.user, err == nil else {
-                print("Errors:")
-                self.present(Team3Helper.makeAlert(err!.localizedDescription), animated: true)
+                let errCode = (err! as NSError).code
+                var errMsg = err?.localizedDescription
+                
+                if errCode == AuthErrorCode.invalidEmail.rawValue {
+                    errMsg = "Invalid email"
+                }
+                
+                self.present(Team3Helper.makeAlert(errMsg!), animated: true)
                 return
             }
             
             // Add Username after user is successfully registered
-            //DataManager.addUsername(userId: user.uid, username: username)
+            DataManager.addUsername(userId: user.uid, username: username)
             
             print("\(user.email!) successfully created!")
             print("\(user.providerID) successfully created!")
