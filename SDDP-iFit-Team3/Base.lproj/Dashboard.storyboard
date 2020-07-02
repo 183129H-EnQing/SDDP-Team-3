@@ -411,15 +411,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration(In Days)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAr-nJ-UPv">
-                                <rect key="frame" x="16" y="210" width="134" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="WNx-9p-df2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Exercise Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a51-8z-80I">
                                 <rect key="frame" x="16" y="259" width="170" height="21"/>
                                 <constraints>
@@ -464,6 +455,15 @@
                                     <action selector="addGoalPressed:" destination="tOO-yy-x3v" eventType="touchUpInside" id="uLR-hg-kju"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration(In Days)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAr-nJ-UPv">
+                                <rect key="frame" x="16" y="210" width="134" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="WNx-9p-df2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -488,7 +488,6 @@
                             <constraint firstItem="Gkb-h2-ndX" firstAttribute="leading" secondItem="DeL-Gf-xiV" secondAttribute="leading" constant="16" id="Qnj-je-645"/>
                             <constraint firstItem="uAr-nJ-UPv" firstAttribute="top" secondItem="hev-ph-Pau" secondAttribute="bottom" constant="29" id="RMW-Ro-qt9"/>
                             <constraint firstItem="fN4-Yn-4rV" firstAttribute="leading" secondItem="7dZ-DE-L6p" secondAttribute="trailing" constant="83" id="Snh-em-aKX"/>
-                            <constraint firstItem="NEW-zn-Nld" firstAttribute="leading" secondItem="uAr-nJ-UPv" secondAttribute="trailing" constant="51" id="T7z-mB-lkn"/>
                             <constraint firstItem="DeL-Gf-xiV" firstAttribute="trailing" secondItem="Km6-RB-mI5" secondAttribute="trailing" constant="26" id="TRA-4X-s2o"/>
                             <constraint firstItem="7q3-dX-QnZ" firstAttribute="top" secondItem="NEW-zn-Nld" secondAttribute="bottom" constant="14" id="WJL-3a-5Yy"/>
                             <constraint firstItem="7q3-dX-QnZ" firstAttribute="leading" secondItem="a51-8z-80I" secondAttribute="trailing" constant="15" id="XIR-tQ-lv6"/>
@@ -498,9 +497,9 @@
                             <constraint firstItem="hev-ph-Pau" firstAttribute="leading" secondItem="DeL-Gf-xiV" secondAttribute="leading" constant="16" id="efS-Ei-oE7"/>
                             <constraint firstItem="hOJ-tC-otd" firstAttribute="top" secondItem="Gkb-h2-ndX" secondAttribute="bottom" constant="8" id="ewh-ns-Z7Q"/>
                             <constraint firstItem="NEW-zn-Nld" firstAttribute="top" secondItem="Km6-RB-mI5" secondAttribute="bottom" constant="16" id="fHM-cv-VEh"/>
-                            <constraint firstItem="NEW-zn-Nld" firstAttribute="leading" secondItem="uAr-nJ-UPv" secondAttribute="trailing" constant="51" id="hqW-FG-YC4"/>
                             <constraint firstItem="uAr-nJ-UPv" firstAttribute="leading" secondItem="DeL-Gf-xiV" secondAttribute="leading" constant="16" id="iDf-NJ-abG"/>
                             <constraint firstItem="DeL-Gf-xiV" firstAttribute="trailing" secondItem="hOJ-tC-otd" secondAttribute="trailing" constant="26" id="iJT-Gc-ljT"/>
+                            <constraint firstItem="NEW-zn-Nld" firstAttribute="leading" secondItem="uAr-nJ-UPv" secondAttribute="trailing" constant="51" id="lfU-rq-3Id"/>
                             <constraint firstItem="G4l-OY-34H" firstAttribute="leading" secondItem="DeL-Gf-xiV" secondAttribute="leading" constant="16" id="pTN-qM-bKG"/>
                             <constraint firstItem="Km6-RB-mI5" firstAttribute="leading" secondItem="hev-ph-Pau" secondAttribute="trailing" constant="149" id="qKX-Nw-Kwm"/>
                             <constraint firstItem="hev-ph-Pau" firstAttribute="top" secondItem="7dZ-DE-L6p" secondAttribute="bottom" constant="34.5" id="t52-sX-AVf"/>
