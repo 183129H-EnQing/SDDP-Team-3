@@ -41,4 +41,22 @@ class DataManager {
             }
         }
     }
+    
+    class Schedules {
+        static func loadSchedules(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
+            db.collection("schedules").document(userId).getDocument { (snapshot, err) in
+                var schedules: [Int: [Schedule]] = [:]
+                
+                if let err = err {
+                    print("Error getting schedules: \(err)")
+                } else if let document = snapshot, document.exists {
+                    print("Data: \(document.data())")
+                } else {
+                    print("Schedules for \(userId) does not exist!")
+                }
+                
+                onComplete?(schedules)
+            }
+        }
+    }
 }

@@ -13,12 +13,13 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
     // {day as Integer: Array of Schedule}
     var schedules: [Int: [Schedule]] = [:]
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noSchedulesLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.schedules = [
+        /*self.schedules = [
             2: [
                 Schedule(exerciseName: "Jumping Jacks", duration: [2,50], day: 2, time: [0, 10])
             ],
@@ -30,7 +31,29 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             1: [
                 Schedule(exerciseName: "Push Up", duration: [0, 5], day: 1, time: [10, 0])
             ]
-        ]
+        ]*/
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.schedules = [:]
+        
+        if let user = UserAuthentication.getLoggedInUser() {
+            DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
+                if data.count == 0 {
+                    self.tableView.isHidden = false
+                    self.noSchedulesLabel.isHidden = false
+                } else {
+                    self.tableView.isHidden = false
+                    self.noSchedulesLabel.isHidden = true
+                    self.schedules = data
+                }
+            }
+        } else {
+            self.tableView.isHidden = true
+            self.noSchedulesLabel.isHidden = false
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
