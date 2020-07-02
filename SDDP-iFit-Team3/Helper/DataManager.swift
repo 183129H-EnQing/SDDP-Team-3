@@ -58,5 +58,18 @@ class DataManager {
                 onComplete?(schedules)
             }
         }
+        
+        static func insertSchedules(_ schedule: Schedule, onComplete: @escaping () -> Void) {
+            /*let date = entry.date.replacingOccurrences(of: "/", with: ",")
+            let ref = FirebaseDatabase.Database.database().reference().child("\(journalEntriesContainerName)/\(date)").childByAutoId()
+            
+            ref.setValue([
+                "applianceId": entry.appliance.id,
+                "hours": String(entry.duration[0]),
+                "minutes": String(entry.duration[1])
+            ])
+            
+            onComplete()*/
+        }
     }
 }
