@@ -21,8 +21,23 @@ class DataManager {
                 print("Error getting usernames: \(err)")
             } else {
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID): \(document.data())")
+                    let userId = document.documentID
+                    let username = document.data()["username"] as! String
+                    
+                    usernames[userId] = username
                 }
+            }
+            
+            onComplete?(usernames)
+        }
+    }
+    
+    static func addUsername(userId: String, username: String) {
+        db.collection("usernames").document(userId).setData(["username": username]) { err in
+            if let err = err {
+                print("Error adding username: \(err)")
+            } else {
+                print("Username '\(username)' successfully added")
             }
         }
     }

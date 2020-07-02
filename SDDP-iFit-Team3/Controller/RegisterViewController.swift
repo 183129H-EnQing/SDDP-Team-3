@@ -14,10 +14,20 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    var usernames: [String: String] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        DataManager.loadUsernames() { usernames in
+            print("Loading Usernames: \(usernames)")
+            
+            self.usernames = usernames
+        }
     }
     
 
@@ -46,6 +56,21 @@ class RegisterViewController: UIViewController {
             return
         }
         
+        // Load Username array to check that the username is not taken
+        var isUsernameTaken = false
+        for user in self.usernames {
+            if user.value.elementsEqual(username) {
+                isUsernameTaken = true
+                break
+            }
+        }
+                
+        if isUsernameTaken {
+            Team3Helper.colorTextFieldBorder(textField: usernameTextFIeld, isRed: true)
+            self.present(Team3Helper.makeAlert("Username is taken!"), animated: true)
+            return
+        }
+        
         UserAuthentication.registerUser(username: username, email: email, password: password) {
             (authResult, err) in
             // https://github.com/firebase/quickstart-ios/blob/9ece2b1bbd4beaedaf53c782f518de8cfc38bed2/authentication/AuthenticationExampleSwift/EmailViewController.swift#L159-L170
@@ -55,7 +80,8 @@ class RegisterViewController: UIViewController {
                 return
             }
             
-            // Add Username
+            // Add Username after user is successfully registered
+            //DataManager.addUsername(userId: user.uid, username: username)
             
             print("\(user.email!) successfully created!")
             print("\(user.providerID) successfully created!")
