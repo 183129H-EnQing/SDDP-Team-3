@@ -87,10 +87,6 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         return cell
     }
     
-    func refreshExercise(){
-        //assign list 
-    }
-    
     @IBAction func addTrainingPressed(_ sender: Any) {
 //        newTrainingPlan = [TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: [""], tpImage: "")]
         
