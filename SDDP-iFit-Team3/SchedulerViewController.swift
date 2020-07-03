@@ -46,6 +46,7 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         self.schedules = [:]
         
         if let user = UserAuthentication.getLoggedInUser() {
+            print("User is logged in")
             DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
                 if data.count == 0 {
                     self.tableView.isHidden = true
@@ -57,6 +58,7 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }
         } else {
+            print("User not logged in")
             self.tableView.isHidden = true
             self.noSchedulesLabel.isHidden = false
         }
