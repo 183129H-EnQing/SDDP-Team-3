@@ -84,6 +84,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             }
      }
     
+    
       @IBAction func unwindToPostList(sender: UIStoryboardSegue) {
            if let sourceViewController = sender.source as? AddPostViewController, let posts = sourceViewController.postItem {
                 
@@ -93,9 +94,15 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                          
                          postList.append(posts)
                          tableView.insertRows(at: [newIndexPath], with: .automatic)
-            
+                        
+           
+                        
+        
+                              
              }
       }
+    
+    
     
      @IBAction func unwindToPostListEdit(sender: UIStoryboardSegue) {
               if let sourceViewController = sender.source as? EditPostViewController, let posts = sourceViewController.postItem {

@@ -8,7 +8,7 @@
 
 import UIKit
 import os.log
-class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
 
     @IBOutlet weak var imageview: UIImageView!
     
@@ -26,10 +26,16 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-       // updateSaveButtonState()
+        
+        contenttext.delegate = self
+        updateSaveButtonState()
               // Do any additional setup after loading the view.
     }
     
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateSaveButtonState()
+        
+    }
    
     
     @IBAction func takePicturePressed(_ sender: Any) {
@@ -67,12 +73,25 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         
         let content = contenttext.text ?? ""
         
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, h:mm a"
+        let datetime = formatter.string(from: date)
+        
+          
+        
+       
+        
+        
+        
         //let photo = imageview.image
         
      
-        postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: "5.34", userLocation: "yishun", pimageName: "")
+        postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: "yishun", pimageName: "")
         
     }
+   
+    
     private func updateSaveButtonState() {
         // Disable the Save button if the text field is empty.
         let text = contenttext.text ?? ""
@@ -82,16 +101,15 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     @IBAction func addbuttonpressed(_ sender: Any) {
         
-          //let content = contenttext.text!
-          //let datetime = "5.34"
-          
-              //let postcntl = self.navigationController?.viewControllers
-             // let addPost = postcntl?[0] as! PostViewController
-             // addPost.postList.append(Post(userName: "unknown", pcontent:  content , pdatetime: datetime, userLocation: "yishun", pimageName: "" ))
-             // addPost.tableView.reloadData()
-              
-              //self.navigationController?.popViewController(animated: true)
-        //
+       // let content = contenttext.text!
+        
+         //Team3Helper.colorTextFieldBorder(textField: contenttext, isRed: false)
+        // if content == "" {
+                  // Team3Helper.colorTextFieldBorder(textField: contenttext, isRed: true)
+                   //self.present(Team3Helper.makeAlert("Content is Empty!!!"), animated: true)
+                  // return
+            
+        
     }
     
    
