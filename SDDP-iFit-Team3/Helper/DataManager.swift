@@ -76,6 +76,14 @@ class DataManager {
         }
         
         static func insertSchedules(user: User, _ schedule: Schedule, onComplete: @escaping () -> Void) {
+            /* to break down,
+             1. I'm getting the collection first, named "schedules"
+             2. Then I'm getting a document with the id as user's id
+             3. Inside the user document, will contain multiple collections for different DAYS
+             4. Inside one collection, with the day as id, I do document(), this is to generate a new document
+             with auto-generated id.
+             5. ref.setData is to set the fields inside document.
+             */
             let ref = db.collection("schedules").document(user.uid).collection("\(schedule.day)").document()
             
             ref.setData([
