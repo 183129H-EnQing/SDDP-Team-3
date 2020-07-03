@@ -64,15 +64,27 @@ class DataManager {
         
         static func loadSchedules(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
             print("uid passed: \(userId)")
-            db.collection(tableName).getDocuments
-            /*db.collection(tableName).document(userId).getDocument*/ { (snapshot, err) in
+            
+            // we get the document with userId as the id
+            db.collection(tableName).document(userId).getDocument { (snapshot, err) in
                 var schedules: [Int: [Schedule]] = [:]
                 
                 if let err = err {
                     print("Error getting schedules: \(err)")
-                } else if let document = snapshot {
-                    print(document.isEmpty)
-                    print("Data: \(document.documents)")
+                } else if let document = snapshot, document.exists { // if it exists, can run the rest
+                    for (index, _) in SchedulerDetailsViewController.days.enumerated() {
+                        document.reference.collection("\(index)").getDocuments { (snapshot, err) in
+                            if let err = err {
+                                print("Error getting days inside \(userId): \(err)")
+                            } else if let document = snapshot, document.count > 0 {
+                                print("Success for day \(index) with count \(document.count)")
+                            } else {
+                                print("Collection day \(index) has no data")
+                            }
+                        }
+                    }
+                    //print("Data: \(document.reference.coll)")
+                    //print("Data: \(document.documents.count)")
                 } else {
                     print("Schedules for \(userId) does not exist!")
                 }
