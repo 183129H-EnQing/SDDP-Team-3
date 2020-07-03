@@ -20,7 +20,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     var scheduleIndex: Int?
     
     var exercises: [String] = []
-    static var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    static var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
