@@ -59,7 +59,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            print("\(user.email!) successfully logged in!")
+            print("\(user.email!) successfully logged in, with uid: \(user.uid)")
             // https://stackoverflow.com/a/22654105
             UIApplication.shared.windows[0].rootViewController = tabBarController
         }

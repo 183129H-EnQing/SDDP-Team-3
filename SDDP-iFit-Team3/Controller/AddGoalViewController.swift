@@ -17,8 +17,8 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBOutlet weak var duration: UITextField!
     @IBOutlet weak var totalExerciseAmount: UITextField!
     
-    weak var activityNamepickerView: UIPickerView?
     weak var chooseTextField: UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,6 +29,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         activityName.delegate = self
         totalExerciseAmount.delegate = self
         
+        // Activity Name Picker
         let pickerView = UIPickerView()
         pickerView.delegate = self
         // allow textfield to have picker inside it
@@ -42,6 +43,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
            components.year = 1
            let maxDate = Calendar.current.date(byAdding: components, to: Date())
 
+        // Date Picker
         let datePickerView = UIDatePicker()
            datePickerView.datePickerMode = .date
         
@@ -51,7 +53,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
            datePicker.inputView = datePickerView
        
         // call function when user pick date
-      datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
+        datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
         
         // default value inside the picker
         activityName.text = activityNamesPickerData[0]
@@ -112,7 +114,87 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 
         self.pickUp(textField)
      }
+    
     @IBAction func addGoalPressed(_ sender: Any) {
+        Team3Helper.colorTextFieldBorder(textField: goalTitle, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: activityName, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: datePicker, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: duration, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: totalExerciseAmount, isRed: false)
+        
+        if goalTitle.text == ""{
+            Team3Helper.colorTextFieldBorder(textField: goalTitle, isRed: true)
+            let alert = Team3Helper.makeAlert("Goal Title Text Field is Empty")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        // Just in case someone manage to delete the text from the picker hmm
+        if (activityName.text == ""){
+            Team3Helper.colorTextFieldBorder(textField: activityName, isRed: true)
+            let alert = Team3Helper.makeAlert("Activity Name TextField is Empty")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        // Just in case someone manage to delete the text from the picker hmm
+        if (datePicker.text == ""){
+           Team3Helper.colorTextFieldBorder(textField: datePicker, isRed: true)
+           let alert = Team3Helper.makeAlert("Date TextField is Empty")
+           self.present(alert, animated: true, completion: nil)
+           return
+        }
+        
+        // Just in case someone manage to delete the text from the picker hmm
+        if (duration.text == ""){
+            Team3Helper.colorTextFieldBorder(textField: duration, isRed: true)
+            let alert = Team3Helper.makeAlert("Duration TextField is Empty")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        // Check if it is int or not
+        if (!Team3Helper.ifInputIsInt(someInput: duration.text!)){
+            let alert = Team3Helper.makeAlert("Duration TextField Got Letter inside")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        let durationTextValue = Int(duration.text!)!
+        if (durationTextValue > 365){
+            let alert = Team3Helper.makeAlert("Duration Cannot more than 365 days")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+ 
+        // Just in case someone manage to delete the text from the picker hmm
+        if (totalExerciseAmount.text == ""){
+            Team3Helper.colorTextFieldBorder(textField: totalExerciseAmount, isRed: true)
+            let alert = Team3Helper.makeAlert("totalExerciseAmount TextField is Empty")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+
+         // Check if it is int or not
+         if (!Team3Helper.ifInputIsInt(someInput: totalExerciseAmount.text!)){
+             let alert = Team3Helper.makeAlert("TotalExerciseAmount TextField Got Letter inside")
+             self.present(alert, animated: true, completion: nil)
+             return
+         }
+              let viewControllers = self.navigationController?.viewControllers
+              let parent = viewControllers?[1] as! GoalViewController
+              
+    //    print("View Controllers",viewControllers)
+        print("parent:",parent)
+//         Not setting amount
+//         let totalExerciseAmountValue = Int(totalExerciseAmount.text!)!
+//         if (totalExerciseAmountValue > 365){
+//             let alert = Team3Helper.makeAlert("Duration Cannot more than 365 days")
+//             self.present(alert, animated: true, completion: nil)
+//             return
+//         }
+       
+            
+         
         
     }
     /*

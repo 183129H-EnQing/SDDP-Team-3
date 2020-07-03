@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 
 class DataManager {
     static let db = Firestore.firestore()
@@ -43,14 +44,35 @@ class DataManager {
     }
     
     class Schedules {
+        static let tableName = "schedules"
+        
+        /*
+         {
+            "schedules": {
+                "userID1": {
+                    "0": { // 0 is Monday.
+                        "scheduleID1": {
+                            "duration": [0, 10],
+                            "exerciseName": "Jumping Jacks",
+                            "time": [10, 0]
+                        }
+                    }
+                }
+            }
+         }
+         */
+        
         static func loadSchedules(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
-            db.collection("schedules").document(userId).getDocument { (snapshot, err) in
+            print("uid passed: \(userId)")
+            db.collection(tableName).getDocuments
+            /*db.collection(tableName).document(userId).getDocument*/ { (snapshot, err) in
                 var schedules: [Int: [Schedule]] = [:]
                 
                 if let err = err {
                     print("Error getting schedules: \(err)")
-                } else if let document = snapshot, document.exists {
-                    print("Data: \(document.data())")
+                } else if let document = snapshot {
+                    print(document.isEmpty)
+                    print("Data: \(document.documents)")
                 } else {
                     print("Schedules for \(userId) does not exist!")
                 }
@@ -59,17 +81,64 @@ class DataManager {
             }
         }
         
-        static func insertSchedules(_ schedule: Schedule, onComplete: @escaping () -> Void) {
-            /*let date = entry.date.replacingOccurrences(of: "/", with: ",")
-            let ref = FirebaseDatabase.Database.database().reference().child("\(journalEntriesContainerName)/\(date)").childByAutoId()
+        static func insertSchedules(user: User, _ schedule: Schedule, onComplete: @escaping (() -> Void)) {
+            /* to break down,
+             1. I'm getting the collection first, named "schedules"
+             2. Then I'm getting a document with the id as user's id
+             3. Inside the user document, will contain multiple collections for different DAYS
+             4. Inside one collection, with the day as id, I do document(), this is to generate a new document
+             with auto-generated id.
+             5. ref.setData is to set the fields inside document.
+             */
             
-            ref.setValue([
-                "applianceId": entry.appliance.id,
-                "hours": String(entry.duration[0]),
-                "minutes": String(entry.duration[1])
+            // get data for uid
+            let userDocRef = db.collection(tableName).document(user.uid)
+                
+            userDocRef.getDocument { (document, err) in
+                if let err = err {
+                    print("Error getting user '\(user.uid)' schedules: \(err)")
+                }
+                
+                if let document = document, !document.exists {
+                    print("Document does not exist")
+                    userDocRef.setData([:]) { (err) in
+                        if let err = err {
+                            print("Failed to add user '\(user.uid)' in schedules: \(err)")
+                        }
+                    }
+                }
+                
+                userDocRef.collection("\(schedule.day)").addDocument(data: [
+                    "exerciseName": schedule.exerciseName,
+                    "duration": schedule.duration,
+                    "time": schedule.time
+                ]) { err in
+//                    if let err = err {
+//                        onComplete(false)
+//                    } else {
+//                        onComplete(true)
+//                    }
+                    onComplete()
+                }
+                //onComplete()
+                    /*print("user '\(user.uid)' schedules does not exist. Need to make!")
+                    db.collection(tableName).document(user.uid).setData([:]) { (err) in
+                        if let err = err {
+                            print("Failed to add user '\(user.uid)' in schedules: \(err)")
+                        } else {
+                            print("Adding schedule.")
+                            db.collection(tableName).document(user.uid).collection("\(schedule.day)")
+                        }
+                    }*/
+            }
+            /*let ref = db.collection(tableName).document(user.uid).collection("\(schedule.day)")
+            
+            ref.addDocument(data: [
+                "exerciseName": schedule.exerciseName,
+                "duration": schedule.duration,
+                "time": schedule.time
             ])
-            
-            onComplete()*/
+            */
         }
     }
 }
