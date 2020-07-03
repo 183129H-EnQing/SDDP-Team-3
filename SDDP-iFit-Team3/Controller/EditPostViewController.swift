@@ -9,13 +9,19 @@
 import UIKit
 import os.log
 
-class EditPostViewController: UIViewController {
+class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     
     @IBOutlet weak var textcontent: UITextField!
     
     @IBOutlet weak var postimage: UIImageView!
     
     @IBOutlet weak var saveButton: UIButton!
+    
+    @IBOutlet weak var takePicture: UIButton!
+    
+    
+    @IBOutlet weak var seleectPicture: UIButton!
+    
     
     var postItem : Post?
     
@@ -62,15 +68,66 @@ class EditPostViewController: UIViewController {
            
            
            let content = textcontent.text ?? ""
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM d, h:mm a"
+            let datetime = formatter.string(from: date)
+        
         
         
            
-           //let photo = imageview.image
+           //let photo = String(postimage.image)
+        
+            //let pic = UIImage(named: photo)
            
         
-           postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: "5.34", userLocation: "yishun", pimageName: "")
+           postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: "yishun", pimageName: "")
            
-       }    /*
+       }
+    
+    @IBAction func takepicture(_ sender: Any) {
+         let picker = UIImagePickerController()
+               picker.delegate = self
+               
+               picker.allowsEditing = true
+               picker.sourceType = .camera
+               self.present(picker, animated: true)
+    }
+    
+    
+    @IBAction func selectpicture(_ sender: Any) {
+        
+        
+         let picker = UIImagePickerController()
+               picker.delegate = self
+               
+               picker.allowsEditing = true
+               picker.sourceType = .photoLibrary
+               self.present(picker, animated: true)
+        
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
+    [UIImagePickerController.InfoKey : Any])
+    {
+            let chosenImage : UIImage =
+            info[.editedImage] as! UIImage
+            self.postimage!.image = chosenImage
+            // This saves the image selected / shot by the user
+            //
+            UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil)
+
+            // This closes the picker //
+            picker.dismiss(animated: true)
+                
+            }
+            
+            func imagePickerControllerDidCancel(
+                _ picker: UIImagePickerController)
+            {
+                picker.dismiss(animated: true)
+    }
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

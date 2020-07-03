@@ -119,6 +119,9 @@
                                 <rect key="frame" x="40" y="416" width="124" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Camera"/>
+                                <connections>
+                                    <action selector="takepicture:" destination="ZMo-Xz-1ut" eventType="touchUpInside" id="3xE-Nd-2bT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zp5-zq-bYR">
                                 <rect key="frame" x="190" y="479" width="34" height="30"/>
@@ -132,6 +135,9 @@
                                 <rect key="frame" x="237" y="416" width="125" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Gallery"/>
+                                <connections>
+                                    <action selector="selectpicture:" destination="ZMo-Xz-1ut" eventType="touchUpInside" id="Ijv-nD-RMz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -143,6 +149,8 @@
                     <connections>
                         <outlet property="postimage" destination="hwt-bh-qbN" id="ppu-8f-I9A"/>
                         <outlet property="saveButton" destination="zp5-zq-bYR" id="7ag-OT-9Z8"/>
+                        <outlet property="seleectPicture" destination="Hxz-kw-6c9" id="2JD-ys-UbJ"/>
+                        <outlet property="takePicture" destination="uya-B8-bSq" id="l0J-ad-CUF"/>
                         <outlet property="textcontent" destination="4Uf-0I-47N" id="17i-zD-jJ7"/>
                     </connections>
                 </viewController>
