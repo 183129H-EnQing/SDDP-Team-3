@@ -90,15 +90,63 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     @IBAction func addTrainingPressed(_ sender: Any) {
 //        newTrainingPlan = [TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: [""], tpImage: "")]
         
-        newTrainingPlan = [titleLabel.text!, descLabel.text!, repsLabel.text!]
-        print(newTrainingPlan)
+        //to add newTrainingPlan object to data
+        //to verify exerciseList in addExerciseVC
+        
+        if validateInput() == false{
+            newTrainingPlan = [titleLabel.text!, descLabel.text!, repsLabel.text!]
+            print(newTrainingPlan)
+            
+            let alert = Team3Helper.makeAlert("New Training Plan added!")
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        
     }
     
     func requestExercise(_ completionHandler: (_ success: Bool) -> Void) {
         
         completionHandler(true)
         
-//        completionHandler(result, error)
+    }
+    
+    func validateInput() -> Bool{
+        var errors = false
+
+        Team3Helper.colorTextFieldBorder(textField: titleLabel, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: descLabel, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: repsLabel, isRed: false)
+        
+        if titleLabel.text == "" {
+            Team3Helper.colorTextFieldBorder(textField: titleLabel, isRed: true)
+            
+            errors = true
+        }
+        
+        if descLabel.text == "" {
+            Team3Helper.colorTextFieldBorder(textField: descLabel, isRed: true)
+            
+            errors = true
+        }
+        
+        if repsLabel.text == ""{
+            Team3Helper.colorTextFieldBorder(textField: repsLabel, isRed: true)
+            
+            errors = true
+        }
+        
+        if errors == true {
+            let alert = Team3Helper.makeAlert("Please fill in all fields!")
+            self.present(alert, animated: true, completion: nil)
+        }
+        
+        if (!Team3Helper.ifInputIsInt(someInput: repsLabel.text!)){
+            Team3Helper.colorTextFieldBorder(textField: repsLabel, isRed: true)
+            
+            let alert = Team3Helper.makeAlert("Reps must be Integer!")
+            self.present(alert, animated: true, completion: nil)
+        }
+        return errors
     }
     
     /*
