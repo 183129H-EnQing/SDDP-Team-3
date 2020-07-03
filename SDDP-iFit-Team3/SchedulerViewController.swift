@@ -33,11 +33,11 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             ]
         ]*/
         
-        /*if let user = UserAuthentication.getLoggedInUser() {
+        if let user = UserAuthentication.getLoggedInUser() {
             DataManager.Schedules.insertSchedules(user: user, Schedule(exerciseName: "Jumping Jacks", duration: [2,50], day: 2, time: [0, 10])) {
-                print("Success adding schedule!")
+                print("Was adding schedule success?")
             }
-        }*/
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

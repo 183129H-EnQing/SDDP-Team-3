@@ -44,6 +44,8 @@ class DataManager {
     }
     
     class Schedules {
+        static let tableName = "schedules"
+        
         /*
          {
             "schedules": {
@@ -59,14 +61,18 @@ class DataManager {
             }
          }
          */
+        
         static func loadSchedules(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
-            db.collection("schedules").document(userId).getDocument { (snapshot, err) in
+            print("uid passed: \(userId)")
+            db.collection(tableName).getDocuments
+            /*db.collection(tableName).document(userId).getDocument*/ { (snapshot, err) in
                 var schedules: [Int: [Schedule]] = [:]
                 
                 if let err = err {
                     print("Error getting schedules: \(err)")
-                } else if let document = snapshot, document.exists {
-                    print("Data: \(document.data())")
+                } else if let document = snapshot {
+                    print(document.isEmpty)
+                    print("Data: \(document.documents)")
                 } else {
                     print("Schedules for \(userId) does not exist!")
                 }
@@ -75,7 +81,7 @@ class DataManager {
             }
         }
         
-        static func insertSchedules(user: User, _ schedule: Schedule, onComplete: @escaping () -> Void) {
+        static func insertSchedules(user: User, _ schedule: Schedule, onComplete: @escaping (() -> Void)) {
             /* to break down,
              1. I'm getting the collection first, named "schedules"
              2. Then I'm getting a document with the id as user's id
@@ -84,15 +90,55 @@ class DataManager {
              with auto-generated id.
              5. ref.setData is to set the fields inside document.
              */
-            let ref = db.collection("schedules").document(user.uid).collection("\(schedule.day)").document()
             
-            ref.setData([
+            // get data for uid
+            let userDocRef = db.collection(tableName).document(user.uid)
+                
+            userDocRef.getDocument { (document, err) in
+                if let err = err {
+                    print("Error getting user '\(user.uid)' schedules: \(err)")
+                }
+                
+                if let document = document, !document.exists {
+                    print("Document does not exist")
+                    userDocRef.setData([:]) { (err) in
+                        if let err = err {
+                            print("Failed to add user '\(user.uid)' in schedules: \(err)")
+                        }
+                    }
+                }
+                
+                userDocRef.collection("\(schedule.day)").addDocument(data: [
+                    "exerciseName": schedule.exerciseName,
+                    "duration": schedule.duration,
+                    "time": schedule.time
+                ]) { err in
+//                    if let err = err {
+//                        onComplete(false)
+//                    } else {
+//                        onComplete(true)
+//                    }
+                    onComplete()
+                }
+                //onComplete()
+                    /*print("user '\(user.uid)' schedules does not exist. Need to make!")
+                    db.collection(tableName).document(user.uid).setData([:]) { (err) in
+                        if let err = err {
+                            print("Failed to add user '\(user.uid)' in schedules: \(err)")
+                        } else {
+                            print("Adding schedule.")
+                            db.collection(tableName).document(user.uid).collection("\(schedule.day)")
+                        }
+                    }*/
+            }
+            /*let ref = db.collection(tableName).document(user.uid).collection("\(schedule.day)")
+            
+            ref.addDocument(data: [
                 "exerciseName": schedule.exerciseName,
                 "duration": schedule.duration,
                 "time": schedule.time
             ])
-            
-            onComplete()
+            */
         }
     }
 }
