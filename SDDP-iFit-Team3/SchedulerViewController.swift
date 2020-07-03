@@ -49,12 +49,15 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             print("User is logged in")
             DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
                 if data.count == 0 {
+                    print("no data loaded")
                     self.tableView.isHidden = true
                     self.noSchedulesLabel.isHidden = false
                 } else {
+                    print("data loaded")
+                    self.schedules = data
+                    self.tableView.reloadData()
                     self.tableView.isHidden = false
                     self.noSchedulesLabel.isHidden = true
-                    self.schedules = data
                 }
             }
         } else {

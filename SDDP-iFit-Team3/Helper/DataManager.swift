@@ -62,45 +62,77 @@ class DataManager {
          }
          */
         
-        static func loadSchedules(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
+        static func loadSchedules(userId: String, onComplete: @escaping ([Int: [Schedule]]) -> Void) {
             print("uid passed: \(userId)")
             
             // we get the document with userId as the id
-            db.collection(tableName).document(userId).getDocument { (snapshot, err) in
+            db.collection(tableName).document(userId).getDocument { (userSnapshost, err) in
                 var schedules: [Int: [Schedule]] = [:]
+                
+                // using DispatchGroup: https://stackoverflow.com/a/35906703
+                // Why? Because the onComplete runs after the last print statement for "index: n", so need to delay it
+                let dispatchGrp = DispatchGroup()
                 
                 if let err = err {
                     print("Error getting schedules: \(err)")
-                } else if let document = snapshot, document.exists { // if it exists, can run the rest
-                    for (index, _) in SchedulerDetailsViewController.days.enumerated() {
-                        document.reference.collection("\(index)").getDocuments { (snapshot, err) in
+                } else if let userDoc = userSnapshost, userDoc.exists { // if it exists, can run the rest
+                    // after getting user document, need to find all existing days collection, so loop
+                    // through the days array to give the index for day, which is the id
+                    for index in 0..<SchedulerDetailsViewController.days.count {
+                        print("index: \(index)")
+                        // since after the above print statement, the onComplete will be done, so, we enter dispatchGroup here
+                        dispatchGrp.enter()
+                        
+                        // pass in index to the collection to retrieve a day collection
+                        userDoc.reference.collection("\(index)").getDocuments { (daysSnapshot, err) in
+                            print("start of dayCollection")
+                            
                             if let err = err {
                                 print("Error getting days inside \(userId): \(err)")
-                            } else if let document = snapshot, document.count > 0 {
-                                print("Success for day \(index) with count \(document.count)")
+                            } else if let daysDoc = daysSnapshot, daysDoc.count > 0 { // if count > 0, means for this specific day, there is data
+                                print("Success for day \(index) with count \(daysDoc.count)")
+                                
+                                schedules[index] = [] // set an empty array for this day, inside schedules variable
+                                daysDoc.documents.forEach { (daySnapshot) in // loop through the documents from daysDoc
+                                    print("adding day")
+                                    
+                                    let data = daySnapshot.data()
+                                    
+                                    let exerciseName: String = data["exerciseName"] as! String
+                                    let duration: [Int] = data["duration"] as! [Int]
+                                    let time: [Int] = data["time"] as! [Int]
+                                    
+                                    schedules[index]?.append(Schedule(id: daySnapshot.documentID, exerciseName: exerciseName, duration: duration, day: index, time: time))
+                                }
                             } else {
                                 print("Collection day \(index) has no data")
                             }
+                            print("end of dayCollection")
+                            
+                            // the print statement above will print after everything is done, so can be sure schedules got data, so we leave the dispatchGrp
+                            dispatchGrp.leave()
                         }
                     }
-                    //print("Data: \(document.reference.coll)")
-                    //print("Data: \(document.documents.count)")
                 } else {
                     print("Schedules for \(userId) does not exist!")
                 }
                 
-                onComplete?(schedules)
+                dispatchGrp.notify(queue: .main) {
+                    onComplete(schedules)
+                }
             }
         }
         
-        static func insertSchedules(user: User, _ schedule: Schedule, onComplete: @escaping (() -> Void)) {
+        static func insertSchedules(user: User, _ schedule: Schedule, onComplete: @escaping ((_:Bool) -> Void)) {
             /* to break down,
              1. I'm getting the collection first, named "schedules"
              2. Then I'm getting a document with the id as user's id
-             3. Inside the user document, will contain multiple collections for different DAYS
-             4. Inside one collection, with the day as id, I do document(), this is to generate a new document
-             with auto-generated id.
-             5. ref.setData is to set the fields inside document.
+             3. When retrieved the document, need to check if it exists or not, if no document with userId,
+             need to create document, so userDocRef.setData
+             4. After checking user document's existence, we will get the schedule's specified day, using this
+             integer as key to get the day collection
+             5. Inside a day collection, I do document(), this is to generate a new document with auto-generated id.
+             6. ref.setData is to set the fields inside document.
              */
             
             // get data for uid
@@ -125,32 +157,13 @@ class DataManager {
                     "duration": schedule.duration,
                     "time": schedule.time
                 ]) { err in
-//                    if let err = err {
-//                        onComplete(false)
-//                    } else {
-//                        onComplete(true)
-//                    }
-                    onComplete()
+                    if let _ = err {
+                        onComplete(false)
+                    } else {
+                        onComplete(true)
+                    }
                 }
-                //onComplete()
-                    /*print("user '\(user.uid)' schedules does not exist. Need to make!")
-                    db.collection(tableName).document(user.uid).setData([:]) { (err) in
-                        if let err = err {
-                            print("Failed to add user '\(user.uid)' in schedules: \(err)")
-                        } else {
-                            print("Adding schedule.")
-                            db.collection(tableName).document(user.uid).collection("\(schedule.day)")
-                        }
-                    }*/
             }
-            /*let ref = db.collection(tableName).document(user.uid).collection("\(schedule.day)")
-            
-            ref.addDocument(data: [
-                "exerciseName": schedule.exerciseName,
-                "duration": schedule.duration,
-                "time": schedule.time
-            ])
-            */
         }
     }
 }

@@ -126,7 +126,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             parent.schedules[day] = []
         }
         
-        let newSchedule = Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
+        /*let newSchedule = Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
         // If not nil, is editing. Else if it is nil, is adding
         if self.schedule != nil {
             if day != self.schedule?.day { // if change the day, means must remove
@@ -142,7 +142,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         } else {
             parent.schedules[day]!.append(newSchedule)
         }
-        parent.tableView.reloadData()
+        parent.tableView.reloadData()*/
         
         self.navigationController?.popViewController(animated: true)
     }

@@ -29,7 +29,7 @@ class Team3Helper {
     }
     
     static func ifInputIsInt(someInput: String) -> Bool {
-        guard let parsedNumber = Int(someInput) else {return false}
+        guard let _ = Int(someInput) else {return false}
         
         return true
     }
