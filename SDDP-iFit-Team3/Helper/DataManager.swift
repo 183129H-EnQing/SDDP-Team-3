@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 
 class DataManager {
     static let db = Firestore.firestore()
@@ -43,6 +44,21 @@ class DataManager {
     }
     
     class Schedules {
+        /*
+         {
+            "schedules": {
+                "userID1": {
+                    "0": { // 0 is Monday.
+                        "scheduleID1": {
+                            "duration": [0, 10],
+                            "exerciseName": "Jumping Jacks",
+                            "time": [10, 0]
+                        }
+                    }
+                }
+            }
+         }
+         */
         static func loadSchedules(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
             db.collection("schedules").document(userId).getDocument { (snapshot, err) in
                 var schedules: [Int: [Schedule]] = [:]
@@ -59,17 +75,24 @@ class DataManager {
             }
         }
         
-        static func insertSchedules(_ schedule: Schedule, onComplete: @escaping () -> Void) {
-            /*let date = entry.date.replacingOccurrences(of: "/", with: ",")
-            let ref = FirebaseDatabase.Database.database().reference().child("\(journalEntriesContainerName)/\(date)").childByAutoId()
+        static func insertSchedules(user: User, _ schedule: Schedule, onComplete: @escaping () -> Void) {
+            /* to break down,
+             1. I'm getting the collection first, named "schedules"
+             2. Then I'm getting a document with the id as user's id
+             3. Inside the user document, will contain multiple collections for different DAYS
+             4. Inside one collection, with the day as id, I do document(), this is to generate a new document
+             with auto-generated id.
+             5. ref.setData is to set the fields inside document.
+             */
+            let ref = db.collection("schedules").document(user.uid).collection("\(schedule.day)").document()
             
-            ref.setValue([
-                "applianceId": entry.appliance.id,
-                "hours": String(entry.duration[0]),
-                "minutes": String(entry.duration[1])
+            ref.setData([
+                "exerciseName": schedule.exerciseName,
+                "duration": schedule.duration,
+                "time": schedule.time
             ])
             
-            onComplete()*/
+            onComplete()
         }
     }
 }
