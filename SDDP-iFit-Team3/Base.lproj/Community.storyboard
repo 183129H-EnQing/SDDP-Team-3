@@ -306,6 +306,13 @@
                                     <action selector="takePicturePressed:" destination="YJe-If-5aM" eventType="touchUpInside" id="rUn-KP-ovY"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2h-gM-EBn">
+                                <rect key="frame" x="262" y="106" width="91" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="fpF-zt-fKF"/>
@@ -314,6 +321,7 @@
                         <outlet property="addbutton" destination="HnN-ue-iIE" id="cH2-VD-IaL"/>
                         <outlet property="contenttext" destination="ndF-zf-Ccz" id="SZu-5p-i1V"/>
                         <outlet property="imageview" destination="GZB-Ha-vp9" id="qwC-Xq-PSf"/>
+                        <outlet property="loctext" destination="w2h-gM-EBn" id="RTy-VN-0Di"/>
                         <outlet property="selectpicture" destination="H5Z-Aw-Mk9" id="SG0-1I-Z4m"/>
                         <outlet property="takepicture" destination="rVA-wf-QQc" id="ABH-9z-jPe"/>
                     </connections>

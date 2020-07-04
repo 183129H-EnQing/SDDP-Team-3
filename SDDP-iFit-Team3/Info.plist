@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Allow this app to know your current location</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string> Allow this app to know your current location</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Allow this app to know your current location</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Use GPS to retrieve your location</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Take a picture using your camera</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>

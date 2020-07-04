@@ -8,7 +8,8 @@
 
 import UIKit
 import os.log
-class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate{
+import CoreLocation
+class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var imageview: UIImageView!
     
@@ -18,18 +19,28 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var addbutton: UIButton!
     
-   
+    @IBOutlet weak var loctext: UILabel!
+    
     @IBOutlet weak var contenttext: UITextField!
     
     var postItem : Post?
-    
+    var locationManager:CLLocationManager!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
         contenttext.delegate = self
         updateSaveButtonState()
-              // Do any additional setup after loading the view.
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.startUpdatingLocation()
+        }
+        // Do any additional setup after loading the view.
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -60,6 +71,37 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         
     }
     
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation :CLLocation = locations[0] as CLLocation
+
+        print("user latitude = \(userLocation.coordinate.latitude)")
+        print("user longitude = \(userLocation.coordinate.longitude)")
+
+      
+
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(userLocation) { (placemarks, error) in
+            if (error != nil){
+                print("error in reverseGeocode")
+            }
+            let placemark = placemarks! as [CLPlacemark]
+            if placemark.count>0{
+                let placemark = placemarks![0]
+                print(placemark.locality!)
+                print(placemark.administrativeArea!)
+                print(placemark.country!)
+                
+                
+            
+                 self.loctext.text = "\(placemark.locality!)"
+                
+            }
+        }
+
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error \(error)")
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          
            super.prepare(for: segue, sender: sender)
@@ -78,16 +120,17 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         formatter.dateFormat = "MMM d, h:mm a"
         let datetime = formatter.string(from: date)
         
-          
-        
-       
+        let loc = loctext.text ?? ""
         
         
+        
+        
+                    
         
         //let photo = imageview.image
         
      
-        postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: "yishun", pimageName: "")
+        postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: loc, pimageName: "")
         
     }
    
