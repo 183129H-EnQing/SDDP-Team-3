@@ -45,6 +45,7 @@ class DataManager {
     
     class Schedules {
         static let tableName = "schedules"
+        static let testTableName = "testSchedules"
         
         /*
          {
@@ -62,7 +63,7 @@ class DataManager {
          }
          */
         
-        static func loadSchedules(userId: String, onComplete: @escaping ([Int: [Schedule]]) -> Void) {
+        static func loadSchedules(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
             print("uid passed: \(userId)")
             
             // we get the document with userId as the id
@@ -102,7 +103,9 @@ class DataManager {
                                     let duration: [Int] = data["duration"] as! [Int]
                                     let time: [Int] = data["time"] as! [Int]
                                     
-                                    schedules[index]?.append(Schedule(id: daySnapshot.documentID, exerciseName: exerciseName, duration: duration, day: index, time: time))
+                                    let schedule = Schedule(exerciseName: exerciseName, duration: duration, day: index, time: time)
+                                    schedule.id = daySnapshot.documentID
+                                    schedules[index]?.append(schedule)
                                 }
                             } else {
                                 print("Collection day \(index) has no data")
@@ -118,12 +121,12 @@ class DataManager {
                 }
                 
                 dispatchGrp.notify(queue: .main) {
-                    onComplete(schedules)
+                    onComplete?(schedules)
                 }
             }
         }
         
-        static func insertSchedules(user: User, _ schedule: Schedule, onComplete: @escaping ((_:Bool) -> Void)) {
+        static func insertSchedules(user: User, _ schedule: Schedule, onComplete: (((_:Bool) -> Void))?) {
             /* to break down,
              1. I'm getting the collection first, named "schedules"
              2. Then I'm getting a document with the id as user's id
@@ -158,10 +161,67 @@ class DataManager {
                     "time": schedule.time
                 ]) { err in
                     if let _ = err {
-                        onComplete(false)
+                        onComplete?(false)
                     } else {
-                        onComplete(true)
+                        onComplete?(true)
                     }
+                }
+            }
+        }
+        
+        static func loadSchedule_NoSubCollection(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
+            db.collection(testTableName).getDocuments { (snapshot, err) in
+                var schedules: [Int: [Schedule]] = [:]
+                if let err = err {
+                    print("Error for \(testTableName): \(err)")
+                } else if let snapshot = snapshot, snapshot.count > 0 {
+                    print("Got data: \(snapshot.count)")
+                    for document in snapshot.documents {
+                        print("Retrieving a document")
+                        let data = document.data()
+                        if userId.elementsEqual(data["creatorId"] as! String) {
+                            print("Document's creator matched")
+                            let day: Int = data["day"] as! Int
+                            
+                            if !schedules.keys.contains(day) {
+                                schedules[day] = []
+                            }
+                            
+                            let exerciseName: String = data["exerciseName"] as! String
+                            let duration: [Int] = data["duration"] as! [Int]
+                            let time: [Int] = data["time"] as! [Int]
+                            
+                            let schedule = Schedule(exerciseName: exerciseName, duration: duration, day: day, time: time)
+                            schedule.id = document.documentID
+                            schedules[day]!.append(schedule)
+                            
+                            /*schedules[day]!.sort(by: { (aSchedule, bSchedule) -> Bool in
+                                let aHour = aSchedule.time[0]
+                                let bHour = bSchedule.time[0]
+                                return aHour < bHour || (aHour == bHour && aSchedule.time[1] < bSchedule.time[1])
+                            })*/
+                        }
+                    }
+                } else {
+                    print("No data for \(testTableName)")
+                }
+                
+                onComplete?(schedules)
+            }
+        }
+        
+        static func insertSchedule_NoSubCollection(userId: String, _ schedule: Schedule, onComplete: (((_:Bool) -> Void))?) {
+            db.collection(testTableName).addDocument(data: [
+                "creatorId": userId,
+                "exerciseName": schedule.exerciseName,
+                "duration": schedule.duration,
+                "day": schedule.day,
+                "time": schedule.time
+            ]) { err in
+                if let _ = err {
+                    onComplete?(false)
+                } else {
+                    onComplete?(true)
                 }
             }
         }

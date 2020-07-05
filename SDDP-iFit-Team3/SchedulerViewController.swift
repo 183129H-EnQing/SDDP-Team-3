@@ -33,38 +33,20 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             ]
         ]*/
         
-        /*if let user = UserAuthentication.getLoggedInUser() {
-            DataManager.Schedules.insertSchedules(user: user, Schedule(exerciseName: "Jumping Jacks", duration: [2,50], day: 2, time: [0, 10])) {
+        if let user = UserAuthentication.getLoggedInUser() {
+            /*DataManager.Schedules.insertSchedules(user: user, Schedule(exerciseName: "Jumping Jacks", duration: [2,50], day: 2, time: [0, 10])) {
                 print("Was adding schedule success?")
-            }
-        }*/
+            }*/
+            /*DataManager.Schedules.insertSchedule_NoSubCollection(userId: user.uid, Schedule(exerciseName: "Jumping Jacks", duration: [2,50], day: 2, time: [0, 10])) { wasSuccess in
+                print("Is success? \(wasSuccess)")
+            }*/
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        self.schedules = [:]
-        
-        if let user = UserAuthentication.getLoggedInUser() {
-            print("User is logged in")
-            DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
-                if data.count == 0 {
-                    print("no data loaded")
-                    self.tableView.isHidden = true
-                    self.noSchedulesLabel.isHidden = false
-                } else {
-                    print("data loaded")
-                    self.schedules = data
-                    self.tableView.reloadData()
-                    self.tableView.isHidden = false
-                    self.noSchedulesLabel.isHidden = true
-                }
-            }
-        } else {
-            print("User not logged in")
-            self.tableView.isHidden = true
-            self.noSchedulesLabel.isHidden = false
-        }
+        loadSchedules()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -148,4 +130,44 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
 
+    func loadSchedules() {
+        self.schedules = [:]
+        
+        self.tableView.isHidden = true
+        self.noSchedulesLabel.isHidden = false
+        
+        if let user = UserAuthentication.getLoggedInUser() {
+            print("User is logged in")
+            /*DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
+                print("loading from firebase")
+                if data.count > 0 {
+                    print("data loaded")
+                    self.schedules = data
+                    
+                    DispatchQueue.main.async {
+                        print("async tableview label")
+                        self.tableView.reloadData()
+                        self.tableView.isHidden = false
+                        self.noSchedulesLabel.isHidden = true
+                    }
+                }
+            }*/
+            DataManager.Schedules.loadSchedule_NoSubCollection(userId: user.uid) { (data) in
+                if data.count > 0 {
+                    print("loading from firebase")
+                    if data.count > 0 {
+                        print("data loaded")
+                        self.schedules = data
+                        
+                        DispatchQueue.main.async {
+                            print("async tableview label")
+                            self.tableView.reloadData()
+                            self.tableView.isHidden = false
+                            self.noSchedulesLabel.isHidden = true
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

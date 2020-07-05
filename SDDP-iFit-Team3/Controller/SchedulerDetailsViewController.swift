@@ -122,11 +122,11 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         let parent = viewControllers?[0] as! SchedulerViewController
         
         // check if the object got the day, if don't have create an empty array
-        if !parent.schedules.keys.contains(day) {
+        /*if !parent.schedules.keys.contains(day) {
             parent.schedules[day] = []
         }
         
-        /*let newSchedule = Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
+        let newSchedule = Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
         // If not nil, is editing. Else if it is nil, is adding
         if self.schedule != nil {
             if day != self.schedule?.day { // if change the day, means must remove
