@@ -195,11 +195,11 @@ class DataManager {
                             schedule.id = document.documentID
                             schedules[day]!.append(schedule)
                             
-                            /*schedules[day]!.sort(by: { (aSchedule, bSchedule) -> Bool in
+                            schedules[day]!.sort(by: { (aSchedule, bSchedule) -> Bool in
                                 let aHour = aSchedule.time[0]
                                 let bHour = bSchedule.time[0]
                                 return aHour < bHour || (aHour == bHour && aSchedule.time[1] < bSchedule.time[1])
-                            })*/
+                            })
                         }
                     }
                 } else {
@@ -210,7 +210,7 @@ class DataManager {
             }
         }
         
-        static func insertSchedule_NoSubCollection(userId: String, _ schedule: Schedule, onComplete: (((_:Bool) -> Void))?) {
+        static func insertSchedule_NoSubCollection(userId: String, _ schedule: Schedule, onComplete: (((_ isSuccess:Bool) -> Void))?) {
             db.collection(testTableName).addDocument(data: [
                 "creatorId": userId,
                 "exerciseName": schedule.exerciseName,
@@ -218,6 +218,21 @@ class DataManager {
                 "day": schedule.day,
                 "time": schedule.time
             ]) { err in
+                if let _ = err {
+                    onComplete?(false)
+                } else {
+                    onComplete?(true)
+                }
+            }
+        }
+        
+        static func updateSchedule_NoSubCollection(schedule: Schedule, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+            db.collection(testTableName).document(schedule.id!).updateData([
+                "exerciseName": schedule.exerciseName,
+                "duration": schedule.duration,
+                "day": schedule.day,
+                "time": schedule.time
+            ]) { (err) in
                 if let _ = err {
                     onComplete?(false)
                 } else {

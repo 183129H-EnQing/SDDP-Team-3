@@ -22,8 +22,6 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func loginButtonPressed(_ sender: Any) {
-        let tabBarController = self.storyboard?.instantiateViewController(identifier: "TabBarController")
-        
         let email = emailTextField.text!;
         let password = passwordTextField.text!;
         
@@ -60,8 +58,7 @@ class LoginViewController: UIViewController {
             }
             
             print("\(user.email!) successfully logged in, with uid: \(user.uid)")
-            // https://stackoverflow.com/a/22654105
-            UIApplication.shared.windows[0].rootViewController = tabBarController
+            Team3Helper.changeRootScreen(currentController: self, goToTabs: true)
         }
     }
     /*

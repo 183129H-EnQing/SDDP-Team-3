@@ -38,4 +38,10 @@ class Team3Helper {
         textField.layer.borderWidth = 1
         textField.layer.borderColor = isRed ? UIColor.systemRed.cgColor : UIColor.systemGray3.cgColor
     }
+    
+    static func changeRootScreen(currentController: UIViewController, goToTabs: Bool) {
+        // https://stackoverflow.com/a/22654105
+        let controller = goToTabs ? currentController.storyboard?.instantiateViewController(identifier: "TabBarController") : currentController.storyboard?.instantiateViewController(identifier: "WelcomeNavController")
+        UIApplication.shared.windows[0].rootViewController = controller
+    }
 }

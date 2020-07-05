@@ -70,80 +70,85 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     }
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: false)
-        Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: false)
-        
-        if !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) || !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) {
-            Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
-            Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
+        if let user = UserAuthentication.getLoggedInUser() {
+            Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: false)
+            Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: false)
             
-            let alert = Team3Helper.makeAlert("Only numbers allowed in 'Duration' text fields")
-            self.present(alert, animated: true, completion: nil)
-            
-            return
-        }
-        
-        let hrs = Int(hrsTextField.text!)!
-        let mins = Int(minsTextField.text!)!
-        
-        if hrs > 24 || hrs < 0 {
-            Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
-            
-            let alert = Team3Helper.makeAlert("Hours can only be between 0 and 24")
-            self.present(alert, animated: true, completion: nil)
-            
-            return
-        }
-        
-        if mins > 59 || mins < 0 {
-            Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
-            
-            let alert = Team3Helper.makeAlert("Mins can only be between 0 and 59")
-            self.present(alert, animated: true, completion: nil)
-            
-            return
-        }
-        
-        if hrs == 0 && mins == 0 {
-            Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
-            Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
-            
-            let alert = Team3Helper.makeAlert("Duration cannot be 0")
-            self.present(alert, animated: true, completion: nil)
-            
-            return
-        }
-        
-        let exercise = exercises[exercisePicker.selectedRow(inComponent: 0)]
-        let time = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
-        let day = dayPicker.selectedRow(inComponent: 0)
-        
-        let viewControllers = self.navigationController?.viewControllers
-        let parent = viewControllers?[0] as! SchedulerViewController
-        
-        // check if the object got the day, if don't have create an empty array
-        /*if !parent.schedules.keys.contains(day) {
-            parent.schedules[day] = []
-        }
-        
-        let newSchedule = Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
-        // If not nil, is editing. Else if it is nil, is adding
-        if self.schedule != nil {
-            if day != self.schedule?.day { // if change the day, means must remove
-                // we remove from the old day at the old index
-                parent.schedules[self.schedule!.day]?.remove(at: self.scheduleIndex!)
+            if !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) || !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) {
+                Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
+                Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
                 
-                // we appened at the new day
-                parent.schedules[day]!.append(newSchedule)
+                let alert = Team3Helper.makeAlert("Only numbers allowed in 'Duration' text fields")
+                self.present(alert, animated: true, completion: nil)
+                
+                return
+            }
+            
+            let hrs = Int(hrsTextField.text!)!
+            let mins = Int(minsTextField.text!)!
+            
+            if hrs > 24 || hrs < 0 {
+                Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
+                
+                let alert = Team3Helper.makeAlert("Hours can only be between 0 and 24")
+                self.present(alert, animated: true, completion: nil)
+                
+                return
+            }
+            
+            if mins > 59 || mins < 0 {
+                Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
+                
+                let alert = Team3Helper.makeAlert("Mins can only be between 0 and 59")
+                self.present(alert, animated: true, completion: nil)
+                
+                return
+            }
+            
+            if hrs == 0 && mins == 0 {
+                Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
+                Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
+                
+                let alert = Team3Helper.makeAlert("Duration cannot be 0")
+                self.present(alert, animated: true, completion: nil)
+                
+                return
+            }
+            
+            let exercise = exercises[exercisePicker.selectedRow(inComponent: 0)]
+            let time = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
+            let day = dayPicker.selectedRow(inComponent: 0)
+            
+            let viewControllers = self.navigationController?.viewControllers
+            let parent = viewControllers?[0] as! SchedulerViewController
+            
+            let newSchedule = Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
+            // If not nil, is editing. Else if it is nil, is adding
+            if self.schedule != nil {
+                // Update
+                newSchedule.id = self.schedule!.id!
+                DataManager.Schedules.updateSchedule_NoSubCollection(schedule: newSchedule) { (isSuccess) in
+                    self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
+                }
             } else {
-                // user only changed other things, not the day, so just need to replace at the index
-                parent.schedules[day]![self.scheduleIndex!] = newSchedule
+                // Add
+                DataManager.Schedules.insertSchedule_NoSubCollection(userId: user.uid, newSchedule) { (isSuccess) in
+                    self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                }
             }
         } else {
-            parent.schedules[day]!.append(newSchedule)
+            self.present(Team3Helper.makeAlert("Please relog in!"), animated: true)
+            Team3Helper.changeRootScreen(currentController: self, goToTabs: false)
         }
-        parent.tableView.reloadData()*/
+    }
+    
+    func afterDbOperation(parent: SchedulerViewController, isSuccess: Bool, isUpdating: Bool) {
+        if !isSuccess {
+            let mode = isUpdating ? "updating the" : "adding a"
+            self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) schedule"), animated: true)
+        }
         
+        parent.loadSchedules()
         self.navigationController?.popViewController(animated: true)
     }
     
