@@ -182,8 +182,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
          }
         let viewControllers = self.navigationController?.viewControllers
         let parent = viewControllers?[1] as! GoalViewController
-              
-        print("parent:", parent)
+
         let goalTitleText = goalTitle.text!
         let activityNameText = activityName.text!
         let dateText = datePicker.text!
@@ -194,9 +193,9 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         let newGoal = Goal(goalTitle: goalTitleText, activityName: activityNameText, date: dateText, duration: durationText, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmountText)
 
-//        DataManager.Schedules.insertGoal(userId:user!.uid, newGoal) { (isSuccess) in
-//                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-//            }
+        DataManager.Goals.insertGoal(userId:user!.uid,newGoal) { (isSuccess) in
+                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+            }
 
 
 //         Not setting amount
@@ -206,10 +205,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
 //             self.present(alert, animated: true, completion: nil)
 //             return
 //         }
-       
-            
          
-        
     }
     
     
@@ -258,7 +254,6 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
    @objc func cancelClick() {
     self.chooseTextField!.resignFirstResponder()
     }
-    
     
     
 }

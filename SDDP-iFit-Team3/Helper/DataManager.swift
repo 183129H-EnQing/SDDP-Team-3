@@ -192,4 +192,80 @@ class DataManager {
             }
         }
     }
+    
+    class Goals{
+        static let tableName = "goals"
+        
+        static func insertGoal(userId: String, _ goal: Goal, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+                     db.collection(tableName).addDocument(data: [
+                         "userId": userId,
+                         "goalTitle": goal.goalTitle,
+                         "activityName": goal.activityName,
+                         "date": goal.date,
+                         "duration": goal.duration,
+                         "totalExerciseAmount": goal.totalExerciseAmount,
+                         "processPercent": goal.progressPercent
+                            
+                     ]) { err in
+                         if let _ = err {
+                             onComplete?(false)
+                         } else {
+                             onComplete?(true)
+                         }
+                     }
+                 }
+        
+        static func loadGoals(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
+                  /* Process
+                   1. Get all documents
+                   2. Check for errors, check if there are data to retrieve
+                   3. loop through all the documents
+                   4. In each document, check if the creatorId is the same as the logged in user's id
+                   5. Create empty array if our schedules variable' day is empty
+                   6. Retrieve fields from document, as well as documentId from document
+                   7. Put the fields into instance of Schedule and append Schedule to day array inside schedules variable
+                   8. Then we sort the day array after appending
+                   */
+                  db.collection(tableName).getDocuments { (snapshot, err) in
+                      var goals: [Goals] = []
+                      if let err = err {
+                          print("Error for \(tableName): \(err)")
+                      } else if let snapshot = snapshot, snapshot.count > 0 {
+                          print("Got data: \(snapshot.count)")
+                          for document in snapshot.documents {
+                              print("Retrieving a document")
+                              let data = document.data()
+                              if userId.elementsEqual(data["userId"] as! String) {
+                                  print("Document's creator matched")
+//
+//                                let goalTitle : String = data["goalTitle"] as! String
+//                                let activityName : String = data["activityName"] as! String
+//                                let date : String = data["date"] as! String
+//                                let duration : Int = data["duration"] as! Int
+//                                let totalExerciseAmount : Int = data["totalExerciseAmount"] as! Int
+//
+//                                "goalTitle": goal.goalTitle,
+//                                                   "activityName": goal.activityName,
+//                                                   "date": goal.date,
+//                                                   "duration": goal.duration,
+//                                                   "totalExerciseAmount": goal.totalExerciseAmount,
+//                                                   "processPercent": goal.progressPercent
+//                                let exerciseId: Int = data["exerciseId"] as! Int
+//                                let duration: [Int] = data["duration"] as! [Int]
+//                                let time: [Int] = data["time"] as! [Int]
+
+                             
+                              }
+                          }
+                      } else {
+                          print("No data for \(tableName)")
+                      }
+                      
+                    //  onComplete?(schedules)
+                  }
+              }
+        
+
+    }
+    
 }
