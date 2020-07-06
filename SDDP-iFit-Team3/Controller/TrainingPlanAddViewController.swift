@@ -19,7 +19,11 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var repsLabel: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    var newTrainingPlan : [String] = []
+    @IBOutlet weak var addPlan: UIButton!
+    var exisitngTP: TrainingPlan?
+    var existTP: Bool = false
+    
+    var newTrainingPlan : TrainingPlan?
     var exerciseListFrom : [String] = ["he"]
     
     override func viewDidLoad() {
@@ -33,6 +37,18 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         {
             // If not, we will just hide the takePicture button //
             takePicture.isHidden = true
+        }
+        
+        if exisitngTP != nil {
+            titleLabel.text = exisitngTP?.tpName
+            descLabel.text = exisitngTP?.tpDesc
+            repsLabel.text = "\(exisitngTP!.tpReps)"
+            imageView.image = UIImage(named: exisitngTP!.tpImage)
+            exerciseListFrom = exisitngTP!.tpExercises
+            
+            addPlan.setTitle("Update Plan", for: .normal)
+            
+            existTP = true
         }
     }
     @IBAction func takePicturePressed(_ sender: Any) {
@@ -88,20 +104,18 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     }
     
     @IBAction func addTrainingPressed(_ sender: Any) {
-//        newTrainingPlan = [TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: [""], tpImage: "")]
         
-        //to add newTrainingPlan object to data
-        //to verify exerciseList in addExerciseVC
+        //do function for update plan
         
         if validateInput() == false{
-            newTrainingPlan = [titleLabel.text!, descLabel.text!, repsLabel.text!]
+            newTrainingPlan = TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: exerciseListFrom, tpImage: "")
             print(newTrainingPlan)
             
-            let alert = Team3Helper.makeAlert("New Training Plan added!")
-            self.present(alert, animated: true, completion: nil)
+            DataManager.TrainingPlans.insertTrainingPlan(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", newTrainingPlan!, onComplete: nil)
+            
+            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)
         }
-        
-        
     }
     
     func requestExercise(_ completionHandler: (_ success: Bool) -> Void) {
@@ -140,11 +154,13 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
             self.present(alert, animated: true, completion: nil)
         }
         
-        if (!Team3Helper.ifInputIsInt(someInput: repsLabel.text!)){
+        if !Team3Helper.ifInputIsInt(someInput: repsLabel.text!){
             Team3Helper.colorTextFieldBorder(textField: repsLabel, isRed: true)
             
             let alert = Team3Helper.makeAlert("Reps must be Integer!")
             self.present(alert, animated: true, completion: nil)
+            
+            errors = true
         }
         return errors
     }

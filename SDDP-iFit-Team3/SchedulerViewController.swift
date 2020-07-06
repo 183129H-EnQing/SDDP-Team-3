@@ -19,19 +19,6 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        /*self.schedules = [
-            2: [
-                Schedule(exerciseName: "Jumping Jacks", duration: [2,50], day: 2, time: [0, 10])
-            ],
-            0: [
-                Schedule(exerciseName: "Push Up", duration: [0, 5], day: 0, time: [10, 0]),
-                Schedule(exerciseName: "Jumping Jacks", duration: [0, 10], day: 0, time: [10, 30]),
-                Schedule(exerciseName: "Skipping Rope", duration: [1, 10], day: 0, time: [12, 50])
-            ],
-            1: [
-                Schedule(exerciseName: "Push Up", duration: [0, 5], day: 1, time: [10, 0])
-            ]
-        ]*/
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,16 +73,13 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             print("Day: \(day), Section: \(section), Row: \(indexPath.row)")
             
             //self.schedules[day]?.remove(at: indexPath.row)
-            //DataManager.Schedules.
-            /*tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            print("Count: \(self.schedules[day]!.count)")
-            if self.schedules[day]!.count == 0 {
-                self.schedules.removeValue(forKey: day)
+            DataManager.Schedules.deleteSchedule(schedule: self.schedules[day]![indexPath.row]) { (isSuccess) in
+                if isSuccess {
+                    self.loadSchedules()
+                } else {
+                    self.present(Team3Helper.makeAlert("Wasn't able to delete this schedule"), animated: true)
+                }
             }
-            
-            tableView.reloadData()
-            print("After: \(schedules)")*/
         }
     }
     
@@ -130,7 +114,7 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         
         if let user = UserAuthentication.getLoggedInUser() {
             print("User is logged in")
-            /*DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
+            DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
                 print("loading from firebase")
                 if data.count > 0 {
                     print("data loaded")
@@ -141,22 +125,6 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
                         self.tableView.reloadData()
                         self.tableView.isHidden = false
                         self.noSchedulesLabel.isHidden = true
-                    }
-                }
-            }*/
-            DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
-                if data.count > 0 {
-                    print("loading from firebase")
-                    if data.count > 0 {
-                        print("data loaded")
-                        self.schedules = data
-                        
-                        DispatchQueue.main.async {
-                            print("async tableview label")
-                            self.tableView.reloadData()
-                            self.tableView.isHidden = false
-                            self.noSchedulesLabel.isHidden = true
-                        }
                     }
                 }
             }

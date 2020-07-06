@@ -10,7 +10,7 @@ import UIKit
 
 class Exercise: NSObject {
 
-    var exName: String
+    var exName: String  //id in Firebase
     var exDesc : String
     var exImage: String
     
