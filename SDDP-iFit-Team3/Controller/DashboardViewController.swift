@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 
-class DashboardViewController: UIViewController{
+class DashboardViewController: GenericTopNavViewController {
 
     var actvityList  = ["Challenges","Exercise"]
 
