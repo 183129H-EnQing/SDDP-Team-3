@@ -9,7 +9,7 @@
 import Foundation
 
 class TrainingPlan: NSObject {
-    
+    var id: String?
     var tpName: String
     var tpDesc: String
     var tpReps : Int

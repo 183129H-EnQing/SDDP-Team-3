@@ -20,6 +20,9 @@ class TrainingPlanDetailViewController: UIViewController, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItem.Style.plain , target: self, action: #selector(enableEdit))
+        self.navigationItem.rightBarButtonItems = [editButton]
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = trainingPlanItem?.tpName
@@ -28,6 +31,10 @@ class TrainingPlanDetailViewController: UIViewController, UITableViewDelegate, U
         descLabel.text = trainingPlanItem?.tpDesc
         repsLabel.text = "\(trainingPlanItem!.tpReps)"
         //exercises not added
+    }
+    
+    @objc func enableEdit(){
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

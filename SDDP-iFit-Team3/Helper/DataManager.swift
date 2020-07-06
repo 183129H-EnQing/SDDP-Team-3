@@ -144,8 +144,6 @@ class DataManager {
     class TrainingPlans {
         static let tableName = "trainingPlan"
         
-        //
-        //Fitness
         static func insertTrainingPlan(userId: String, _ trainingPlan: TrainingPlan, onComplete: (((_ isSuccess:Bool) -> Void))?) {
             db.collection(tableName).addDocument(data: [
                 "userId": userId,
@@ -154,8 +152,7 @@ class DataManager {
                 "reps": trainingPlan.tpReps,
                 "exercises": trainingPlan.tpExercises,
                 "image": trainingPlan.tpImage
-            ]) {
-                err in
+            ]) { err in
                 if let _ = err {
                     onComplete?(false)
                 } else {
@@ -163,7 +160,21 @@ class DataManager {
                 }
             }
         }
-        //
-        //
+        
+        static func updateTrainingPlan(trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+            db.collection(tableName).document(trainingPlan.id!).updateData([
+                "name": trainingPlan.tpName,
+                "desc": trainingPlan.tpDesc,
+                "reps": trainingPlan.tpReps,
+                "exercises": trainingPlan.tpExercises,
+                "image": trainingPlan.tpImage
+            ]) { err in
+                if let _ = err {
+                    onComplete?(false)
+                } else {
+                    onComplete?(true)
+                }
+            }
+        }
     }
 }

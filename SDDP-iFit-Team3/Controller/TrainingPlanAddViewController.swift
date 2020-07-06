@@ -19,7 +19,7 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var repsLabel: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    var newTrainingPlan : TrainingPlan
+    var newTrainingPlan : TrainingPlan?
     var exerciseListFrom : [String] = ["he"]
     
     override func viewDidLoad() {
@@ -99,13 +99,14 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
             print(newTrainingPlan)
             
             let alert = Team3Helper.makeAlert("New Training Plan added!")
-            self.present(alert, animated: true, completion: nil)
+//            self.present(alert, animated: true, completion: nil)
             
-            DataManager.TrainingPlans.insertTrainingPlan(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", newTrainingPlan, onComplete: nil)
+            DataManager.TrainingPlans.insertTrainingPlan(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", newTrainingPlan!, onComplete: nil)
             
+//            let viewControllers = self.navigationController?.viewControllers
+            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)
         }
-        
-        
     }
     
     func requestExercise(_ completionHandler: (_ success: Bool) -> Void) {
