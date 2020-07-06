@@ -135,7 +135,19 @@ class DataManager {
                 "day": schedule.day,
                 "time": schedule.time
             ]) { (err) in
-                if let _ = err {
+                if let err = err {
+                    print("Error updating schedule: \(err)")
+                    onComplete?(false)
+                } else {
+                    onComplete?(true)
+                }
+            }
+        }
+        
+        static func deleteSchedule(schedule: Schedule, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+            db.collection(tableName).document(schedule.id!).delete { (err) in
+                if let err = err {
+                    print("Error deleting schedule: \(err)")
                     onComplete?(false)
                 } else {
                     onComplete?(true)

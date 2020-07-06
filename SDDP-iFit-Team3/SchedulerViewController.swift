@@ -86,16 +86,13 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             print("Day: \(day), Section: \(section), Row: \(indexPath.row)")
             
             //self.schedules[day]?.remove(at: indexPath.row)
-            //DataManager.Schedules.
-            /*tableView.deleteRows(at: [indexPath], with: .automatic)
-            
-            print("Count: \(self.schedules[day]!.count)")
-            if self.schedules[day]!.count == 0 {
-                self.schedules.removeValue(forKey: day)
+            DataManager.Schedules.deleteSchedule(schedule: self.schedules[day]![indexPath.row]) { (isSuccess) in
+                if isSuccess {
+                    self.loadSchedules()
+                } else {
+                    self.present(Team3Helper.makeAlert("Wasn't able to delete this schedule"), animated: true)
+                }
             }
-            
-            tableView.reloadData()
-            print("After: \(schedules)")*/
         }
     }
     
