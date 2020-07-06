@@ -111,7 +111,7 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
             newTrainingPlan = TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: exerciseListFrom, tpImage: "")
             print(newTrainingPlan)
             
-            DataManager.TrainingPlans.insertTrainingPlan(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", newTrainingPlan!, onComplete: nil)
+            DataManager.TrainingPlanClass.insertTrainingPlan(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", newTrainingPlan!, onComplete: nil)
             
             self.navigationController?.popViewController(animated: true)
             self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)

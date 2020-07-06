@@ -157,7 +157,7 @@ class DataManager {
         }
     }
     
-    class TrainingPlans {
+    class TrainingPlanClass {
         static let tableName = "trainingPlan"
         
         static func insertTrainingPlan(userId: String, _ trainingPlan: TrainingPlan, onComplete: (((_ isSuccess:Bool) -> Void))?) {
@@ -177,6 +177,7 @@ class DataManager {
             }
         }
         
+        
         static func updateTrainingPlan(trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
             db.collection(tableName).document(trainingPlan.id!).updateData([
                 "name": trainingPlan.tpName,
@@ -190,6 +191,43 @@ class DataManager {
                 } else {
                     onComplete?(true)
                 }
+            }
+        }
+    }
+    
+    class ExerciseClass: Codable {
+        static let tableName = "exercise"
+        
+        static func loadExercises(onComplete: (([Exercise]) -> Void)?) {
+            db.collection(tableName).getDocuments() { (querySnapshot, err) in
+                var exerciseList : [Exercise] = []
+                if let err = err
+                { // Handle errors here.
+                    //
+                    print("Error getting documents: \(err)") }
+                else
+                {
+                    for document in querySnapshot!.documents
+                    {
+                        // This line tells Firestore to retrieve all fields
+                        // and update it into our Movie object automatically.
+                        //
+                        // This requires the Movie object to implement the
+                        // Codable protocol.
+                        //
+                        let name = document.documentID
+                        let desc = document.data()["desc"] as! String
+                        let image = document.data()["imagze"] as! String
+                        
+                        let exercise = Exercise(exName: name, exDesc: desc, exImage: image)
+                        if exercise != nil {
+                            exerciseList.append(exercise) }
+                    } }
+                // Once we have completed processing, call the onCompletes
+                // closure passed in by the caller.
+                //
+                onComplete?(exerciseList)
+                
             }
         }
     }
