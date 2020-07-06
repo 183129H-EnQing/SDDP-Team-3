@@ -73,7 +73,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
 
     
     @IBAction func addExercisePressed(_ sender: Any) {
-        print(tickExercise)
+//        print(tickExercise)
         
         
         let viewControllers = self.navigationController?.viewControllers

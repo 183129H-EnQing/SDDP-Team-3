@@ -143,4 +143,30 @@ class DataManager {
             }
         }
     }
+    
+    class TrainingPlans {
+        static let tableName = "trainingPlan"
+        
+        //
+        //Fitness
+        static func insertTrainingPlan(userId: String, _ trainingPlan: TrainingPlan, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+            db.collection(tableName).addDocument(data: [
+                "userId": userId,
+                "name": trainingPlan.tpName,
+                "desc": trainingPlan.tpDesc,
+                "reps": trainingPlan.tpReps,
+                "exercises": trainingPlan.tpExercises,
+                "image": trainingPlan.tpImage
+            ]) {
+                err in
+                if let _ = err {
+                    onComplete?(false)
+                } else {
+                    onComplete?(true)
+                }
+            }
+        }
+        //
+        //
+    }
 }

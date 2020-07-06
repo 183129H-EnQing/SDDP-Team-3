@@ -19,7 +19,7 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet weak var repsLabel: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
-    var newTrainingPlan : [String] = []
+    var newTrainingPlan : TrainingPlan
     var exerciseListFrom : [String] = ["he"]
     
     override func viewDidLoad() {
@@ -94,11 +94,15 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         //to verify exerciseList in addExerciseVC
         
         if validateInput() == false{
-            newTrainingPlan = [titleLabel.text!, descLabel.text!, repsLabel.text!]
+//            newTrainingPlan = [titleLabel.text!, descLabel.text!, repsLabel.text!]
+            newTrainingPlan = TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: exerciseListFrom, tpImage: "")
             print(newTrainingPlan)
             
             let alert = Team3Helper.makeAlert("New Training Plan added!")
             self.present(alert, animated: true, completion: nil)
+            
+            DataManager.TrainingPlans.insertTrainingPlan(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", newTrainingPlan, onComplete: nil)
+            
         }
         
         
@@ -140,11 +144,13 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
             self.present(alert, animated: true, completion: nil)
         }
         
-        if (!Team3Helper.ifInputIsInt(someInput: repsLabel.text!)){
+        if !Team3Helper.ifInputIsInt(someInput: repsLabel.text!){
             Team3Helper.colorTextFieldBorder(textField: repsLabel, isRed: true)
             
             let alert = Team3Helper.makeAlert("Reps must be Integer!")
             self.present(alert, animated: true, completion: nil)
+            
+            errors = true
         }
         return errors
     }
