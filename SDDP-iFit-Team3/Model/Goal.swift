@@ -19,7 +19,6 @@ class Goal: NSObject {
     //  var pointsReward: Int;
 
     var userId: String?;
-    
     init(goalTitle:String,activityName:String,date:String,duration:Int,progressPercent:Int,totalExerciseAmount:Int) {
         self.activityName = activityName;
         self.goalTitle = goalTitle;
@@ -29,10 +28,4 @@ class Goal: NSObject {
         self.totalExerciseAmount = totalExerciseAmount;
     }
     
-//    @IBOutlet weak var goalTitle: UILabel!
-//    @IBOutlet weak var dateRange: UILabel!
-//    @IBOutlet weak var duration: UILabel!
-//
-//    @IBOutlet weak var progressView: UIProgressView!
-//    @IBOutlet weak var percentageLabel: UILabel!
 }

@@ -45,7 +45,30 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                  return cell
          }
     
-
+    func loadGoals() {
+        // self.schedules = [:]
+        
+        self.goalTableView.isHidden = true
+      //  self.noSchedulesLabel.isHidden = false
+        
+        if let user = UserAuthentication.getLoggedInUser() {
+            print("User is logged in")
+        
+//            DataManager.Goal.loadGoals(userId: user.uid) { (data) in
+//                    if data.count > 0 {
+//                        print("data loaded")
+//                        self.goalList = data
+//                        
+//                        DispatchQueue.main.async {
+//                            print("async tableview label")
+//                            self.goalTableView.reloadData()
+//                            self.goalTableView.isHidden = false
+//                          //  self.noSchedulesLabel.isHidden = true
+//                        }
+//                    }
+//                }
+        }
+    }
     /*
     // MARK: - Navigation
 

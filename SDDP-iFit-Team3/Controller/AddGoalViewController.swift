@@ -180,11 +180,25 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
              self.present(alert, animated: true, completion: nil)
              return
          }
-              let viewControllers = self.navigationController?.viewControllers
-              let parent = viewControllers?[1] as! GoalViewController
+        let viewControllers = self.navigationController?.viewControllers
+        let parent = viewControllers?[1] as! GoalViewController
               
-    //    print("View Controllers",viewControllers)
-        print("parent:",parent)
+        print("parent:", parent)
+        let goalTitleText = goalTitle.text!
+        let activityNameText = activityName.text!
+        let dateText = datePicker.text!
+        let durationText = Int(duration.text!)!
+        let totalExerciseAmountText = Int(totalExerciseAmount.text!)!
+        let user = UserAuthentication.getLoggedInUser()
+        let processPercent = 0
+        
+        let newGoal = Goal(goalTitle: goalTitleText, activityName: activityNameText, date: dateText, duration: durationText, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmountText)
+
+//        DataManager.Schedules.insertGoal(userId:user!.uid, newGoal) { (isSuccess) in
+//                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+//            }
+
+
 //         Not setting amount
 //         let totalExerciseAmountValue = Int(totalExerciseAmount.text!)!
 //         if (totalExerciseAmountValue > 365){
@@ -197,6 +211,17 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
          
         
     }
+    
+    
+    func afterDbOperation(parent: GoalViewController, isSuccess: Bool, isUpdating: Bool) {
+           if !isSuccess {
+               let mode = isUpdating ? "updating the" : "adding a"
+               self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) schedule"), animated: true)
+           }
+           
+           parent.loadGoals()
+           self.navigationController?.popViewController(animated: true)
+       }
     /*
     // MARK: - Navigation
 
@@ -233,4 +258,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
    @objc func cancelClick() {
     self.chooseTextField!.resignFirstResponder()
     }
+    
+    
+    
 }
