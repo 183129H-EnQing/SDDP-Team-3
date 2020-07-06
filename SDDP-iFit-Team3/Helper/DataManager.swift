@@ -110,6 +110,7 @@ class DataManager {
         }
         
         static func insertSchedule(userId: String, _ schedule: Schedule, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+            // addDocument will create a document, with Firebase handling the auto-generation of ID
             db.collection(tableName).addDocument(data: [
                 "creatorId": userId,
                 "exerciseId": schedule.exerciseId,
@@ -126,6 +127,8 @@ class DataManager {
         }
         
         static func updateSchedule(schedule: Schedule, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+            // updateData will update the specified document for the schedule.id passed in, it will only overwrite the
+            // specified fields inside the document.
             db.collection(tableName).document(schedule.id!).updateData([
                 "exerciseId": schedule.exerciseId,
                 "duration": schedule.duration,
