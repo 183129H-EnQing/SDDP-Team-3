@@ -19,15 +19,13 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     var schedule: Schedule?
     var scheduleIndex: Int?
     
-    var exercises: [String] = []
+    static var exercises: [String] = ["Push Up", "Jumping Jacks", "Skipping Rope", "Sit Up"]
     static var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.exercises = ["Push Up", "Jumping Jacks", "Skipping Rope", "Sit Up"]
-        
         self.exercisePicker.layer.borderWidth = 1
         self.exercisePicker.layer.borderColor = UIColor.systemGray3.cgColor
         self.timePicker.layer.borderWidth = 1
@@ -39,9 +37,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let unwrapSchedule = self.schedule {
-            let exercise: Int = self.exercises.firstIndex(of: unwrapSchedule.exerciseName)!
-            
-            self.exercisePicker.selectRow(exercise, inComponent: 0, animated: true)
+            self.exercisePicker.selectRow(unwrapSchedule.exerciseId, inComponent: 0, animated: true)
             
             self.hrsTextField.text = "\(unwrapSchedule.duration[0])"
             self.minsTextField.text = "\(unwrapSchedule.duration[1])"
@@ -62,11 +58,11 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerView.tag == self.exercisePicker.tag ? self.exercises.count : SchedulerDetailsViewController.days.count
+        return pickerView.tag == self.exercisePicker.tag ? SchedulerDetailsViewController.exercises.count : SchedulerDetailsViewController.days.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerView.tag == self.exercisePicker.tag ? exercises[row] : SchedulerDetailsViewController.days[row]
+        return pickerView.tag == self.exercisePicker.tag ? SchedulerDetailsViewController.exercises[row] : SchedulerDetailsViewController.days[row]
     }
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
@@ -115,24 +111,24 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
                 return
             }
             
-            let exercise = exercises[exercisePicker.selectedRow(inComponent: 0)]
+            let exercise = exercisePicker.selectedRow(inComponent: 0)
             let time = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
             let day = dayPicker.selectedRow(inComponent: 0)
             
             let viewControllers = self.navigationController?.viewControllers
             let parent = viewControllers?[0] as! SchedulerViewController
             
-            let newSchedule = Schedule(exerciseName: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
+            let newSchedule = Schedule(exerciseId: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
             // If not nil, is editing. Else if it is nil, is adding
             if self.schedule != nil {
                 // Update
                 newSchedule.id = self.schedule!.id!
-                DataManager.Schedules.updateSchedule_NoSubCollection(schedule: newSchedule) { (isSuccess) in
+                DataManager.Schedules.updateSchedule(schedule: newSchedule) { (isSuccess) in
                     self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
                 }
             } else {
                 // Add
-                DataManager.Schedules.insertSchedule_NoSubCollection(userId: user.uid, newSchedule) { (isSuccess) in
+                DataManager.Schedules.insertSchedule(userId: user.uid, newSchedule) { (isSuccess) in
                     self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
                 }
             }

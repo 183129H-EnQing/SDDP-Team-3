@@ -32,15 +32,6 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
                 Schedule(exerciseName: "Push Up", duration: [0, 5], day: 1, time: [10, 0])
             ]
         ]*/
-        
-        if let user = UserAuthentication.getLoggedInUser() {
-            /*DataManager.Schedules.insertSchedules(user: user, Schedule(exerciseName: "Jumping Jacks", duration: [2,50], day: 2, time: [0, 10])) {
-                print("Was adding schedule success?")
-            }*/
-            /*DataManager.Schedules.insertSchedule_NoSubCollection(userId: user.uid, Schedule(exerciseName: "Jumping Jacks", duration: [2,50], day: 2, time: [0, 10])) { wasSuccess in
-                print("Is success? \(wasSuccess)")
-            }*/
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -70,8 +61,9 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         let schedule = self.schedules[day]![indexPath.row]
         
         // Set exercise as title label,sStyle the duration string
+        let exerciseName = SchedulerDetailsViewController.exercises[schedule.exerciseId]
         let duration = (schedule.duration[0] > 0 ? "\(schedule.duration[0]) hrs " : "") + "\(schedule.duration[1]) mins"
-        cell.textLabel?.text = "\(schedule.exerciseName) - \(duration)"
+        cell.textLabel?.text = "\(exerciseName) - \(duration)"
         
         // Convert from 24 hour to 12 hour time and style the time string
         let timeHour = schedule.time[0]
@@ -92,10 +84,10 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             
             print("Before: \(schedules)")
             print("Day: \(day), Section: \(section), Row: \(indexPath.row)")
-            print("Count: \(self.schedules[day]!.count)")
             
-            self.schedules[day]?.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            //self.schedules[day]?.remove(at: indexPath.row)
+            //DataManager.Schedules.
+            /*tableView.deleteRows(at: [indexPath], with: .automatic)
             
             print("Count: \(self.schedules[day]!.count)")
             if self.schedules[day]!.count == 0 {
@@ -103,7 +95,7 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
             tableView.reloadData()
-            print("After: \(schedules)")
+            print("After: \(schedules)")*/
         }
     }
     
@@ -152,7 +144,7 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                 }
             }*/
-            DataManager.Schedules.loadSchedule_NoSubCollection(userId: user.uid) { (data) in
+            DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
                 if data.count > 0 {
                     print("loading from firebase")
                     if data.count > 0 {
