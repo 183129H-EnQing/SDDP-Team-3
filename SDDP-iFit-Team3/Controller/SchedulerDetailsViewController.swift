@@ -36,7 +36,9 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        var title = "Add Schedule"
         if let unwrapSchedule = self.schedule {
+            title = "Edit Schedule"
             self.exercisePicker.selectRow(unwrapSchedule.exerciseId, inComponent: 0, animated: true)
             
             self.hrsTextField.text = "\(unwrapSchedule.duration[0])"
@@ -51,6 +53,8 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             
             self.dayPicker.selectRow(unwrapSchedule.day, inComponent: 0, animated: true)
         }
+        
+        self.navigationItem.title = title
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

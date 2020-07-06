@@ -1,32 +1,28 @@
 //
-//  DashboardViewController.swift
+//  GenericTopNavViewController.swift
 //  SDDP-iFit-Team3
 //
-//  Created by 182381J  on 6/24/20.
+//  Created by 183129H  on 7/6/20.
 //  Copyright © 2020 SDDP_Team3. All rights reserved.
 //
 
 import UIKit
-import SwiftUI
 
-class DashboardViewController: GenericTopNavViewController {
-
-    var actvityList  = ["Challenges","Exercise"]
-
+class GenericTopNavViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let profileBarButton = UIBarButtonItem(title: "Profile", style: .plain, target: nil, action: nil)
+        if var leftBarItems = self.navigationItem.leftBarButtonItems {
+            leftBarItems.append(profileBarButton)
+        } else {
+            self.navigationItem.leftBarButtonItems = [profileBarButton]
+        }
     }
     
 
-    
-   
-//    @IBSegueAction func hello(_ coder: NSCoder) -> UIViewController? {
-//   
-//        return UIHostingController(coder: coder, rootView: testingView())
-//    }
     /*
     // MARK: - Navigation
 
