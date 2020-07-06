@@ -142,18 +142,16 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
             }*/
             DataManager.Schedules.loadSchedules(userId: user.uid) { (data) in
+                print("loading from firebase")
                 if data.count > 0 {
-                    print("loading from firebase")
-                    if data.count > 0 {
-                        print("data loaded")
-                        self.schedules = data
-                        
-                        DispatchQueue.main.async {
-                            print("async tableview label")
-                            self.tableView.reloadData()
-                            self.tableView.isHidden = false
-                            self.noSchedulesLabel.isHidden = true
-                        }
+                    print("data loaded")
+                    self.schedules = data
+                    
+                    DispatchQueue.main.async {
+                        print("async tableview label")
+                        self.tableView.reloadData()
+                        self.tableView.isHidden = false
+                        self.noSchedulesLabel.isHidden = true
                     }
                 }
             }
