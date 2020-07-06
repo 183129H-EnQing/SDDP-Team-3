@@ -17,6 +17,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
    
    
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
      
@@ -66,6 +67,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
                 cell.ppimageView.image = UIImage(named:p.pimageName)
+                cell.commentbtn.tag = indexPath.row
 
                 return cell
         }
@@ -82,7 +84,20 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         }
 
             }
+        
+        
+        if(segue.identifier == "ShowPostComments")
+          {
+            let detailViewController = segue.destination as! CommentPostViewController
+            
+            let posts = postList[(sender as! UIButton).tag]
+                     detailViewController.postItem = posts
+                     
+             
+
+                 }
      }
+    
     
     
       @IBAction func unwindToPostList(sender: UIStoryboardSegue) {

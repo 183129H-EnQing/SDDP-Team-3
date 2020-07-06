@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 
 class DataManager {
     static let db = Firestore.firestore()
