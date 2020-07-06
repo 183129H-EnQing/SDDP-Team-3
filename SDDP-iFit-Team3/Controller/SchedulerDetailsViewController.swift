@@ -70,7 +70,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: false)
             Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: false)
             
-            if !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) || !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) {
+            if !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) || !Team3Helper.ifInputIsInt(someInput: minsTextField.text!) {
                 Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
                 Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
                 
