@@ -24,6 +24,7 @@
 		343BEC9824A97F4C0041352F /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9724A97F4C0041352F /* LeaderboardViewController.swift */; };
 		343BEC9A24A97F8A0041352F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9924A97F8A0041352F /* ActivityViewController.swift */; };
 		343BEC9C24A97FB70041352F /* AchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9B24A97FB70041352F /* AchievementViewController.swift */; };
+		34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */; };
 		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
 		7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */; };
 		7D1C4BFE24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BFD24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift */; };
@@ -80,6 +81,7 @@
 		343BEC9724A97F4C0041352F /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		343BEC9924A97F8A0041352F /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		343BEC9B24A97FB70041352F /* AchievementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewController.swift; sourceTree = "<group>"; };
+		34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostViewController.swift; sourceTree = "<group>"; };
 		37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				09B1B940249322B200D14CE6 /* Info.plist */,
 				7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */,
 				DC78681F24AE3DA20093BAE5 /* bulletSound_3.wav */,
+				34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */,
 			);
 			path = "SDDP-iFit-Team3";
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */,
 				DCC80B7424ADEDA5008AF933 /* GameScene.swift in Sources */,
 				DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */,
+				34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */,
 				DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */,
 				09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */,
 				E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */,

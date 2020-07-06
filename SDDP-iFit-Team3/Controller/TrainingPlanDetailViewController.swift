@@ -34,7 +34,12 @@ class TrainingPlanDetailViewController: UIViewController, UITableViewDelegate, U
     }
     
     @objc func enableEdit(){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Fitness", bundle: Bundle.main)
+        let editVC = storyBoard.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
         
+        editVC.exisitngTP = trainingPlanItem
+        
+        navigationController?.pushViewController(editVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

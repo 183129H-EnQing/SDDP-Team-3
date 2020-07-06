@@ -235,6 +235,7 @@
                         <viewLayoutGuide key="safeArea" id="gse-Id-f23"/>
                     </view>
                     <connections>
+                        <outlet property="addPlan" destination="gKo-dV-Tit" id="hJq-pc-bvn"/>
                         <outlet property="descLabel" destination="Qeg-NQ-ljb" id="T2M-z3-fLG"/>
                         <outlet property="imageView" destination="8JE-C1-dDa" id="Bru-Ip-5hF"/>
                         <outlet property="repsLabel" destination="9xn-vX-uIw" id="ffi-AF-7x3"/>

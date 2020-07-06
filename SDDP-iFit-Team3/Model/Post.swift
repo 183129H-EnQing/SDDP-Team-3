@@ -10,6 +10,7 @@ import UIKit
 
 
     class Post : NSObject {
+        var postid: String?
         var userName: String
         var pcontent: String
         var pdatetime:String
