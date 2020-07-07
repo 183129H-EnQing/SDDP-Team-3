@@ -217,7 +217,7 @@ class DataManager {
                         //
                         let name = document.documentID
                         let desc = document.data()["desc"] as! String
-                        let image = document.data()["imagze"] as! String
+                        let image = document.data()["image"] as! String
                         
                         let exercise = Exercise(exName: name, exDesc: desc, exImage: image)
                         if exercise != nil {

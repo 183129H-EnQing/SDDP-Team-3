@@ -12,30 +12,50 @@ class ExerciseViewController: UIViewController, UICollectionViewDelegate, UIColl
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let exercise = ["Jump", "Crawl", "Jump", "Crawl", "Jump", "Crawl", "Jump", "Crawl"]
-    let exerciseImage: [UIImage] = [UIImage(named: "pull_string")!, UIImage(named: "step_string")!, UIImage(named: "pull_string")!, UIImage(named: "step_string")!, UIImage(named: "pull_string")!, UIImage(named: "step_string")!, UIImage(named: "pull_string")!, UIImage(named: "step_string")!]
+    var exercise: [Exercise] = []
+//    let exercise = ["Jump", "Crawl", "Jump", "Crawl"]
+    let exerciseImage: [UIImage] = [UIImage(named: "pull_string")!, UIImage(named: "step_string")!, UIImage(named: "pull_string")!, UIImage(named: "step_string")!]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.navigationItem.title = "Exercise"
         
+        loadExercise()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 20)/2, height: (self.collectionView.frame.size.height - 50)/4)
         layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 5
+        layout.minimumLineSpacing = 10
         collectionView!.collectionViewLayout = layout
     }
     
+    func loadExercise(){
+        DataManager.ExerciseClass.loadExercises { (data) in
+            
+            if data.count > 0 {
+                self.exercise = data
+                
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+            
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return exercise.count
+        return self.exercise.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ExerciseCell", for: indexPath) as! ExerciseCollectionViewCell
         
-        cell.imageView.image = exerciseImage[indexPath.row]
-        cell.nameLabel.text = exercise[indexPath.row]
+        let e = self.exercise[indexPath.row]
+        cell.imageView.image = UIImage(named: e.exImage)
+        cell.nameLabel.text = e.exName
+        
+//        cell.imageView.image = exerciseImage[indexPath.row]
+//        cell.nameLabel.text = exercise[indexPath.row]
         
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.5
