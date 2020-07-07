@@ -169,6 +169,7 @@
 				09B1B932249322AD00D14CE6 /* AppDelegate.swift */,
 				09B1B934249322AD00D14CE6 /* SceneDelegate.swift */,
 				09B1B936249322AD00D14CE6 /* ViewController.swift */,
+				34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */,
 				09B1B938249322AD00D14CE6 /* Main.storyboard */,
 				DCC80B7524ADEE24008AF933 /* GameScene.sks */,
 				09B1B93B249322B200D14CE6 /* Assets.xcassets */,
@@ -176,7 +177,6 @@
 				09B1B940249322B200D14CE6 /* Info.plist */,
 				7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */,
 				DC78681F24AE3DA20093BAE5 /* bulletSound_3.wav */,
-				34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */,
 			);
 			path = "SDDP-iFit-Team3";
 			sourceTree = "<group>";

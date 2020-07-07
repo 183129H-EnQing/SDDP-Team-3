@@ -106,8 +106,9 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
          
            super.prepare(for: segue, sender: sender)
            
-         
-           guard let button = sender as? UIButton, button === addbutton else {
+        
+            
+                   guard let button = sender as? UIButton, button === addbutton else {
                os_log("The add button was not pressed, cancelling", log: OSLog.default, type: .debug)
                return
            }
@@ -121,18 +122,23 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         let datetime = formatter.string(from: date)
         
         let loc = loctext.text ?? ""
+            
         
         
         
         
-                    
+
         
         //let photo = imageview.image
         
      
-        postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: loc, pimageName: "")
+        postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: loc, pimageName: "img" , commentPost: [ ])
+        
+         
         
     }
+    
+    
    
     
     private func updateSaveButtonState() {

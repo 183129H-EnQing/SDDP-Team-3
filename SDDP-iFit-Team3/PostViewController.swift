@@ -20,9 +20,9 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     
         
         
+    
         self.navigationItem.title = "Posts"
         self.navigationItem.rightBarButtonItem =
         UIBarButtonItem(barButtonSystemItem: .add,
@@ -30,16 +30,23 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                         action: #selector(addButtonClicked))
         
        
-        postList.append(Post(
-        userName: "Paul",
-        pcontent: "Keep Fit",
-        pdatetime: "5.34PM",
-        userLocation:"YISHUN",
-        pimageName:  "thumbnail_images"))
+        //postList.append(Post(
+        //userName: "Paul",
+        //pcontent: "Keep Fit",
+        //pdatetime: "5.34PM",
+        //userLocation:"YISHUN",
+        //pimageName:  "thumbnail_images",
+        //commentPost: [ ]
+        //))
         // Do any additional setup after loading the view.
     }
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadPosts()
+    }
    
     
     
@@ -103,21 +110,34 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
       @IBAction func unwindToPostList(sender: UIStoryboardSegue) {
            if let sourceViewController = sender.source as? AddPostViewController, let posts = sourceViewController.postItem {
                 
-            
+            if let user = UserAuthentication.getLoggedInUser(){
                                  // Add a new meal.
                          let newIndexPath = IndexPath(row: postList.count, section: 0)
                          
                          postList.append(posts)
                          tableView.insertRows(at: [newIndexPath], with: .automatic)
+                         let viewControllers = self.navigationController?.viewControllers
+                         let parent = viewControllers?[1] as! PostViewController
+                
+                         DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                }
                         
-           
-                        
-        
+                }
                               
              }
       }
     
     
+     func afterDbOperation(parent: PostViewController, isSuccess: Bool, isUpdating: Bool) {
+           if !isSuccess {
+               let mode = isUpdating ? "updating the" : "adding a"
+               self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) post"), animated: true)
+           }
+           
+           parent.loadPosts()
+           self.navigationController?.popViewController(animated: true)
+       }
     
      @IBAction func unwindToPostListEdit(sender: UIStoryboardSegue) {
               if let sourceViewController = sender.source as? EditPostViewController, let posts = sourceViewController.postItem {
@@ -131,7 +151,32 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                     
                 }
          }
-    //*
+    
+    
+    func loadPosts() {
+        self.postList = []
+        
+        self.tableView.isHidden = true
+     
+        
+        if let user = UserAuthentication.getLoggedInUser() {
+            print("User is logged in")
+        
+            DataManager.Posts.loadPosts(userId: user.uid) { (data) in
+                    if data.count > 0 {
+                        print("data loaded")
+                        self.postList = data
+                        
+                        DispatchQueue.main.async {
+                            print("async tableview label")
+                            self.tableView.reloadData()
+                            self.tableView.isHidden = false
+                         
+                        }
+                    }
+                }
+        }
+    }    //*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
