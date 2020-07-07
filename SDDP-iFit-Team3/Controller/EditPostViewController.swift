@@ -81,7 +81,7 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
             //let pic = UIImage(named: photo)
            
         
-           postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: "yishun", pimageName: "")
+           postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: "yishun", pimageName: "img" , commentPost: [ ] )
            
        }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CommentPostViewController: UIViewController {
+class CommentPostViewController: UIViewController,UITextViewDelegate{
     
     @IBOutlet weak var username: UILabel!
     
@@ -28,17 +28,19 @@ class CommentPostViewController: UIViewController {
     
     var postItem : Post?
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+         textbox.placeholder = "comment here"     // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
     comment.text = postItem?.pcontent
-    //imageview.image = UIImage(named: (postItem?.pimageName)!)
+    imageview.image = UIImage(named: (postItem?.pimageName)!)
     username.text = postItem?.userName
     time.text = postItem?.pdatetime
     location.text = postItem?.userLocation
@@ -48,6 +50,7 @@ class CommentPostViewController: UIViewController {
         
     }
     
+  
 
     /*
     // MARK: - Navigation
