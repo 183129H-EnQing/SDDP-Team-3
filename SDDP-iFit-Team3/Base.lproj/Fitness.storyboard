@@ -3,7 +3,9 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,6 +29,9 @@
                                 <rect key="frame" x="0.0" y="476" width="414" height="224"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="step_string"/>
+                                <connections>
+                                    <segue destination="nfh-oC-FGq" kind="show" id="9oD-46-JdJ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Training Plan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ER7-Jt-TGW">
                                 <rect key="frame" x="20" y="403" width="99" height="21"/>
@@ -109,6 +114,77 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iNv-NT-nJ1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2830.434782608696" y="219.64285714285714"/>
+        </scene>
+        <!--Exercise View Controller-->
+        <scene sceneID="j5w-uc-sbZ">
+            <objects>
+                <viewController id="nfh-oC-FGq" customClass="ExerciseViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mTK-Np-V0Z">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PcD-zf-hRw">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Uhd-OM-Ucx">
+                                    <size key="itemSize" width="189" height="188"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ExerciseCell" id="3bc-cM-Smf" customClass="ExerciseCollectionViewCell" customModule="SDDP_iFit_Team3" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="189" height="188"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Awd-Z7-lyK">
+                                            <rect key="frame" x="0.0" y="0.0" width="189" height="188"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="nameLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gnB-bl-oNP">
+                                                    <rect key="frame" x="8" y="146" width="173" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pull_string" translatesAutoresizingMaskIntoConstraints="NO" id="LSn-nP-nsz">
+                                                    <rect key="frame" x="8" y="33" width="173" height="105"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <color key="backgroundColor" name="energy"/>
+                                        <size key="customSize" width="189" height="188"/>
+                                        <connections>
+                                            <outlet property="imageView" destination="LSn-nP-nsz" id="unx-2w-Daw"/>
+                                            <outlet property="nameLabel" destination="gnB-bl-oNP" id="E4m-11-RI1"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="nfh-oC-FGq" id="ws4-4t-2B9"/>
+                                    <outlet property="delegate" destination="nfh-oC-FGq" id="Esh-p6-N2W"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="PcD-zf-hRw" firstAttribute="trailing" secondItem="uKH-9F-3Ba" secondAttribute="trailing" id="6Sv-I4-OUb"/>
+                            <constraint firstItem="PcD-zf-hRw" firstAttribute="top" secondItem="uKH-9F-3Ba" secondAttribute="top" id="6fD-Mp-aZ1"/>
+                            <constraint firstItem="PcD-zf-hRw" firstAttribute="leading" secondItem="uKH-9F-3Ba" secondAttribute="leading" id="Iyy-ye-5CX"/>
+                            <constraint firstItem="PcD-zf-hRw" firstAttribute="bottom" secondItem="uKH-9F-3Ba" secondAttribute="bottom" id="UXn-un-VFi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="uKH-9F-3Ba"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="xfV-4s-tI2"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="PcD-zf-hRw" id="ie9-aG-cxq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g04-UG-M52" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2844.9275362318845" y="917.41071428571422"/>
         </scene>
         <!--Training Plan Add View Controller-->
         <scene sceneID="bum-2U-w5J">
@@ -430,5 +506,8 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="pull_string" width="1200" height="675"/>
         <image name="step_string" width="760" height="506"/>
+        <namedColor name="energy">
+            <color red="0.97899997234344482" green="0.55699998140335083" blue="0.37400001287460327" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

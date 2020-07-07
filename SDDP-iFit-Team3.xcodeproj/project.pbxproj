@@ -50,6 +50,8 @@
 		DCC80B7424ADEDA5008AF933 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC80B7324ADEDA5008AF933 /* GameScene.swift */; };
 		DCC80B7624ADEE24008AF933 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = DCC80B7524ADEE24008AF933 /* GameScene.sks */; };
 		DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */; };
+		DCE0E33F24B45A4800B23C46 /* ExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE0E33E24B45A4800B23C46 /* ExerciseViewController.swift */; };
+		DCE0E34324B45CE000B23C46 /* ExerciseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE0E34224B45CE000B23C46 /* ExerciseCollectionViewCell.swift */; };
 		DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */; };
 		DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */; };
 		E30440E824A609110013D053 /* CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30440E724A609110013D053 /* CardDesign.swift */; };
@@ -108,6 +110,8 @@
 		DCC80B7324ADEDA5008AF933 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		DCC80B7524ADEE24008AF933 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanDetailViewController.swift; sourceTree = "<group>"; };
+		DCE0E33E24B45A4800B23C46 /* ExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseViewController.swift; sourceTree = "<group>"; };
+		DCE0E34224B45CE000B23C46 /* ExerciseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCollectionViewCell.swift; sourceTree = "<group>"; };
 		DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddViewController.swift; sourceTree = "<group>"; };
 		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		DF55D0091284AED9030526CC /* Pods-SDDP-iFit-Team3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.debug.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.debug.xcconfig"; sourceTree = "<group>"; };
@@ -240,6 +244,8 @@
 				DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */,
 				DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */,
 				DC325A3A24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift */,
+				DCE0E33E24B45A4800B23C46 /* ExerciseViewController.swift */,
+				DCE0E34224B45CE000B23C46 /* ExerciseCollectionViewCell.swift */,
 				1BB0D0ED24A37182003A35A9 /* PostViewController.swift */,
 				1B3E8DA924A387B7001D9C8D /* PostCell.swift */,
 				E39EE04524A356AB00DDD571 /* DashboardViewController.swift */,
@@ -383,11 +389,13 @@
 			files = (
 				E320D17B24AC7128003DDA96 /* Activity.swift in Sources */,
 				343BEC9424A97F010041352F /* GoalViewController.swift in Sources */,
+				DCE0E34324B45CE000B23C46 /* ExerciseCollectionViewCell.swift in Sources */,
 				1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */,
 				DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */,
 				1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */,
 				7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */,
 				E320D17524AC6F95003DDA96 /* Goal.swift in Sources */,
+				DCE0E33F24B45A4800B23C46 /* ExerciseViewController.swift in Sources */,
 				7DEE53CE24AC632800CE6293 /* LoginViewController.swift in Sources */,
 				1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */,
 				E3CA068C24ADCA6000339A39 /* AddGoalViewController.swift in Sources */,
