@@ -254,7 +254,7 @@ class DataManager {
                      }
                  }
         
-        static func loadGoals(userId: String, onComplete: (([Int: [Schedule]]) -> Void)?) {
+        static func loadGoals(userId: String, onComplete: (([Goal]) -> Void)?) {
                   /* Process
                    1. Get all documents
                    2. Check for errors, check if there are data to retrieve
@@ -266,7 +266,7 @@ class DataManager {
                    8. Then we sort the day array after appending
                    */
                   db.collection(tableName).getDocuments { (snapshot, err) in
-                      var goals: [Goals] = []
+                      var goals: [Goal] = []
                       if let err = err {
                           print("Error for \(tableName): \(err)")
                       } else if let snapshot = snapshot, snapshot.count > 0 {
@@ -276,23 +276,17 @@ class DataManager {
                               let data = document.data()
                               if userId.elementsEqual(data["userId"] as! String) {
                                   print("Document's creator matched")
-//
-//                                let goalTitle : String = data["goalTitle"] as! String
-//                                let activityName : String = data["activityName"] as! String
-//                                let date : String = data["date"] as! String
-//                                let duration : Int = data["duration"] as! Int
-//                                let totalExerciseAmount : Int = data["totalExerciseAmount"] as! Int
-//
-//                                "goalTitle": goal.goalTitle,
-//                                                   "activityName": goal.activityName,
-//                                                   "date": goal.date,
-//                                                   "duration": goal.duration,
-//                                                   "totalExerciseAmount": goal.totalExerciseAmount,
-//                                                   "processPercent": goal.progressPercent
-//                                let exerciseId: Int = data["exerciseId"] as! Int
-//                                let duration: [Int] = data["duration"] as! [Int]
-//                                let time: [Int] = data["time"] as! [Int]
 
+                                let goalTitle : String = data["goalTitle"] as! String
+                                let activityName : String = data["activityName"] as! String
+                                let date : String = data["date"] as! String
+                                let duration : Int = data["duration"] as! Int
+                                let processPercent : Int = data["processPercent"] as! Int
+                                let totalExerciseAmount : Int = data["totalExerciseAmount"] as! Int
+
+                                let goal = Goal(goalTitle: goalTitle, activityName: activityName, date: date, duration: duration, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmount)
+                                    
+                                goals.append(goal)
                              
                               }
                           }
@@ -300,7 +294,7 @@ class DataManager {
                           print("No data for \(tableName)")
                       }
                       
-                    //  onComplete?(schedules)
+                      onComplete?(goals)
                   }
               }
         

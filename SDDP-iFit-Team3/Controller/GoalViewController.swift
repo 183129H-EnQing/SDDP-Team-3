@@ -16,13 +16,13 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        goalList.append(Goal(goalTitle: "10KM", activityName: "Running", date: "1/7/2020", duration: 7, progressPercent: 5, totalExerciseAmount: 10))
+        loadGoals()
+       
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-         return 1
+        return goalList.count
 
      }
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -31,7 +31,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                  let cell : GoalCell = tableView
                  .dequeueReusableCell (withIdentifier: "GoalCell", for: indexPath) as! GoalCell
 
-                let g = goalList[indexPath.row]
+        let g = goalList[indexPath.row]
         cell.goalTitle.text = g.goalTitle;
         cell.percentageLabel.text = "\(g.progressPercent * 10)%";
         cell.duration.text = "\(g.duration) "
@@ -46,7 +46,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
          }
     
     func loadGoals() {
-        // self.schedules = [:]
+        self.goalList = []
         
         self.goalTableView.isHidden = true
       //  self.noSchedulesLabel.isHidden = false
@@ -54,19 +54,19 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         if let user = UserAuthentication.getLoggedInUser() {
             print("User is logged in")
         
-//            DataManager.Goal.loadGoals(userId: user.uid) { (data) in
-//                    if data.count > 0 {
-//                        print("data loaded")
-//                        self.goalList = data
-//                        
-//                        DispatchQueue.main.async {
-//                            print("async tableview label")
-//                            self.goalTableView.reloadData()
-//                            self.goalTableView.isHidden = false
-//                          //  self.noSchedulesLabel.isHidden = true
-//                        }
-//                    }
-//                }
+            DataManager.Goals.loadGoals(userId: user.uid) { (data) in
+                    if data.count > 0 {
+                        print("data loaded")
+                        self.goalList = data
+                        
+                        DispatchQueue.main.async {
+                            print("async tableview label")
+                            self.goalTableView.reloadData()
+                            self.goalTableView.isHidden = false
+                         
+                        }
+                    }
+                }
         }
     }
     /*
