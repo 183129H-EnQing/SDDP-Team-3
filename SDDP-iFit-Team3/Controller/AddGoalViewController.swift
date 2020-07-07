@@ -212,7 +212,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     func afterDbOperation(parent: GoalViewController, isSuccess: Bool, isUpdating: Bool) {
            if !isSuccess {
                let mode = isUpdating ? "updating the" : "adding a"
-               self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) schedule"), animated: true)
+               self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) goal"), animated: true)
            }
            
            parent.loadGoals()
