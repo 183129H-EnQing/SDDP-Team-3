@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 
 class Team3Helper {
+    static let notificationCenter = UNUserNotificationCenter.current()
+    
     // since this function is needed in more than 1 class, made a helper class to put re-used functions
     static func makeAlert(_ message:String) -> UIAlertController {
        let alert = UIAlertController(
@@ -43,5 +45,15 @@ class Team3Helper {
         // https://stackoverflow.com/a/22654105
         let controller = goToTabs ? currentController.storyboard?.instantiateViewController(identifier: "TabBarController") : currentController.storyboard?.instantiateViewController(identifier: "WelcomeNavController")
         UIApplication.shared.windows[0].rootViewController = controller
+    }
+    
+    static func createNotificationContent(title: String, message: String, subtitle: String? = nil) -> UNMutableNotificationContent {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = message
+        if let subtitle = subtitle {
+            content.subtitle = subtitle
+        }
+        return content
     }
 }

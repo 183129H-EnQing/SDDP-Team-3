@@ -71,11 +71,18 @@
                         <viewLayoutGuide key="safeArea" id="HsG-Yd-aNB"/>
                     </view>
                     <navigationItem key="navigationItem" id="Ow6-Kg-V83">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="jVS-zU-UyV">
-                            <connections>
-                                <segue destination="4uN-X6-gRl" kind="show" identifier="AddSchedule" id="k3H-Yg-4Ml"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Notify" id="0z3-OX-iEd">
+                                <connections>
+                                    <action selector="notifyButtonPressed:" destination="jMY-FQ-tkv" id="OJo-UA-KYF"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="add" id="jVS-zU-UyV">
+                                <connections>
+                                    <segue destination="4uN-X6-gRl" kind="show" identifier="AddSchedule" id="k3H-Yg-4Ml"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="noSchedulesLabel" destination="cUK-4Q-TgL" id="fUZ-Ud-jTW"/>
