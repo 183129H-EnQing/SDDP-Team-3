@@ -69,6 +69,20 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowGoalDetails" {
+            let detailViewController = segue.destination as! GoalDetailsViewController
+            let indexPath = self.goalTableView.indexPathForSelectedRow
+            
+            if indexPath != nil {
+
+                let goal = self.goalList[indexPath!.row]
+                detailViewController.goal = goal
+            }
+        }
+    }
+
     /*
     // MARK: - Navigation
 

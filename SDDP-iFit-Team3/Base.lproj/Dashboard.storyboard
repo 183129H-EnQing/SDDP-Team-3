@@ -749,7 +749,7 @@
                                             <outlet property="goalTitle" destination="yb0-a8-RuF" id="xc2-5b-ih8"/>
                                             <outlet property="percentageLabel" destination="E3Y-75-IEI" id="af0-8t-AKA"/>
                                             <outlet property="progressView" destination="0x3-XN-wpZ" id="79Y-Nz-gx9"/>
-                                            <segue destination="pkm-RQ-Z6F" kind="show" id="bim-3y-2EV"/>
+                                            <segue destination="pkm-RQ-Z6F" kind="show" identifier="ShowGoalDetails" id="bim-3y-2EV"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -947,10 +947,10 @@
             </objects>
             <point key="canvasLocation" x="5168.8000000000002" y="-1800.4497751124438"/>
         </scene>
-        <!--View Controller-->
+        <!--Goal Details View Controller-->
         <scene sceneID="8hd-dk-tgD">
             <objects>
-                <viewController id="pkm-RQ-Z6F" sceneMemberID="viewController">
+                <viewController id="pkm-RQ-Z6F" customClass="GoalDetailsViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ejw-5F-6eA">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1061,6 +1061,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAV-Bs-bNO">
                                                         <rect key="frame" x="0.0" y="122" width="372" height="30"/>
                                                         <state key="normal" title="End Goal"/>
+                                                        <connections>
+                                                            <action selector="endGoalPressed:" destination="pkm-RQ-Z6F" eventType="touchUpInside" id="8rm-q1-NVj"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Days More" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vd-T8-EKT">
                                                         <rect key="frame" x="240" y="18" width="96" height="21"/>
@@ -1129,6 +1132,16 @@
                         <viewLayoutGuide key="safeArea" id="8RX-Dv-iz1"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jfb-eg-hDM"/>
+                    <connections>
+                        <outlet property="dateDuration" destination="xKw-OQ-sI8" id="5ER-zG-pAh"/>
+                        <outlet property="deadLine" destination="0vd-T8-EKT" id="Lm9-e1-AZr"/>
+                        <outlet property="exerciseProgressBar" destination="iky-Wm-rfX" id="P7q-Eb-xdB"/>
+                        <outlet property="exerciseProgressPercent" destination="MR4-b0-BWN" id="4ng-GU-A7f"/>
+                        <outlet property="exerciseProgressTitle" destination="8qC-W2-N0I" id="cat-CW-L8n"/>
+                        <outlet property="goalTitle" destination="CxA-Il-aeB" id="G3j-MV-7PK"/>
+                        <outlet property="totalAmountExerciseDone" destination="pFq-9a-aTL" id="kid-ES-Azf"/>
+                        <outlet property="totalDuration" destination="X3N-2I-YHc" id="UeZ-Jf-0uI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tEJ-cQ-q20" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
