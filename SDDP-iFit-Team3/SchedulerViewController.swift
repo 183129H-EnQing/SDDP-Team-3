@@ -19,6 +19,16 @@ class SchedulerViewController: GenericTopNavViewController, UITableViewDelegate,
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print("Find meeeeeeee schedules!")
+        
+        let calender = Calendar.current
+        
+        var testDate = DateComponents()
+        testDate.day = 4
+        testDate.month = 7
+        testDate.year = 2020
+        let actualDateComp = calender.dateComponents([.weekday, .weekdayOrdinal, .hour, .minute], from: calender.date(from: testDate)!)
+        print("Actual day: \(actualDateComp.weekday!)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,7 +101,7 @@ class SchedulerViewController: GenericTopNavViewController, UITableViewDelegate,
             }
             
             let content = Team3Helper.createNotificationContent(title: "Test", message: "Hello world")
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: true)
             
             Team3Helper.notificationCenter.add(UNNotificationRequest(identifier: "scheduler.test", content: content, trigger: trigger))
         }

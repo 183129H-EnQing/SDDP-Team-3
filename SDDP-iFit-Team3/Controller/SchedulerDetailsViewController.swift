@@ -20,7 +20,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     var scheduleIndex: Int?
     
     static var exercises: [String] = ["Push Up", "Jumping Jacks", "Skipping Rope", "Sit Up"]
-    static var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    static var days: [String] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] // because date component's weekDay starts from sunday, monday... and end with saturday
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,6 +122,29 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             let viewControllers = self.navigationController?.viewControllers
             let parent = viewControllers?[0] as! SchedulerViewController
             
+            let actualDateComp = Calendar.current.dateComponents([.weekday, .hour, .minute], from: Date())
+            
+            // need to minus 1, cause weekDay starts is 1 to 7
+            if (actualDateComp.weekday!-1) == day && (time.hour! > actualDateComp.hour! || (time.hour! == actualDateComp.hour! && time.minute! > actualDateComp.minute!)) {
+                Team3Helper.notificationCenter.getNotificationSettings { (settings) in
+                    let status = settings.authorizationStatus
+                    if status == .denied || status == .notDetermined {
+                        self.present(Team3Helper.makeAlert("Couldn't add schedule, you need to enable notifications for this app!"), animated: true)
+                        
+                        return
+                    }
+                    
+                    // Notification
+                    let content = Team3Helper.createNotificationContent(title: "Test", message: "Hello world")
+                    var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date())
+                    dateComponents.minute = dateComponents.minute! + 2
+                    let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+                    
+                    Team3Helper.notificationCenter.add(UNNotificationRequest(identifier: "scheduler.test", content: content, trigger: trigger))
+                }
+            }
+            
+            // Schedule
             let newSchedule = Schedule(exerciseId: exercise, duration: [hrs, mins], day: day, time: [time.hour!, time.minute!])
             // If not nil, is editing. Else if it is nil, is adding
             if self.schedule != nil {

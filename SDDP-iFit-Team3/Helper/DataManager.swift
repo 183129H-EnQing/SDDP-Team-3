@@ -70,6 +70,7 @@ class DataManager {
              7. Put the fields into instance of Schedule and append Schedule to day array inside schedules variable
              8. Then we sort the day array after appending
              */
+            print("--- Start of loadSchedules ---")
             db.collection(tableName).getDocuments { (snapshot, err) in
                 var schedules: [Int: [Schedule]] = [:]
                 if let err = err {
@@ -105,6 +106,7 @@ class DataManager {
                 } else {
                     print("No data for \(tableName)")
                 }
+                print("--- End of loadSchedules ---")
                 
                 onComplete?(schedules)
             }
