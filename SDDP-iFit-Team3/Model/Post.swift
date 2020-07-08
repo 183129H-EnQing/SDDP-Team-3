@@ -9,7 +9,7 @@
 import UIKit
 
 class Comment {
-    var postid: String?
+    
     var userName: String
     var comment: String
     var pdatetime:String

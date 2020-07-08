@@ -23,14 +23,16 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var contenttext: UITextField!
     
+    @IBOutlet weak var dateText: UILabel!
+    
     var postItem : Post?
     var locationManager:CLLocationManager!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-        contenttext.delegate = self
-        updateSaveButtonState()
+        //contenttext.delegate = self
+        //updateSaveButtonState()
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
@@ -102,41 +104,42 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Error \(error)")
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          
-           super.prepare(for: segue, sender: sender)
+          // super.prepare(for: segue, sender: sender)
            
         
             
-                   guard let button = sender as? UIButton, button === addbutton else {
-               os_log("The add button was not pressed, cancelling", log: OSLog.default, type: .debug)
-               return
-           }
+//guard let button = sender as? UIButton, button === addbutton else {
+               //os_log("The add button was not pressed, cancelling", log: OSLog.default, type: .debug)
+              // return
+          // }
         
         
-        let content = contenttext.text ?? ""
+       // let content = contenttext.text ?? ""
         
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, h:mm a"
-        let datetime = formatter.string(from: date)
+        //let date = Date()
+       // let formatter = DateFormatter()
+        //formatter.dateFormat = "MMM d, h:mm a"
+       // let  datetime = formatter.string(from: date)
         
-        let loc = loctext.text ?? ""
+        
+        
+       /// let loca = loctext.text!
             
         
-        
-        
+    
         
 
         
         //let photo = imageview.image
         
      
-        postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: loc, pimageName: "img" , commentPost: [ ])
+      //  postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: "img" , commentPost: [ ] )
         
          
         
-    }
+   // }
     
     
    
@@ -157,11 +160,47 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                   // Team3Helper.colorTextFieldBorder(textField: contenttext, isRed: true)
                    //self.present(Team3Helper.makeAlert("Content is Empty!!!"), animated: true)
                   // return
-            
+        if let user = UserAuthentication.getLoggedInUser(){
+            let content = contenttext.text ?? ""
+                
+                let date = Date()
+                let formatter = DateFormatter()
+                formatter.dateFormat = "MMM d, h:mm a"
+                let  datetime = formatter.string(from: date)
+                
+                
+                
+              let loca = loctext.text ?? ""
+             print(loca)
+
+              let viewControllers = self.navigationController?.viewControllers
+              
+              let parent = viewControllers?[1] as! PostViewController
+
+                
+                //let photo = imageview.image
+                
+             
+                postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: "" , commentPost: [ ] )
         
+                        DataManager.Posts.insertPost(userId:user.uid,postItem!) { (isSuccess) in
+                                    self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+           
+            }
+                
     }
-    
-   
+    }
+        
+        
+    func afterDbOperation(parent: PostViewController, isSuccess: Bool, isUpdating: Bool) {
+        if !isSuccess {
+            let mode = isUpdating ? "updating the" : "adding a"
+            self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) post"), animated: true)
+        }
+        
+        parent.loadPosts()
+        self.navigationController?.popViewController(animated: true)
+    }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
     [UIImagePickerController.InfoKey : Any])
     {

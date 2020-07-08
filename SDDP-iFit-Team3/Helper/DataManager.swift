@@ -310,7 +310,7 @@ class DataManager {
                          "userName": post.userName,
                          "pcontent": post.pcontent,
                          "pdatetime": post.pdatetime,
-                         "userlocation": post.userLocation,
+                         "userLocation": post.userLocation,
                          "pimageName": post.pimageName,
                          "commentPost": post.commentPost
                             
@@ -349,8 +349,8 @@ class DataManager {
                                       let userName : String = data["userName"] as! String
                                       let pcontent : String = data["pcontent"] as! String
                                       let pdatetime : String = data["pdatetime"] as! String
-                                      let pimageName : String = data["pimageName"] as! String
                                       let userLocation : String = data["userLocation"] as! String
+                                      let pimageName : String = data["pimageName"] as! String
                                       let commentPost : [Comment] = data["commentPost"] as! [Comment]
 
                                       let post = Post(userName: userName, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, commentPost: commentPost)

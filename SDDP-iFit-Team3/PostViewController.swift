@@ -24,10 +24,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
     
         self.navigationItem.title = "Posts"
-        self.navigationItem.rightBarButtonItem =
-        UIBarButtonItem(barButtonSystemItem: .add,
-                        target: self,
-                        action: #selector(addButtonClicked))
+        
         
        
         //postList.append(Post(
@@ -50,14 +47,6 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
    
     
     
-    @objc func addButtonClicked()
-    {
-              let s = UIStoryboard(name: "Community", bundle: nil)
-              let v = s.instantiateViewController(withIdentifier:"AddPostViewController") as! AddPostViewController
-              self.present(v, animated: true, completion: nil)
-    
-
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
     return postList.count
@@ -107,37 +96,29 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     
     
-      @IBAction func unwindToPostList(sender: UIStoryboardSegue) {
-           if let sourceViewController = sender.source as? AddPostViewController, let posts = sourceViewController.postItem {
+      //@IBAction func unwindToPostList(sender: UIStoryboardSegue) {
+          // if let sourceViewController = sender.source as? AddPostViewController, let posts = sourceViewController.postItem {
                 
-            if let user = UserAuthentication.getLoggedInUser(){
-                                 // Add a new meal.
-                         let newIndexPath = IndexPath(row: postList.count, section: 0)
+            //if let user = UserAuthentication.getLoggedInUser(){
+                                
+                       //  let newIndexPath = IndexPath(row: postList.count, section: 0)
                          
-                         postList.append(posts)
-                         tableView.insertRows(at: [newIndexPath], with: .automatic)
-                         let viewControllers = self.navigationController?.viewControllers
-                         let parent = viewControllers?[1] as! PostViewController
+                       //  postList.append(posts)
+                       //  tableView.insertRows(at: [newIndexPath], with: .automatic)
+                        // let viewControllers = self.navigationController?.viewControllers
+                        // let parent = viewControllers?[1] as! PostViewController
                 
-                         DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
-                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-                }
+                        // DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                //self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+              //  }
                         
-                }
+            //    }//
                               
-             }
-      }
+           //  }
+    //  }
     
     
-     func afterDbOperation(parent: PostViewController, isSuccess: Bool, isUpdating: Bool) {
-           if !isSuccess {
-               let mode = isUpdating ? "updating the" : "adding a"
-               self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) post"), animated: true)
-           }
-           
-           parent.loadPosts()
-           self.navigationController?.popViewController(animated: true)
-       }
+    
     
      @IBAction func unwindToPostListEdit(sender: UIStoryboardSegue) {
               if let sourceViewController = sender.source as? EditPostViewController, let posts = sourceViewController.postItem {
