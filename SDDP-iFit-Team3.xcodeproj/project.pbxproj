@@ -282,6 +282,7 @@
 				09B1B92C249322AC00D14CE6 /* Frameworks */,
 				09B1B92D249322AC00D14CE6 /* Resources */,
 				6CB87044B3EC7BA5C6A79147 /* [CP] Embed Pods Frameworks */,
+				5F6FB2D49C999D627F33A7C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,6 +348,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5F6FB2D49C999D627F33A7C6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		6CB87044B3EC7BA5C6A79147 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

@@ -10,6 +10,11 @@ import UIKit
 import os.log
 import CoreLocation
 import FirebaseStorage
+import Firebase
+import FirebaseUI
+
+
+
 
 class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
 
@@ -27,7 +32,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var dateText: UILabel!
     
-    var image: UIImage? = nil
+    //var image: UIImage? = nil
     
     var postItem : Post?
     var locationManager:CLLocationManager!
@@ -166,14 +171,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                   // return
         if let user = UserAuthentication.getLoggedInUser(){
             
-            guard let choosenImage = self.image else{
-                print("Postimage is nil")
-                return
-            }
+           
             
-            guard let imageData = choosenImage.jpegData(compressionQuality: 0.5)else{
-                return
-            }
             let content = contenttext.text ?? ""
                 
                 let date = Date()
@@ -191,11 +190,32 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
               let parent = viewControllers?[1] as! PostViewController
 
                 
-                //let photo = imageview.image
-                
+                let photo = imageview.image
+            let storage = Storage.storage()
+            let storageRef = storage.reference()
+            let imageName = NSUUID().uuidString
+             var ref = storageRef.child("\(imageName)")
+             //imageview.sd_setImage(with: ref)
+            
+            //ref = imageview.image?.accessibilityIdentifier
+            
              
-                postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: "" , commentPost: [ ] )
-        
+            
+                postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation:loca, pimageName:"" , commentPost: [ ] )
+            
+            //let storageRef = Storage.storage().reference(forURL:" gs://swift-sddp-team3.appspot.com")
+           // let storagePostRef =  storageRef.child("myImage.png")
+           // let metadata = StorageMetadata()
+            //metadata.contentType = "image/jpg"
+           //storagePostRef.putData(imageData, metadata: metadata) { (storageMetaData, error) in
+              //  if error != nil {
+                  //  print(error?.localizedDescription)
+                 //   return
+               // }
+            //}
+            
+           
+            
                         DataManager.Posts.insertPost(userId:user.uid,postItem!) { (isSuccess) in
                                     self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
            
@@ -217,11 +237,20 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
     [UIImagePickerController.InfoKey : Any])
     {
-            let chosenImage : UIImage =
+        if  let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+            print(url)
+            
+             uploadToCloud(fileURL: url)
+            
+        }
+        
+       
+        
+        let chosenImage : UIImage =
             info[.editedImage] as! UIImage
             self.imageview!.image = chosenImage
         
-            image = chosenImage
+      
             // This saves the image selected / shot by the user
             //
             UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil)
@@ -235,7 +264,31 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                 _ picker: UIImagePickerController)
             {
                 picker.dismiss(animated: true)
-    }    /*
+    }
+    
+    func uploadToCloud(fileURL : URL) {
+        let storage = Storage.storage()
+        
+        let data = Data()
+        
+        let storageRef = storage.reference()
+        
+        let localFile = fileURL
+        let imageName = NSUUID().uuidString
+        
+        let photoRef = storageRef.child("\(imageName)")
+        
+        let uploadFile = photoRef.putFile(from: localFile, metadata: nil) { (metadata, err) in
+            
+            
+            guard let metadata = metadata else {
+                
+                print(err?.localizedDescription)
+                return
+        }
+            print("Photo Upload")
+    }
+    }/*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
