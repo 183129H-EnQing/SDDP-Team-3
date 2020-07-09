@@ -63,6 +63,15 @@ class ExerciseViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let exerciseDetailVC = storyboard?.instantiateViewController(identifier: "ExerciseDetailVC") as! ExerciseDetailViewController
+        exerciseDetailVC.exerciseList = exercise[indexPath.row]
+        
+        self.navigationController?.pushViewController(exerciseDetailVC, animated: true)
+    }
+    
+    
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        <#code#>
 //    }
