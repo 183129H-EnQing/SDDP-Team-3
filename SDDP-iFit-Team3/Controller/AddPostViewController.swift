@@ -9,6 +9,8 @@
 import UIKit
 import os.log
 import CoreLocation
+import FirebaseStorage
+
 class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var imageview: UIImageView!
@@ -24,6 +26,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     @IBOutlet weak var contenttext: UITextField!
     
     @IBOutlet weak var dateText: UILabel!
+    
+    var image: UIImage? = nil
     
     var postItem : Post?
     var locationManager:CLLocationManager!
@@ -161,6 +165,15 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                    //self.present(Team3Helper.makeAlert("Content is Empty!!!"), animated: true)
                   // return
         if let user = UserAuthentication.getLoggedInUser(){
+            
+            guard let choosenImage = self.image else{
+                print("Postimage is nil")
+                return
+            }
+            
+            guard let imageData = choosenImage.jpegData(compressionQuality: 0.5)else{
+                return
+            }
             let content = contenttext.text ?? ""
                 
                 let date = Date()
@@ -207,6 +220,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
             let chosenImage : UIImage =
             info[.editedImage] as! UIImage
             self.imageview!.image = chosenImage
+        
+            image = chosenImage
             // This saves the image selected / shot by the user
             //
             UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil)
