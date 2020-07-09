@@ -23,10 +23,10 @@ class ExerciseViewController: UIViewController, UICollectionViewDelegate, UIColl
         
         loadExercise()
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 20)/2, height: (self.collectionView.frame.size.height - 50)/4)
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 1, bottom: 0, right: 1)
+        layout.itemSize = CGSize(width: (self.collectionView.frame.size.width - 4)/2, height: (self.collectionView.frame.size.height - 8)/3)
+        layout.minimumInteritemSpacing = 2
+        layout.minimumLineSpacing = 2
         collectionView!.collectionViewLayout = layout
     }
     
