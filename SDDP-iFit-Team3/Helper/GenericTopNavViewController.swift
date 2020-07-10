@@ -26,8 +26,9 @@ class GenericTopNavViewController: UIViewController {
     }
     
     @objc func profileButtonPressed(_ sender: UIBarButtonItem!) {
-        //let profileStoryboard = UIStory
         print("Profile btn click")
+        let controller = profileStoryboard.instantiateViewController(identifier: "ProfileViewController")
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     /*
