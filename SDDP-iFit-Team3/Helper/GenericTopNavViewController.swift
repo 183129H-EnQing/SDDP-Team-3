@@ -10,11 +10,14 @@ import UIKit
 
 class GenericTopNavViewController: UIViewController {
 
+    let profileStoryboard: UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let profileBarButton = UIBarButtonItem(title: "Profile", style: .plain, target: nil, action: nil)
+        // Thank god : http://swiftdeveloperblog.com/code-examples/create-uibarbuttonitem-programmatically/
+        let profileBarButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(GenericTopNavViewController.profileButtonPressed(_:)))
         if var leftBarItems = self.navigationItem.leftBarButtonItems {
             leftBarItems.append(profileBarButton)
         } else {
@@ -22,6 +25,10 @@ class GenericTopNavViewController: UIViewController {
         }
     }
     
+    @objc func profileButtonPressed(_ sender: UIBarButtonItem!) {
+        //let profileStoryboard = UIStory
+        print("Profile btn click")
+    }
 
     /*
     // MARK: - Navigation

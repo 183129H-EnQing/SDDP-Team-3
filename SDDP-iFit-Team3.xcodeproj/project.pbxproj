@@ -36,6 +36,7 @@
 		7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7ED67E24A0E2F9001D52DA /* Game.storyboard */; };
 		7D8929C224AD6D3200FCB173 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8929C124AD6D3200FCB173 /* DataManager.swift */; };
 		7DDECEF824B361D50082DF5B /* GenericTopNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DDECEF724B361D50082DF5B /* GenericTopNavViewController.swift */; };
+		7DE944F124B83304000A03DC /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DE944F024B83304000A03DC /* Profile.storyboard */; };
 		7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */; };
 		7DEE53CC24AC5A5400CE6293 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */; };
 		7DEE53CE24AC632800CE6293 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE53CD24AC632800CE6293 /* LoginViewController.swift */; };
@@ -99,6 +100,7 @@
 		7D7ED67F24A0E2F9001D52DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		7D8929C124AD6D3200FCB173 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7DDECEF724B361D50082DF5B /* GenericTopNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTopNavViewController.swift; sourceTree = "<group>"; };
+		7DE944F024B83304000A03DC /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SchedulerViewController.swift; path = "SDDP-iFit-Team3/SchedulerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
 		7DEE53CD24AC632800CE6293 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 				09B1B940249322B200D14CE6 /* Info.plist */,
 				7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */,
 				DC78681F24AE3DA20093BAE5 /* bulletSound_3.wav */,
+				7DE944F024B83304000A03DC /* Profile.storyboard */,
 			);
 			path = "SDDP-iFit-Team3";
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */,
 				09B1B93C249322B200D14CE6 /* Assets.xcassets in Resources */,
 				09B1B93A249322AD00D14CE6 /* Main.storyboard in Resources */,
+				7DE944F124B83304000A03DC /* Profile.storyboard in Resources */,
 				DCC80B7624ADEE24008AF933 /* GameScene.sks in Resources */,
 				7D6080E5249CFD64001F3E6E /* Dashboard.storyboard in Resources */,
 				7D6080EE249D01B8001F3E6E /* Community.storyboard in Resources */,
