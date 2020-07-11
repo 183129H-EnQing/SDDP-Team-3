@@ -109,7 +109,7 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         
         if validateInput() == false{
             newTrainingPlan = TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: exerciseListFrom, tpImage: "")
-            print(newTrainingPlan)
+//            print(newTrainingPlan)
             
             DataManager.TrainingPlanClass.insertTrainingPlan(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", newTrainingPlan!, onComplete: nil)
             

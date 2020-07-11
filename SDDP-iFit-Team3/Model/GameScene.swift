@@ -8,13 +8,20 @@
 
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let player = SKSpriteNode(imageNamed: "survivor_handgun")
     
     let bulletSound = SKAction.playSoundFileNamed("bulletSound_3", waitForCompletion: false)
     
     var gameArea: CGRect
+    
+    //UInt32 required by .physicsBody!.categoryBitMask
+    let NoneCategory: UInt32 = 0
+    let PlayerCategory: UInt32 = UInt32(1)   //1 0b1
+    let BulletCategory: UInt32 = UInt32(2) //2 0b10
+    let EnemyCategory: UInt32 = UInt32(4) // 4 0b100
+    
     
     override init(size: CGSize) {
         
@@ -32,6 +39,8 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
+        self.physicsWorld.contactDelegate = self
+        
         let background = SKSpriteNode(imageNamed: "road")
         background.size = self.size
         background.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
@@ -42,9 +51,30 @@ class GameScene: SKScene {
         player.setScale(1)
         player.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.2)
         player.zPosition = 2
+        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)    //set physics to player - gravity, contacts
+        player.physicsBody!.affectedByGravity = false   //remove gravity from player
+        player.physicsBody!.categoryBitMask = PlayerCategory
+        player.physicsBody!.collisionBitMask = NoneCategory //Collision will occur when Players hits Nones
+        player.physicsBody!.contactTestBitMask = EnemyCategory  //Contact will be detected when Player make a contact with Enemy
         self.addChild(player)
         
         startNewLevel()
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        let playerMask = contact.bodyA.categoryBitMask == PlayerCategory || contact.bodyB.categoryBitMask == PlayerCategory
+        let enemyMask = contact.bodyA.categoryBitMask == EnemyCategory || contact.bodyB.categoryBitMask == EnemyCategory
+        _ = contact.bodyA.categoryBitMask == BulletCategory || contact.bodyB.categoryBitMask == BulletCategory
+        
+        if playerMask && enemyMask {
+            print("score")
+        }
+//
+//
+//        if contact.bodyA.categoryBitMask ==  && contact.bodyB.categoryBitMask == {
+//
+//        }
     }
     
     func fireBullet(){
@@ -52,7 +82,12 @@ class GameScene: SKScene {
         let bullet = SKSpriteNode(imageNamed: "bullet")
         bullet.setScale(1)
         bullet.position = player.position 
-        player.zPosition = 1
+        bullet.zPosition = 1
+        bullet.physicsBody = SKPhysicsBody(rectangleOf: bullet.size)
+        bullet.physicsBody!.affectedByGravity = false
+        bullet.physicsBody!.categoryBitMask = BulletCategory
+        bullet.physicsBody!.collisionBitMask = NoneCategory
+        bullet.physicsBody!.contactTestBitMask = EnemyCategory
         self.addChild(bullet)
         
         let moveBullet = SKAction.moveTo(y: self.size.height + bullet.size.height, duration: 1)
@@ -63,9 +98,9 @@ class GameScene: SKScene {
     
     //part 2
     func random() -> CGFloat {
-        return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
+        return CGFloat(Float(arc4random()) / 0xFFFFFFFF) // -1 in UInt32
     }
-    func random(min min: CGFloat, max: CGFloat) -> CGFloat {
+    func random(min: CGFloat, max: CGFloat) -> CGFloat {
         return random() * (max - min) + min
     }
     
@@ -80,6 +115,12 @@ class GameScene: SKScene {
         enemy.setScale(1)
         enemy.position = startPoint
         enemy.zPosition = 2
+        enemy.physicsBody = SKPhysicsBody(rectangleOf: enemy.size)
+        enemy.physicsBody!.affectedByGravity = false
+        enemy.physicsBody!.categoryBitMask = EnemyCategory
+        enemy.physicsBody!.collisionBitMask = NoneCategory
+        enemy.physicsBody!.contactTestBitMask = PlayerCategory | BulletCategory
+        
         self.addChild(enemy)
         
         let moveEnemy = SKAction.move(to: endPoint, duration: 1.5)
