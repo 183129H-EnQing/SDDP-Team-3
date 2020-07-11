@@ -13,7 +13,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let player = SKSpriteNode(imageNamed: "survivor_handgun")
     
     let bulletSound = SKAction.playSoundFileNamed("bulletSound_3", waitForCompletion: false)
-    let explosionSound = SKAction.playSoundFileNamed(<#T##soundFile: String##String#>, waitForCompletion: false)
+    let explosionSound = SKAction.playSoundFileNamed("bomb_07", waitForCompletion: false)
     
     var gameArea: CGRect
     
@@ -111,7 +111,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         explosion.setScale(0)
         self.addChild(explosion)
         
-        let scaleIn = SKAction.scale(to: 1, duration: 0.1)
+        let scaleIn = SKAction.scale(to: 2, duration: 0.1)
         let fadeOut = SKAction.fadeOut(withDuration: 0.1)
         let delete = SKAction.removeFromParent()
         
