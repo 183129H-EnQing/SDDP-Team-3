@@ -8,8 +8,9 @@
 
 import UIKit
 import os.log
+import CoreLocation
 
-class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var textcontent: UITextField!
     
@@ -23,11 +24,22 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
     @IBOutlet weak var seleectPicture: UIButton!
     
     
+    @IBOutlet weak var location: UILabel!
+    
     var postItem : Post?
+    var locationManager:CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.startUpdatingLocation()
+        }
           //self.navigationItem.rightBarButtonItem =
              // UIBarButtonItem(barButtonSystemItem: .save,
                               //target: self,
@@ -56,22 +68,22 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+   // override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
             
-              super.prepare(for: segue, sender: sender)
+             // super.prepare(for: segue, sender: sender)
               
             
-              guard let button = sender as? UIButton, button === saveButton else {
-                  os_log("The add button was not pressed, cancelling", log: OSLog.default, type: .debug)
-                  return
-              }
+             // guard let button = sender as? UIButton, button === saveButton else {
+                 // os_log("The add button was not pressed, cancelling", log: OSLog.default, type: .debug)
+                 /// return
+             // }
            
            
-           let content = textcontent.text ?? ""
-            let date = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "MMM d, h:mm a"
-            let datetime = formatter.string(from: date)
+         //  let content = textcontent.text ?? ""
+           // let date = Date()
+          //  let formatter = DateFormatter()
+          //  formatter.dateFormat = "MMM d, h:mm a"
+           // let datetime = formatter.string(from: date)
         
         
         
@@ -81,8 +93,85 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
             //let pic = UIImage(named: photo)
            
         
-           postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: "yishun", pimageName: "img" , commentPost: [ ] )
+          // postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: "yishun", pimageName: "img" , commentPost: [ ] )
            
+     //  }
+    
+    
+     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+           let userLocation :CLLocation = locations[0] as CLLocation
+
+           print("user latitude = \(userLocation.coordinate.latitude)")
+           print("user longitude = \(userLocation.coordinate.longitude)")
+
+         
+
+           let geocoder = CLGeocoder()
+           geocoder.reverseGeocodeLocation(userLocation) { (placemarks, error) in
+               if (error != nil){
+                   print("error in reverseGeocode")
+               }
+               let placemark = placemarks! as [CLPlacemark]
+               if placemark.count>0{
+                   let placemark = placemarks![0]
+                   print(placemark.locality!)
+                   print(placemark.administrativeArea!)
+                   print(placemark.country!)
+                   
+                   
+               
+                    self.location.text = "\(placemark.locality!)"
+                   
+               }
+           }
+
+       }
+       func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+           print("Error \(error)")
+       }
+    
+    @IBAction func saveButtonPressed(_ sender: Any) {
+         if let user = UserAuthentication.getLoggedInUser(){
+            
+            let content = textcontent.text ?? ""
+                  let date = Date()
+                  let formatter = DateFormatter()
+                 formatter.dateFormat = "MMM d, h:mm a"
+                  let datetime = formatter.string(from: date)
+        
+        let loca = location.text ?? ""
+        
+            let viewControllers = self.navigationController?.viewControllers
+            let parent = viewControllers?[1] as! PostViewController
+        
+      let  posts = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "" , commentPost: [ ] )
+        
+         if self.postItem != nil {
+                       // Update
+                       posts.id = self.postItem!.id!
+                       DataManager.Posts.updatePost(post: posts) { (isSuccess) in
+                           self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
+                       }
+                   } else {
+                       // Add
+                       DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                          self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                                  
+                              }
+                   }
+        }
+        
+       
+    }
+    
+     func afterDbOperation(parent: PostViewController, isSuccess: Bool, isUpdating: Bool) {
+           if !isSuccess {
+               let mode = isUpdating ? "updating the" : "adding a"
+               self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) post"), animated: true)
+           }
+           
+           parent.loadPosts()
+           self.navigationController?.popViewController(animated: true)
        }
     
     @IBAction func takepicture(_ sender: Any) {
