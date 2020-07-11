@@ -42,6 +42,7 @@
 		7DEE53CE24AC632800CE6293 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE53CD24AC632800CE6293 /* LoginViewController.swift */; };
 		7DEE53D024AC63E800CE6293 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE53CF24AC63E800CE6293 /* RegisterViewController.swift */; };
 		D671C057354D801529A5E555 /* Pods_SDDP_iFit_Team3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */; };
+		DC2C64A524B9C17F006B81D3 /* theboldfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DC2C64A424B9C17F006B81D3 /* theboldfont.ttf */; };
 		DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC325A3A24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift */; };
 		DC78682024AE3DA20093BAE5 /* bulletSound_3.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC78681F24AE3DA20093BAE5 /* bulletSound_3.wav */; };
 		DC9EE49924A307660080D3A2 /* TrainingPlanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */; };
@@ -106,6 +107,7 @@
 		7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
 		7DEE53CD24AC632800CE6293 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7DEE53CF24AC63E800CE6293 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		DC2C64A424B9C17F006B81D3 /* theboldfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = theboldfont.ttf; sourceTree = "<group>"; };
 		DC325A3A24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddExerciseViewController.swift; sourceTree = "<group>"; };
 		DC78681F24AE3DA20093BAE5 /* bulletSound_3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bulletSound_3.wav; sourceTree = "<group>"; };
 		DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */,
 				DC78681F24AE3DA20093BAE5 /* bulletSound_3.wav */,
 				DCC5778824B9A6D20003F215 /* bomb_07.wav */,
+				DC2C64A424B9C17F006B81D3 /* theboldfont.ttf */,
 				7DE944F024B83304000A03DC /* Profile.storyboard */,
 			);
 			path = "SDDP-iFit-Team3";
@@ -343,6 +346,7 @@
 				09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */,
 				DCC5778924B9A6D20003F215 /* bomb_07.wav in Resources */,
 				09B1B93C249322B200D14CE6 /* Assets.xcassets in Resources */,
+				DC2C64A524B9C17F006B81D3 /* theboldfont.ttf in Resources */,
 				09B1B93A249322AD00D14CE6 /* Main.storyboard in Resources */,
 				7DE944F124B83304000A03DC /* Profile.storyboard in Resources */,
 				DCC80B7624ADEE24008AF933 /* GameScene.sks in Resources */,

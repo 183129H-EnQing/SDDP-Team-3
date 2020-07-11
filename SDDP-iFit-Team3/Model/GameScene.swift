@@ -10,6 +10,14 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var score = 0
+    let scoreLabel = SKLabelNode(fontNamed: "The Bold Font") //font not in use
+    
+    var level = 0
+    
+    var playerLives = 3
+    var playerLivesLabel = SKLabelNode(fontNamed: "The Bold Font") //font not in use
+    
     let player = SKSpriteNode(imageNamed: "survivor_handgun")
     
     let bulletSound = SKAction.playSoundFileNamed("bulletSound_3", waitForCompletion: false)
@@ -60,6 +68,46 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(player)
         
         startNewLevel()
+        
+        scoreLabel.text = "Score: 0"
+        scoreLabel.fontSize = 70
+        scoreLabel.fontColor = SKColor.white
+        scoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        scoreLabel.position = CGPoint(x: self.size.width * 0.2, y: self.size.height * 0.85)
+        scoreLabel.zPosition = 100
+        self.addChild(scoreLabel)
+        
+        playerLivesLabel.text = "Lives: 3"
+        playerLivesLabel.fontSize = 70
+        playerLivesLabel.fontColor = SKColor.white
+        playerLivesLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.right
+        playerLivesLabel.position = CGPoint(x: self.size.width * 0.8, y: self.size.height * 0.85)
+        playerLivesLabel.zPosition = 100
+        self.addChild(playerLivesLabel)
+        
+        startNewLevel()
+    }
+    
+    func addScore() {
+        score += 1
+        scoreLabel.text = "Score: \(score)"
+        
+        if score == 10 || score == 25 || score == 50 || score == 100 {
+            startNewLevel()
+        }
+    }
+    
+    func loseLife() {
+        
+        playerLives -= 1
+        playerLivesLabel.text = "Lives: \(playerLives)"
+        
+        
+        let scaleUp = SKAction.scale(to: 1.5, duration: 0.2)
+        let scaleDown = SKAction.scale(to: 1, duration: 0.2)
+        let dangerColor = SKAction.colorize(with: UIColor.red, colorBlendFactor: 0.8, duration: 0.2)
+        let scaleSequence = SKAction.sequence([scaleUp, dangerColor, scaleDown])
+        playerLivesLabel.run(scaleSequence)
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -86,9 +134,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             body2.node?.removeFromParent()
         }
         
-        if body1.categoryBitMask == BulletCategory && body2.categoryBitMask == EnemyCategory && (body2.node?.position.y)! < self.size.height {
+        if body1.categoryBitMask == BulletCategory && body2.categoryBitMask == EnemyCategory && (body2.node?.position.y)! < self.size.height * 0.9 {
             
             createExplosion(spawnPosition: body2.node!.position)
+            addScore()
             
             body1.node?.removeFromParent()
             body2.node?.removeFromParent()
@@ -168,7 +217,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let moveEnemy = SKAction.move(to: endPoint, duration: 1.5)
         let deleteEnemy = SKAction.removeFromParent()
-        let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy])
+        let minusLife = SKAction.run(loseLife)
+        let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy, minusLife])
         enemy.run(enemySequence)
         
         let dx = endPoint.x - startPoint.x
@@ -178,16 +228,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func startNewLevel(){
+        
+        level += 1
+        
+        
+        if self.action(forKey: "spawningEnemies") != nil {      //if still spawning enemies
+            self.removeAction(forKey: "spawningEnemies")        //stop action: spawn enemies
+        }
+        
+        var spawnTime = NSTimeIntervalSince1970       //SKAction.wait(forDuration: ) requires NSTimeInterval
+        
+        switch level{
+        case 1: spawnTime = 1.5
+        case 2: spawnTime = 1.2
+        case 3: spawnTime = 1
+        case 4: spawnTime = 0.8
+        default:
+            spawnTime = 0.5
+        }
+        
         let spawn = SKAction.run(spawnEnemy)
-        let waitToSpawn = SKAction.wait(forDuration: 1)
-        let spawnSequence = SKAction.sequence([spawn, waitToSpawn])
+        let waitToSpawn = SKAction.wait(forDuration: spawnTime)
+        let spawnSequence = SKAction.sequence([waitToSpawn, spawn])
         let spawnForever = SKAction.repeatForever(spawnSequence)
-        self.run(spawnForever)
+        self.run(spawnForever, withKey: "spawningEnemies")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
         fireBullet()
-        spawnEnemy()
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?){
