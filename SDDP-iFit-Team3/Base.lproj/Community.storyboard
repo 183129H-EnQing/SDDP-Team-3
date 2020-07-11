@@ -128,6 +128,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
+                                    <action selector="saveButtonPressed:" destination="ZMo-Xz-1ut" eventType="touchUpInside" id="OVw-rF-qhF"/>
                                     <segue destination="iUf-i9-2Qu" kind="unwind" unwindAction="unwindToPostListEditWithSender:" id="yME-uY-ueh"/>
                                 </connections>
                             </button>
@@ -139,6 +140,13 @@
                                     <action selector="selectpicture:" destination="ZMo-Xz-1ut" eventType="touchUpInside" id="Ijv-nD-RMz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ax0-EP-Db6">
+                                <rect key="frame" x="303" y="103" width="28" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="H5c-Us-fqx"/>
@@ -147,6 +155,7 @@
                     <navigationItem key="navigationItem" id="leD-10-XZR"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="location" destination="ax0-EP-Db6" id="ijy-kf-85r"/>
                         <outlet property="postimage" destination="hwt-bh-qbN" id="ppu-8f-I9A"/>
                         <outlet property="saveButton" destination="zp5-zq-bYR" id="7ag-OT-9Z8"/>
                         <outlet property="seleectPicture" destination="Hxz-kw-6c9" id="2JD-ys-UbJ"/>
@@ -157,7 +166,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aa8-2Y-rE1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="iUf-i9-2Qu" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1601" y="652"/>
+            <point key="canvasLocation" x="1542" y="940"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="aKb-zX-cRk">
@@ -185,7 +194,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vai-vf-zNd">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vai-vf-zNd">
                                                     <rect key="frame" x="77" y="56" width="246" height="142"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>

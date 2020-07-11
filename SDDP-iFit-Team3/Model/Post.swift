@@ -26,7 +26,7 @@ init(userName: String, comment:String, pdatetime:String)
 }
 
   class Post : NSObject {
-        var postid: String?
+        var id: String?
         var userName: String
         var pcontent: String
         var pdatetime:String
@@ -36,6 +36,7 @@ init(userName: String, comment:String, pdatetime:String)
 
     init(userName: String, pcontent:String, pdatetime:String, userLocation:String,  pimageName:String , commentPost: [Comment] )
      {
+    
         self.userName = userName
         self.pcontent = pcontent
         self.pdatetime = pdatetime
