@@ -158,7 +158,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         let text = contenttext.text ?? ""
         addbutton.isEnabled = !text.isEmpty
     }
-  
+    
     
     @IBAction func addbuttonpressed(_ sender: Any) {
         
@@ -190,18 +190,65 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
               let parent = viewControllers?[1] as! PostViewController
 
                 
-                let photo = imageview.image
+            //let photo = imageview.image
+            
             let storage = Storage.storage()
             let storageRef = storage.reference()
             let imageName = NSUUID().uuidString
-             var ref = storageRef.child("\(imageName)")
-             //imageview.sd_setImage(with: ref)
+            let photoRef = storageRef.child("\(imageName)")
+            
+            guard let imageData = imageview.image?.jpegData(compressionQuality: 0.4) else {
+                return
+            }
+            
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpg"
+            photoRef.putData(imageData, metadata: metadata) { (storageMetadata, error) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                    return
+                }
+                
+                photoRef.downloadURL (completion: { (url, error) in
+                    if let metaImageUrl = url?.absoluteString{
+                        //print(metaImageUrl)
+                        
+                        let photo = metaImageUrl
+                         
+                        let posts = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo, commentPost: [ ] )
+                                                     DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                                      self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                                                               
+                                                                }
+                    }
+                    })
+                
+                            }
+            
+            //imageview.sd_setImage(with: ref)
+           // photoRef.downloadURL (completion: { (url, error) in
+                //if let metaImageUrl = url?.absoluteString{
+                    //print(metaImageUrl)
+                    
+                  //  let photo = metaImageUrl
+                     
+                  //  let posts = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo, commentPost: [ ] )//
+                                              //   DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                                //  self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                                                           
+                                                           // }
+              //  }
+               // })
+            
+            
+             
+                              
             
             //ref = imageview.image?.accessibilityIdentifier
             
              
             
-                postItem = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation:loca, pimageName:"" , commentPost: [ ] )
+          
             
             //let storageRef = Storage.storage().reference(forURL:" gs://swift-sddp-team3.appspot.com")
            // let storagePostRef =  storageRef.child("myImage.png")
@@ -216,10 +263,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
             
            
             
-                        DataManager.Posts.insertPost(userId:user.uid,postItem!) { (isSuccess) in
-                                    self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-           
-            }
+                       
                 
     }
     }
@@ -237,12 +281,12 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info:
     [UIImagePickerController.InfoKey : Any])
     {
-        if  let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
-            print(url)
+       // if  let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+           // print(url)
             
-             uploadToCloud(fileURL: url)
+           //  uploadToCloud(fileURL: url)
             
-        }
+      //  }
         
        
         
@@ -266,29 +310,30 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                 picker.dismiss(animated: true)
     }
     
-    func uploadToCloud(fileURL : URL) {
-        let storage = Storage.storage()
+    //func uploadToCloud(fileURL : URL) {
+       // let storage = Storage.storage()
         
-        let data = Data()
+       // let data = Data()
         
-        let storageRef = storage.reference()
+        //let storageRef = storage.reference()
         
-        let localFile = fileURL
-        let imageName = NSUUID().uuidString
-        
-        let photoRef = storageRef.child("\(imageName)")
-        
-        let uploadFile = photoRef.putFile(from: localFile, metadata: nil) { (metadata, err) in
+       // let localFile = fileURL
+       // let imageName = NSUUID().uuidString
+       //
+      //  let photoRef = storageRef.child("\(imageName)")
+       
+       // let uploadFile = photoRef.putFile(from: localFile, metadata: nil) { (metadata, err) in
             
             
-            guard let metadata = metadata else {
+           // guard let metadata = metadata else {
                 
-                print(err?.localizedDescription)
-                return
-        }
-            print("Photo Upload")
-    }
-    }/*
+                //print(err?.localizedDescription)
+               // return
+      //  }
+            //print("Photo Upload")
+   // }
+   // }
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

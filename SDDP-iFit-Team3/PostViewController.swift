@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseUI
 
 class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
     
@@ -42,7 +43,14 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        loadPosts()
+        
+        
+        
+            
+            loadPosts()
+            
+        
+        
     }
    
     
@@ -55,6 +63,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // First we query the table view to see if there are // any UITableViewCells that can be reused. iOS will // create a new one if there aren't any. //
         //let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
+        
                 let cell : PostCell = tableView
                 .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
                 let p = postList[indexPath.row]
@@ -62,7 +71,14 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 cell.pcontentLabel.text = "\(p.pcontent) "
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
-                cell.ppimageView.image = UIImage(named:p.pimageName)
+                cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+             //  DispatchQueue.global(qos: .userInitiated).async {
+                 // cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+                   // Bounce back to the main thread to update the UI
+                  // DispatchQueue.main.async {
+                      //cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+                 //  }
+             //  }                    //UIImage(named:p.pimageName)
                 cell.commentbtn.tag = indexPath.row
 
                 return cell
