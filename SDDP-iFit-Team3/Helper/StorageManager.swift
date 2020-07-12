@@ -13,7 +13,7 @@ class StorageManager {
     static let storage = Storage.storage()
     
     static func uploadUserProfile(userId: String) {
-        
+        let ref = storage.reference().child("avatars/\(userId)")
     }
     
     static func getUserProfile(userId: String, onComplete: ((URL?) -> Void)?) {
