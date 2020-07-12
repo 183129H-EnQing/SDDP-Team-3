@@ -81,7 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lYJ-sp-gKx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="728" y="556"/>
+            <point key="canvasLocation" x="433" y="819"/>
         </scene>
         <!--Edit Post View Controller-->
         <scene sceneID="j3c-6v-toa">
@@ -211,6 +211,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blU-ay-Nz7">
+                                                    <rect key="frame" x="286" y="15" width="38" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q39-ne-l8o">
+                                                    <rect key="frame" x="360" y="15" width="26" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button" image="trash"/>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpp-Wl-OeY">
                                                     <rect key="frame" x="16" y="251" width="67" height="30"/>
                                                     <state key="normal" title="Comment"/>
@@ -218,12 +229,6 @@
                                                         <segue destination="iCB-GU-gMh" kind="show" identifier="ShowPostComments" id="G3Y-y1-2LF"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blU-ay-Nz7">
-                                                    <rect key="frame" x="210" y="14" width="38" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Lpp-Wl-OeY" firstAttribute="top" secondItem="6Rq-Yv-BdA" secondAttribute="bottom" constant="6" id="1QT-st-AZk"/>
@@ -247,6 +252,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentbtn" destination="Lpp-Wl-OeY" id="Nxr-c7-qjH"/>
+                                            <outlet property="deletebtn" destination="Q39-ne-l8o" id="mNe-CL-MIg"/>
                                             <outlet property="imageView" destination="vai-vf-zNd" id="fkt-Hq-cu6"/>
                                             <outlet property="locationLabel" destination="RDB-M8-Hgw" id="cd2-ms-xrF"/>
                                             <outlet property="nameLabel" destination="QL5-gv-tzk" id="AKA-FB-ScV"/>
@@ -449,6 +455,7 @@
         <image name="img" width="626" height="626"/>
         <image name="thumbnail_community" width="350" height="232"/>
         <image name="thumbnail_images (1)" width="275" height="183"/>
+        <image name="trash" width="256" height="256"/>
         <image name="write" width="200" height="200"/>
     </resources>
 </document>

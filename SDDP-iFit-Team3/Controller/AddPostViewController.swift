@@ -209,6 +209,10 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                     return
                 }
                 
+              
+                
+                
+                
                 photoRef.downloadURL (completion: { (url, error) in
                     if let metaImageUrl = url?.absoluteString{
                         //print(metaImageUrl)
@@ -222,6 +226,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                                                                 }
                     }
                     })
+                    
+                
                 
                             }
             

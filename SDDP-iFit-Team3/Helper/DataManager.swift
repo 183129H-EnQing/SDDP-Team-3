@@ -361,6 +361,18 @@ class DataManager {
                       }
                   }
               }
+        
+        
+        static func deletePost(post: Post, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+            db.collection(tableName).document(post.id!).delete { (err) in
+                if let err = err {
+                    print("Error deleting post: \(err)")
+                    onComplete?(false)
+                } else {
+                    onComplete?(true)
+                }
+            }
+        }
           static func loadPosts(userId: String, onComplete: (([Post]) -> Void)?) {
                         /* Process
                          1. Get all documents

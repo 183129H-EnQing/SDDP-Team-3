@@ -46,11 +46,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
        
             loadPosts()
-    
-        
-            
-            
-            
+
         
         
     }
@@ -74,18 +70,39 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
                 cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+        
              //  DispatchQueue.global(qos: .userInitiated).async {
                  // cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
                    // Bounce back to the main thread to update the UI
-                  // DispatchQueue.main.async {
-                      //cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
-                 //  }
+                //DispatchQueue.main.async {
+                   // cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+                
+                // }
              //  }                    //UIImage(named:p.pimageName)
                 cell.commentbtn.tag = indexPath.row
 
                 return cell
         }
+    //delete
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if (editingStyle == .delete){
+            //postList.remove(at: indexPath.row)
+           // tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            
+            
+            DataManager.Posts.deletePost(post: self.postList[indexPath.row]) { (isSuccess) in
+                           if isSuccess {
+                               self.loadPosts()
+                           } else {
+                               self.present(Team3Helper.makeAlert("Wasn't able to delete this schedule"), animated: true)
+                           }
+                       }
+            
+        }
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "ShowPostDetails")
      { let detailViewController = segue.destination as! EditPostViewController
@@ -170,6 +187,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                             print("async tableview label")
                             self.tableView.reloadData()
                             self.tableView.isHidden = false
+                            
                          
                         }
                     }
