@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SchedulerViewController: GenericTopNavViewController, UITableViewDelegate, UITableViewDataSource {
+class SchedulerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // {day as Integer: Array of Schedule}
     var schedules: [Int: [Schedule]] = [:]

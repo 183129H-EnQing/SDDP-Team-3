@@ -9,11 +9,12 @@
 import UIKit
 import SwiftUI
 
-class DashboardViewController: GenericTopNavViewController {
+class DashboardViewController: UIViewController {
 
     var actvityList  = ["Challenges","Exercise"]
 
-
+    @IBOutlet weak var profileBarButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
