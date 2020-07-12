@@ -35,6 +35,8 @@
 		7D6A42F924A7139200D82B90 /* Team3Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6A42F824A7139200D82B90 /* Team3Helper.swift */; };
 		7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D7ED67E24A0E2F9001D52DA /* Game.storyboard */; };
 		7D8929C224AD6D3200FCB173 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8929C124AD6D3200FCB173 /* DataManager.swift */; };
+		7DC360E324BAD86D00280315 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC360E224BAD86D00280315 /* StorageManager.swift */; };
+		7DC360E724BAE3E200280315 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC360E624BAE3E200280315 /* ProfileViewController.swift */; };
 		7DE944F124B83304000A03DC /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DE944F024B83304000A03DC /* Profile.storyboard */; };
 		7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */; };
 		7DEE53CC24AC5A5400CE6293 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */; };
@@ -100,6 +102,8 @@
 		7D6A42F824A7139200D82B90 /* Team3Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team3Helper.swift; sourceTree = "<group>"; };
 		7D7ED67F24A0E2F9001D52DA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		7D8929C124AD6D3200FCB173 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		7DC360E224BAD86D00280315 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		7DC360E624BAE3E200280315 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7DE944F024B83304000A03DC /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SchedulerViewController.swift; path = "SDDP-iFit-Team3/SchedulerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
@@ -168,7 +172,6 @@
 				7D6A42F724A7137A00D82B90 /* Helper */,
 				DC21E87424A0A2E20022B252 /* Controller */,
 				DC21E87324A0A2D50022B252 /* Model */,
-				DC21E87224A0A2BB0022B252 /* View */,
 				7D6080E3249CFD64001F3E6E /* Dashboard.storyboard */,
 				7D6080E6249CFE2F001F3E6E /* Scheduler.storyboard */,
 				7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */,
@@ -206,6 +209,7 @@
 				7D6A42F824A7139200D82B90 /* Team3Helper.swift */,
 				7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */,
 				7D8929C124AD6D3200FCB173 /* DataManager.swift */,
+				7DC360E224BAD86D00280315 /* StorageManager.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -217,13 +221,6 @@
 				189D6898487131893BCD7A6A /* Pods-SDDP-iFit-Team3.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		DC21E87224A0A2BB0022B252 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		DC21E87324A0A2D50022B252 /* Model */ = {
@@ -272,6 +269,7 @@
 				E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */,
 				DCC80B7124ADEBB0008AF933 /* GameViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
+				7DC360E624BAE3E200280315 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -455,12 +453,14 @@
 				7DEE53D024AC63E800CE6293 /* RegisterViewController.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
 				7D6A42F924A7139200D82B90 /* Team3Helper.swift in Sources */,
+				7DC360E324BAD86D00280315 /* StorageManager.swift in Sources */,
 				343BEC9A24A97F8A0041352F /* ActivityViewController.swift in Sources */,
 				1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */,
 				7D1C4BFE24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift in Sources */,
 				7D8929C224AD6D3200FCB173 /* DataManager.swift in Sources */,
 				DCC80B7224ADEBB0008AF933 /* GameViewController.swift in Sources */,
 				DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */,
+				7DC360E724BAE3E200280315 /* ProfileViewController.swift in Sources */,
 				E30440E824A609110013D053 /* CardDesign.swift in Sources */,
 				343BEC9C24A97FB70041352F /* AchievementViewController.swift in Sources */,
 			);
