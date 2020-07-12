@@ -37,6 +37,7 @@
 		7D8929C224AD6D3200FCB173 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8929C124AD6D3200FCB173 /* DataManager.swift */; };
 		7DC360E324BAD86D00280315 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC360E224BAD86D00280315 /* StorageManager.swift */; };
 		7DC360E724BAE3E200280315 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC360E624BAE3E200280315 /* ProfileViewController.swift */; };
+		7DC9AE7324BB4B9A00FCBD5A /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC9AE7224BB4B9A00FCBD5A /* EditProfileViewController.swift */; };
 		7DE944F124B83304000A03DC /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7DE944F024B83304000A03DC /* Profile.storyboard */; };
 		7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */; };
 		7DEE53CC24AC5A5400CE6293 /* UserAuthentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */; };
@@ -104,6 +105,7 @@
 		7D8929C124AD6D3200FCB173 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		7DC360E224BAD86D00280315 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		7DC360E624BAE3E200280315 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		7DC9AE7224BB4B9A00FCBD5A /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		7DE944F024B83304000A03DC /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SchedulerViewController.swift; path = "SDDP-iFit-Team3/SchedulerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 				7DEE53CD24AC632800CE6293 /* LoginViewController.swift */,
 				7DEE53CF24AC63E800CE6293 /* RegisterViewController.swift */,
 				7DC360E624BAE3E200280315 /* ProfileViewController.swift */,
+				7DC9AE7224BB4B9A00FCBD5A /* EditProfileViewController.swift */,
 				7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */,
 				7D1C4BFD24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift */,
 				DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */,
@@ -428,6 +431,7 @@
 				7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */,
 				E320D17524AC6F95003DDA96 /* Goal.swift in Sources */,
 				DCE0E33F24B45A4800B23C46 /* ExerciseViewController.swift in Sources */,
+				7DC9AE7324BB4B9A00FCBD5A /* EditProfileViewController.swift in Sources */,
 				7DEE53CE24AC632800CE6293 /* LoginViewController.swift in Sources */,
 				1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */,
 				E3CA068C24ADCA6000339A39 /* AddGoalViewController.swift in Sources */,
