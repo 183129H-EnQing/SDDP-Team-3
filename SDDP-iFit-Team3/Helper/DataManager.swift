@@ -301,8 +301,8 @@ class DataManager {
                                 let duration : Int = data["duration"] as! Int
                                 let processPercent : Int = data["processPercent"] as! Int
                                 let totalExerciseAmount : Int = data["totalExerciseAmount"] as! Int
-
-                                let goal = Goal(goalTitle: goalTitle, activityName: activityName, date: date, duration: duration, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmount)
+                                let status : String = data["status"] as! String
+                                let goal = Goal(goalTitle: goalTitle, activityName: activityName, date: date, duration: duration, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmount,status: status)
                                     
                                 goals.append(goal)
                              

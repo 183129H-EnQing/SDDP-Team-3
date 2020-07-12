@@ -11,6 +11,7 @@ import UIKit
 class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
 
    
+    @IBOutlet weak var noGoalLabel: UILabel!
     @IBOutlet weak var goalTableView: UITableView!
     var goalList : [Goal] = []
     
@@ -40,7 +41,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         cell.progressView.setProgress(Float(g.progressPercent) / 10 , animated: false)
         
         cell.progressView.transform = cell.progressView.transform.scaledBy(x: 1, y: 15)
-   
+        cell.selectionStyle = .none
 
                  return cell
          }
@@ -49,6 +50,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         self.goalList = []
         
         self.goalTableView.isHidden = true
+        self.noGoalLabel.isHidden = false
       //  self.noSchedulesLabel.isHidden = false
         
         if let user = UserAuthentication.getLoggedInUser() {
@@ -63,7 +65,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                             print("async tableview label")
                             self.goalTableView.reloadData()
                             self.goalTableView.isHidden = false
-                         
+                            self.noGoalLabel.isHidden = true
                         }
                     }
                 }

@@ -190,8 +190,8 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let totalExerciseAmountText = Int(totalExerciseAmount.text!)!
         let user = UserAuthentication.getLoggedInUser()
         let processPercent = 0
-        
-        let newGoal = Goal(goalTitle: goalTitleText, activityName: activityNameText, date: dateText, duration: durationText, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmountText)
+        let status = "onGoing"
+        let newGoal = Goal(goalTitle: goalTitleText, activityName: activityNameText, date: dateText, duration: durationText, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmountText,status:status)
 
         DataManager.Goals.insertGoal(userId:user!.uid,newGoal) { (isSuccess) in
                 self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
