@@ -177,6 +177,7 @@
 				7D6080E9249CFF7C001F3E6E /* Fitness.storyboard */,
 				7D6080EC249D01B8001F3E6E /* Community.storyboard */,
 				7D7ED67E24A0E2F9001D52DA /* Game.storyboard */,
+				7DE944F024B83304000A03DC /* Profile.storyboard */,
 				09B1B932249322AD00D14CE6 /* AppDelegate.swift */,
 				09B1B934249322AD00D14CE6 /* SceneDelegate.swift */,
 				09B1B936249322AD00D14CE6 /* ViewController.swift */,
@@ -190,7 +191,6 @@
 				DC78681F24AE3DA20093BAE5 /* bulletSound_3.wav */,
 				DCC5778824B9A6D20003F215 /* bomb_07.wav */,
 				DC2C64A424B9C17F006B81D3 /* theboldfont.ttf */,
-				7DE944F024B83304000A03DC /* Profile.storyboard */,
 			);
 			path = "SDDP-iFit-Team3";
 			sourceTree = "<group>";
@@ -244,6 +244,7 @@
 			children = (
 				7DEE53CD24AC632800CE6293 /* LoginViewController.swift */,
 				7DEE53CF24AC63E800CE6293 /* RegisterViewController.swift */,
+				7DC360E624BAE3E200280315 /* ProfileViewController.swift */,
 				7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */,
 				7D1C4BFD24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift */,
 				DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */,
@@ -269,7 +270,6 @@
 				E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */,
 				DCC80B7124ADEBB0008AF933 /* GameViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
-				7DC360E624BAE3E200280315 /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
