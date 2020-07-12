@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var avatarImgView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
