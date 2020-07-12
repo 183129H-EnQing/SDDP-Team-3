@@ -16,16 +16,17 @@ class StorageManager {
         
     }
     
-    static func getUserProfile(userId: String, onComplete: ((String?) -> Void)?) {
-        let pathRef = storage.reference(withPath: "avatars/\(userId)")
+    static func getUserProfile(userId: String, onComplete: ((URL?) -> Void)?) {
+        //let pathRef = storage.reference(withPath: "avatars/\(userId)")
+        let pathRef = storage.reference(withPath: "04450645-C33A-4E9C-8208-BE4C0C9A39A2")
         
         pathRef.downloadURL { (downloadUrl, err) in
-            var url: String?
+            var url: URL?
             
             if let err = err {
                 print("failed to download profile: \(err)")
             } else {
-                url = downloadUrl?.absoluteString
+                url = downloadUrl
             }
             
             onComplete?(url)

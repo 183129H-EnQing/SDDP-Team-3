@@ -11,12 +11,35 @@ import UIKit
 class ProfileViewController: UIViewController {
 
     @IBOutlet weak var avatarImgView: UIImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.title = "Profile"
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let user = UserAuthentication.getLoggedInUser() {
+            DataManager.getUsername(userId: user.uid, onComplete: { (username) in
+                self.usernameLabel.isHidden = false
+                self.usernameLabel.text = username
+            })
+        
+            StorageManager.getUserProfile(userId: user.uid) { (url) in
+                //print("Image Url: \(url!)")
+                if let url = url {
+                    if let data = try? Data(contentsOf: url) {
+                        DispatchQueue.main.async {
+                            self.avatarImgView.image = UIImage(data: data)
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     /*
     // MARK: - Navigation

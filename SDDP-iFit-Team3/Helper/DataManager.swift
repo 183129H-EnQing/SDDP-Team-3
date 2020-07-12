@@ -35,6 +35,21 @@ class DataManager {
         }
     }
     
+    static func getUsername(userId: String, onComplete: ((String) -> Void)?) {
+        db.collection("usernames").document(userId).getDocument { (document, err) in
+            var username = ""
+            if let err = err {
+                print("error getting username: \(err)")
+            } else if let document = document {
+                username = document.get("username") as! String
+            } else {
+                print("user has no usernames")
+            }
+            
+            onComplete?(username)
+        }
+    }
+    
     static func addUsername(userId: String, username: String) {
         db.collection("usernames").document(userId).setData(["username": username]) { err in
             if let err = err {

@@ -19,24 +19,32 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-L8-d5d" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="158"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="elevated_crunches" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C1i-7g-7Nx">
-                                                <rect key="frame" x="69.5" y="20" width="275" height="128"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C1i-7g-7Nx">
+                                                <rect key="frame" x="-106" y="20" width="626" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="1Eh-kd-Qly"/>
                                                 </constraints>
                                             </imageView>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UsernameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mD-Ye-g8x">
+                                                <rect key="frame" x="147" y="156" width="120" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="3mD-Ye-g8x" firstAttribute="centerX" secondItem="DXb-L8-d5d" secondAttribute="centerX" id="7HO-iZ-1lB"/>
                                             <constraint firstItem="C1i-7g-7Nx" firstAttribute="centerX" secondItem="DXb-L8-d5d" secondAttribute="centerX" id="HrO-cW-8Yv"/>
                                             <constraint firstItem="C1i-7g-7Nx" firstAttribute="top" secondItem="DXb-L8-d5d" secondAttribute="top" constant="20" id="WCV-3X-RET"/>
-                                            <constraint firstAttribute="height" constant="158" id="oiJ-D2-UXc"/>
+                                            <constraint firstItem="3mD-Ye-g8x" firstAttribute="top" secondItem="C1i-7g-7Nx" secondAttribute="bottom" constant="8" id="qgG-Db-1wd"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="DXb-L8-d5d" firstAttribute="height" secondItem="KY6-kn-LRd" secondAttribute="height" priority="250" id="4A7-Tt-ul0"/>
                                     <constraint firstItem="DXb-L8-d5d" firstAttribute="width" secondItem="KY6-kn-LRd" secondAttribute="width" id="8QF-pW-d13"/>
                                     <constraint firstAttribute="bottom" secondItem="DXb-L8-d5d" secondAttribute="bottom" id="Vcs-R9-vHM"/>
                                     <constraint firstAttribute="trailing" secondItem="DXb-L8-d5d" secondAttribute="trailing" id="ZaJ-eD-bGP"/>
@@ -56,6 +64,7 @@
                     </view>
                     <connections>
                         <outlet property="avatarImgView" destination="C1i-7g-7Nx" id="IK0-BB-EtH"/>
+                        <outlet property="usernameLabel" destination="3mD-Ye-g8x" id="1dN-4c-41g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z2R-OJ-fUd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -64,6 +73,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="elevated_crunches" width="275" height="183"/>
+        <image name="img" width="626" height="626"/>
     </resources>
 </document>
