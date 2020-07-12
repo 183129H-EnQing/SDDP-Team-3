@@ -15,21 +15,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KY6-kn-LRd">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KY6-kn-LRd">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ltF-wA-VdZ">
-                                        <rect key="frame" x="143" y="30" width="128" height="128"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-L8-d5d" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C1i-7g-7Nx">
+                                                <rect key="frame" x="143" y="20" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="1Eh-kd-Qly"/>
+                                                    <constraint firstAttribute="width" secondItem="C1i-7g-7Nx" secondAttribute="height" multiplier="1:1" id="AbC-Do-fTw"/>
+                                                    <constraint firstAttribute="width" constant="128" id="w9p-GB-l3f"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="128" id="OVX-VB-jys"/>
-                                            <constraint firstAttribute="height" constant="128" id="Vbt-gg-jXy"/>
-                                            <constraint firstAttribute="width" secondItem="ltF-wA-VdZ" secondAttribute="height" multiplier="1:1" id="xgH-Ur-gQ5"/>
+                                            <constraint firstItem="C1i-7g-7Nx" firstAttribute="leading" secondItem="DXb-L8-d5d" secondAttribute="leading" constant="143" id="DGb-oh-waY"/>
+                                            <constraint firstItem="C1i-7g-7Nx" firstAttribute="top" secondItem="DXb-L8-d5d" secondAttribute="top" constant="20" id="WCV-3X-RET"/>
+                                            <constraint firstAttribute="height" constant="600" id="oiJ-D2-UXc"/>
+                                            <constraint firstAttribute="trailing" secondItem="C1i-7g-7Nx" secondAttribute="trailing" constant="143" id="yf9-ui-Szj"/>
                                         </constraints>
-                                    </imageView>
+                                    </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ltF-wA-VdZ" firstAttribute="top" secondItem="KY6-kn-LRd" secondAttribute="top" constant="30" id="WFb-Ec-Ulk"/>
-                                    <constraint firstItem="ltF-wA-VdZ" firstAttribute="centerX" secondItem="KY6-kn-LRd" secondAttribute="centerX" id="bNA-wB-42j"/>
+                                    <constraint firstItem="DXb-L8-d5d" firstAttribute="width" secondItem="KY6-kn-LRd" secondAttribute="width" id="8QF-pW-d13"/>
+                                    <constraint firstAttribute="bottom" secondItem="DXb-L8-d5d" secondAttribute="bottom" id="Vcs-R9-vHM"/>
+                                    <constraint firstAttribute="trailing" secondItem="DXb-L8-d5d" secondAttribute="trailing" id="ZaJ-eD-bGP"/>
+                                    <constraint firstItem="DXb-L8-d5d" firstAttribute="top" secondItem="KY6-kn-LRd" secondAttribute="top" id="iH5-4t-LMc"/>
+                                    <constraint firstItem="DXb-L8-d5d" firstAttribute="leading" secondItem="KY6-kn-LRd" secondAttribute="leading" id="iHW-b4-Run"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
