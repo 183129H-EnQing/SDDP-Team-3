@@ -12,16 +12,18 @@ class GenericTopNavViewController: UIViewController {
 
     let profileStoryboard: UIStoryboard = UIStoryboard(name: "Profile", bundle: nil)
     
+    // Thank god : http://swiftdeveloperblog.com/code-examples/create-uibarbuttonitem-programmatically/
+    var profileBarButton: UIBarButtonItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        // Thank god : http://swiftdeveloperblog.com/code-examples/create-uibarbuttonitem-programmatically/
-        let profileBarButton = UIBarButtonItem(title: "Profile", style: .plain, target: self, action: #selector(GenericTopNavViewController.profileButtonPressed(_:)))
+        self.profileBarButton = UIBarButtonItem(image: UIImage(systemName: "person.circle"), style: .plain, target: self, action: #selector(GenericTopNavViewController.profileButtonPressed(_:)))
         if var leftBarItems = self.navigationItem.leftBarButtonItems {
-            leftBarItems.append(profileBarButton)
+            leftBarItems.append(self.profileBarButton!)
         } else {
-            self.navigationItem.leftBarButtonItems = [profileBarButton]
+            self.navigationItem.leftBarButtonItems = [self.profileBarButton!]
         }
     }
     
