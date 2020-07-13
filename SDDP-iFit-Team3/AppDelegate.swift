@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Fritz
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -24,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
         Team3Helper.notificationCenter.delegate = self
+        FritzCore.configure()
         
         return true
     }

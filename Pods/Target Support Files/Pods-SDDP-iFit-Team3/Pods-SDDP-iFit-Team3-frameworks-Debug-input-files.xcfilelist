@@ -3,6 +3,11 @@ ${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework
 ${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework
 ${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework
+${PODS_ROOT}/FritzBase/Frameworks/FritzCore.framework
+${PODS_ROOT}/FritzBase/Frameworks/Fritz.framework
+${PODS_ROOT}/FritzBase/Frameworks/CoreMLHelpers.framework
+${PODS_ROOT}/FritzBase/Frameworks/FritzManagedModel.framework
+${PODS_ROOT}/FritzBase/Frameworks/FritzVision.framework
 ${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework
 ${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework
 ${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework

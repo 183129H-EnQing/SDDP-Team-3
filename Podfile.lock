@@ -316,6 +316,18 @@ PODS:
   - FirebaseUI/Storage (8.4.2):
     - Firebase/Storage (~> 6.0)
     - SDWebImage (~> 5.0)
+  - Fritz (5.3.7):
+    - Fritz/Vision (= 5.3.7)
+  - Fritz/Vision (5.3.7):
+    - FritzBase/Vision (= 5.3.7)
+  - FritzBase/Core (5.3.7)
+  - FritzBase/CoreMLHelpers (5.3.7)
+  - FritzBase/ManagedModel (5.3.7):
+    - FritzBase/Core (= 5.3.7)
+  - FritzBase/Vision (5.3.7):
+    - FritzBase/Core (= 5.3.7)
+    - FritzBase/CoreMLHelpers (= 5.3.7)
+    - FritzBase/ManagedModel (= 5.3.7)
   - GoogleDataTransport (6.2.1)
   - GoogleDataTransportCCTSupport (3.2.0):
     - GoogleDataTransport (~> 6.1)
@@ -390,6 +402,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - FirebaseFirestoreSwift
   - FirebaseUI
+  - Fritz
 
 SPEC REPOS:
   trunk:
@@ -407,6 +420,8 @@ SPEC REPOS:
     - FirebaseFirestoreSwift
     - FirebaseStorage
     - FirebaseUI
+    - Fritz
+    - FritzBase
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
     - GoogleSignIn
@@ -435,6 +450,8 @@ SPEC CHECKSUMS:
   FirebaseFirestoreSwift: 0cda93628782ca5a817cfecd2a8c0187436c0ae5
   FirebaseStorage: af7bdbd12177cf567df00904e3e3a93704f25b15
   FirebaseUI: e57e9b9c4340631151fbe67a14206d23d0974f37
+  Fritz: 50523aed064b7a947265307a93c556d37ded8ba0
+  FritzBase: c60971ba5df9d011e48ffc443c2e1ce1f3d6a29e
   GoogleDataTransport: 9a8a16f79feffc7f42096743de2a7c4815e84020
   GoogleDataTransportCCTSupport: 489c1265d2c85b68187a83a911913d190012158d
   GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
@@ -448,6 +465,6 @@ SPEC CHECKSUMS:
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
 
-PODFILE CHECKSUM: d4f877410ece1c24791e3083231d2ab69db34fc6
+PODFILE CHECKSUM: 7086aaedc37a09169489eb4494711b014479d2b1
 
 COCOAPODS: 1.9.1
