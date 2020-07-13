@@ -9,9 +9,11 @@
 import UIKit
 import Fritz
 
-class TrainingPlanStartViewController: UIViewController {
+class TrainingPlanStartViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    let poseModel = FritzVisionPoseModelOptions()
+    var previewView: UIImageView!
+    
+//    lazy var poseModel = FritzVisionHumanPoseModelFast()
     
     // We can also set of sensitivity parameters for our model.
     // The poseThreshold is a number between 0 and 1. Higher numbers mean
@@ -19,12 +21,39 @@ class TrainingPlanStartViewController: UIViewController {
     // positives.
     internal var poseThreshold: Double = 0.3
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+//    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+//           // FritzVisionImage objects offer convient ways to manipulate
+//           // images used as input to machine learning models.
+//           // You can resize, crop, and scale images to your needs.
+//           let image = FritzVisionImage(sampleBuffer: sampleBuffer, connection: connection)
+//
+//           // Set options for our pose estimation model using the constants
+//           // we initialized earlier in the ViewController.
+//           let options = FritzVisionPoseModelOptions()
+//           options.minPoseThreshold = poseThreshold
+//
+//           // Run the model itself on an input image.
+//           guard let poseResult = try? poseModel.predict(image, options: options) else {
+//               if let rotated = image.rotate() {
+//                   let img = UIImage(pixelBuffer: rotated)
+//                   DispatchQueue.main.async {
+//                       self.previewView.image = img
+//                   }
+//               }
+//               return
+//           }
+//           let poses = poseResult.poses()
+//           
+//           DispatchQueue.main.async {
+//               self.cameraView.image = image.draw(poses: poses)
+//           }
+//       }
     
 
     /*
@@ -38,3 +67,4 @@ class TrainingPlanStartViewController: UIViewController {
     */
 
 }
+
