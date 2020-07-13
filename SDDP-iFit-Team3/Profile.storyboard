@@ -16,10 +16,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KY6-kn-LRd">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-L8-d5d" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="818"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <subviews>
                                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UsernameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mD-Ye-g8x">
                                                 <rect key="frame" x="147" y="156" width="120" height="21"/>
@@ -65,12 +65,20 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Profile" id="VEv-Wa-02d">
-                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="kby-yB-LEP">
-                            <connections>
-                                <segue destination="mzo-KD-n2a" kind="show" id="wli-2w-Sj0"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Logout" id="EYv-g4-nZ7">
+                                <connections>
+                                    <action selector="logoutBtnPressed:" destination="XVd-90-1Mc" id="E8b-MJ-ag1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="kby-yB-LEP">
+                                <connections>
+                                    <segue destination="mzo-KD-n2a" kind="show" id="wli-2w-Sj0"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="avatarImgView" destination="C1i-7g-7Nx" id="IK0-BB-EtH"/>
                         <outlet property="usernameLabel" destination="3mD-Ye-g8x" id="1dN-4c-41g"/>
@@ -85,11 +93,11 @@
             <objects>
                 <viewController id="mzo-KD-n2a" customClass="EditProfileViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DiC-aQ-ip1">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lnC-RK-FSd">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BVG-mD-OSt">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="253"/>
@@ -169,7 +177,7 @@
                     <navigationItem key="navigationItem" title="Edit Profile" id="OJm-RS-8Fo">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="7PM-Xy-fc8">
                             <connections>
-                                <action selector="saveBtnPressed:" destination="mzo-KD-n2a" id="Phz-Eo-hPi"/>
+                                <action selector="saveBtnPressed:" destination="mzo-KD-n2a" id="O0m-1r-u7C"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
