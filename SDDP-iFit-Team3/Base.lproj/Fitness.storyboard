@@ -16,38 +16,110 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91U-M4-9Hj">
-                                <rect key="frame" x="0.0" y="162" width="414" height="224"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="pull_string"/>
-                                <connections>
-                                    <segue destination="Iy4-BP-qoo" kind="show" id="0Vr-cw-ZBo"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRy-uV-HfC">
-                                <rect key="frame" x="0.0" y="476" width="414" height="224"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="step_string"/>
-                                <connections>
-                                    <segue destination="nfh-oC-FGq" kind="show" id="9oD-46-JdJ"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Training Plan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ER7-Jt-TGW">
-                                <rect key="frame" x="20" y="403" width="99" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wa-hn-h3O">
-                                <rect key="frame" x="20" y="717" width="64" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hoD-hM-eIJ">
+                                <rect key="frame" x="0.0" y="44" width="414" height="768"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UHA-wa-Vdg" userLabel="Content View">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nTW-vs-7uV">
+                                                <rect key="frame" x="0.0" y="8" width="414" height="200"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="91U-M4-9Hj">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="XZu-0h-yrF"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="z2L-9y-CGn"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="pull_string"/>
+                                                        <connections>
+                                                            <segue destination="Iy4-BP-qoo" kind="show" id="0Vr-cw-ZBo"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Training Plan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ER7-Jt-TGW">
+                                                        <rect key="frame" x="8" y="8" width="99" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="6Lj-Os-z9Y"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="91U-M4-9Hj" secondAttribute="trailing" id="3eq-ng-jiy"/>
+                                                    <constraint firstItem="91U-M4-9Hj" firstAttribute="top" secondItem="nTW-vs-7uV" secondAttribute="top" id="KKQ-J0-XOS"/>
+                                                    <constraint firstItem="ER7-Jt-TGW" firstAttribute="top" secondItem="nTW-vs-7uV" secondAttribute="top" constant="8" id="PNF-dA-knZ"/>
+                                                    <constraint firstItem="91U-M4-9Hj" firstAttribute="leading" secondItem="nTW-vs-7uV" secondAttribute="leading" id="SMN-uC-HYq"/>
+                                                    <constraint firstItem="ER7-Jt-TGW" firstAttribute="leading" secondItem="nTW-vs-7uV" secondAttribute="leading" constant="8" id="a25-6n-sL3"/>
+                                                    <constraint firstAttribute="bottom" secondItem="91U-M4-9Hj" secondAttribute="bottom" id="dQf-Kz-2bn"/>
+                                                    <constraint firstAttribute="bottom" secondItem="ER7-Jt-TGW" secondAttribute="bottom" constant="171" id="hio-yk-Eka"/>
+                                                    <constraint firstAttribute="height" constant="200" id="l62-CX-GYg"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xk4-s2-akk">
+                                                <rect key="frame" x="0.0" y="236" width="414" height="200"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRy-uV-HfC">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="200" id="6jq-eC-p2g"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="step_string"/>
+                                                        <connections>
+                                                            <segue destination="nfh-oC-FGq" kind="show" id="9oD-46-JdJ"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wa-hn-h3O">
+                                                        <rect key="frame" x="8" y="8" width="80" height="33"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <color key="textColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="JRy-uV-HfC" firstAttribute="leading" secondItem="Xk4-s2-akk" secondAttribute="leading" id="22H-6b-w91"/>
+                                                    <constraint firstAttribute="trailing" secondItem="JRy-uV-HfC" secondAttribute="trailing" id="2mp-To-KAb"/>
+                                                    <constraint firstItem="0Wa-hn-h3O" firstAttribute="top" secondItem="Xk4-s2-akk" secondAttribute="top" constant="8" id="Fvm-Nt-QSo"/>
+                                                    <constraint firstItem="JRy-uV-HfC" firstAttribute="top" secondItem="Xk4-s2-akk" secondAttribute="top" id="cqZ-O8-hCp"/>
+                                                    <constraint firstAttribute="bottom" secondItem="0Wa-hn-h3O" secondAttribute="bottom" constant="159" id="cyT-ZB-b3e"/>
+                                                    <constraint firstAttribute="height" constant="200" id="nA9-eT-mZM"/>
+                                                    <constraint firstItem="0Wa-hn-h3O" firstAttribute="leading" secondItem="Xk4-s2-akk" secondAttribute="leading" constant="8" id="s2y-NM-Mk8"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="nTW-vs-7uV" secondAttribute="trailing" id="3fP-ZL-OBj"/>
+                                            <constraint firstItem="nTW-vs-7uV" firstAttribute="leading" secondItem="UHA-wa-Vdg" secondAttribute="leading" id="AB9-1m-f2v"/>
+                                            <constraint firstItem="Xk4-s2-akk" firstAttribute="top" secondItem="nTW-vs-7uV" secondAttribute="bottom" constant="28" id="TQ9-I3-ozK"/>
+                                            <constraint firstAttribute="trailing" secondItem="nTW-vs-7uV" secondAttribute="trailing" id="Zv5-mh-6LE"/>
+                                            <constraint firstItem="Xk4-s2-akk" firstAttribute="leading" secondItem="UHA-wa-Vdg" secondAttribute="leading" id="dhM-7j-hSx"/>
+                                            <constraint firstAttribute="trailing" secondItem="Xk4-s2-akk" secondAttribute="trailing" id="gFB-RV-gon"/>
+                                            <constraint firstAttribute="height" constant="600" id="uh4-qJ-poO"/>
+                                            <constraint firstItem="nTW-vs-7uV" firstAttribute="top" secondItem="UHA-wa-Vdg" secondAttribute="top" constant="8" id="xaD-ga-TVg"/>
+                                            <constraint firstItem="nTW-vs-7uV" firstAttribute="leading" secondItem="UHA-wa-Vdg" secondAttribute="leading" id="xcf-y9-Nab"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="UHA-wa-Vdg" firstAttribute="width" secondItem="hoD-hM-eIJ" secondAttribute="width" id="2Oc-gd-oqh"/>
+                                    <constraint firstItem="UHA-wa-Vdg" firstAttribute="leading" secondItem="hoD-hM-eIJ" secondAttribute="leading" id="8ZF-YD-rg7"/>
+                                    <constraint firstAttribute="bottom" secondItem="UHA-wa-Vdg" secondAttribute="bottom" id="SPt-q2-e5f"/>
+                                    <constraint firstItem="UHA-wa-Vdg" firstAttribute="top" secondItem="hoD-hM-eIJ" secondAttribute="top" id="d3X-O2-Re5"/>
+                                    <constraint firstAttribute="trailing" secondItem="UHA-wa-Vdg" secondAttribute="trailing" id="mFc-Qq-Ug1"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="hoD-hM-eIJ" firstAttribute="trailing" secondItem="IA9-ZT-TxN" secondAttribute="trailing" id="Cza-mN-cw0"/>
+                            <constraint firstItem="hoD-hM-eIJ" firstAttribute="leading" secondItem="IA9-ZT-TxN" secondAttribute="leading" id="b1U-Et-OQD"/>
+                            <constraint firstItem="hoD-hM-eIJ" firstAttribute="top" secondItem="IA9-ZT-TxN" secondAttribute="top" id="lJY-JL-c9x"/>
+                            <constraint firstItem="IA9-ZT-TxN" firstAttribute="bottom" secondItem="hoD-hM-eIJ" secondAttribute="bottom" constant="50" id="so7-oc-tSi"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="IA9-ZT-TxN"/>
                     </view>
                     <navigationItem key="navigationItem" id="G1C-dd-a7H"/>
@@ -525,7 +597,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaT-FX-9dH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4541" y="220"/>
+            <point key="canvasLocation" x="4412" y="220"/>
         </scene>
         <!--Training Plan Add Exercise View Controller-->
         <scene sceneID="Uuk-sG-5xt">
