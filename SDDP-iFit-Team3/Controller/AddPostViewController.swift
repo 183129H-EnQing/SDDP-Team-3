@@ -33,9 +33,9 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     @IBOutlet weak var dateText: UILabel!
     
     //var image: UIImage? = nil
-    
     var postItem : Post?
     var locationManager:CLLocationManager!
+    var userName : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +52,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
             locationManager.startUpdatingLocation()
         }
         // Do any additional setup after loading the view.
+        getUserName()
+
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -82,6 +84,21 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         
     }
     
+        func getUserName() {
+    
+          //  self.noSchedulesLabel.isHidden = false
+            
+            if let user = UserAuthentication.getLoggedInUser() {
+                print("User is logged in")
+            
+                DataManager.getUsername(userId: user.uid) { (data) in
+                        if data.count > 0 {
+                            self.userName = data
+                            print("data",data)
+                            }
+                        }
+                    }
+            }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation :CLLocation = locations[0] as CLLocation
 
@@ -161,7 +178,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     
     @IBAction func addbuttonpressed(_ sender: Any) {
-        
+       
        // let content = contenttext.text!
         
          //Team3Helper.colorTextFieldBorder(textField: contenttext, isRed: false)
@@ -197,7 +214,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
             let imageName = NSUUID().uuidString
             let photoRef = storageRef.child("\(imageName)")
             
-            guard let imageData = imageview.image?.jpegData(compressionQuality: 0.4) else {
+            guard let imageData = imageview.image?.jpegData(compressionQuality: 0.1) else {
                 return
             }
             
@@ -218,18 +235,25 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                         //print(metaImageUrl)
                         
                         let photo = metaImageUrl
-                         
-                        let posts = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo, commentPost: [ ] )
-                                                     DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
-                                                      self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-                                                               
-                                                                }
+                        let name = self.userName
+                
+                            let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo, commentPost: [ ] )
+                            
+                        
+                            
+//
+                         DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                               self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+//
+                      }
                     }
                     })
                     
                 
                 
                             }
+        
+        
             
             //imageview.sd_setImage(with: ref)
            // photoRef.downloadURL (completion: { (url, error) in

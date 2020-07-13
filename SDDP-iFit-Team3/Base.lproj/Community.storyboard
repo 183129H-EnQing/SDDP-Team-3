@@ -318,7 +318,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jl0-Rg-fWS">
-                                <rect key="frame" x="221" y="120" width="38" height="21"/>
+                                <rect key="frame" x="204" y="120" width="38" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -381,15 +381,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAO-Zv-PPp">
-                                <rect key="frame" x="230" y="105" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2h-gM-EBn">
-                                <rect key="frame" x="336" y="105" width="91" height="21"/>
+                                <rect key="frame" x="306" y="105" width="91" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -439,7 +432,6 @@
                     <connections>
                         <outlet property="addbutton" destination="HnN-ue-iIE" id="CCQ-wj-soF"/>
                         <outlet property="contenttext" destination="ndF-zf-Ccz" id="qx0-sl-HOq"/>
-                        <outlet property="dateText" destination="XAO-Zv-PPp" id="9QK-2p-Y9C"/>
                         <outlet property="imageview" destination="GZB-Ha-vp9" id="HLO-JM-EzF"/>
                         <outlet property="loctext" destination="w2h-gM-EBn" id="mAn-ke-xk0"/>
                         <outlet property="selectpicture" destination="H5Z-Aw-Mk9" id="BLm-u3-Fom"/>

@@ -44,7 +44,7 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
     username.text = postItem?.userName
     time.text = postItem?.pdatetime
     location.text = postItem?.userLocation
-        
+    imageview.sd_setImage(with: URL(string : postItem!.pimageName))
       
     self.navigationItem.title = "Comment"
         

@@ -9,6 +9,7 @@
 import UIKit
 import os.log
 import CoreLocation
+import FirebaseUI
 
 class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
     
@@ -62,8 +63,9 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
     super.viewWillAppear(animated)
 
     textcontent.text = postItem?.pcontent
-    postimage.image = UIImage(named: (postItem?.pimageName)!)
-      
+    postimage.sd_setImage(with: URL(string : postItem!.pimageName))
+    
+        
     self.navigationItem.title = "Edit Post"
         
     }
