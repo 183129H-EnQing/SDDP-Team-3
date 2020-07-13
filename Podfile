@@ -11,6 +11,7 @@ target 'SDDP-iFit-Team3' do
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
   pod 'FirebaseUI'
+  pod 'Fritz'
 
 
 end
