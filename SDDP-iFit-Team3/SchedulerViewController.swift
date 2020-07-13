@@ -59,8 +59,13 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         
         // Set exercise as title label,sStyle the duration string
         let exerciseName = SchedulerDetailsViewController.exercises[schedule.exerciseId]
-        let duration = (schedule.duration[0] > 0 ? "\(schedule.duration[0]) hrs " : "") + "\(schedule.duration[1]) mins"
-        cell.textLabel?.text = "\(exerciseName) - \(duration)"
+        
+        // Set duration
+        let durationHr = schedule.duration[0]
+        let durationMin = schedule.duration[1]
+        let durationMsg = (durationHr > 0 ? "\(durationHr) hrs" : "") + (durationHr > 0 && durationMin > 0 ? " " : "") + (durationMin > 0 ? "\(durationMin) mins" : "")
+        
+        cell.textLabel?.text = "\(exerciseName) - \(durationMsg)"
         
         // Convert from 24 hour to 12 hour time and style the time string
         let timeHour = schedule.time[0]

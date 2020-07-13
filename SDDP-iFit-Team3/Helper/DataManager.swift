@@ -128,9 +128,10 @@ class DataManager {
             }
         }
         
-        static func insertSchedule(userId: String, _ schedule: Schedule, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+        static func insertSchedule(userId: String, _ schedule: Schedule, onComplete: (((_ isSuccess:Bool, String?) -> Void))?) {
             // addDocument will create a document, with Firebase handling the auto-generation of ID
-            db.collection(tableName).addDocument(data: [
+            var ref: DocumentReference?
+            ref = db.collection(tableName).addDocument(data: [
                 "creatorId": userId,
                 "exerciseId": schedule.exerciseId,
                 "duration": schedule.duration,
@@ -138,9 +139,9 @@ class DataManager {
                 "time": schedule.time
             ]) { err in
                 if let _ = err {
-                    onComplete?(false)
+                    onComplete?(false, nil)
                 } else {
-                    onComplete?(true)
+                    onComplete?(true, ref!.documentID)
                 }
             }
         }
