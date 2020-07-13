@@ -28,7 +28,6 @@ class ProfileViewController: UIViewController {
             })
         
             StorageManager.getUserProfile(userId: user.uid) { (url) in
-                //print("Image Url: \(url!)")
                 if let url = url {
                     if let data = try? Data(contentsOf: url) {
                         DispatchQueue.main.async {
@@ -42,7 +41,8 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
         UserAuthentication.logoutUser()
-        Team3Helper.changeRootScreen(currentController: self, goToTabs: false)
+        UIApplication.shared.windows[0].rootViewController = SceneDelegate.mainStoryboard.instantiateViewController(identifier: "WelcomeNavController")
+        UIApplication.shared.windows[0].rootViewController!.present(Team3Helper.makeAlert("Success Registration! Go login!"), animated: true)
     }
     
     /*
