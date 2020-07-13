@@ -12,6 +12,7 @@ target 'SDDP-iFit-Team3' do
   pod 'Firebase/Storage'
   pod 'FirebaseUI'
   pod 'Fritz'
+  pod 'Fritz/VisionPoseModel'
 
 
 end

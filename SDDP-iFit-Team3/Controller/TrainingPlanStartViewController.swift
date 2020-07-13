@@ -7,11 +7,18 @@
 //
 
 import UIKit
-//import Fritz
+import Fritz
 
 class TrainingPlanStartViewController: UIViewController {
     
-//    let poseModel = FritzVisionHumanPoseModelFast()
+    let poseModel = FritzVisionPoseModelOptions()
+    
+    // We can also set of sensitivity parameters for our model.
+    // The poseThreshold is a number between 0 and 1. Higher numbers mean
+    // the model must be more confident about its estimate, thus reducing false
+    // positives.
+    internal var poseThreshold: Double = 0.3
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

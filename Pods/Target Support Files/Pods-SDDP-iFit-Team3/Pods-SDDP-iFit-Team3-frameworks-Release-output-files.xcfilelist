@@ -7,6 +7,9 @@ ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fritz.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreMLHelpers.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FritzManagedModel.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FritzVision.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FritzVisionHumanPoseModelAccurate.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FritzVisionHumanPoseModelFast.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FritzVisionHumanPoseModelSmall.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework
 ${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework
