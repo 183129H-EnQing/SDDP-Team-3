@@ -24,4 +24,13 @@ class UserAuthentication {
     static func getLoggedInUser() -> User? {
         return Auth.auth().currentUser
     }
+    
+    static func logoutUser() {
+        do {
+            try Auth.auth().signOut()
+        } catch let signoutErr as NSError {
+            print("Failed to sign out: \(signoutErr)")
+        }
+    }
+    
 }

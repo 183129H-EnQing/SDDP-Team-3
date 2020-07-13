@@ -39,7 +39,12 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-
+    
+    @IBAction func logoutBtnPressed(_ sender: Any) {
+        UserAuthentication.logoutUser()
+        Team3Helper.changeRootScreen(currentController: self, goToTabs: false)
+    }
+    
     /*
     // MARK: - Navigation
 

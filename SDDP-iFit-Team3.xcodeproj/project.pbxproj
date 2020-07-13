@@ -24,6 +24,8 @@
 		343BEC9824A97F4C0041352F /* LeaderboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9724A97F4C0041352F /* LeaderboardViewController.swift */; };
 		343BEC9A24A97F8A0041352F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9924A97F8A0041352F /* ActivityViewController.swift */; };
 		343BEC9C24A97FB70041352F /* AchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9B24A97FB70041352F /* AchievementViewController.swift */; };
+		345BF47D24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */; };
+		345BF47F24BC00E900BE04EA /* Fritz-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 345BF47E24BC00E900BE04EA /* Fritz-Info.plist */; };
 		34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */; };
 		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
 		7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */; };
@@ -91,6 +93,8 @@
 		343BEC9724A97F4C0041352F /* LeaderboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderboardViewController.swift; sourceTree = "<group>"; };
 		343BEC9924A97F8A0041352F /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		343BEC9B24A97FB70041352F /* AchievementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewController.swift; sourceTree = "<group>"; };
+		345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanStartViewController.swift; sourceTree = "<group>"; };
+		345BF47E24BC00E900BE04EA /* Fritz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fritz-Info.plist"; sourceTree = "<group>"; };
 		34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostViewController.swift; sourceTree = "<group>"; };
 		37F8E0AC996951137F39C466 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 				09B1B93B249322B200D14CE6 /* Assets.xcassets */,
 				09B1B93D249322B200D14CE6 /* LaunchScreen.storyboard */,
 				09B1B940249322B200D14CE6 /* Info.plist */,
+				345BF47E24BC00E900BE04EA /* Fritz-Info.plist */,
 				7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */,
 				DC78681F24AE3DA20093BAE5 /* bulletSound_3.wav */,
 				DCC5778824B9A6D20003F215 /* bomb_07.wav */,
@@ -255,6 +260,7 @@
 				DCD3C81424A329DA0066F6E7 /* TrainingPlanDetailViewController.swift */,
 				DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */,
 				DC325A3A24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift */,
+				345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */,
 				DCE0E33E24B45A4800B23C46 /* ExerciseViewController.swift */,
 				DCE0E34224B45CE000B23C46 /* ExerciseCollectionViewCell.swift */,
 				DCD142C524B7224B00AE431A /* ExerciseDetailViewController.swift */,
@@ -339,6 +345,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */,
+				345BF47F24BC00E900BE04EA /* Fritz-Info.plist in Resources */,
 				7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */,
 				7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */,
 				09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */,
@@ -429,6 +436,7 @@
 				DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */,
 				1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */,
 				7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */,
+				345BF47D24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift in Sources */,
 				E320D17524AC6F95003DDA96 /* Goal.swift in Sources */,
 				DCE0E33F24B45A4800B23C46 /* ExerciseViewController.swift in Sources */,
 				7DC9AE7324BB4B9A00FCBD5A /* EditProfileViewController.swift in Sources */,
