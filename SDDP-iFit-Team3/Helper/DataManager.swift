@@ -261,7 +261,8 @@ class DataManager {
                          "date": goal.date,
                          "duration": goal.duration,
                          "totalExerciseAmount": goal.totalExerciseAmount,
-                         "processPercent": goal.progressPercent
+                         "processPercent": goal.progressPercent,
+                         "status": goal.status
                             
                      ]) { err in
                          if let _ = err {
@@ -285,16 +286,18 @@ class DataManager {
                    */
                   db.collection(tableName).getDocuments { (snapshot, err) in
                       var goals: [Goal] = []
+                      // var count = 0
                       if let err = err {
                           print("Error for \(tableName): \(err)")
                       } else if let snapshot = snapshot, snapshot.count > 0 {
+                          
                           print("Got data: \(snapshot.count)")
                           for document in snapshot.documents {
                               print("Retrieving a document")
                               let data = document.data()
                               if userId.elementsEqual(data["userId"] as! String) {
                                   print("Document's creator matched")
-
+      
                                 let goalTitle : String = data["goalTitle"] as! String
                                 let activityName : String = data["activityName"] as! String
                                 let date : String = data["date"] as! String
@@ -303,8 +306,12 @@ class DataManager {
                                 let totalExerciseAmount : Int = data["totalExerciseAmount"] as! Int
                                 let status : String = data["status"] as! String
                                 let goal = Goal(goalTitle: goalTitle, activityName: activityName, date: date, duration: duration, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmount,status: status)
-                                    
-                                goals.append(goal)
+                                
+                                goal.goalId = document.documentID
+                                if status == "onGoing" {
+                                    goals.append(goal)
+                                }
+                               print(activityName,status)
                              
                               }
                           }
@@ -315,6 +322,21 @@ class DataManager {
                       onComplete?(goals)
                   }
               }
+        
+        static func updateGoalStatus(status:String, goalId:String, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+                       // updateData will update the specified document for the schedule.id passed in, it will only overwrite the
+                       // specified fields inside the document.
+            db.collection(tableName).document(goalId).updateData([
+                         "status": status
+                       ]) { (err) in
+                           if let err = err {
+                               print("Error updating goal status: \(err)")
+                               onComplete?(false)
+                           } else {
+                               onComplete?(true)
+                           }
+                       }
+                   }
         
 
     }

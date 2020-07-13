@@ -41,7 +41,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         cell.progressView.setProgress(Float(g.progressPercent) / 10 , animated: false)
         
         cell.progressView.transform = cell.progressView.transform.scaledBy(x: 1, y: 15)
-        cell.selectionStyle = .none
+       // cell.selectionStyle = .none
 
                  return cell
          }
@@ -60,7 +60,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                     if data.count > 0 {
                         print("data loaded")
                         self.goalList = data
-                        
+                        print(data.count)
                         DispatchQueue.main.async {
                             print("async tableview label")
                             self.goalTableView.reloadData()

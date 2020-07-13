@@ -71,11 +71,36 @@ class GoalDetailsViewController: UIViewController {
      
 
     }
+    
     @IBAction func endGoalPressed(_ sender: Any) {
+        let status = "Finish Goal"
+        let goalId = self.goal!.goalId!
+        print(goalId)
+        
+        let viewControllers = self.navigationController?.viewControllers
+        let parent = viewControllers?[1] as! GoalViewController
+        
+        if self.goal != nil {
+              // Update
+        DataManager.Goals.updateGoalStatus(status: status, goalId: goalId){ (isSuccess) in
+                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+            }
+
+       
+
+    }
         
     }
-    
-    
+    func afterDbOperation(parent: GoalViewController, isSuccess: Bool, isUpdating: Bool) {
+                if !isSuccess {
+                    let mode = isUpdating ? "updating the" : "adding a"
+                    self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) goal"), animated: true)
+                }
+                
+                parent.loadGoals()
+                self.navigationController?.popViewController(animated: true)
+            }
+  
     /*
     // MARK: - Navigation
 
@@ -87,3 +112,5 @@ class GoalDetailsViewController: UIViewController {
     */
 
 }
+    
+
