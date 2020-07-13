@@ -12,6 +12,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     //@IBOutlet weak var avatarButton: UIButton!
     @IBOutlet weak var avatarImgView: UIImageView!
+    var previousAvatar: UIImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +23,12 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         avatarImgView.layer.masksToBounds = true
         avatarImgView.layer.backgroundColor = UIColor.black.cgColor
         avatarImgView.layer.cornerRadius = avatarImgView.bounds.height/2
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let previousAvatar = previousAvatar {
+            avatarImgView.image = previousAvatar
+        }
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -51,6 +59,13 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func saveBtnPressed(_ sender: Any) {
         if let user = UserAuthentication.getLoggedInUser() {
             StorageManager.uploadUserProfile(userId: user.uid, image: avatarImgView.image!)
+            
+            let viewControllers = self.navigationController?.viewControllers
+            let controller = viewControllers?[1] as! ProfileViewController
+            
+            controller.avatarImgView.image = self.avatarImgView.image
+            
+            self.navigationController?.popViewController(animated: true)
         }
     }
     

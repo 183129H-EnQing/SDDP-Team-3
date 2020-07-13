@@ -17,10 +17,6 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         if let user = UserAuthentication.getLoggedInUser() {
             DataManager.getUsername(userId: user.uid, onComplete: { (username) in
                 self.usernameLabel.isHidden = false
@@ -45,14 +41,12 @@ class ProfileViewController: UIViewController {
         UIApplication.shared.windows[0].rootViewController!.present(Team3Helper.makeAlert("Success Registration! Go login!"), animated: true)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "EditProfile" {
+            let editController = segue.destination as! EditProfileViewController
+            editController.previousAvatar = self.avatarImgView.image
+        }
     }
-    */
-
 }

@@ -13,29 +13,31 @@ class StorageManager {
     static let storage = Storage.storage()
     
     static func uploadUserProfile(userId: String, image: UIImage) {
-        let ref = storage.reference().child("avatars/\(userId)")
-        
-        let metadata = StorageMetadata()
-        let data: Data?
-        if let pngData = image.pngData() {
-            data = pngData
-            metadata.contentType = "image/png"
-        } else if let jpgData = image.jpegData(compressionQuality: 0.5) {
-            data = jpgData
-            metadata.contentType = "image/jpg"
-        } else {
-            print("failed to get data")
-            return
-        }
-        
-        ref.putData(data!, metadata: metadata) { (metadata, err) in
-            if let err = err {
-                print("got error! cry \(err)")
-            }
-            else if let _ = metadata {
-                print("idk what's going on")
+        DispatchQueue.global(qos: .background).async {
+            let ref = storage.reference().child("avatars/\(userId)")
+            
+            let metadata = StorageMetadata()
+            let data: Data?
+            if let pngData = image.pngData() {
+                data = pngData
+                metadata.contentType = "image/png"
+            } else if let jpgData = image.jpegData(compressionQuality: 0.5) {
+                data = jpgData
+                metadata.contentType = "image/jpg"
             } else {
-                print("did it fail?")
+                print("failed to get data")
+                return
+            }
+            
+            ref.putData(data!, metadata: metadata) { (metadata, err) in
+                if let err = err {
+                    print("got error! cry \(err)")
+                }
+                else if let _ = metadata {
+                    print("idk what's going on")
+                } else {
+                    print("did it fail?")
+                }
             }
         }
     }
