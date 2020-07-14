@@ -217,11 +217,6 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q39-ne-l8o">
-                                                    <rect key="frame" x="360" y="15" width="26" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button" image="trash"/>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpp-Wl-OeY">
                                                     <rect key="frame" x="16" y="251" width="67" height="30"/>
                                                     <state key="normal" title="Comment"/>
@@ -252,7 +247,6 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentbtn" destination="Lpp-Wl-OeY" id="Nxr-c7-qjH"/>
-                                            <outlet property="deletebtn" destination="Q39-ne-l8o" id="mNe-CL-MIg"/>
                                             <outlet property="imageView" destination="vai-vf-zNd" id="fkt-Hq-cu6"/>
                                             <outlet property="locationLabel" destination="RDB-M8-Hgw" id="cd2-ms-xrF"/>
                                             <outlet property="nameLabel" destination="QL5-gv-tzk" id="AKA-FB-ScV"/>
@@ -447,7 +441,6 @@
         <image name="img" width="626" height="626"/>
         <image name="thumbnail_community" width="350" height="232"/>
         <image name="thumbnail_images (1)" width="275" height="183"/>
-        <image name="trash" width="256" height="256"/>
         <image name="write" width="200" height="200"/>
     </resources>
 </document>
