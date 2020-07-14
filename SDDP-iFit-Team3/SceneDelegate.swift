@@ -19,8 +19,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // https://stackoverflow.com/a/30592893
         if let user = UserAuthentication.getLoggedInUser() {
             print("redirecting to tab bar since user is logged in")
-            let user = User(username: user.displayName)
-            UserAuthentication.user = user
+            let actUser = User()
+            if let url = user.photoURL {
+                actUser.avatarURL = url
+            }
+            UserAuthentication.user = actUser
             let controller = SceneDelegate.mainStoryboard.instantiateViewController(identifier: "TabBarController")
             self.window?.rootViewController = controller
         } else {

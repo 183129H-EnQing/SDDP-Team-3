@@ -9,10 +9,6 @@
 import Foundation
 
 class User {
-    var username: String
+    var username: String?
     var avatarURL: URL?
-    
-    init(username: String) {
-        self.username = username
-    }
 }

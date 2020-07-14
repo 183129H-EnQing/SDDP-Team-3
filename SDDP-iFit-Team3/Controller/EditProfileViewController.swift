@@ -58,14 +58,23 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     @IBAction func saveBtnPressed(_ sender: Any) {
         if let user = UserAuthentication.getLoggedInUser() {
-            StorageManager.uploadUserProfile(userId: user.uid, image: avatarImgView.image!)
-            
-            let viewControllers = self.navigationController?.viewControllers
-            let controller = viewControllers?[1] as! ProfileViewController
-            
-            controller.avatarImgView.image = self.avatarImgView.image
-            
-            self.navigationController?.popViewController(animated: true)
+            StorageManager.uploadUserProfile(userId: user.uid, image: avatarImgView.image!) { url in
+                if let url = url {
+                    
+                    let request = user.createProfileChangeRequest()
+                    //request.displayName = username
+                    request.photoURL = url
+                    request.commitChanges()
+                    
+                    //UserAuthentication.user!.username = username
+                    UserAuthentication.user!.avatarURL = url
+                    
+                    //let viewControllers = self.navigationController?.viewControllers
+                    //let controller = viewControllers?[1] as! ProfileViewController
+                    
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
     }
     

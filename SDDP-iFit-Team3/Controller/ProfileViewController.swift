@@ -17,19 +17,13 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        if let user = UserAuthentication.getLoggedInUser() {
-            DataManager.getUsername(userId: user.uid, onComplete: { (username) in
-                self.usernameLabel.isHidden = false
-                self.usernameLabel.text = username
-            })
+        if let user = UserAuthentication.user {
+            self.usernameLabel.isHidden = false
+            self.usernameLabel.text = (user.username != nil) ? user.username : "Need set username for Auth"
         
-            StorageManager.getUserProfile(userId: user.uid) { (url) in
-                if let url = url {
-                    if let data = try? Data(contentsOf: url) {
-                        DispatchQueue.main.async {
-                            self.avatarImgView.image = UIImage(data: data)
-                        }
-                    }
+            if let url = user.avatarURL {
+                if let data = try? Data(contentsOf: url) {
+                    self.avatarImgView.image = UIImage(data: data)
                 }
             }
         }
