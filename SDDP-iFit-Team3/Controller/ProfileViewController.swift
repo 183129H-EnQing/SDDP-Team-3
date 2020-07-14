@@ -17,6 +17,10 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        avatarImgView.layer.masksToBounds = true
+        avatarImgView.layer.backgroundColor = UIColor.black.cgColor
+        avatarImgView.layer.cornerRadius = avatarImgView.bounds.height/2
+        
         if let user = UserAuthentication.user {
             self.usernameLabel.isHidden = false
             self.usernameLabel.text = (user.username != nil) ? user.username : "Need set username for Auth"
