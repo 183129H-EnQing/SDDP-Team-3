@@ -7,14 +7,38 @@
 //
 
 import UIKit
-
+import Charts
 class AchievementViewController: UIViewController {
-
+    var days: [String]!
+       
+    @IBOutlet weak var barChartView: BarChartView!
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
+           super.viewDidLoad()
+           
+           days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+           let tasks = [1.0, 1.0, 1.5, 2.0, 3.0, 5.0, 0.0]
+           
+        setChart(dataPoints:days, values: tasks)
+       }
+       
+       func setChart(dataPoints: [String], values: [Double]) {
+           
+           
+           var dataEntries: [BarChartDataEntry] = []
+           var counter = 0.0
+           
+           for i in 0..<dataPoints.count {
+               counter += 1.0
+               let dataEntry = BarChartDataEntry(x: values[i], y: counter)
+               dataEntries.append(dataEntry)
+           }
+           
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: "Time")
+           let chartData = BarChartData()
+           chartData.addDataSet(chartDataSet)
+           barChartView.data = chartData
+           
+       }
     
 
     /*
