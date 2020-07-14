@@ -73,7 +73,7 @@ class RegisterViewController: UIViewController {
             return
         }
         
-        UserAuthentication.registerUser(username: username, email: email, password: password) {
+        UserAuthentication.registerUser(email: email, password: password) {
             (authResult, err) in
             // https://github.com/firebase/quickstart-ios/blob/9ece2b1bbd4beaedaf53c782f518de8cfc38bed2/authentication/AuthenticationExampleSwift/EmailViewController.swift#L159-L170
             guard let user = authResult?.user, err == nil else {
@@ -87,6 +87,10 @@ class RegisterViewController: UIViewController {
                 self.present(Team3Helper.makeAlert(errMsg!), animated: true)
                 return
             }
+            
+            let request = user.createProfileChangeRequest()
+            request.displayName = username
+            request.commitChanges()
             
             // Add Username after user is successfully registered
             DataManager.addUsername(userId: user.uid, username: username)

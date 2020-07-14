@@ -8,12 +8,12 @@
 
 import Foundation
 import Firebase
-import FirebaseAuth
-
 
 class UserAuthentication {
     
-    static func registerUser(username: String, email: String, password: String, onComplete: AuthDataResultCallback?) {
+    static var user: User?
+    
+    static func registerUser(email: String, password: String, onComplete: AuthDataResultCallback?) {
         return Auth.auth().createUser(withEmail: email, password: password, completion: onComplete)
     }
     
@@ -21,7 +21,7 @@ class UserAuthentication {
         return Auth.auth().signIn(withEmail: email, password: password, completion: onComplete)
     }
     
-    static func getLoggedInUser() -> User? {
+    static func getLoggedInUser() -> FirebaseAuth.User? {
         return Auth.auth().currentUser
     }
     

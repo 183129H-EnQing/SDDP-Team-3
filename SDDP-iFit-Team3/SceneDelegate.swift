@@ -17,8 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // https://stackoverflow.com/a/30592893
-        if UserAuthentication.getLoggedInUser() != nil {
+        if let user = UserAuthentication.getLoggedInUser() {
             print("redirecting to tab bar since user is logged in")
+            let user = User(username: user.displayName)
+            UserAuthentication.user = user
             let controller = SceneDelegate.mainStoryboard.instantiateViewController(identifier: "TabBarController")
             self.window?.rootViewController = controller
         } else {

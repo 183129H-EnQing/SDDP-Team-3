@@ -46,7 +46,7 @@ class ProfileViewController: UIViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier == "EditProfile" {
             let editController = segue.destination as! EditProfileViewController
-            editController.previousAvatar = self.avatarImgView.image
+            editController.previousAvatar	 = self.avatarImgView.image
         }
     }
 }
