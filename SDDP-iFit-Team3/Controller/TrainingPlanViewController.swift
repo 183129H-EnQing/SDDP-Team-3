@@ -19,8 +19,11 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
 
         self.navigationItem.title = "Training Plan"
         
+        let viewExercise = UIBarButtonItem(title: "Library", style: UIBarButtonItem.Style.plain, target: self, action: #selector(viewExerciseLibrary))
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(changeView))
         let editButton = UIBarButtonItem(title: "Edit", style: UIBarButtonItem.Style.plain , target: self, action: #selector(enableEdit))
+        
+        self.navigationItem.leftBarButtonItem = viewExercise
         self.navigationItem.rightBarButtonItems = [addButton, editButton]
 //        self.navigationItem.rightBarButtonItem = addButton
             
@@ -28,6 +31,16 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
             TrainingPlan(tpName: "Hello Monday", tpDesc: "for monday morning", tpReps: 10, tpExercises: ["Jumping Jack", "Sit-Up"], tpImage: "pull_string"),
             TrainingPlan(tpName: "Welcome Friday", tpDesc: "friday evening", tpReps: 20, tpExercises: ["Plank on forearms"], tpImage: "step_string")]
         // Do any additional setup after loading the view.
+    }
+    
+    @objc func viewExerciseLibrary(){
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Fitness", bundle: Bundle.main)
+        let exerciseVC = storyBoard.instantiateViewController(withIdentifier: "ExerciseVC") as! ExerciseViewController
+        
+        navigationController?.pushViewController(exerciseVC, animated: true)
+        
+        //modal
+        //        self.present(addVC, animated: true, completion: nil)
     }
     
     @objc func changeView(){
