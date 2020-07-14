@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let user = UserAuthentication.getLoggedInUser() {
             print("redirecting to tab bar since user is logged in")
             
-            let actUser = User()
+            let actUser = User(userId: user.uid)
             if let username = user.displayName {
                 actUser.username = username
             }

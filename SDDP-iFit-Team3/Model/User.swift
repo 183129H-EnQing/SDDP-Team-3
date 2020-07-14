@@ -9,6 +9,11 @@
 import Foundation
 
 class User {
+    var userId: String
     var username: String?
     var avatarURL: URL?
+    
+    init(userId: String) {
+        self.userId = userId
+    }
 }
