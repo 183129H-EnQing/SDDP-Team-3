@@ -12,6 +12,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     //@IBOutlet weak var avatarButton: UIButton!
     @IBOutlet weak var avatarImgView: UIImageView!
+    @IBOutlet weak var usernameTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     var previousAvatar: UIImage?
     
     override func viewDidLoad() {
@@ -57,20 +59,32 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     @IBAction func saveBtnPressed(_ sender: Any) {
+        Team3Helper.colorTextFieldBorder(textField: usernameTextField, isRed: false)
+        let username = self.usernameTextField.text
+        
+        if username == nil || username == "" {
+            Team3Helper.colorTextFieldBorder(textField: usernameTextField, isRed: true)
+            self.present(Team3Helper.makeAlert("Username cannot be empty!"), animated: true)
+            return
+        }
+        
         if let user = UserAuthentication.getLoggedInUser() {
             StorageManager.uploadUserProfile(userId: user.uid, image: avatarImgView.image!) { url in
                 if let url = url {
-                    
                     let request = user.createProfileChangeRequest()
-                    //request.displayName = username
+                    request.displayName = username
                     request.photoURL = url
                     request.commitChanges()
                     
-                    //UserAuthentication.user!.username = username
+                    UserAuthentication.user!.username = username
                     UserAuthentication.user!.avatarURL = url
                     
-                    //let viewControllers = self.navigationController?.viewControllers
-                    //let controller = viewControllers?[1] as! ProfileViewController
+                    DataManager.updateUsername(userId: user.uid, username: username!)
+                    
+                    let viewControllers = self.navigationController?.viewControllers
+                    let controller = viewControllers?[1] as! ProfileViewController
+                    controller.usernameLabel.text = username
+                    controller.avatarImgView.image = self.avatarImgView.image
                     
                     self.navigationController?.popViewController(animated: true)
                 }

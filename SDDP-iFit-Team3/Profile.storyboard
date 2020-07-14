@@ -183,6 +183,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="avatarImgView" destination="rn6-DU-8Xu" id="THd-pW-rA3"/>
+                        <outlet property="passwordTextField" destination="EbO-ID-Cgm" id="6ed-yE-X3A"/>
+                        <outlet property="usernameTextField" destination="bcd-oy-2HS" id="Akv-sX-uOW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jIu-9s-Wwk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -60,6 +60,18 @@ class DataManager {
         }
     }
     
+    static func updateUsername(userId: String, username: String) {
+        db.collection("usernames").document(userId).updateData([
+            username: username
+        ]) { err in
+            if let err = err {
+                print("Error updating username: \(err)")
+            } else {
+                print("User \(userId) successfully updated their username!")
+            }
+        }
+    }
+    
     class Schedules {
         static let tableName = "schedules"
         
