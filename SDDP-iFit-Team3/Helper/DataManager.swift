@@ -365,6 +365,7 @@ class DataManager {
                          "pdatetime": post.pdatetime,
                          "userLocation": post.userLocation,
                          "pimageName": post.pimageName,
+                         "opened"      : post.opened,
                          "commentPost": post.commentPost
                             
                      ]) { err in
@@ -385,6 +386,7 @@ class DataManager {
                       "pdatetime": post.pdatetime,
                       "userLocation": post.userLocation,
                       "pimageName": post.pimageName,
+                      "opened"    : post.opened,
                       "commentPost":post.commentPost
                     
                   ]) { (err) in
@@ -435,9 +437,10 @@ class DataManager {
                                       let pdatetime : String = data["pdatetime"] as! String
                                       let userLocation : String = data["userLocation"] as! String
                                       let pimageName : String = data["pimageName"] as! String
+                                      let opened    :    Bool = data["opened"] as! Bool
                                       let commentPost : [Comment] = data["commentPost"] as! [Comment]
 
-                                        let post = Post( userName: userName, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, commentPost: commentPost)
+                                        let post = Post( userName: userName, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, opened: opened, commentPost: commentPost)
                                         
                                         
                                         post.id = document.documentID

@@ -12,6 +12,10 @@ import FirebaseUI
 class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
     var postList : [Post] = []
+    
+    var cmt = [Comment]()
+    
+    
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,6 +31,9 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
     
         self.navigationItem.title = "Posts"
+        
+       
+        
         
         
        
@@ -52,18 +59,33 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
         
     }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return postList.count
+    }
+   
    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-    return postList.count
+        
+        
+        if postList[section].opened == true {
+            return postList[section].commentPost.count
+        }
+        else{
+             return 1
+            
+        }
+        
+   
         
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // First we query the table view to see if there are // any UITableViewCells that can be reused. iOS will // create a new one if there aren't any. //
         //let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
-        
+        if indexPath.row == 0 {
                 let cell : PostCell = tableView
                 .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
                 let p = postList[indexPath.row]
@@ -72,7 +94,9 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
                 cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
-        
+                
+            
+            
                 
         
              //  DispatchQueue.global(qos: .userInitiated).async {
@@ -87,6 +111,37 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 
                 return cell
         }
+        else{
+             let cell : PostCell = tableView
+                           .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
+                           let p = postList[indexPath.row]
+                         
+                           cell.nameLabel.text = p.userName
+                                   cell.pcontentLabel.text = "\(p.pcontent) "
+                                   cell.locationLabel.text = "\(p.userLocation)"
+                                   cell.timeLabel.text = "\(p.pdatetime)"
+                                   cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+                                   cell.commentbtn.tag = indexPath.row
+                                   //cell.cmt?.text = p.commentPost[indexPath.row]
+                                   //print(p.commentPost)
+                                    
+            return cell
+        }
+        }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if postList[indexPath.section].opened == true {
+            postList[indexPath.section].opened = false
+            let section = IndexSet.init(integer: indexPath.section)
+            tableView.reloadSections(section, with: .none)
+            
+        }
+        else{
+             postList[indexPath.section].opened = true
+            let section = IndexSet.init(integer: indexPath.section)
+            tableView.reloadSections(section, with: .none)
+        }
+    }
     //delete
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -111,10 +166,10 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         if(segue.identifier == "ShowPostDetails")
      { let detailViewController = segue.destination as! EditPostViewController
         let myIndexPath = self.tableView.indexPathForSelectedRow
-            if(myIndexPath != nil) {
+           if(myIndexPath != nil) {
    
            let posts = postList[myIndexPath!.row]
-                detailViewController.postItem = posts
+               detailViewController.postItem = posts
                 
         }
 
@@ -122,11 +177,11 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
         
         if(segue.identifier == "ShowPostComments")
-          {
+         {
             let detailViewController = segue.destination as! CommentPostViewController
             
             let posts = postList[(sender as! UIButton).tag]
-                     detailViewController.postItem = posts
+                    detailViewController.postItem = posts
                      
              
 
