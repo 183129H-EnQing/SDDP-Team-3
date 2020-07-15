@@ -14,8 +14,8 @@
             filePath = "SDDP-iFit-Team3/PostViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -24,22 +24,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "31B772E3-5633-47CF-894F-89D501FC420E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SDDP-iFit-Team3/PostViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "62FA00B6-61D9-43B4-B68C-BB7448AD5DCD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -55,6 +39,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "62FA00B6-61D9-43B4-B68C-BB7448AD5DCD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SDDP-iFit-Team3/PostViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "2A8D2DA7-35C8-422C-870B-DD6D0B2CBA25"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -62,8 +62,8 @@
             filePath = "SDDP-iFit-Team3/PostViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
             landmarkName = "PostViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -96,8 +96,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "119"
             endingLineNumber = "119"
-            landmarkName = "AddPostViewController"
-            landmarkType = "3">
+            landmarkName = "locationManager(_:didUpdateLocations:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

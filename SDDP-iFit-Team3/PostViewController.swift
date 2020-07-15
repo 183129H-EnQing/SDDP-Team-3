@@ -9,19 +9,21 @@
 import UIKit
 import FirebaseUI
 
-class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataSource{
+class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate{
     
     var postList : [Post] = []
 
     @IBOutlet weak var tableView: UITableView!
     
    
-   
-    
+    @IBOutlet weak var searchbar: UISearchBar!
+    var  searchPost : [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        searchbar.delegate = self
         
     
         self.navigationItem.title = "Posts"
@@ -70,6 +72,8 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
                 cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+        
+                
         
              //  DispatchQueue.global(qos: .userInitiated).async {
                  // cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
@@ -129,6 +133,25 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                  }
      }
     
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        searchPost = [ ]
+        
+        let pp = postList
+        
+        let stringP = pp.description
+        
+        
+        for posts in stringP {
+            
+            if posts.lowercased().contains(searchText.lowercased()){
+                
+                //searchPost.append(posts)
+            }
+        }
+        
+    }
     
     
       //@IBAction func unwindToPostList(sender: UIStoryboardSegue) {

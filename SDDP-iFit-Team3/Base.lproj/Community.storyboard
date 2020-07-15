@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -176,15 +177,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="316" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bYh-TI-NQh">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="419" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bYh-TI-NQh">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="HIL-JC-0gO">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <color key="tintColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="barTintColor" name="steps"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </searchBar>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="316" id="4lk-iy-CtH" customClass="PostCell" customModule="SDDP_iFit_Team3" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="316"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="419" id="4lk-iy-CtH" customClass="PostCell" customModule="SDDP_iFit_Team3" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="414" height="419"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4lk-iy-CtH" id="ljl-nd-HaB">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="316"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="419"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QL5-gv-tzk">
@@ -227,6 +235,14 @@
                                                         <segue destination="iCB-GU-gMh" kind="show" identifier="ShowPostComments" id="G3Y-y1-2LF"/>
                                                     </connections>
                                                 </button>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0aE-9Z-gEk">
+                                                    <rect key="frame" x="20" y="310" width="348" height="86"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vai-vf-zNd" firstAttribute="top" secondItem="blU-ay-Nz7" secondAttribute="bottom" constant="21" id="GXn-Cu-qit"/>
@@ -242,6 +258,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="commentbtn" destination="Lpp-Wl-OeY" id="Nxr-c7-qjH"/>
+                                            <outlet property="commmentview" destination="0aE-9Z-gEk" id="8Gc-fT-NGQ"/>
                                             <outlet property="imageView" destination="vai-vf-zNd" id="fkt-Hq-cu6"/>
                                             <outlet property="locationLabel" destination="RDB-M8-Hgw" id="cd2-ms-xrF"/>
                                             <outlet property="nameLabel" destination="QL5-gv-tzk" id="AKA-FB-ScV"/>
@@ -277,6 +294,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="searchbar" destination="HIL-JC-0gO" id="5Ws-xC-VN2"/>
                         <outlet property="tableView" destination="bYh-TI-NQh" id="FtK-oU-bBl"/>
                     </connections>
                 </viewController>
@@ -337,6 +355,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dTV-YE-kbT">
+                                <rect key="frame" x="190" y="455" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="savebtnpressed:" destination="iCB-GU-gMh" eventType="touchUpInside" id="uWM-ib-tKV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="skb-Mv-XaA"/>
@@ -346,6 +372,7 @@
                         <outlet property="comment" destination="IV1-gW-Dsn" id="YBA-hh-atE"/>
                         <outlet property="imageview" destination="DaK-9f-TU2" id="HZv-Sy-xtN"/>
                         <outlet property="location" destination="8Mo-PG-Dk7" id="msg-iw-N3W"/>
+                        <outlet property="savebtn" destination="dTV-YE-kbT" id="bJE-RV-6ng"/>
                         <outlet property="textbox" destination="mjk-Xe-CND" id="AeL-QI-17j"/>
                         <outlet property="time" destination="jl0-Rg-fWS" id="uTh-EO-W4E"/>
                         <outlet property="username" destination="Dqx-Hh-Ie0" id="5df-25-kcg"/>
@@ -437,5 +464,8 @@
         <image name="thumbnail_community" width="350" height="232"/>
         <image name="thumbnail_images (1)" width="275" height="183"/>
         <image name="write" width="200" height="200"/>
+        <namedColor name="steps">
+            <color red="0.1809999942779541" green="0.76099997758865356" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
