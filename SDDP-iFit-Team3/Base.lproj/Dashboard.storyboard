@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Activity View Controller-->
         <scene sceneID="IWG-52-etq">
             <objects>
-                <viewController id="mql-AD-XAw" sceneMemberID="viewController">
+                <viewController id="mql-AD-XAw" customClass="ActivityViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="89Z-hG-UG8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

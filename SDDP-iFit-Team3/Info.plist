@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSHealthUpdateUsageDescription</key>
-	<string>We will use your health information to better improve your experience in the application</string>
-	<key>NSHealthShareUsageDescription</key>
-	<string>We will use your health information to better improve your experience in the application</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -26,6 +22,10 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Take a picture using your camera</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>We will use your health information to better improve your experience in the application</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>We will use your health information to better improve your experience in the application</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string> Allow this app to know your current location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
