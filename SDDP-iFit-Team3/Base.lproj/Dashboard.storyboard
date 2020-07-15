@@ -396,6 +396,14 @@
                         <viewLayoutGuide key="safeArea" id="nCZ-wH-7MD"/>
                     </view>
                     <navigationItem key="navigationItem" id="YNz-Xy-ZMw"/>
+                    <connections>
+                        <outlet property="cyclingDataLabel" destination="zcn-Pe-ZB9" id="i21-qs-Qxv"/>
+                        <outlet property="energyBurnDataLabel" destination="spl-58-Acf" id="eNH-iB-bLd"/>
+                        <outlet property="heartRateDataLabel" destination="XNQ-w3-Jhy" id="vIx-eq-1QZ"/>
+                        <outlet property="runningDataLabel" destination="Y7X-Oj-XkR" id="hrV-s8-ieA"/>
+                        <outlet property="sleepDataLabel" destination="gL4-I3-32F" id="xtu-1s-14w"/>
+                        <outlet property="stepsDataLabel" destination="Umf-mX-Lnz" id="hpQ-af-EVl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EtP-Yy-VdJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
