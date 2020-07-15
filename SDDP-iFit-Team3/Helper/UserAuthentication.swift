@@ -25,12 +25,34 @@ class UserAuthentication {
         return Auth.auth().currentUser
     }
     
-    static func logoutUser() {
+    static func updatePassword(password: String, onComplete: UserProfileChangeCallback?) {
+        UserAuthentication.getLoggedInUser()?.updatePassword(to: password, completion: onComplete)
+    }
+    
+    static func initUser(user: FirebaseAuth.User?) -> Bool {
+        if let user = user {
+            print("Able to initialise user")
+            
+            let actUser = User(userId: user.uid, email: user.email!)
+            if let username = user.displayName {
+                actUser.username = username
+            }
+            if let url = user.photoURL {
+                actUser.avatarURL = url
+            }
+            UserAuthentication.user = actUser
+            
+            return true
+        }
+        return false
+    }
+    
+    static func logoutUser(_ message: String) {
         do {
             try Auth.auth().signOut()
             UserAuthentication.user = nil
             UIApplication.shared.windows[0].rootViewController = SceneDelegate.mainStoryboard.instantiateViewController(identifier: "WelcomeNavController")
-            UIApplication.shared.windows[0].rootViewController!.present(Team3Helper.makeAlert("Success Registration! Go login!"), animated: true)
+            UIApplication.shared.windows[0].rootViewController!.present(Team3Helper.makeAlert(message), animated: true)
         } catch let signoutErr as NSError {
             print("Failed to sign out: \(signoutErr)")
         }

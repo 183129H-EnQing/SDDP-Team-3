@@ -32,7 +32,7 @@ class ProfileViewController: UIViewController {
     }
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
-        UserAuthentication.logoutUser()
+        UserAuthentication.logoutUser("Successfully logged out! Thank you for using our app!")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,8 +41,8 @@ class ProfileViewController: UIViewController {
         if segue.identifier == "EditProfile" {
             let editController = segue.destination as! EditProfileViewController
             editController.previousAvatar = self.avatarImgView.image
-            if let username = UserAuthentication.user!.username {
-                editController.usernameTextField.text = username
+            if let username = UserAuthentication.user?.username {
+                editController.previousUsername = username
             }
         }
     }
