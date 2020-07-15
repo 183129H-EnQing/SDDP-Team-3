@@ -130,7 +130,7 @@ class GameHome: SKScene {
                 let transition = SKTransition.fade(withDuration: 0.5)
                 
                 if nodeTapped.name == "battleButton"{
-                    let sceneChange = GameScene(size: self.size)
+                    let sceneChange = GameLoad(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
