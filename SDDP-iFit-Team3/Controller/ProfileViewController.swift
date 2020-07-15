@@ -35,8 +35,6 @@ class ProfileViewController: UIViewController {
     
     @IBAction func logoutBtnPressed(_ sender: Any) {
         UserAuthentication.logoutUser()
-        UIApplication.shared.windows[0].rootViewController = SceneDelegate.mainStoryboard.instantiateViewController(identifier: "WelcomeNavController")
-        UIApplication.shared.windows[0].rootViewController!.present(Team3Helper.makeAlert("Success Registration! Go login!"), animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -45,7 +43,7 @@ class ProfileViewController: UIViewController {
         if segue.identifier == "EditProfile" {
             let editController = segue.destination as! EditProfileViewController
             editController.previousAvatar = self.avatarImgView.image
-            if let username = UserAuthentication.user?.username {
+            if let username = UserAuthentication.user!.username {
                 editController.usernameTextField.text = username
             }
         }

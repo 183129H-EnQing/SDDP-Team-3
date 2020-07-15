@@ -49,7 +49,6 @@ class StorageManager {
             if let err = err {
                 print("failed to download profile: \(err)")
             } else {
-                print("url: \(downloadUrl?.absoluteURL)")
                 url = downloadUrl
             }
             
