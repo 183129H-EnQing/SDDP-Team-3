@@ -56,4 +56,11 @@ class Team3Helper {
         }
         return content
     }
+    
+    static func makeImgViewRound(_ imageView: UIImageView) {
+        // circle image ref: https://www.ioscreator.com/tutorials/circular-image-view-ios-tutorial
+        imageView.layer.masksToBounds = true
+        imageView.layer.backgroundColor = UIColor.black.cgColor
+        imageView.layer.cornerRadius = imageView.bounds.height/2
+    }
 }

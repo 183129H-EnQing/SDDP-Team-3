@@ -21,10 +21,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
         // Do any additional setup after loading the view.
         
-        // circle image ref: https://www.ioscreator.com/tutorials/circular-image-view-ios-tutorial
-        avatarImgView.layer.masksToBounds = true
-        avatarImgView.layer.backgroundColor = UIColor.black.cgColor
-        avatarImgView.layer.cornerRadius = avatarImgView.bounds.height/2
+        Team3Helper.makeImgViewRound(avatarImgView)
     }
     
     override func viewWillAppear(_ animated: Bool) {

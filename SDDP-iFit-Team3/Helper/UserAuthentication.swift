@@ -28,6 +28,9 @@ class UserAuthentication {
     static func logoutUser() {
         do {
             try Auth.auth().signOut()
+            UserAuthentication.user = nil
+            UIApplication.shared.windows[0].rootViewController = SceneDelegate.mainStoryboard.instantiateViewController(identifier: "WelcomeNavController")
+            UIApplication.shared.windows[0].rootViewController!.present(Team3Helper.makeAlert("Success Registration! Go login!"), animated: true)
         } catch let signoutErr as NSError {
             print("Failed to sign out: \(signoutErr)")
         }
