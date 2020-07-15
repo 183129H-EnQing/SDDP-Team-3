@@ -10,10 +10,12 @@ import Foundation
 
 class User {
     var userId: String
+    var email: String
     var username: String?
     var avatarURL: URL?
     
-    init(userId: String) {
+    init(userId: String, email: String) {
         self.userId = userId
+        self.email = email
     }
 }

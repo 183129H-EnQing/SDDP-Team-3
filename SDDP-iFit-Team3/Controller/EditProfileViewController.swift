@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     //@IBOutlet weak var avatarButton: UIButton!
     @IBOutlet weak var avatarImgView: UIImageView!
     @IBOutlet weak var usernameTextField: UITextField!
+    
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var newPasswordTextField: UITextField!
+    
     var previousAvatar: UIImage?
+    var previousUsername: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,8 +30,11 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if let previousAvatar = previousAvatar {
+        if let previousAvatar = self.previousAvatar {
             avatarImgView.image = previousAvatar
+        }
+        if let previousUsername = self.previousUsername {
+            usernameTextField.text = previousUsername
         }
     }
     
@@ -57,27 +65,91 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
 
     @IBAction func saveBtnPressed(_ sender: Any) {
         Team3Helper.colorTextFieldBorder(textField: usernameTextField, isRed: false)
-        let username = self.usernameTextField.text
+        Team3Helper.colorTextFieldBorder(textField: passwordTextField, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: newPasswordTextField, isRed: false)
         
-        if username == nil || username == "" {
+        let username = self.usernameTextField.text
+        let password = self.passwordTextField.text
+        let newPassword = self.newPasswordTextField.text
+        
+        if username == "" {
             Team3Helper.colorTextFieldBorder(textField: usernameTextField, isRed: true)
-            self.present(Team3Helper.makeAlert("Username cannot be empty!"), animated: true)
+            self.present(Team3Helper.makeAlert("'Username' cannot be empty!"), animated: true)
             return
         }
         
+        if newPassword != "" {
+            
+            if password == "" {
+                Team3Helper.colorTextFieldBorder(textField: passwordTextField, isRed: true)
+                self.present(Team3Helper.makeAlert("'Password' cannot be empty if you want to change password!"), animated: true)
+                return
+            }
+            
+            if newPassword!.elementsEqual(password!) {
+                Team3Helper.colorTextFieldBorder(textField: newPasswordTextField, isRed: true)
+                self.present(Team3Helper.makeAlert("'New Password' cannot be the same as 'Password'!"), animated: true)
+                return
+            }
+        }
+        
         if let user = UserAuthentication.getLoggedInUser() {
-            StorageManager.uploadUserProfile(userId: user.uid, image: avatarImgView.image!) { url in
-                if let url = url {
-                    let request = user.createProfileChangeRequest()
+            if newPassword != "" {
+                updateProfile(user: user, username: username!, shouldReroute: false) {
+                    user.reauthenticate(with: EmailAuthProvider.credential(withEmail: user.email!, password: password!), completion: { (authResult, err) in
+                        guard let user2 = authResult?.user, err == nil else {
+                            let errCode = (err! as NSError).code
+                            var errMsg = err?.localizedDescription
+                            
+                            if errCode == AuthErrorCode.wrongPassword.rawValue {
+                                errMsg = "Wrong password used"
+                            }
+                            print(err)
+                            
+                            self.present(Team3Helper.makeAlert("Re-Authentication failed: \(errMsg!)"), animated: true)
+                            
+                            return
+                        }
+                        
+                        user2.updatePassword(to: newPassword!) { (err) in
+                            if let err = err {
+                                print("Error updating password: \(err)")
+                                return
+                            } else {
+                                // change to logout
+                                print("Success updating password")
+                                UserAuthentication.logoutUser("Change password success! Please re-login")
+                            }
+                        }
+                    })
+                }
+            } else {
+                updateProfile(user: user, username: username!, shouldReroute: true, onComplete: nil)
+            }
+        }
+    }
+    
+    func updateProfile(user: FirebaseAuth.User, username: String, shouldReroute: Bool, onComplete: (() -> Void)?) {
+        StorageManager.uploadUserProfile(userId: user.uid, image: avatarImgView.image!) { url in
+            if let url = url {
+                print("hello")
+                // to prevent pointless database updates if username did not change
+                let isUsernameSame: Bool = self.previousUsername != nil && self.previousUsername!.elementsEqual(username)
+                let request = UserAuthentication.getLoggedInUser()!.createProfileChangeRequest()
+                if !isUsernameSame {
                     request.displayName = username
-                    request.photoURL = url
-                    request.commitChanges()
-                    
+                }
+                request.photoURL = url
+                request.commitChanges()
+                
+                UserAuthentication.user!.avatarURL = url
+                
+                if !isUsernameSame {
                     UserAuthentication.user!.username = username
-                    UserAuthentication.user!.avatarURL = url
-                    
-                    DataManager.updateUsername(userId: user.uid, username: username!)
-                    
+                    DataManager.updateUsername(userId: user.uid, username: username)
+                }
+                
+                if shouldReroute {
                     let viewControllers = self.navigationController?.viewControllers
                     let controller = viewControllers?[1] as! ProfileViewController
                     controller.usernameLabel.text = username
@@ -86,6 +158,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     self.navigationController?.popViewController(animated: true)
                 }
             }
+            
+            onComplete?()
         }
     }
     
