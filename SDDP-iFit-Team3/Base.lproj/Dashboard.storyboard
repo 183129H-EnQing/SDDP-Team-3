@@ -654,7 +654,7 @@
                         <viewLayoutGuide key="safeArea" id="Er0-C1-aK9"/>
                     </view>
                     <navigationItem key="navigationItem" id="rYu-nY-cDB">
-                        <barButtonItem key="leftBarButtonItem" image="person.circle" catalog="system" id="gDJ-XF-Cxo" userLabel="Profile">
+                        <barButtonItem key="leftBarButtonItem" image="person.circle" catalog="system" style="plain" id="gDJ-XF-Cxo" userLabel="Profile">
                             <connections>
                                 <segue destination="0OM-fr-aWf" kind="show" id="q3J-Zk-xDF"/>
                             </connections>

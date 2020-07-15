@@ -19,8 +19,21 @@ class DashboardViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //Team3Helper.makeImgViewRound(profileBarButton!)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let user = UserAuthentication.user, let url = user.avatarURL {
+            print("url \(url)")
+            if let data = try? Data(contentsOf: url) {
+                // to make the image color default color: https://stackoverflow.com/a/22483234
+                let image = UIImage(data: data)?.sd_resizedImage(with: CGSize(width: 30, height: 30), scaleMode: .aspectFit)?.withRenderingMode(.alwaysOriginal)
+                self.profileBarButton.image = image
+            }
+        }
+    }
 
     
    
@@ -38,4 +51,10 @@ class DashboardViewController: UIViewController {
     }
     */
 
+}
+
+struct DashboardViewController_Previews: PreviewProvider {
+    static var previews: some View {
+        /*@START_MENU_TOKEN@*/Text("Hello, World!")/*@END_MENU_TOKEN@*/
+    }
 }

@@ -17,9 +17,7 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        avatarImgView.layer.masksToBounds = true
-        avatarImgView.layer.backgroundColor = UIColor.black.cgColor
-        avatarImgView.layer.cornerRadius = avatarImgView.bounds.height/2
+        Team3Helper.makeImgViewRound(avatarImgView)
         
         if let user = UserAuthentication.user {
             self.usernameLabel.isHidden = false
