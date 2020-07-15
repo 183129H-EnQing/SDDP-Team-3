@@ -25,6 +25,8 @@ class PostCell: UITableViewCell {
     
     @IBOutlet weak var deletebtn: UIButton!
     
+    @IBOutlet weak var commmentview: UITextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

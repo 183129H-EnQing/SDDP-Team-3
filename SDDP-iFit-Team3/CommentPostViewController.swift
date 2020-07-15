@@ -25,6 +25,7 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
     
     @IBOutlet weak var comment: UILabel!
     
+    @IBOutlet weak var savebtn: UIButton!
     
     var postItem : Post?
     
@@ -42,15 +43,57 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
     comment.text = postItem?.pcontent
     imageview.image = UIImage(named: (postItem?.pimageName)!)
     username.text = postItem?.userName
-    time.text = postItem?.pdatetime
-    location.text = postItem?.userLocation
+    
     imageview.sd_setImage(with: URL(string : postItem!.pimageName))
       
     self.navigationItem.title = "Comment"
         
     }
     
-  
+    
+    
+    @IBAction func savebtnpressed(_ sender: Any) {
+         if let user = UserAuthentication.getLoggedInUser(){
+                   
+                   let content = textbox.text ?? ""
+                         let date = Date()
+                         let formatter = DateFormatter()
+                        formatter.dateFormat = "MMM d, h:mm a"
+                         let datetime = formatter.string(from: date)
+            let name = username.text ?? ""
+               let loca = location.text ?? ""
+               
+                   let viewControllers = self.navigationController?.viewControllers
+                   let parent = viewControllers?[1] as! PostViewController
+               
+             let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "" , commentPost: [ ] )
+               
+                if self.postItem != nil {
+                              // Update
+                              posts.id = self.postItem!.id!
+                              DataManager.Posts.updatePost(post: posts) { (isSuccess) in
+                                  self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
+                              }
+                          } else {
+                              // Add
+                              DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                                 self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                                         
+                                     }
+                          }
+               }
+        
+    }
+    
+    func afterDbOperation(parent: PostViewController, isSuccess: Bool, isUpdating: Bool) {
+        if !isSuccess {
+            let mode = isUpdating ? "updating the" : "adding a"
+            self.present(Team3Helper.makeAlert("Wasn't successful in \(mode) post"), animated: true)
+        }
+        
+        parent.loadPosts()
+        self.navigationController?.popViewController(animated: true)
+    }
 
     /*
     // MARK: - Navigation

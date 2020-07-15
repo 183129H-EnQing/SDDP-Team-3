@@ -140,6 +140,8 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
                   let formatter = DateFormatter()
                  formatter.dateFormat = "MMM d, h:mm a"
                   let datetime = formatter.string(from: date)
+            
+       // let name = 
         
         let loca = location.text ?? ""
         
