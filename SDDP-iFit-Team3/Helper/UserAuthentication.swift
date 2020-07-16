@@ -29,22 +29,21 @@ class UserAuthentication {
         UserAuthentication.getLoggedInUser()?.updatePassword(to: password, completion: onComplete)
     }
     
-    static func initUser(user: FirebaseAuth.User?) -> Bool {
+    static func initUser(user: FirebaseAuth.User?, onComplete: ((User?) -> Void)?) {
         if let user = user {
-            print("Able to initialise user")
-            
-            let actUser = User(userId: user.uid, email: user.email!)
-            if let username = user.displayName {
-                actUser.username = username
+            DispatchQueue.global(qos: .default).async {
+                DataManager.getUserData(userId: user.uid) { (actUser) in
+                    if let actUser = actUser {
+                        print("Able to initialise user")
+                        
+                        UserAuthentication.user = actUser
+                    }
+                    print("after")
+                    onComplete?(actUser)
+                }
             }
-            if let url = user.photoURL {
-                actUser.avatarURL = url
-            }
-            UserAuthentication.user = actUser
-            
-            return true
+            print("done")
         }
-        return false
     }
     
     static func logoutUser(_ message: String) {

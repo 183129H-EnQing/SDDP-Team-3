@@ -15,9 +15,10 @@ import FirebaseFirestore
 class DataManager {
     static let db = Firestore.firestore()
 
+    static let userTableName = "usernames"
     // User ID: User name
     static func loadUsernames(onComplete: (([String: String]) -> Void)?) {
-        db.collection("usernames").getDocuments() { (querySnapshot, err) in
+        db.collection(userTableName).getDocuments() { (querySnapshot, err) in
             var usernames: [String: String] = [:]
             
             if let err = err {
@@ -35,23 +36,35 @@ class DataManager {
         }
     }
     
-    static func getUsername(userId: String, onComplete: ((String) -> Void)?) {
-        db.collection("usernames").document(userId).getDocument { (document, err) in
-            var username = ""
+    static func getUserData(userId: String, onComplete: ((User?) -> Void)?) {
+        db.collection(userTableName).document(userId).getDocument { (document, err) in
+            var user: User?
             if let err = err {
-                print("error getting username: \(err)")
+                print("error getting user data: \(err)")
             } else if let document = document {
-                username = document.get("username") as! String
+                let email = document.get("email") as! String
+                let username = document.get("username") as! String
+                
+                user = User(userId: userId, email: email)
+                user!.username = username
+                
+                if let avatarUrl = document.get("avatarURL") as? String {
+                    user!.avatarURL = URL(string: avatarUrl)
+                }
+                
+                if let fitnessInfo = document.get("fitnessInfo") {
+                    print(fitnessInfo)
+                }
             } else {
-                print("user has no usernames")
+                print("user has no data")
             }
             
-            onComplete?(username)
+            onComplete?(user)
         }
     }
     
     static func addUsername(userId: String, username: String) {
-        db.collection("usernames").document(userId).setData(["username": username]) { err in
+        db.collection(userTableName).document(userId).setData(["username": username]) { err in
             if let err = err {
                 print("Error adding username: \(err)")
             } else {
@@ -60,14 +73,12 @@ class DataManager {
         }
     }
     
-    static func updateUsername(userId: String, username: String) {
-        db.collection("usernames").document(userId).updateData([
-            username: username
-        ]) { err in
+    static func updateUser(userId: String, userData: [String:Any]) {
+        db.collection(userTableName).document(userId).updateData(userData) { err in
             if let err = err {
-                print("Error updating username: \(err)")
+                print("Error updating user: \(err)")
             } else {
-                print("User \(userId) successfully updated their username!")
+                print("User \(userId) successfully updated their user!")
             }
         }
     }
