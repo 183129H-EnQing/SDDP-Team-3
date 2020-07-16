@@ -12,6 +12,7 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var avatarImgView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var bmiLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,12 @@ class ProfileViewController: UIViewController {
         
         if let user = UserAuthentication.user {
             self.usernameLabel.text = (user.username != nil) ? user.username : "Need set username for Auth"
+            
+            if let fitnessInfo = user.fitnessInfo {
+                let weight = fitnessInfo.weight
+                let height = fitnessInfo.height
+                bmiLabel.text = "BMI: \(weight/pow(height, height))"
+            }
         }
     }
     

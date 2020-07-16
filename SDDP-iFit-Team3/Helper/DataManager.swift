@@ -44,16 +44,22 @@ class DataManager {
             } else if let document = document {
                 let email = document.get("email") as! String
                 let username = document.get("username") as! String
+                let tookSurvey = document.get("tookSurvey") as! Bool
                 
                 user = User(userId: userId, email: email)
                 user!.username = username
+                user!.tookSurvey = tookSurvey
                 
                 if let avatarUrl = document.get("avatarURL") as? String {
                     user!.avatarURL = URL(string: avatarUrl)
                 }
                 
-                if let fitnessInfo = document.get("fitnessInfo") {
+                if let fitnessInfo = document.get("fitnessInfo") as? [String:Float] {
                     print(fitnessInfo)
+                    let weight = fitnessInfo["weight"]!
+                    let height = fitnessInfo["height"]!
+                    
+                    user?.fitnessInfo = FitnessInfo(weight: weight, height: height)
                 }
             } else {
                 print("user has no data")
@@ -63,8 +69,12 @@ class DataManager {
         }
     }
     
-    static func addUsername(userId: String, username: String) {
-        db.collection(userTableName).document(userId).setData(["username": username]) { err in
+    static func addUser(userId: String, username: String, email: String) {
+        db.collection(userTableName).document(userId).setData([
+            "username": username,
+            "email": email,
+            "tookSurvey": false
+        ]) { err in
             if let err = err {
                 print("Error adding username: \(err)")
             } else {

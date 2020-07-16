@@ -27,6 +27,7 @@
 		345BF47D24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */; };
 		345BF47F24BC00E900BE04EA /* Fritz-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 345BF47E24BC00E900BE04EA /* Fritz-Info.plist */; };
 		34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */; };
+		7D0CAFA724C0AC4E00325F82 /* SurveyFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CAFA624C0AC4E00325F82 /* SurveyFormViewController.swift */; };
 		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
 		7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */; };
 		7D1C4BFE24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BFD24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift */; };
@@ -109,6 +110,7 @@
 		345BF47E24BC00E900BE04EA /* Fritz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fritz-Info.plist"; sourceTree = "<group>"; };
 		34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostViewController.swift; sourceTree = "<group>"; };
 		45F1C9638BF2507F02570E7D /* Pods-SDDP-iFit-Team3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.release.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.release.xcconfig"; sourceTree = "<group>"; };
+		7D0CAFA624C0AC4E00325F82 /* SurveyFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyFormViewController.swift; sourceTree = "<group>"; };
 		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 		7D1C4BFD24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulerDetailsViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				7DEE53CF24AC63E800CE6293 /* RegisterViewController.swift */,
 				7DC360E624BAE3E200280315 /* ProfileViewController.swift */,
 				7DC9AE7224BB4B9A00FCBD5A /* EditProfileViewController.swift */,
+				7D0CAFA624C0AC4E00325F82 /* SurveyFormViewController.swift */,
 				7DEAECE424A0F04700C9CCBC /* SchedulerViewController.swift */,
 				7D1C4BFD24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift */,
 				DC9EE49824A307660080D3A2 /* TrainingPlanViewController.swift */,
@@ -472,6 +475,7 @@
 				1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */,
 				7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */,
 				345BF47D24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift in Sources */,
+				7D0CAFA724C0AC4E00325F82 /* SurveyFormViewController.swift in Sources */,
 				E320D17524AC6F95003DDA96 /* Goal.swift in Sources */,
 				DCE0E33F24B45A4800B23C46 /* ExerciseViewController.swift in Sources */,
 				7DC9AE7324BB4B9A00FCBD5A /* EditProfileViewController.swift in Sources */,
