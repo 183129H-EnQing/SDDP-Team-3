@@ -191,9 +191,46 @@ class DataManager {
     class TrainingPlanClass {
         static let tableName = "trainingPlan"
         
-        static func insertTrainingPlan(userId: String, _ trainingPlan: TrainingPlan, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+        static func loadTrainingPlan(onComplete: (([TrainingPlan]) -> Void)?) {
+            db.collection(tableName).getDocuments() { (querySnapshot, err) in
+                var trainingPlanList : [TrainingPlan] = []
+                if let err = err
+                { // Handle errors here.
+                    //
+                    print("Error getting documents: \(err)") }
+                else
+                {
+                    for document in querySnapshot!.documents
+                    {
+                        // This line tells Firestore to retrieve all fields
+                        // and update it into our Movie object automatically.
+                        //
+                        // This requires the Movie object to implement the
+                        // Codable protocol.
+                        //
+                        let id = document.documentID
+                        let userId = document.data()["userId"] as! String
+                        let name = document.data()["name"] as! String
+                        let desc = document.data()["desc"] as! String
+                        let reps = document.data()["reps"] as! Int
+                        let exerciseList = document.data()["exercises"] as! [String]
+                        let image = document.data()["image"] as! String
+                        
+                        let tp = TrainingPlan(id: id, userId: userId, tpName: name, tpDesc: desc, tpReps: reps, tpExercises: exerciseList, tpImage: image)
+                        if tp != nil {
+                            trainingPlanList.append(tp) }
+                    } }
+                // Once we have completed processing, call the onCompletes
+                // closure passed in by the caller.
+                //
+                onComplete?(trainingPlanList)
+                
+            }
+        }
+        
+        static func insertTrainingPlan(_ trainingPlan: TrainingPlan, onComplete: (((_ isSuccess:Bool) -> Void))?) {
             db.collection(tableName).addDocument(data: [
-                "userId": userId,
+                "userId": trainingPlan.userId,
                 "name": trainingPlan.tpName,
                 "desc": trainingPlan.tpDesc,
                 "reps": trainingPlan.tpReps,
@@ -202,15 +239,18 @@ class DataManager {
             ]) { err in
                 if let _ = err {
                     onComplete?(false)
+                    print("false")
                 } else {
                     onComplete?(true)
+                    print("true")
                 }
             }
         }
         
         
         static func updateTrainingPlan(trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
-            db.collection(tableName).document(trainingPlan.id!).updateData([
+            db.collection(tableName).document(trainingPlan.id).updateData([
+                "userId": trainingPlan.userId,
                 "name": trainingPlan.tpName,
                 "desc": trainingPlan.tpDesc,
                 "reps": trainingPlan.tpReps,
@@ -219,8 +259,10 @@ class DataManager {
             ]) { err in
                 if let _ = err {
                     onComplete?(false)
+//                    print("false")
                 } else {
                     onComplete?(true)
+//                    print("true")
                 }
             }
         }
