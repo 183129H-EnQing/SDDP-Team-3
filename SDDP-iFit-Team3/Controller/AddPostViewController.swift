@@ -213,11 +213,10 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
             let storageRef = storage.reference()
             let imageName = NSUUID().uuidString
             
-           
-                
+       
             let photoRef = storageRef.child("\(imageName)")
             
-                guard let imageData = self.imageview.image?.jpegData(compressionQuality: 0.1) else {
+                guard let imageData = self.imageview.image?.jpegData(compressionQuality: 0.5) else {
                 return
             }
             
@@ -243,7 +242,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                       }
                     }
                     })
-                            }
+                            
+            }
             
         
         

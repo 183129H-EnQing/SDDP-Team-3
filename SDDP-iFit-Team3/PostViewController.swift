@@ -21,7 +21,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
    
     @IBOutlet weak var searchbar: UISearchBar!
-    var  searchPost : [String]!
+    var  searchPost : [Post] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +70,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
         
        
-            return postList.count
+            return searchPost.count
        
         
    
@@ -82,12 +82,23 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
        
                 let cell : PostCell = tableView
                 .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
-                let p = postList[indexPath.row]
+                let p = searchPost[indexPath.row]
                 cell.nameLabel.text = p.userName
                 cell.pcontentLabel.text = "\(p.pcontent) "
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
+               
+        //DispatchQueue.global(qos: .userInitiated).async{
+        //if let data = try? Data(contentsOf: NSURL(string: p.pimageName)! as URL){
+             //DispatchQueue.main.async {
                 cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+                //cell.ppimageView.image = UIImage(data: data)
+                
+              /// }
+           // }
+        //}
+        
+               
                 
             
             
@@ -168,23 +179,24 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        searchPost = [ ]
-        
-        let pp = postList
-        
-        let stringP = pp.description
-        
-        
-        for posts in stringP {
-            
-            if posts.lowercased().contains(searchText.lowercased()){
-                
-                //searchPost.append(posts)
-            }
+        guard !searchText.isEmpty else{
+            searchPost = postList
+            tableView.reloadData()
+            return
         }
-        
+        searchPost = postList.filter({ (Post) -> Bool in
+          guard  let text = searchBar.text else {return false}
+            return Post.pcontent.lowercased().contains(text.lowercased())
+            
+        })
+        tableView.reloadData()
     }
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+    
+    }
+    
+    
     
     
       //@IBAction func unwindToPostList(sender: UIStoryboardSegue) {
@@ -228,6 +240,8 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     func loadPosts() {
         self.postList = []
         
+       
+        
         self.tableView.isHidden = true
      
         
@@ -238,6 +252,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                     if data.count > 0 {
                         print("data loaded")
                         self.postList = data
+                        self.searchPost = self.postList
                         
                         DispatchQueue.main.async {
                             print("async tableview label")
