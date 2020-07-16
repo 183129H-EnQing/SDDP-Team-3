@@ -105,17 +105,35 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     
     @IBAction func addTrainingPressed(_ sender: Any) {
         
-        //do function for update plan
-        
-        if validateInput() == false{
-            newTrainingPlan = TrainingPlan(tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: exerciseListFrom, tpImage: "")
-//            print(newTrainingPlan)
+        if validateInput() == false && self.exisitngTP == nil{
             
-            DataManager.TrainingPlanClass.insertTrainingPlan(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", newTrainingPlan!, onComplete: nil)
+            newTrainingPlan = TrainingPlan(id: "", userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: exerciseListFrom, tpImage: "pull_string")
+
+            DataManager.TrainingPlanClass.insertTrainingPlan(newTrainingPlan!, onComplete: nil)
             
             self.navigationController?.popViewController(animated: true)
-            self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)
+            self.navigationController?.viewControllers[0].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)
         }
+        else if validateInput() == false && self.exisitngTP != nil {
+            
+            //update fields to existingTP
+            self.exisitngTP!.tpName = self.titleLabel.text!
+//            print(self.exisitngTP!.tpName)
+            self.exisitngTP!.tpDesc = self.descLabel.text!
+            self.exisitngTP!.tpReps = Int(self.repsLabel.text!)!
+            //                imageView.image = UIImage(named: exisitngTP!.tpImage)
+            //                self.exisitngTP!.tpExercises = exerciseListFrom
+            
+            //update exisitng TP in firebase
+            DataManager.TrainingPlanClass.updateTrainingPlan(trainingPlan: exisitngTP!) { (success) in
+                
+                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.viewControllers[1].viewWillAppear(true)
+                self.navigationController?.viewControllers[0].viewWillAppear(true)
+                self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("Existing Training Plan updated!"), animated: true)
+            }
+        }
+        
     }
     
     func requestExercise(_ completionHandler: (_ success: Bool) -> Void) {

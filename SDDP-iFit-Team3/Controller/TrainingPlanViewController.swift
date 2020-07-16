@@ -27,10 +27,31 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationItem.rightBarButtonItems = [addButton, editButton]
 //        self.navigationItem.rightBarButtonItem = addButton
             
-        self.trainingPlanList = [
-            TrainingPlan(tpName: "Hello Monday", tpDesc: "for monday morning", tpReps: 10, tpExercises: ["Jumping Jack", "Sit-Up"], tpImage: "pull_string"),
-            TrainingPlan(tpName: "Welcome Friday", tpDesc: "friday evening", tpReps: 20, tpExercises: ["Plank on forearms"], tpImage: "step_string")]
+//        self.trainingPlanList = [
+//            TrainingPlan(id: "", userId: "", tpName: "Hello Monday", tpDesc: "for monday morning", tpReps: 10, tpExercises: ["Jumping Jack", "Sit-Up"], tpImage: "pull_string"),
+//            TrainingPlan(id: "", userId: "", tpName: "Welcome Friday", tpDesc: "friday evening", tpReps: 20, tpExercises: ["Plank on forearms"], tpImage: "step_string")]
+        
+        loadTrainingPlan()
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        loadTrainingPlan()
+        tableView.reloadData()
+    }
+    
+    func loadTrainingPlan(){
+        DataManager.TrainingPlanClass.loadTrainingPlan { (data) in
+            
+            if data.count > 0 {
+                self.trainingPlanList = data
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
     
     @objc func viewExerciseLibrary(){

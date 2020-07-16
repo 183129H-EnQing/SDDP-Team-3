@@ -9,7 +9,8 @@
 import Foundation
 
 class TrainingPlan: NSObject {
-    var id: String?
+    var id: String
+    var userId: String
     var tpName: String
     var tpDesc: String
     var tpReps : Int
@@ -18,7 +19,9 @@ class TrainingPlan: NSObject {
     
     
     
-    init(tpName: String, tpDesc: String, tpReps: Int, tpExercises: [String], tpImage: String){
+    init(id: String, userId: String, tpName: String, tpDesc: String, tpReps: Int, tpExercises: [String], tpImage: String){
+        self.id = id
+        self.userId = userId
         self.tpName = tpName
         self.tpDesc = tpDesc
         self.tpReps = tpReps

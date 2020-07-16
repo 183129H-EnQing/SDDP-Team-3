@@ -79,7 +79,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         let viewControllers = self.navigationController?.viewControllers
         print("ViewControllers length: \(viewControllers!.count)")
         
-        let addTPVC = viewControllers![2] as! TrainingPlanAddViewController
+        let addTPVC = viewControllers![1] as! TrainingPlanAddViewController
         
         //let addTPVC = self.storyboard?.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
         

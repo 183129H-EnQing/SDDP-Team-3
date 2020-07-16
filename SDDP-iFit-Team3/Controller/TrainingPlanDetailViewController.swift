@@ -33,6 +33,14 @@ class TrainingPlanDetailViewController: UIViewController, UITableViewDelegate, U
         //exercises not added
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        trainingPlanImage.image = UIImage(named: (trainingPlanItem?.tpImage)!)
+        nameLabel.text = trainingPlanItem?.tpName
+        descLabel.text = trainingPlanItem?.tpDesc
+        repsLabel.text = "\(trainingPlanItem!.tpReps)"
+        //exercises not added
+    }
+    
     @objc func enableEdit(){
         let storyBoard: UIStoryboard = UIStoryboard(name: "Fitness", bundle: Bundle.main)
         let editVC = storyBoard.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
