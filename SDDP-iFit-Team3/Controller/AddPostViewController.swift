@@ -232,17 +232,11 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                 photoRef.downloadURL (completion: { (url, error) in
                     if let metaImageUrl = url?.absoluteString{
                         //print(metaImageUrl)
-                        
                         let photo = metaImageUrl
-                        
-                    
                         let name = self.userName
                 
                             let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false, commentPost: [ ] )
-                            
-                        
-                            
-//
+    
                          DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
                                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
 //
