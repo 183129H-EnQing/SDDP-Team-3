@@ -277,6 +277,17 @@ class DataManager {
                 }
             }
         }
+        
+        static func deleteTrainingPlan(trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+            db.collection(tableName).document(trainingPlan.id).delete { (err) in
+                if let err = err {
+                    print("Error deleting trainingPlan: \(err)")
+                    onComplete?(false)
+                } else {
+                    onComplete?(true)
+                }
+            }
+        }
     }
     
     class ExerciseClass: Codable {

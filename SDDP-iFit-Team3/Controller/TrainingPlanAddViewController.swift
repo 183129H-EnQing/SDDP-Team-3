@@ -25,6 +25,7 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     
     var newTrainingPlan : TrainingPlan?
     var exerciseListFrom : [String] = ["he"]
+    var uploadImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +69,7 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         picker.delegate = self
         
         // Setting this to true allows the user to crop and scale
-        // the image to a square after the image is selected. // picker.allowsEditing = true
+        // the image to a square after the image is selected. // picker.allowsEditing = true¸
         picker.sourceType = .photoLibrary
         self.present(picker, animated: true)
     }
@@ -77,6 +78,8 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         
         let chosenImage : UIImage = info[.editedImage] as! UIImage
         self.imageView!.image = chosenImage
+        
+        self.uploadImage = chosenImage
         
         // This saves the image selected / shot by the user
         UIImageWriteToSavedPhotosAlbum(chosenImage, nil, nil, nil)
