@@ -56,6 +56,9 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
                
                
            }
+        
+        getUserName()
+        
     }
     // @objc func saveButtonclicked()
        //{
