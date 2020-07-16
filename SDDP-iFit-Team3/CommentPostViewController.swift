@@ -66,21 +66,21 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
                    let viewControllers = self.navigationController?.viewControllers
                    let parent = viewControllers?[1] as! PostViewController
                
-             let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "" , commentPost: [ ] )
+            //let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "", opened: false ,  commentPost: [ ] )
                
-                if self.postItem != nil {
+                //if self.postItem != nil {
                               // Update
-                              posts.id = self.postItem!.id!
-                              DataManager.Posts.updatePost(post: posts) { (isSuccess) in
-                                  self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
-                              }
-                          } else {
+                            //  posts.id = self.postItem!.id!
+                             // DataManager.Posts.updatePost(post: posts) { (isSuccess) in
+                              //    self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
+                            //  }
+                        //  } else {
                               // Add
-                              DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
-                                                 self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                           //   DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                        //         self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
                                          
-                                     }
-                          }
+                                    // }
+                       //   }
                }
         
     }

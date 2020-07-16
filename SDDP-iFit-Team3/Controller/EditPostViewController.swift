@@ -148,7 +148,7 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
             let viewControllers = self.navigationController?.viewControllers
             let parent = viewControllers?[1] as! PostViewController
         
-      let  posts = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "" , commentPost: [ ] )
+      let  posts = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "" ,opened:false , commentPost: [ ] )
         
          if self.postItem != nil {
                        // Update

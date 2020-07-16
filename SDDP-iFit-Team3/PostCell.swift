@@ -27,6 +27,11 @@ class PostCell: UITableViewCell {
     
     @IBOutlet weak var commmentview: UITextView!
     
+    @IBOutlet weak var viewcmt: UIButton!
+    
+    
+    @IBOutlet weak var cmt: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

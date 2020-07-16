@@ -237,7 +237,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                         let photo = metaImageUrl
                         let name = self.userName
                 
-                            let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo, commentPost: [ ] )
+                            let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false, commentPost: [ ] )
                             
                         
                             
