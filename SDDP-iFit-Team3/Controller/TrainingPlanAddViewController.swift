@@ -25,7 +25,9 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     
     var newTrainingPlan : TrainingPlan?
     var exerciseListFrom : [String] = ["he"]
+    
     var uploadImage: UIImage?
+    var uploadImageUUID: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,9 +112,25 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         
         if validateInput() == false && self.exisitngTP == nil{
             
-            newTrainingPlan = TrainingPlan(id: "", userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: exerciseListFrom, tpImage: "pull_string")
+            var tpImage: String = "step_string"
+            
+            if self.uploadImage != nil {
+                StorageManager.uploadTrainingPlanImage(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", image: self.uploadImage!) { url in
+                    if let url = url {
+                        
+                        let imageName = NSUUID().uuidString
+                        self.uploadImageUUID = imageName
+                        
+                        tpImage = "\(url)"
+                    }
+                    
+                }
+            }
+            
+            newTrainingPlan = TrainingPlan(id: "", userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", tpName: titleLabel.text!, tpDesc: descLabel.text!, tpReps: Int(repsLabel.text!)!, tpExercises: exerciseListFrom, tpImage: tpImage)
 
             DataManager.TrainingPlanClass.insertTrainingPlan(newTrainingPlan!, onComplete: nil)
+            
             
             self.navigationController?.popViewController(animated: true)
             self.navigationController?.viewControllers[0].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)

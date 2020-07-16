@@ -240,6 +240,8 @@ class DataManager {
         }
         
         static func insertTrainingPlan(_ trainingPlan: TrainingPlan, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+            
+            
             db.collection(tableName).addDocument(data: [
                 "userId": trainingPlan.userId,
                 "name": trainingPlan.tpName,
