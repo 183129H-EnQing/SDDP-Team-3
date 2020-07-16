@@ -142,7 +142,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             }
         } else {
             self.present(Team3Helper.makeAlert("Please relog in!"), animated: true)
-            Team3Helper.changeRootScreen(currentController: self, goToTabs: false)
+            Team3Helper.changeRootScreen(currentController: self, goToTabs: false, tookSurvey: false)
         }
     }
     

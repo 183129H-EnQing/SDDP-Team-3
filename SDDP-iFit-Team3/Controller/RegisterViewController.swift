@@ -88,12 +88,8 @@ class RegisterViewController: UIViewController {
                 return
             }
             
-            let request = user.createProfileChangeRequest()
-            request.displayName = username
-            request.commitChanges()
-            
             // Add Username after user is successfully registered
-            DataManager.addUsername(userId: user.uid, username: username)
+            DataManager.addUser(userId: user.uid, username: username, email: email)
             
             print("\(user.email!) successfully created!")
             print("\(user.providerID) successfully created!")
