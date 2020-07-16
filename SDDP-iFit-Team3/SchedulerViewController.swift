@@ -106,7 +106,7 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             
             let content = Team3Helper.createNotificationContent(title: "Test", message: "Hello world")
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: true)
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
             
             Team3Helper.notificationCenter.add(UNNotificationRequest(identifier: "scheduler.test", content: content, trigger: trigger))
         }

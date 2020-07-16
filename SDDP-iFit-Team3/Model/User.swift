@@ -13,9 +13,20 @@ class User {
     var email: String
     var username: String?
     var avatarURL: URL?
+    var fitnessInfo: FitnessInfo?
     
     init(userId: String, email: String) {
         self.userId = userId
         self.email = email
+    }
+}
+
+class FitnessInfo: Codable {
+    var weight: Float
+    var height: Float
+    
+    init(weight: Float, height: Float) {
+        self.weight = weight
+        self.height = height
     }
 }

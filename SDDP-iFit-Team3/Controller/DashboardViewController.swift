@@ -25,12 +25,16 @@ class DashboardViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if let user = UserAuthentication.user, let url = user.avatarURL {
-            print("url \(url)")
-            if let data = try? Data(contentsOf: url) {
-                // to make the image color default color: https://stackoverflow.com/a/22483234
-                let image = UIImage(data: data)?.sd_resizedImage(with: CGSize(width: 30, height: 30), scaleMode: .aspectFit)?.withRenderingMode(.alwaysOriginal)
-                self.profileBarButton.image = image
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let user = UserAuthentication.user, let url = user.avatarURL {
+                if let data = try? Data(contentsOf: url) {
+                    // to make the image color default color: https://stackoverflow.com/a/22483234
+                    let image = UIImage(data: data)?.sd_resizedImage(with: CGSize(width: 30, height: 30), scaleMode: .aspectFit)?.withRenderingMode(.alwaysOriginal)
+                    
+                    DispatchQueue.main.async {
+                        self.profileBarButton.image = image
+                    }
+                }
             }
         }
     }

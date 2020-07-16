@@ -57,10 +57,11 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            UserAuthentication.initUser(user: user)
             
             print("\(user.email!) successfully logged in, with uid: \(user.uid)")
-            Team3Helper.changeRootScreen(currentController: self, goToTabs: true)
+            UserAuthentication.initUser(user: user) { user in
+                Team3Helper.changeRootScreen(currentController: self, goToTabs: true)
+            }
         }
     }
     /*

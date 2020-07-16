@@ -91,9 +91,9 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
             if let user = UserAuthentication.getLoggedInUser() {
                 print("User is logged in")
             
-                DataManager.getUsername(userId: user.uid) { (data) in
-                        if data.count > 0 {
-                            self.userName = data
+                DataManager.getUserData(userId: user.uid) { (data) in
+                        if let user = data {
+                            self.userName = user.username!
                             print("data",data)
                             }
                         }

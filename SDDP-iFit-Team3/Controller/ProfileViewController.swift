@@ -19,15 +19,24 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
         Team3Helper.makeImgViewRound(avatarImgView)
         
-        if let user = UserAuthentication.user {
-            self.usernameLabel.isHidden = false
-            self.usernameLabel.text = (user.username != nil) ? user.username : "Need set username for Auth"
-        
-            if let url = user.avatarURL {
-                if let data = try? Data(contentsOf: url) {
-                    self.avatarImgView.image = UIImage(data: data)
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let user = UserAuthentication.user {
+                if let url = user.avatarURL {
+                    if let data = try? Data(contentsOf: url) {
+                        DispatchQueue.main.async {
+                            self.avatarImgView.image = UIImage(data: data)
+                        }
+                    }
                 }
             }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let user = UserAuthentication.user {
+            self.usernameLabel.text = (user.username != nil) ? user.username : "Need set username for Auth"
         }
     }
     
@@ -44,6 +53,8 @@ class ProfileViewController: UIViewController {
             if let username = UserAuthentication.user?.username {
                 editController.previousUsername = username
             }
+        } else if segue.identifier == "RetakeFitnessSurvey" {
+            
         }
     }
 }

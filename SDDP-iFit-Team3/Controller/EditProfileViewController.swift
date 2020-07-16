@@ -132,27 +132,25 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     func updateProfile(user: FirebaseAuth.User, username: String, shouldReroute: Bool, onComplete: (() -> Void)?) {
         StorageManager.uploadUserProfile(userId: user.uid, image: avatarImgView.image!) { url in
             if let url = url {
-                print("hello")
+                print("updateProfile")
                 // to prevent pointless database updates if username did not change
                 let isUsernameSame: Bool = self.previousUsername != nil && self.previousUsername!.elementsEqual(username)
-                let request = UserAuthentication.getLoggedInUser()!.createProfileChangeRequest()
-                if !isUsernameSame {
-                    request.displayName = username
-                }
-                request.photoURL = url
-                request.commitChanges()
                 
-                UserAuthentication.user!.avatarURL = url
+                var userData: [String:Any] = ["avatarURL": url.absoluteString]
                 
                 if !isUsernameSame {
                     UserAuthentication.user!.username = username
-                    DataManager.updateUsername(userId: user.uid, username: username)
+                    userData["username"] = username
+                }
+                UserAuthentication.user!.avatarURL = url
+                
+                DispatchQueue.global(qos: .background).async {
+                    DataManager.updateUser(userId: user.uid, userData: userData)
                 }
                 
                 if shouldReroute {
                     let viewControllers = self.navigationController?.viewControllers
                     let controller = viewControllers?[1] as! ProfileViewController
-                    controller.usernameLabel.text = username
                     controller.avatarImgView.image = self.avatarImgView.image
                     
                     self.navigationController?.popViewController(animated: true)
