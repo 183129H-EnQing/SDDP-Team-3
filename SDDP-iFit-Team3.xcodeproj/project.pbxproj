@@ -80,6 +80,7 @@
 		E320D17B24AC7128003DDA96 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17A24AC7128003DDA96 /* Activity.swift */; };
 		E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39EE04524A356AB00DDD571 /* DashboardViewController.swift */; };
 		E3CA068C24ADCA6000339A39 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */; };
+		E3ED531624C091D000052436 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ED531524C091D000052436 /* HealthKitManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +161,7 @@
 		E320D17A24AC7128003DDA96 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		E39EE04524A356AB00DDD571 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
+		E3ED531524C091D000052436 /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 			children = (
 				7D6A42F824A7139200D82B90 /* Team3Helper.swift */,
 				7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */,
+				E3ED531524C091D000052436 /* HealthKitManager.swift */,
 				7D8929C124AD6D3200FCB173 /* DataManager.swift */,
 				7DC360E224BAD86D00280315 /* StorageManager.swift */,
 			);
@@ -500,6 +503,7 @@
 				DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */,
 				DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */,
 				7DEE53D024AC63E800CE6293 /* RegisterViewController.swift in Sources */,
+				E3ED531624C091D000052436 /* HealthKitManager.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
 				7D6A42F924A7139200D82B90 /* Team3Helper.swift in Sources */,
 				7DC360E324BAD86D00280315 /* StorageManager.swift in Sources */,

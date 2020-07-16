@@ -24,100 +24,50 @@ class ActivityViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        authorizeHealthKit()
+        authorizeAndGetHealthKit()
     }
     
-    @IBAction func authoriseKitClick(_ sender: Any) {
-     authorizeHealthKit()
-    }
-    func getHealthKitData(){
-        //1. Check to see if HealthKit Is Available on this device
-      authorizeHealthKit()
-    }
- 
-     // these data will be able to read/write
-     let allTypes = Set([HKObjectType.workoutType(),
-     HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!,
-     HKObjectType.quantityType(forIdentifier: .distanceCycling)!,
-     HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!,
-     HKObjectType.quantityType(forIdentifier: .heartRate)!,
-     HKObjectType.quantityType(forIdentifier: .stepCount)!,
-     HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
-    ])
-     
- 
-    // this function does not accept any parameters
-    // return a boolean (fail or pass)
-    // optional error if something goes wrong
-    func authorizeHealthKit() {
-    
-        var totalSteps: Double = 0
-        let queue = DispatchQueue(label: "update")
-        // checking if healthstore is avaliable or not
-        if !HKHealthStore.isHealthDataAvailable() {
-            presentHealthDataNotAvailableError()
-            print("healh data not avaliable")
-            return
-          }
-        
-        healthStore.requestAuthorization(toShare: allTypes, read: allTypes) { (success, error) in
-            if !success {
+    func authorizeAndGetHealthKit() {
+
+        HealthKitManager.authorizeHealthKit(){ (authorizeStatus) in
+            print("hello",authorizeStatus!)
+            let authoriseStatusValue = authorizeStatus!
+            if (!authoriseStatusValue){
                 self.presentHealthDataNotAvailableError()
-                print("no permission or no healthstore")
             }else{
-                print("permission accept")
-               // call get data function
-
-               queue.async {
-                    self.getTodaysSteps() { (steps) in
-                                totalSteps = steps
-                            }
-                   }
-
-                   // UPDATE UI after all calculations have been done
-                   DispatchQueue.main.async {
-                    self.stepsDataLabel.text = "\(totalSteps)"
-   
-                   }
+                print("no problem")
+                HealthKitManager.getHealthKitData(){
+                    print("hello world")
+                }
+            }
+        }
+//                DispatchQueue.global(qos: .userInitiated).async {
+//
+//
+//                   DispatchQueue.main.async {
+//
+//                   }
+//
+//
+//                   }
+//
+//
+//
+//                   // UPDATE UI after all calculations have been done
+//                   DispatchQueue.main.async {
+//                    self.stepsDataLabel.text = "0"
+//
+//                   }
                }
                
                 
              
                 
-                
-            }
-        }
+        
+        
         
     
-    
-    //https://stackoverflow.com/questions/36559581/healthkit-swift-getting-todays-steps/44111542
-    func getTodaysSteps(completion: @escaping (Double) -> Void) {
-        
-        let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
-
-        let now = Date()
-        print("now:",now)
-        let startOfDay = Calendar.current.startOfDay(for: now)
-        print("startDay :" ,startOfDay)
-        // predicate is to help fliter the data within a time range
-        let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
-
-        //HKStatisticsCollectionQuery is better suited to use when you want to retrieve data over a time span.
-        // Use HKStatisticsQuery to just get the steps for a specific date.
-        let query = HKStatisticsQuery(quantityType: stepsQuantityType, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
-           
-            guard let result = result, let sum = result.sumQuantity() else {
-                completion(0.0)
-                return
-            }
-            
-            completion(sum.doubleValue(for: HKUnit.count()))
-            print(sum)
-            print("hello",result)
-        }
-
-        healthStore.execute(query)
-    }
+  
     
     private func presentHealthDataNotAvailableError() {
           let title = "Health Data Unavailable"

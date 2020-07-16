@@ -240,6 +240,8 @@ class DataManager {
         }
         
         static func insertTrainingPlan(_ trainingPlan: TrainingPlan, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+            
+            
             db.collection(tableName).addDocument(data: [
                 "userId": trainingPlan.userId,
                 "name": trainingPlan.tpName,
@@ -274,6 +276,17 @@ class DataManager {
                 } else {
                     onComplete?(true)
 //                    print("true")
+                }
+            }
+        }
+        
+        static func deleteTrainingPlan(trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+            db.collection(tableName).document(trainingPlan.id).delete { (err) in
+                if let err = err {
+                    print("Error deleting trainingPlan: \(err)")
+                    onComplete?(false)
+                } else {
+                    onComplete?(true)
                 }
             }
         }

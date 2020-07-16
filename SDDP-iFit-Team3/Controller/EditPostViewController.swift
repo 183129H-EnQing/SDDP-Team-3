@@ -27,9 +27,12 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
     
     @IBOutlet weak var location: UILabel!
     
+    @IBOutlet weak var username: UILabel!
+    
+    
     var postItem : Post?
     var locationManager:CLLocationManager!
-    
+    var userName : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +56,9 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
                
                
            }
+        
+        getUserName()
+        
     }
     // @objc func saveButtonclicked()
        //{
@@ -64,6 +70,7 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
 
     textcontent.text = postItem?.pcontent
     postimage.sd_setImage(with: URL(string : postItem!.pimageName))
+        
     
         
     self.navigationItem.title = "Edit Post"
@@ -132,6 +139,23 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
            print("Error \(error)")
        }
     
+    func getUserName() {
+    
+          //  self.noSchedulesLabel.isHidden = false
+            
+            if let user = UserAuthentication.getLoggedInUser() {
+                print("User is logged in")
+            
+                DataManager.getUserData(userId: user.uid) { (data) in
+                        if let user = data {
+                            self.userName = user.username!
+                           
+                            print("data",data)
+                            }
+                        }
+                    }
+            }
+    
     @IBAction func saveButtonPressed(_ sender: Any) {
          if let user = UserAuthentication.getLoggedInUser(){
             
@@ -144,13 +168,39 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
        // let name = 
         
         let loca = location.text ?? ""
-        
+            
+           
             let viewControllers = self.navigationController?.viewControllers
             let parent = viewControllers?[1] as! PostViewController
+            
+                 let storage = Storage.storage()
+                 let storageRef = storage.reference()
+                 let imageName = NSUUID().uuidString
+                 
+                
+                     
+                 let photoRef = storageRef.child("\(imageName)")
+                 
+                     guard let imageData = self.postimage.image?.jpegData(compressionQuality: 0.1) else {
+                     return
+                 }
+                 
+                 
+                 let metadata = StorageMetadata()
+                 metadata.contentType = "image/jpg"
+                 photoRef.putData(imageData, metadata: metadata) { (storageMetadata, error) in
+                     if error != nil {
+                         print(error?.localizedDescription)
+                         return
+                     }
+                photoRef.downloadURL (completion: { (url, error) in
+                if let metaImageUrl = url?.absoluteString{
+                    //print(metaImageUrl)
+                    let photo = metaImageUrl
+                    let name = self.userName
+                    let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: photo ,opened:false , commentPost: [ ] )
         
-      let  posts = Post(userName: "Dinesh", pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "" ,opened:false , commentPost: [ ] )
-        
-         if self.postItem != nil {
+                    if self.postItem != nil {
                        // Update
                        posts.id = self.postItem!.id!
                        DataManager.Posts.updatePost(post: posts) { (isSuccess) in
@@ -163,7 +213,11 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
                                   
                               }
                    }
+                 }
+                 })
+            }
         }
+            
         
        
     }

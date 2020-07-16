@@ -55,4 +55,34 @@ class StorageManager {
             onComplete?(url)
         }
     }
+    
+    static func uploadTrainingPlanImage(userId: String, image: UIImage, onComplete: ((URL?) -> Void)?) {
+        DispatchQueue.global(qos: .background).async {
+            
+            var vc = TrainingPlanAddViewController()
+            let imageName = vc.uploadImageUUID //to import from VC
+            let ref = storage.reference().child("tpImages/\(userId)/\(imageName)")
+            
+            let metadata = StorageMetadata()
+            let data = image.jpegData(compressionQuality: 0.5)!
+            metadata.contentType = "image/jpg"
+            
+            ref.putData(data, metadata: metadata) { (metadata, err) in
+                if let err = err {
+                    print("got error! cry \(err)")
+                }
+                else if let _ = metadata {
+                    ref.downloadURL { (url, err) in
+                        if let err = err {
+                            print("error getting url: \(err)")
+                        } else if let url = url {
+                            onComplete?(url)
+                        } else {
+                            onComplete?(nil)
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

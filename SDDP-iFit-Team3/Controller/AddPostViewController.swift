@@ -212,11 +212,15 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
             let storage = Storage.storage()
             let storageRef = storage.reference()
             let imageName = NSUUID().uuidString
+            
+           
+                
             let photoRef = storageRef.child("\(imageName)")
             
-            guard let imageData = imageview.image?.jpegData(compressionQuality: 0.1) else {
+                guard let imageData = self.imageview.image?.jpegData(compressionQuality: 0.1) else {
                 return
             }
+            
             
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpg"
@@ -225,33 +229,22 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                     print(error?.localizedDescription)
                     return
                 }
-                
-              
-                
-                
-                
                 photoRef.downloadURL (completion: { (url, error) in
                     if let metaImageUrl = url?.absoluteString{
                         //print(metaImageUrl)
-                        
                         let photo = metaImageUrl
                         let name = self.userName
                 
                             let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false, commentPost: [ ] )
-                            
-                        
-                            
-//
+    
                          DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
                                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
 //
                       }
                     }
                     })
-                    
-                
-                
                             }
+            
         
         
             

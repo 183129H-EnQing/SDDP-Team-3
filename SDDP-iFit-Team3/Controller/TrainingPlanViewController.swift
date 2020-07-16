@@ -105,6 +105,21 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
         return cell
     }
     
+    // delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            DataManager.TrainingPlanClass.deleteTrainingPlan(trainingPlan: self.trainingPlanList[indexPath.row], onComplete: { (isSuccess) in
+                
+                if isSuccess {
+                    self.loadTrainingPlan()
+                } else {
+                    self.present(Team3Helper.makeAlert("Unavailable to delete to Training Plan!"), animated: true)
+                }
+            })
+        }
+    }
+
     //pass data to details page
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -119,14 +134,14 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
         }
     }
     
-    //delete
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if (editingStyle == .delete){
-            trainingPlanList.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .automatic)
-        }
-    }
+//    //delete
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//
+//        if (editingStyle == .delete){
+//            trainingPlanList.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .automatic)
+//        }
+//    }
     
     //reorder
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
