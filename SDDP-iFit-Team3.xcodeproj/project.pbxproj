@@ -82,6 +82,7 @@
 		E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39EE04524A356AB00DDD571 /* DashboardViewController.swift */; };
 		E3CA068C24ADCA6000339A39 /* AddGoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */; };
 		E3ED531624C091D000052436 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3ED531524C091D000052436 /* HealthKitManager.swift */; };
+		E3F1688124C0F1B000B2C42A /* HealthKitActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F1688024C0F1B000B2C42A /* HealthKitActivity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -164,6 +165,7 @@
 		E39EE04524A356AB00DDD571 /* DashboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
 		E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalViewController.swift; sourceTree = "<group>"; };
 		E3ED531524C091D000052436 /* HealthKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		E3F1688024C0F1B000B2C42A /* HealthKitActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitActivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 				DCE67B6C24BF280600B2DD27 /* GameLoad.swift */,
 				DCE67B7024BF31FA00B2DD27 /* GameResult.swift */,
 				7D236F0324BD688C00C3CD2B /* User.swift */,
+				E3F1688024C0F1B000B2C42A /* HealthKitActivity.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */,
 				DCE67B6F24BF31BF00B2DD27 /* GameResultViewController.swift in Sources */,
 				DCE67B7124BF31FA00B2DD27 /* GameResult.swift in Sources */,
+				E3F1688124C0F1B000B2C42A /* HealthKitActivity.swift in Sources */,
 				E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */,
 				DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */,
 				DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */,

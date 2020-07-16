@@ -430,6 +430,27 @@ class DataManager {
 
     }
     
+    class HealthKitActivities{
+           static let tableName = "healthKitActivity"
+    
+           static func insertHealthKitActivity(userId: String, _ healthKitActivity: HealthKitActivity, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+                        db.collection(tableName).addDocument(data: [
+                            "userId": userId,
+                            "todayStep": healthKitActivity.todayStep,
+                            "todayCaloriesBurnt": healthKitActivity.todayCaloriesBurnt,
+                            "dateSaved": healthKitActivity.dateSaved,
+                            "timeSaved": healthKitActivity.timeSaved,
+                               
+                        ]) { err in
+                            if let _ = err {
+                                onComplete?(false)
+                            } else {
+                                onComplete?(true)
+                            }
+                        }
+                    }
+    }
+    
     class Posts {
         static let tableName = "posts"
         

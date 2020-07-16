@@ -60,7 +60,7 @@ class GoalDetailsViewController: UIViewController {
            // let todayDate = calendar.dateComponents([.year, .month, .day], from: Date())
             let todayDateString = formatter.string(from: Date())
             let todayDate = formatter.date(from: todayDateString)!
-            //print("todadate",todayDateString)
+            print("todadate",todayDateString)
             let components = calendar.dateComponents([.day], from: todayDate, to: endDate)
             //print("\(components.day!)")
             deadLine.text = "\(components.day!)" + "Days more"

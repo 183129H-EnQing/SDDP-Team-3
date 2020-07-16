@@ -47,6 +47,10 @@ class HealthKitManager{
           healthStore.requestAuthorization(toShare: allTypes, read:allTypes) { (success, error) in
            if !success {
                   print("no permission or no healthstore")
+                  print("\(success)")
+                  // a cheat method to access healthkit just put true will do, will have to switch it back when
+                  // we fix the healthkit capablility issues
+                  //completion?(success)
                   completion?(!success)
               }else{
                   
@@ -60,6 +64,7 @@ class HealthKitManager{
     static let queue = DispatchQueue(label: "Serial queue")
     static let group = DispatchGroup()
     static var todaySteps:Double = 0
+    static var todayCalories:Double = 0
     // completion should be healthkit data class
     static func getHealthKitData(completion: (() -> Void)?){
         group.enter()
@@ -68,13 +73,52 @@ class HealthKitManager{
                 (steps) in
                  todaySteps = steps
                  group.leave()
+                 print("testing2",todaySteps)
             }
-            print("Task 1 done")
-            print("testing2",todaySteps)
-      
         }
-        print("tesing1",todaySteps)
-    
+        
+        group.enter()
+        queue.async {
+            getTodayCaloriesBurnt(){
+                (calories) in
+                todayCalories = calories
+                print(todayCalories)
+            }
+            group.leave()
+        }
+        
+        group.enter()
+        queue.async {
+         //   let calendar = Calendar.current
+            let formatter = DateFormatter()
+            formatter.timeZone  = TimeZone(identifier: "Asia/Singapore") // set locale to reliable US_POSIX - usa , en_SG - sg
+            formatter.dateFormat = "dd MMM yyyy"
+            let todayDateString = formatter.string(from: Date())
+           // let todayDate = formatter.date(from: todayDateString)!
+
+            formatter.dateFormat = "hh:mm"
+            let todayTime = formatter.string(from: Date())  //
+            
+            print("todayTime:",todayTime)
+            print("todayDate:",todayDateString)
+        
+            // need to check whether over 1159 of the current date or not
+            // if got data already update else insert
+            let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: todayTime , dateSaved: todayDateString)
+            DataManager.HealthKitActivities.insertHealthKitActivity(userId: "Hello", newHealthKitActivity){ (isSuccess) in
+               print("hello world")
+            }
+            group.leave()
+
+        }
+//
+//        group.enter()
+//        queue.async {
+//            sleep(2)
+//            print("Task 2 done")
+//            group.leave()
+//        }
+        
     }
     
     
@@ -85,9 +129,9 @@ class HealthKitManager{
           let stepsQuantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
 
           let now = Date()
-          print("now:",now)
+          //print("now:",now)
           let startOfDay = Calendar.current.startOfDay(for: now)
-          print("startDay :" ,startOfDay)
+          //print("startDay :" ,startOfDay)
           // predicate is to help fliter the data within a time range
           let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
 
@@ -101,13 +145,67 @@ class HealthKitManager{
               }
               
               completion(sum.doubleValue(for: HKUnit.count()))
-              print(sum)
-              print("hello",result)
           }
 
           healthStore.execute(query)
       }
     
-    
+    static func getTodayCaloriesBurnt(completion: @escaping (Double) -> Void){
+        let caloriesBurnt = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!
+        let now = Date()
+       // print("now:",now)
+           let startOfDay = Calendar.current.startOfDay(for: now)
+        //   print("startDay :" ,startOfDay)
+           // predicate is to help fliter the data within a time range
+           let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
 
+           //HKStatisticsCollectionQuery is better suited to use when you want to retrieve data over a time span.
+           // Use HKStatisticsQuery to just get the steps for a specific date.
+           let query = HKStatisticsQuery(quantityType: caloriesBurnt, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+              
+               guard let result = result, let sum = result.sumQuantity() else {
+                   completion(0.0)
+                   return
+               }
+               
+               completion(sum.doubleValue(for: HKUnit.count()))
+           }
+
+           healthStore.execute(query)
+    }
+    
+//    static func getTodaySleepHour(completion: @escaping (Int) -> Void){
+//        let sleepCategoryType = HKQuantityType.categoryType(forIdentifier: .sleepAnalysis)!
+//           let now = Date()
+//          // print("now:",now)
+//              let startOfDay = Calendar.current.startOfDay(for: now)
+//           //   print("startDay :" ,startOfDay)
+//              // predicate is to help fliter the data within a time range
+//              let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+//              let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+//              //HKStatisticsCollectionQuery is better suited to use when you want to retrieve data over a time span.
+//              // Use HKStatisticsQuery to just get the steps for a specific date.
+//        let query = HKSampleQuery(sampleType: sleepCategoryType, predicate: predicate, limit: 1, sortDescriptors: [sortDescriptor]) { (query, tmpResult, error) in
+//                    if let result = tmpResult {
+//                       for item in result {
+//                           if let sample = item as? HKCategorySample {
+//                            let value = (sample.value == HKCategoryValueSleepAnalysis.inBed.rawValue) ? "InBed" : "Asleep"
+//                              print(value)
+//                           }
+//                       }
+//                   }
+//                    
+//            completion(100)
+//        }
+             
+              
+  
+              
+//
+//              healthStore.execute(query)
+//       }
+
+    
+    
+   
 }

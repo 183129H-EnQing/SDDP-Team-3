@@ -891,8 +891,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Exercise Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a51-8z-80I">
-                                <rect key="frame" x="16" y="259" width="170" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a51-8z-80I">
+                                <rect key="frame" x="16" y="259" width="113" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="yz3-Vo-5SA"/>
                                 </constraints>
@@ -947,11 +947,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="7q3-dX-QnZ" firstAttribute="leading" secondItem="a51-8z-80I" secondAttribute="trailing" constant="72" id="15t-qN-NfY"/>
                             <constraint firstItem="fN4-Yn-4rV" firstAttribute="top" secondItem="hOJ-tC-otd" secondAttribute="bottom" constant="16" id="1fr-vx-aBl"/>
                             <constraint firstItem="Km6-RB-mI5" firstAttribute="top" secondItem="fN4-Yn-4rV" secondAttribute="bottom" constant="21" id="2A8-gs-UeM"/>
                             <constraint firstItem="a51-8z-80I" firstAttribute="leading" secondItem="DeL-Gf-xiV" secondAttribute="leading" constant="16" id="3ff-dg-ONP"/>
                             <constraint firstItem="hOJ-tC-otd" firstAttribute="leading" secondItem="DeL-Gf-xiV" secondAttribute="leading" constant="16" id="4m1-qF-Wbj"/>
-                            <constraint firstItem="7q3-dX-QnZ" firstAttribute="leading" secondItem="a51-8z-80I" secondAttribute="trailing" constant="15" id="5ET-75-LRp"/>
                             <constraint firstItem="DeL-Gf-xiV" firstAttribute="trailing" secondItem="7q3-dX-QnZ" secondAttribute="trailing" constant="26" id="7XV-hX-MwM"/>
                             <constraint firstItem="7dZ-DE-L6p" firstAttribute="top" secondItem="hOJ-tC-otd" secondAttribute="bottom" constant="22" id="B6n-Gw-XoA"/>
                             <constraint firstItem="G4l-OY-34H" firstAttribute="top" secondItem="7q3-dX-QnZ" secondAttribute="bottom" constant="32" id="E87-eF-A1x"/>
@@ -970,7 +970,6 @@
                             <constraint firstItem="fN4-Yn-4rV" firstAttribute="leading" secondItem="7dZ-DE-L6p" secondAttribute="trailing" constant="83" id="Snh-em-aKX"/>
                             <constraint firstItem="DeL-Gf-xiV" firstAttribute="trailing" secondItem="Km6-RB-mI5" secondAttribute="trailing" constant="26" id="TRA-4X-s2o"/>
                             <constraint firstItem="7q3-dX-QnZ" firstAttribute="top" secondItem="NEW-zn-Nld" secondAttribute="bottom" constant="14" id="WJL-3a-5Yy"/>
-                            <constraint firstItem="7q3-dX-QnZ" firstAttribute="leading" secondItem="a51-8z-80I" secondAttribute="trailing" constant="15" id="XIR-tQ-lv6"/>
                             <constraint firstItem="a51-8z-80I" firstAttribute="top" secondItem="uAr-nJ-UPv" secondAttribute="bottom" constant="28" id="YdJ-Pk-kDz"/>
                             <constraint firstItem="7dZ-DE-L6p" firstAttribute="top" secondItem="hOJ-tC-otd" secondAttribute="bottom" constant="22" id="Zs2-kA-sgr"/>
                             <constraint firstItem="a51-8z-80I" firstAttribute="top" secondItem="uAr-nJ-UPv" secondAttribute="bottom" constant="28" id="dB0-fx-dPO"/>
@@ -1003,7 +1002,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1oj-gb-1Lr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5168.8000000000002" y="-1800.4497751124438"/>
+            <point key="canvasLocation" x="5168.115942028986" y="-1800.6696428571427"/>
         </scene>
         <!--Goal Details View Controller-->
         <scene sceneID="8hd-dk-tgD">
