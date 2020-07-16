@@ -59,8 +59,9 @@ class StorageManager {
     static func uploadTrainingPlanImage(userId: String, image: UIImage, onComplete: ((URL?) -> Void)?) {
         DispatchQueue.global(qos: .background).async {
             
-            var vc = TrainingPlanAddViewController()
-            let imageName = vc.uploadImageUUID //to import from VC
+//            var vc = TrainingPlanAddViewController()
+//            let imageName = vc.uploadImageUUID //to import from VC
+            let imageName = UUID().uuidString
             let ref = storage.reference().child("tpImages/\(userId)/\(imageName)")
             
             let metadata = StorageMetadata()

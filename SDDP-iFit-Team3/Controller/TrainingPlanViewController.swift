@@ -100,7 +100,17 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
         let cell: TrainingPlanCell = tableView.dequeueReusableCell(withIdentifier: "TrainingPlanCell", for: indexPath) as! TrainingPlanCell
         let t = trainingPlanList[indexPath.row]
         cell.nameLabel.text = t.tpName
-        cell.trainingPlanImageView.image = UIImage(named: t.tpImage)
+        //        cell.trainingPlanImageView.image = UIImage(named: t.tpImage)
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let data = try? Data(contentsOf: NSURL(string: t.tpImage)! as URL) {
+                print("HIIII\(data)")
+                DispatchQueue.main.async {
+                    cell.trainingPlanImageView.image = UIImage(data: data)
+                }
+            }
+        }
+        
         
         return cell
     }
