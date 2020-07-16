@@ -20,46 +20,55 @@ class SurveyFormViewController: UIViewController {
     }
     
     @IBAction func submitButtonPressed(_ sender: Any) {
-        Team3Helper.colorTextFieldBorder(textField: weightTextField, isRed: false)
-        Team3Helper.colorTextFieldBorder(textField: heightTextField, isRed: false)
-        
-        if !Team3Helper.ifInputIsFloatt(someInput: weightTextField.text!) {
-            Team3Helper.colorTextFieldBorder(textField: weightTextField, isRed: true)
+        if let user = UserAuthentication.user {
+            Team3Helper.colorTextFieldBorder(textField: weightTextField, isRed: false)
+            Team3Helper.colorTextFieldBorder(textField: heightTextField, isRed: false)
             
-            let alert = Team3Helper.makeAlert("Only numbers allowed in 'Weight' text field")
-            self.present(alert, animated: true, completion: nil)
-            
-            return
-        }
-        
-        if !Team3Helper.ifInputIsFloatt(someInput: heightTextField.text!) {
-            Team3Helper.colorTextFieldBorder(textField: heightTextField, isRed: true)
-            
-            let alert = Team3Helper.makeAlert("Only numbers allowed in 'Height' text field")
-            self.present(alert, animated: true, completion: nil)
-            
-            return
-        }
-        
-        let weight = Float(weightTextField.text!)!
-        let height = Float(heightTextField.text!)!
-        
-        UserAuthentication.user?.fitnessInfo = FitnessInfo(weight: weight, height: height)
-        DataManager.updateUser(userId: UserAuthentication.user!.userId, userData: [
-            "fitnessInfo": [
-                "weight": weight,
-                "height": height
-            ]
-        ])
-        print("isPresented: \(self.isBeingPresented)")
-        
-        if self.presentingViewController?.presentedViewController == self {
-            let parent = self.presentingViewController
-            self.dismiss(animated: true) {
-                parent?.dismiss(animated: true)
+            if !Team3Helper.ifInputIsFloatt(someInput: weightTextField.text!) {
+                Team3Helper.colorTextFieldBorder(textField: weightTextField, isRed: true)
+                
+                let alert = Team3Helper.makeAlert("Only numbers allowed in 'Weight' text field")
+                self.present(alert, animated: true, completion: nil)
+                
+                return
             }
-        } else {
-            self.navigationController?.popViewController(animated: true)
+            
+            if !Team3Helper.ifInputIsFloatt(someInput: heightTextField.text!) {
+                Team3Helper.colorTextFieldBorder(textField: heightTextField, isRed: true)
+                
+                let alert = Team3Helper.makeAlert("Only numbers allowed in 'Height' text field")
+                self.present(alert, animated: true, completion: nil)
+                
+                return
+            }
+            
+            let weight = Float(weightTextField.text!)!
+            let height = Float(heightTextField.text!)!
+            
+            var data: [String:Any] = [
+                "fitnessInfo": [
+                    "weight": weight,
+                    "height": height
+                ]
+            ]
+            
+            if user.tookSurvey == nil || !user.tookSurvey! {
+                data["tookSurvey"] = true
+            }
+            print(data)
+            
+            user.fitnessInfo = FitnessInfo(weight: weight, height: height)
+            DataManager.updateUser(userId: UserAuthentication.user!.userId, userData: data)
+            print("isPresented: \(self.isBeingPresented)")
+            
+            if self.presentingViewController?.presentedViewController == self {
+                let parent = self.presentingViewController
+                self.dismiss(animated: true) {
+                    parent?.dismiss(animated: true)
+                }
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     
