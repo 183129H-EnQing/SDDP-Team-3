@@ -60,9 +60,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return postList.count
-    }
+    
    
    
     
@@ -71,13 +69,9 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
         
         
-        if postList[section].opened == true {
-            return postList[section].commentPost.count
-        }
-        else{
-             return 1
-            
-        }
+       
+            return postList.count
+       
         
    
         
@@ -85,7 +79,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // First we query the table view to see if there are // any UITableViewCells that can be reused. iOS will // create a new one if there aren't any. //
         //let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
-        if indexPath.row == 0 {
+       
                 let cell : PostCell = tableView
                 .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
                 let p = postList[indexPath.row]
@@ -110,38 +104,22 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 cell.commentbtn.tag = indexPath.row
 
                 return cell
-        }
-        else{
-             let cell : PostCell = tableView
-                           .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
-                           let p = postList[indexPath.row]
-                         
-                           cell.nameLabel.text = p.userName
-                                   cell.pcontentLabel.text = "\(p.pcontent) "
-                                   cell.locationLabel.text = "\(p.userLocation)"
-                                   cell.timeLabel.text = "\(p.pdatetime)"
-                                   cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
-                                   cell.commentbtn.tag = indexPath.row
-                                   //cell.cmt?.text = p.commentPost[indexPath.row]
-                                   //print(p.commentPost)
-                                    
-            return cell
-        }
+        
         }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if postList[indexPath.section].opened == true {
-            postList[indexPath.section].opened = false
-            let section = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(section, with: .none)
+    //func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //if postList[indexPath.section].opened == true {
+           // postList[indexPath.section].opened = false
+           // let section = IndexSet.init(integer: indexPath.section)
+           // tableView.reloadSections(section, with: .none)
             
-        }
-        else{
-             postList[indexPath.section].opened = true
-            let section = IndexSet.init(integer: indexPath.section)
-            tableView.reloadSections(section, with: .none)
-        }
-    }
+       // }
+       // else{
+            // postList[indexPath.section].opened = true
+          //  let section = IndexSet.init(integer: indexPath.section)
+           // tableView.reloadSections(section, with: .none)
+        //}
+    //}
     //delete
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
