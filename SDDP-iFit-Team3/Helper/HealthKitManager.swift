@@ -65,6 +65,7 @@ class HealthKitManager{
     static let group = DispatchGroup()
     static var todaySteps:Double = 0
     static var todayCalories:Double = 0
+    static var healthKitDataArray: [HealthKitActivity] = []
     // completion should be healthkit data class
     static func getHealthKitData(completion: (() -> Void)?){
         group.enter()
@@ -88,6 +89,22 @@ class HealthKitManager{
         }
         
         group.enter()
+        queue.async{
+            if let user = UserAuthentication.getLoggedInUser() {
+                        print("User is logged in")
+                    
+                DataManager.HealthKitActivities.loadHealthKitActivity(userId: user.uid ) { (data) in
+                                  if data.count > 0 {
+                                      print("data loaded")
+                                      self.healthKitDataArray = data
+                                      print(healthKitDataArray)
+                                  }
+                              }
+                  }
+            group.leave()
+        }
+    
+        group.enter()
         queue.async {
          //   let calendar = Calendar.current
             let formatter = DateFormatter()
@@ -104,6 +121,8 @@ class HealthKitManager{
         
             // need to check whether over 1159 of the current date or not
             // if got data already update else insert
+            
+        
             let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: todayTime , dateSaved: todayDateString)
             DataManager.HealthKitActivities.insertHealthKitActivity(userId: "Hello", newHealthKitActivity){ (isSuccess) in
                print("hello world")
