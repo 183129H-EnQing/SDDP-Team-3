@@ -45,20 +45,13 @@ class SurveyFormViewController: UIViewController {
             let weight = Float(weightTextField.text!)!
             let height = Float(heightTextField.text!)!
             
-            var data: [String:Any] = [
+            user.fitnessInfo = FitnessInfo(weight: weight, height: height)
+            DataManager.updateUser(userId: UserAuthentication.user!.userId, userData: [
                 "fitnessInfo": [
                     "weight": weight,
                     "height": height
                 ]
-            ]
-            
-            if user.tookSurvey == nil || !user.tookSurvey! {
-                data["tookSurvey"] = true
-            }
-            print(data)
-            
-            user.fitnessInfo = FitnessInfo(weight: weight, height: height)
-            DataManager.updateUser(userId: UserAuthentication.user!.userId, userData: data)
+            ])
             print("isPresented: \(self.isBeingPresented)")
             
             if self.presentingViewController?.presentedViewController == self {
