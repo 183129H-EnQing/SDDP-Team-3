@@ -188,8 +188,13 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                   // return
         if let user = UserAuthentication.getLoggedInUser(){
             
-           
-            
+           Team3Helper.colorTextFieldBorder(textField: contenttext, isRed: false)
+             if contenttext.text == ""{
+                       Team3Helper.colorTextFieldBorder(textField: contenttext, isRed: true)
+                       let alert = Team3Helper.makeAlert("Content Field is Empty")
+                       self.present(alert, animated: true, completion: nil)
+                       return
+                   }
             let content = contenttext.text ?? ""
                 
                 let date = Date()

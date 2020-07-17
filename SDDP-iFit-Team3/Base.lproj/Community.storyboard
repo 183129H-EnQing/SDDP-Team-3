@@ -3,7 +3,6 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -180,11 +179,11 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="315" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bYh-TI-NQh">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="HIL-JC-0gO">
+                                <searchBar key="tableHeaderView" contentMode="redraw" id="HIL-JC-0gO">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <color key="tintColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="barTintColor" name="steps"/>
+                                    <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </searchBar>
                                 <prototypes>
@@ -208,7 +207,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rq-Yv-BdA">
-                                                    <rect key="frame" x="17" y="243" width="61.5" height="21"/>
+                                                    <rect key="frame" x="17" y="243" width="128" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -218,13 +217,7 @@
                                                     <rect key="frame" x="17" y="212" width="135" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blU-ay-Nz7">
-                                                    <rect key="frame" x="286" y="15" width="38" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" systemColor="opaqueSeparatorColor" red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lpp-Wl-OeY">
@@ -240,13 +233,19 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="view"/>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blU-ay-Nz7">
+                                                    <rect key="frame" x="279" y="14" width="38" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vai-vf-zNd" firstAttribute="top" secondItem="blU-ay-Nz7" secondAttribute="bottom" constant="21" id="GXn-Cu-qit"/>
                                                 <constraint firstItem="blU-ay-Nz7" firstAttribute="top" secondItem="ljl-nd-HaB" secondAttribute="topMargin" constant="3" id="MLr-4P-6Hp"/>
                                                 <constraint firstItem="vai-vf-zNd" firstAttribute="leading" secondItem="ljl-nd-HaB" secondAttribute="leadingMargin" constant="57" id="b57-bE-fGU"/>
                                                 <constraint firstItem="QL5-gv-tzk" firstAttribute="top" secondItem="ljl-nd-HaB" secondAttribute="top" constant="14" id="cJh-Vb-wgi"/>
-                                                <constraint firstItem="blU-ay-Nz7" firstAttribute="leading" secondItem="QL5-gv-tzk" secondAttribute="trailing" constant="112" id="cKb-RN-4G8"/>
+                                                <constraint firstItem="blU-ay-Nz7" firstAttribute="leading" secondItem="QL5-gv-tzk" secondAttribute="trailing" constant="181" id="d3V-Y2-Dej"/>
                                                 <constraint firstItem="vai-vf-zNd" firstAttribute="top" secondItem="QL5-gv-tzk" secondAttribute="bottom" constant="21" id="ht2-s2-3dp"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="vai-vf-zNd" secondAttribute="trailing" constant="71" id="nHV-mQ-7q5"/>
                                                 <constraint firstItem="QL5-gv-tzk" firstAttribute="leading" secondItem="ljl-nd-HaB" secondAttribute="leading" constant="17" id="q6W-Ui-k8b"/>
@@ -461,8 +460,5 @@
         <image name="thumbnail_community" width="350" height="232"/>
         <image name="thumbnail_images (1)" width="275" height="183"/>
         <image name="write" width="200" height="200"/>
-        <namedColor name="steps">
-            <color red="0.1809999942779541" green="0.76099997758865356" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
 </document>
