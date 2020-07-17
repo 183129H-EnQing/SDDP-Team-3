@@ -161,7 +161,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
                 
                 // Notification
                 let timeMsg = (duration[0] > 0 ? "\(duration[0]) hrs" : "") + (duration[0] > 0 && duration[1] > 0 ? " " : "") + (duration[1] > 0 ? "\(duration[1]) mins" : "")
-                let content = Team3Helper.createNotificationContent(title: "iFit - Scheduler", message: "\(SchedulerDetailsViewController.exercises[exercise]) - \(timeMsg)")
+                let content = Team3Helper.createNotificationContent(title: "Scheduler", message: "\(SchedulerDetailsViewController.exercises[exercise]) - \(timeMsg)")
                 
                 var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date())
                 dateComponents.hour = timeComp.hour

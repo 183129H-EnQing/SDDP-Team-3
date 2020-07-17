@@ -114,6 +114,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                         user2.updatePassword(to: newPassword!) { (err) in
                             if let err = err {
                                 print("Error updating password: \(err)")
+
+                                self.present(Team3Helper.makeAlert("Failed to change password: \(err.localizedDescription)"), animated: true)
                                 return
                             } else {
                                 // change to logout

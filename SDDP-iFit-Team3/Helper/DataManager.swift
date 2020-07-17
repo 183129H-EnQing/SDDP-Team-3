@@ -597,6 +597,58 @@ class DataManager {
                             onComplete?(posts)
                         }
                     }
+        
+        static func loadAllPosts(userId: String, onComplete: (([Post]) -> Void)?) {
+            /* Process
+             1. Get all documents
+             2. Check for errors, check if there are data to retrieve
+             3. loop through all the documents
+             4. In each document, check if the creatorId is the same as the logged in user's id
+             5. Create empty array if our schedules variable' day is empty
+             6. Retrieve fields from document, as well as documentId from document
+             7. Put the fields into instance of Schedule and append Schedule to day array inside schedules variable
+             8. Then we sort the day array after appending
+             */
+            db.collection(tableName).getDocuments { (snapshot, err) in
+                var posts: [Post] = []
+                if let err = err {
+                    print("Error for \(tableName): \(err)")
+                } else if let snapshot = snapshot, snapshot.count > 0 {
+                    print("Got data: \(snapshot.count)")
+                    for document in snapshot.documents {
+                        print("Retrieving a document")
+                        let data = document.data()
+                        //if userId.elementsEqual(data["userId"] as! String) {
+                            print("Document's creator matched")
+                          let userName : String = data["userName"] as! String
+                          let pcontent : String = data["pcontent"] as! String
+                          let pdatetime : String = data["pdatetime"] as! String
+                          let userLocation : String = data["userLocation"] as! String
+                          let pimageName : String = data["pimageName"] as! String
+                          let opened    :    Bool = data["opened"] as! Bool
+                          let commentPost : [Comment] = data["commentPost"] as! [Comment]
+
+                            let post = Post( userName: userName, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, opened: opened, commentPost: commentPost)
+                            
+                            
+                            post.id = document.documentID
+                            
+                          posts.append(post)
+                       
+                       // }
+                    }
+                } else {
+                    print("No data for \(tableName)")
+                }
+                
+                onComplete?(posts)
+            }
+        }
+        
+        
                   }
+    
+    
+    
     
 }

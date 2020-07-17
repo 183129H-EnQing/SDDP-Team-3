@@ -248,7 +248,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         if let user = UserAuthentication.getLoggedInUser() {
             print("User is logged in")
         
-            DataManager.Posts.loadPosts(userId: user.uid) { (data) in
+            DataManager.Posts.loadAllPosts(userId: user.uid) { (data) in
                     if data.count > 0 {
                         print("data loaded")
                         self.postList = data
