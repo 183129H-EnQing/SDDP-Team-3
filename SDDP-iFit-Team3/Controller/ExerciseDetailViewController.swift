@@ -10,6 +10,10 @@ import UIKit
 
 class ExerciseDetailViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var repsLabel: UILabel!
     
     var exerciseList: Exercise = Exercise(exName: "", exDesc: "", exImage: "")
     
@@ -19,7 +23,13 @@ class ExerciseDetailViewController: UIViewController {
        
         // Do any additional setup after loading the view.
         self.navigationItem.title = exerciseList.exName
+        
+        imageView.image = UIImage(named: exerciseList.exImage)
+        nameLabel.text = exerciseList.exName
+        descLabel.text = exerciseList.exDesc
+        repsLabel.text = "10"
     }
+    
    
     
 

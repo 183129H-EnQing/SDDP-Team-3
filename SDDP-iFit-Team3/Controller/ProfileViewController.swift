@@ -43,6 +43,8 @@ class ProfileViewController: UIViewController {
                 let weight = fitnessInfo.weight
                 let height = fitnessInfo.height
                 bmiLabel.text = "BMI: \(weight/pow(height, height))"
+            } else {
+                bmiLabel.text = "No BMI, please take the survey!"
             }
         }
     }

@@ -63,6 +63,7 @@ class ExerciseViewController: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     
+    //pass data to detailsController
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let exerciseDetailVC = storyboard?.instantiateViewController(identifier: "ExerciseDetailVC") as! ExerciseDetailViewController

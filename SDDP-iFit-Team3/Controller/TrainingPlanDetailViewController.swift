@@ -26,15 +26,34 @@ class TrainingPlanDetailViewController: UIViewController, UITableViewDelegate, U
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = trainingPlanItem?.tpName
-        trainingPlanImage.image = UIImage(named: (trainingPlanItem?.tpImage)!)
+//        trainingPlanImage.image = UIImage(named: (trainingPlanItem?.tpImage)!)
         nameLabel.text = trainingPlanItem?.tpName
         descLabel.text = trainingPlanItem?.tpDesc
         repsLabel.text = "\(trainingPlanItem!.tpReps)"
         //exercises not added
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let data = try? Data(contentsOf: NSURL(string: self.trainingPlanItem!.tpImage)! as URL) {
+                print("HIIII\(data)")
+                DispatchQueue.main.async {
+                    self.trainingPlanImage.image = UIImage(data: data)
+                }
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        trainingPlanImage.image = UIImage(named: (trainingPlanItem?.tpImage)!)
+//        trainingPlanImage.image = UIImage(named: (trainingPlanItem?.tpImage)!)
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let data = try? Data(contentsOf: NSURL(string: self.trainingPlanItem!.tpImage)! as URL) {
+                print("HIIII\(data)")
+                DispatchQueue.main.async {
+                    self.trainingPlanImage.image = UIImage(data: data)
+                }
+            }
+        }
+        
         nameLabel.text = trainingPlanItem?.tpName
         descLabel.text = trainingPlanItem?.tpDesc
         repsLabel.text = "\(trainingPlanItem!.tpReps)"

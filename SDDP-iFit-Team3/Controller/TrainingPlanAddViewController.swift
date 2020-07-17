@@ -46,8 +46,17 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
             titleLabel.text = exisitngTP?.tpName
             descLabel.text = exisitngTP?.tpDesc
             repsLabel.text = "\(exisitngTP!.tpReps)"
-            imageView.image = UIImage(named: exisitngTP!.tpImage)
+//            imageView.image = UIImage(named: exisitngTP!.tpImage)
             exerciseListFrom = exisitngTP!.tpExercises
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                if let data = try? Data(contentsOf: NSURL(string: self.exisitngTP!.tpImage)! as URL) {
+                    print("HIIII\(data)")
+                    DispatchQueue.main.async {
+                        self.imageView.image = UIImage(data: data)
+                    }
+                }
+            }
             
             addPlan.setTitle("Update Plan", for: .normal)
             
@@ -134,21 +143,27 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         }
         else if validateInput() == false && self.exisitngTP != nil {
             
-            //update fields to existingTP
-            self.exisitngTP!.tpName = self.titleLabel.text!
-//            print(self.exisitngTP!.tpName)
-            self.exisitngTP!.tpDesc = self.descLabel.text!
-            self.exisitngTP!.tpReps = Int(self.repsLabel.text!)!
-            //                imageView.image = UIImage(named: exisitngTP!.tpImage)
-            //                self.exisitngTP!.tpExercises = exerciseListFrom
-            
-            //update exisitng TP in firebase
-            DataManager.TrainingPlanClass.updateTrainingPlan(trainingPlan: exisitngTP!) { (success) in
-                
-                self.navigationController?.popViewController(animated: true)
-                self.navigationController?.viewControllers[1].viewWillAppear(true)
-                self.navigationController?.viewControllers[0].viewWillAppear(true)
-                self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("Existing Training Plan updated!"), animated: true)
+            StorageManager.uploadTrainingPlanImage(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", image: self.uploadImage!) { url in
+                if let url = url {
+                    
+                    //update fields to existingTP
+                    self.exisitngTP!.tpName = self.titleLabel.text!
+                    //            print(self.exisitngTP!.tpName)
+                    self.exisitngTP!.tpDesc = self.descLabel.text!
+                    self.exisitngTP!.tpReps = Int(self.repsLabel.text!)!
+                    self.exisitngTP!.tpImage = "\(url)"
+                    //                imageView.image = UIImage(named: exisitngTP!.tpImage)
+                    //                self.exisitngTP!.tpExercises = exerciseListFrom
+                    
+                    //update exisitng TP in firebase
+                    DataManager.TrainingPlanClass.updateTrainingPlan(trainingPlan: self.exisitngTP!) { (success) in
+                        
+                        self.navigationController?.popViewController(animated: true)
+                        self.navigationController?.viewControllers[1].viewWillAppear(true)
+                        self.navigationController?.viewControllers[0].viewWillAppear(true)
+                        self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("Existing Training Plan updated!"), animated: true)
+                    }
+                }
             }
         }
         
