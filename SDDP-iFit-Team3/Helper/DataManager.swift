@@ -44,11 +44,9 @@ class DataManager {
             } else if let document = document {
                 let email = document.get("email") as! String
                 let username = document.get("username") as! String
-                let tookSurvey = document.get("tookSurvey") as! Bool
                 
                 user = User(userId: userId, email: email)
                 user!.username = username
-                user!.tookSurvey = tookSurvey
                 
                 if let avatarUrl = document.get("avatarURL") as? String {
                     user!.avatarURL = URL(string: avatarUrl)
