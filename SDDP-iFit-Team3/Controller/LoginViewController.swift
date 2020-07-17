@@ -60,7 +60,7 @@ class LoginViewController: UIViewController {
             
             print("\(user.email!) successfully logged in, with uid: \(user.uid)")
             UserAuthentication.initUser(user: user) { user in
-                Team3Helper.changeRootScreen(currentController: self, goToTabs: true, tookSurvey: user!.tookSurvey ?? false)
+                Team3Helper.changeRootScreen(currentController: self, goToTabs: true, tookSurvey: user?.fitnessInfo != nil)
             }
         }
     }

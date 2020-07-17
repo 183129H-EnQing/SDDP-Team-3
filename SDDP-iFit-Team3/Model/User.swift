@@ -14,7 +14,6 @@ class User {
     var username: String?
     var avatarURL: URL?
     var fitnessInfo: FitnessInfo?
-    var tookSurvey: Bool?
     
     init(userId: String, email: String) {
         self.userId = userId
