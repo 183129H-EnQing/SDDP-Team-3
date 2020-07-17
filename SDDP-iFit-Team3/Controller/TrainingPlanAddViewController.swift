@@ -63,6 +63,12 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
             existTP = true
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+        print("HIIII", exerciseListFrom)
+    }
+    
     @IBAction func takePicturePressed(_ sender: Any) {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -143,30 +149,39 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         }
         else if validateInput() == false && self.exisitngTP != nil {
             
-            StorageManager.uploadTrainingPlanImage(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", image: self.uploadImage!) { url in
-                if let url = url {
-                    
-                    //update fields to existingTP
-                    self.exisitngTP!.tpName = self.titleLabel.text!
-                    //            print(self.exisitngTP!.tpName)
-                    self.exisitngTP!.tpDesc = self.descLabel.text!
-                    self.exisitngTP!.tpReps = Int(self.repsLabel.text!)!
-                    self.exisitngTP!.tpImage = "\(url)"
-                    //                imageView.image = UIImage(named: exisitngTP!.tpImage)
-                    //                self.exisitngTP!.tpExercises = exerciseListFrom
-                    
-                    //update exisitng TP in firebase
-                    DataManager.TrainingPlanClass.updateTrainingPlan(trainingPlan: self.exisitngTP!) { (success) in
+            if self.uploadImage != nil {    //if user upload new photo
+                StorageManager.uploadTrainingPlanImage(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", image: self.uploadImage!) { url in
+                    if let url = url {
+                        self.exisitngTP!.tpImage = "\(url)"
                         
-                        self.navigationController?.popViewController(animated: true)
-                        self.navigationController?.viewControllers[1].viewWillAppear(true)
-                        self.navigationController?.viewControllers[0].viewWillAppear(true)
-                        self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("Existing Training Plan updated!"), animated: true)
+                        self.addUpdateTP()
                     }
                 }
             }
+            else {      //if no photo was uploaded
+                addUpdateTP()
+            }
         }
+    }
+    
+    func addUpdateTP(){
+        //update fields to existingTP
+        self.exisitngTP!.tpName = self.titleLabel.text!
+        //            print(self.exisitngTP!.tpName)
+        self.exisitngTP!.tpDesc = self.descLabel.text!
+        self.exisitngTP!.tpReps = Int(self.repsLabel.text!)!
+        self.exisitngTP!.tpExercises = self.exerciseListFrom
+        //                imageView.image = UIImage(named: exisitngTP!.tpImage)
+        //                self.exisitngTP!.tpExercises = exerciseListFrom
         
+        //update exisitng TP in firebase
+        DataManager.TrainingPlanClass.updateTrainingPlan(trainingPlan: self.exisitngTP!) { (success) in
+            
+            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.viewControllers[1].viewWillAppear(true)
+            self.navigationController?.viewControllers[0].viewWillAppear(true)
+            self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("Existing Training Plan updated!"), animated: true)
+        }
     }
     
     func requestExercise(_ completionHandler: (_ success: Bool) -> Void) {
@@ -215,6 +230,19 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         }
         return errors
     }
+    
+    //pass data to exeercise page
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "ShowExercises"){
+            let exVC = segue.destination as! TrainingPlanAddExerciseViewController
+            
+            let exItem = exisitngTP?.tpExercises
+            exVC.existingTPExercise = exItem
+            
+        }
+    }
+
     
     /*
     // MARK: - Navigations

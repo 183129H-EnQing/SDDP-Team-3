@@ -395,7 +395,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button" image="plus" catalog="system"/>
                                 <connections>
-                                    <segue destination="QhU-wP-nWm" kind="show" identifier="" id="SBK-cP-zAN"/>
+                                    <segue destination="QhU-wP-nWm" kind="show" identifier="ShowExercises" id="SBK-cP-zAN"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gKo-dV-Tit">
