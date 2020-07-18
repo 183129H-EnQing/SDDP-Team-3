@@ -83,5 +83,20 @@
             </objects>
             <point key="canvasLocation" x="2322" y="586"/>
         </scene>
+        <!--Game Discover View Controller-->
+        <scene sceneID="esG-Wn-Ehv">
+            <objects>
+                <viewController id="TQa-kn-gIK" customClass="GameDiscoverViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8in-qQ-x0v" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="pYv-fr-hK9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lVQ-03-DNq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3241" y="586"/>
+        </scene>
     </scenes>
 </document>
