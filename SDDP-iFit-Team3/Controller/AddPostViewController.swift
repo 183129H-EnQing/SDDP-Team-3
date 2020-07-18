@@ -210,6 +210,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
               let viewControllers = self.navigationController?.viewControllers
               
               let parent = viewControllers?[1] as! PostViewController
+            
+           //let child = viewControllers?[2] as! PersonalViewController
 
                 
             //let photo = imageview.image
@@ -243,6 +245,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
                          DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
                                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                            
+                           
 //
                       }
                     }

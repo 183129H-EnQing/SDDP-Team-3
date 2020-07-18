@@ -18,6 +18,7 @@
 		1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0E324A359FF003A35A9 /* Post.swift */; };
 		1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0ED24A37182003A35A9 /* PostViewController.swift */; };
 		1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */; };
+		1BD9C45224C2C027004EA6C9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */; };
 		343BEC9224A97E570041352F /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9124A97E570041352F /* GoalCell.swift */; };
 		343BEC9424A97F010041352F /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9324A97F010041352F /* GoalViewController.swift */; };
 		343BEC9624A97F320041352F /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9524A97F320041352F /* ChallengeViewController.swift */; };
@@ -100,6 +101,7 @@
 		1BB0D0E324A359FF003A35A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		1BB0D0ED24A37182003A35A9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ../PostViewController.swift; sourceTree = "<group>"; };
 		1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
+		1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		2458567889737227F6885574 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		343BEC9124A97E570041352F /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		343BEC9324A97F010041352F /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				DCE67B6A24BF26AB00B2DD27 /* GameLoadViewController.swift */,
 				DCE67B6E24BF31BF00B2DD27 /* GameResultViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
+				1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -514,6 +517,7 @@
 				E3ED531624C091D000052436 /* HealthKitManager.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,
 				7D6A42F924A7139200D82B90 /* Team3Helper.swift in Sources */,
+				1BD9C45224C2C027004EA6C9 /* PersonalViewController.swift in Sources */,
 				7DC360E324BAD86D00280315 /* StorageManager.swift in Sources */,
 				343BEC9A24A97F8A0041352F /* ActivityViewController.swift in Sources */,
 				1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */,
