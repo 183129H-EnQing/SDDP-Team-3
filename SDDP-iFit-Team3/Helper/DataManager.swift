@@ -337,6 +337,44 @@ class DataManager {
         }
     }
     
+    class GamesClass {
+        static let tableName = "game"
+        
+        static func loadGames(userId: String, onComplete: ((Game) -> Void)?) {
+            db.collection(tableName).getDocuments() { (querySnapshot, err) in
+                var gameItem : Game = Game(armyCount: 0, planets: [""], userId: "")
+                
+                if let err = err
+                { // Handle errors here.
+                    //
+                    print("Error getting documents: \(err)") }
+                else
+                {
+                    for document in querySnapshot!.documents
+                    {
+                        if document.data()["userId"] as! String == userId {
+                            // This line tells Firestore to retrieve all fields
+                            // and update it into our Movie object automatically.
+                            //
+                            // This requires the Movie object to implement the
+                            // Codable protocol.
+                            //
+                            // let id = document.documentID
+                            let userId = document.data()["userId"] as! String
+                            let armyCount = document.data()["armyCount"] as! Int
+                            let planetsList = document.data()["planets"] as! [String]
+                            
+                            gameItem = Game(armyCount: armyCount, planets: planetsList, userId: userId)
+                        }
+                    } }
+                // Once we have completed processing, call the onCompletes
+                // closure passed in by the caller.
+                //
+                onComplete?(gameItem)
+            }
+        }
+    }
+    
     class Goals{
         static let tableName = "goals"
         

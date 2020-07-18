@@ -16,6 +16,17 @@ class GameHomeViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
+        var playerGameData: Game = Game(armyCount: 0, planets: [""], userId: "")
+        if let user = UserAuthentication.getLoggedInUser() {
+            DataManager.GamesClass.loadGames(userId: user.uid) { (data) in
+                
+                if data.userId != "" {
+                    playerGameData = data
+                    print("data")
+                }
+            }
+        }
+        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameHome.sks'
             let scene = GameHome(size: CGSize(width: 1536, height: 2048))
