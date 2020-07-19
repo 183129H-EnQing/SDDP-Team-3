@@ -210,7 +210,7 @@ class DataManager {
     class TrainingPlanClass {
         static let tableName = "trainingPlan"
         
-        static func loadTrainingPlan(onComplete: (([TrainingPlan]) -> Void)?) {
+        static func loadTrainingPlan(userId: String, onComplete: (([TrainingPlan]) -> Void)?) {
             db.collection(tableName).getDocuments() { (querySnapshot, err) in
                 var trainingPlanList : [TrainingPlan] = []
                 if let err = err
@@ -227,17 +227,20 @@ class DataManager {
                         // This requires the Movie object to implement the
                         // Codable protocol.
                         //
-                        let id = document.documentID
-                        let userId = document.data()["userId"] as! String
-                        let name = document.data()["name"] as! String
-                        let desc = document.data()["desc"] as! String
-                        let reps = document.data()["reps"] as! Int
-                        let exerciseList = document.data()["exercises"] as! [String]
-                        let image = document.data()["image"] as! String
                         
-                        let tp = TrainingPlan(id: id, userId: userId, tpName: name, tpDesc: desc, tpReps: reps, tpExercises: exerciseList, tpImage: image)
-                        if tp != nil {
-                            trainingPlanList.append(tp) }
+                        if document.data()["userId"] as! String == userId {
+                            let id = document.documentID
+                            let userId = document.data()["userId"] as! String
+                            let name = document.data()["name"] as! String
+                            let desc = document.data()["desc"] as! String
+                            let reps = document.data()["reps"] as! Int
+                            let exerciseList = document.data()["exercises"] as! [String]
+                            let image = document.data()["image"] as! String
+                            
+                            let tp = TrainingPlan(id: id, userId: userId, tpName: name, tpDesc: desc, tpReps: reps, tpExercises: exerciseList, tpImage: image)
+                            if tp != nil {
+                                trainingPlanList.append(tp) }
+                        }
                     } }
                 // Once we have completed processing, call the onCompletes
                 // closure passed in by the caller.
@@ -247,7 +250,7 @@ class DataManager {
             }
         }
         
-        static func insertTrainingPlan(_ trainingPlan: TrainingPlan, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+        static func insertTrainingPlan(_userId: String, trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool) -> Void)?) {
             
             
             db.collection(tableName).addDocument(data: [
@@ -269,7 +272,7 @@ class DataManager {
         }
         
         
-        static func updateTrainingPlan(trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+        static func updateTrainingPlan(userId: String, trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
             db.collection(tableName).document(trainingPlan.id).updateData([
                 "userId": trainingPlan.userId,
                 "name": trainingPlan.tpName,
@@ -288,7 +291,7 @@ class DataManager {
             }
         }
         
-        static func deleteTrainingPlan(trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+        static func deleteTrainingPlan(userId: String, trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
             db.collection(tableName).document(trainingPlan.id).delete { (err) in
                 if let err = err {
                     print("Error deleting trainingPlan: \(err)")

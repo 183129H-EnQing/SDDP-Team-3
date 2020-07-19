@@ -42,13 +42,15 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func loadTrainingPlan(){
-        DataManager.TrainingPlanClass.loadTrainingPlan { (data) in
-            
-            if data.count > 0 {
-                self.trainingPlanList = data
+        if let user = UserAuthentication.getLoggedInUser() {
+            DataManager.TrainingPlanClass.loadTrainingPlan(userId: user.uid) { (data) in
                 
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                if data.count > 0 {
+                    self.trainingPlanList = data
+                    
+                    DispatchQueue.main.async {
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
@@ -119,14 +121,16 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            DataManager.TrainingPlanClass.deleteTrainingPlan(trainingPlan: self.trainingPlanList[indexPath.row], onComplete: { (isSuccess) in
-                
-                if isSuccess {
-                    self.loadTrainingPlan()
-                } else {
-                    self.present(Team3Helper.makeAlert("Unavailable to delete to Training Plan!"), animated: true)
-                }
-            })
+            if let user = UserAuthentication.getLoggedInUser() {
+                DataManager.TrainingPlanClass.deleteTrainingPlan(userId: user.uid, trainingPlan: self.trainingPlanList[indexPath.row], onComplete: { (isSuccess) in
+                    
+                    if isSuccess {
+                        self.loadTrainingPlan()
+                    } else {
+                        self.present(Team3Helper.makeAlert("Unavailable to delete to Training Plan!"), animated: true)
+                    }
+                })
+            }
         }
     }
 

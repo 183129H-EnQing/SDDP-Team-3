@@ -138,10 +138,13 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
                         
                         self.newTrainingPlan = TrainingPlan(id: "", userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", tpName: self.titleLabel.text!, tpDesc: self.descLabel.text!, tpReps: Int(self.repsLabel.text!)!, tpExercises: self.exerciseListFrom, tpImage: "\(url)")
                         
-                        DataManager.TrainingPlanClass.insertTrainingPlan(self.newTrainingPlan!, onComplete: nil)
-                        
-                        self.navigationController?.popViewController(animated: true)
-                        self.navigationController?.viewControllers[0].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)
+                        if let user = UserAuthentication.getLoggedInUser() {
+                            DataManager.TrainingPlanClass.insertTrainingPlan(_userId: user.uid, trainingPlan: self.newTrainingPlan!, onComplete: nil)
+                            
+
+                            self.navigationController?.popViewController(animated: true)
+                            self.navigationController?.viewControllers[0].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)
+                        }
                     }
                     
                 }
@@ -175,12 +178,14 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         //                self.exisitngTP!.tpExercises = exerciseListFrom
         
         //update exisitng TP in firebase
-        DataManager.TrainingPlanClass.updateTrainingPlan(trainingPlan: self.exisitngTP!) { (success) in
-            
-            self.navigationController?.popViewController(animated: true)
-            self.navigationController?.viewControllers[1].viewWillAppear(true)
-            self.navigationController?.viewControllers[0].viewWillAppear(true)
-            self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("Existing Training Plan updated!"), animated: true)
+        if let user = UserAuthentication.getLoggedInUser() {
+            DataManager.TrainingPlanClass.updateTrainingPlan(userId: user.uid, trainingPlan: self.exisitngTP!) { (success) in
+                
+                self.navigationController?.popViewController(animated: true)
+                self.navigationController?.viewControllers[1].viewWillAppear(true)
+                self.navigationController?.viewControllers[0].viewWillAppear(true)
+                self.navigationController?.viewControllers[1].present(Team3Helper.makeAlert("Existing Training Plan updated!"), animated: true)
+            }
         }
     }
     
