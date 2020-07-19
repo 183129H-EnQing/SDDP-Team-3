@@ -11,17 +11,24 @@ import SpriteKit
 class GameHome: SKScene {
     
     var playerFitness = 10
-    var playerPlanets = 3
-    var playerTroops = 2
+    var playerPlanets = 10
+    var playerTroops = 10
+    
+    var planetsList = ["earth", "fireball", "redcrater", "desert", "cat"]
     
     override func didMove(to view: SKView) {
+        self.userData?.setObject("HELLO", forKey: "a" as NSCopying)
         
-        if let playerarmyCount = self.userData?.value(forKey: "playerarmyCount"){
-            print("GMAEINOOOOO: ", playerarmyCount)
+        if let playerarmyCount = self.userData?.value(forKey: "armyCount"){
+//            print("GMAEINOOOOO: ", playerarmyCount)
             
             playerTroops = Int((playerarmyCount as! NSString).doubleValue)
         }
-        print("OIIIII")
+        if let playerplanetCount = self.userData?.value(forKey: "planetCount"){
+            
+            playerPlanets = Int((playerplanetCount as! NSString).doubleValue)
+        }
+//        print("OIIIII")
         
         let bg = SKSpriteNode(imageNamed: "space")
         bg.size = self.size
@@ -163,12 +170,34 @@ class GameHome: SKScene {
                 }
                 
                 if nodeTapped.name == "discoverButton"{
-                    let sceneChange = GameDiscover(size: self.size)
+                    
+//                    var playerNextPlanet = playerPlanets + 1
+//                    var sufficientCost = false
+//                    var planetCost = 0
+//
+//                    switch playerPlanets{
+//                    case 2: planetCost = 10
+//                    case 3: planetCost = 25
+//                    case 4: planetCost = 50
+//                    default:
+//                        planetCost = 100
+//                    }
+//
+//                    if playerFitness >= planetCost {
+//                        sufficientCost = true
+//
+//
+//                    }
+//                    else {
+//                        print("gg u need do more fit")
+//                    }
+                    let sceneChange = GamePlanet(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
             }
         }
     }
+    
     
 }

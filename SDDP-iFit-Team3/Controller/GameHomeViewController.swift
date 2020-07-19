@@ -16,17 +16,6 @@ class GameHomeViewController: UIViewController {
         
         // Do any additional setup after loading the view.
         
-//        var playerGameData: Game = Game(armyCount: 0, planets: [""], userId: "")
-//        if let user = UserAuthentication.getLoggedInUser() {
-//            DataManager.GamesClass.loadGames(userId: user.uid) { (data) in
-//
-//                if data.userId != "" {
-//                    playerGameData = data
-//                    print("data")
-//                }
-//            }
-//        }
-        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameHome.sks'
             let scene = GameHome(size: CGSize(width: 1536, height: 2048))
@@ -40,11 +29,14 @@ class GameHomeViewController: UIViewController {
                     
                     if data.userId != "" {
                         playerGameData = data
-                        print("hiii VC DATAAA: ", playerGameData.armyCount)
+//                        print("hiii VC DATAAA: ", playerGameData.armyCount)
                         
                         var armyCount: String = "\(playerGameData.armyCount)"
+                        var planetCount : String = "\(playerGameData.planets.count)"
+                        
                         scene.userData = NSMutableDictionary()
-                        scene.userData?.setObject(armyCount, forKey: "playerarmyCount" as NSCopying)
+                        scene.userData?.setObject(armyCount, forKey: "armyCount" as NSCopying)
+                        scene.userData?.setObject(planetCount, forKey: "planetCount" as NSCopying)
                         
                         // Present the scene
                         view.presentScene(scene)
@@ -54,11 +46,12 @@ class GameHomeViewController: UIViewController {
                         
                         view.showsFPS = true
                         view.showsNodeCount = true
+                        
+                        var a = scene.userData?.value(forKey: "a")
+                        print("HIIII \(a)")
                     }
                 }
             }
-            
-            
         }
     }
     

@@ -20,7 +20,7 @@ class GameDiscover: SKScene {
         
         let rocketboost = SKSpriteNode(imageNamed: "rocketboost")
         rocketboost.size = CGSize(width: self.size.width * 0.2, height: self.size.height * 0.15)
-        rocketboost.position = CGPoint(x: self.size.width/2, y: self.size.height/3)
+        rocketboost.position = CGPoint(x: self.size.width * 0.7, y: self.size.height/4)
         rocketboost.zPosition = 1
         self.addChild(rocketboost)
         
@@ -31,6 +31,22 @@ class GameDiscover: SKScene {
         resultText.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.8)
         resultText.zPosition = 1
         self.addChild(resultText)
+        
+        delay(3.0) {
+            self.discoverPlanet()
+        }
     }
     
+    
+    func delay(_ delay:Double, closure:@escaping ()->()) {
+        let when = DispatchTime.now() + delay
+        DispatchQueue.main.asyncAfter(deadline: when, execute: closure)
+    }
+    
+    func discoverPlanet(){
+        let sceneChange = GameHome(size: self.size)
+        let transition = SKTransition.fade(withDuration: 0.5)
+        sceneChange.scaleMode = self.scaleMode
+        self.view!.presentScene(sceneChange, transition: transition)
+    }
 }

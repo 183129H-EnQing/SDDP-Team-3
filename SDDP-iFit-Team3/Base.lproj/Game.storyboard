@@ -96,7 +96,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lVQ-03-DNq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3241" y="586"/>
+            <point key="canvasLocation" x="3168" y="586"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="xhj-Vb-uY0">
+            <objects>
+                <viewController id="5Ou-qn-bAT" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jHS-Ao-l2V" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="ScI-HM-rT2"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hix-g6-KKA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3167" y="1266"/>
         </scene>
     </scenes>
 </document>

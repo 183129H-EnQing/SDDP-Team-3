@@ -75,6 +75,8 @@
 		DCE67B6D24BF280600B2DD27 /* GameLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE67B6C24BF280600B2DD27 /* GameLoad.swift */; };
 		DCE67B6F24BF31BF00B2DD27 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE67B6E24BF31BF00B2DD27 /* GameResultViewController.swift */; };
 		DCE67B7124BF31FA00B2DD27 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE67B7024BF31FA00B2DD27 /* GameResult.swift */; };
+		DCF73FB024C43E5B00530EE5 /* GamePlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF73FAF24C43E5B00530EE5 /* GamePlanet.swift */; };
+		DCF73FB224C43E8600530EE5 /* GamePlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */; };
 		DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */; };
 		DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */; };
 		E300F7FA24B6192E00315219 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */; };
@@ -162,6 +164,8 @@
 		DCE67B6C24BF280600B2DD27 /* GameLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoad.swift; sourceTree = "<group>"; };
 		DCE67B6E24BF31BF00B2DD27 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		DCE67B7024BF31FA00B2DD27 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		DCF73FAF24C43E5B00530EE5 /* GamePlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlanet.swift; sourceTree = "<group>"; };
+		DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlanetViewController.swift; sourceTree = "<group>"; };
 		DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddViewController.swift; sourceTree = "<group>"; };
 		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
@@ -284,6 +288,7 @@
 				DCE67B6C24BF280600B2DD27 /* GameLoad.swift */,
 				DCE67B7024BF31FA00B2DD27 /* GameResult.swift */,
 				DC0B46BE24C3140E001BB221 /* GameDiscover.swift */,
+				DCF73FAF24C43E5B00530EE5 /* GamePlanet.swift */,
 				7D236F0324BD688C00C3CD2B /* User.swift */,
 				E3F1688024C0F1B000B2C42A /* HealthKitActivity.swift */,
 			);
@@ -328,6 +333,7 @@
 				DCE67B6A24BF26AB00B2DD27 /* GameLoadViewController.swift */,
 				DCE67B6E24BF31BF00B2DD27 /* GameResultViewController.swift */,
 				DC0B46C024C31423001BB221 /* GameDiscoverViewController.swift */,
+				DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
 				1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */,
 			);
@@ -489,6 +495,7 @@
 				DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */,
 				1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */,
 				7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */,
+				DCF73FB024C43E5B00530EE5 /* GamePlanet.swift in Sources */,
 				345BF47D24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift in Sources */,
 				7D0CAFA724C0AC4E00325F82 /* SurveyFormViewController.swift in Sources */,
 				E320D17524AC6F95003DDA96 /* Goal.swift in Sources */,
@@ -512,6 +519,7 @@
 				343BEC9624A97F320041352F /* ChallengeViewController.swift in Sources */,
 				7DEAECE524A0F04700C9CCBC /* SchedulerViewController.swift in Sources */,
 				DCC80B7424ADEDA5008AF933 /* GameScene.swift in Sources */,
+				DCF73FB224C43E8600530EE5 /* GamePlanetViewController.swift in Sources */,
 				DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */,
 				DC0B46BF24C3140E001BB221 /* GameDiscover.swift in Sources */,
 				34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */,
