@@ -10,11 +10,18 @@ import SpriteKit
 
 class GameHome: SKScene {
     
-    let playerFitness = 10
-    let playerPlanets = 3
-    let playerTroops = 2
+    var playerFitness = 10
+    var playerPlanets = 3
+    var playerTroops = 2
     
     override func didMove(to view: SKView) {
+        
+        if let playerarmyCount = self.userData?.value(forKey: "playerarmyCount"){
+            print("GMAEINOOOOO: ", playerarmyCount)
+            
+            playerTroops = playerarmyCount as! Int
+        }
+        print("OIIIII")
         
         let bg = SKSpriteNode(imageNamed: "space")
         bg.size = self.size
