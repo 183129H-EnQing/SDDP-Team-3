@@ -216,16 +216,16 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                 
             //let photo = imageview.image
             
-            let storage = Storage.storage()
+        let storage = Storage.storage()
             let storageRef = storage.reference()
             let imageName = NSUUID().uuidString
             
        
             let photoRef = storageRef.child("\(imageName)")
             
-                guard let imageData = self.imageview.image?.jpegData(compressionQuality: 0.5) else {
+               guard let imageData = self.imageview.image?.jpegData(compressionQuality: 0.5) else {
                 return
-            }
+        }
             
             
             let metadata = StorageMetadata()
@@ -235,11 +235,13 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                     print(error?.localizedDescription)
                     return
                 }
-                photoRef.downloadURL (completion: { (url, error) in
-                    if let metaImageUrl = url?.absoluteString{
-                        //print(metaImageUrl)
-                        let photo = metaImageUrl
-                        let name = self.userName
+               photoRef.downloadURL (completion: { (url, error) in
+                   if let metaImageUrl = url?.absoluteString{
+                        print(metaImageUrl)
+                       let photo = metaImageUrl
+           // StorageManager.uploadPostImage(userId: "helloo", image: self.imageview.image!) { url in
+                              // if let url = url {
+                                let name = self.userName
                 
                             let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false, commentPost: [ ] )
     
@@ -249,6 +251,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                            
 //
                       }
+                //}
+            //}
                     }
                     })
                             

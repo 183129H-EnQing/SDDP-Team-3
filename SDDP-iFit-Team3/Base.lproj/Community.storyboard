@@ -78,14 +78,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYA-BH-OU6">
-                                                    <rect key="frame" x="13" y="24" width="48" height="21"/>
+                                                    <rect key="frame" x="13" y="24" width="71" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="DATE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SL6-Vg-Oxd">
-                                                    <rect key="frame" x="319" y="23" width="42" height="21"/>
+                                                    <rect key="frame" x="303" y="23" width="91" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -117,6 +117,7 @@
                                             <outlet property="photo" destination="Jo9-Pb-aZO" id="QPu-ls-Y0o"/>
                                             <outlet property="place" destination="Jrd-92-zaj" id="6sX-H0-AR9"/>
                                             <outlet property="username" destination="xYA-BH-OU6" id="MrG-WQ-3pc"/>
+                                            <segue destination="ZMo-Xz-1ut" kind="show" identifier="ShowPostDetails" id="p5z-Zk-WFn"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -516,6 +517,9 @@
             <point key="canvasLocation" x="1657" y="-643"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="p5z-Zk-WFn"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="img" width="626" height="626"/>
         <image name="thumbnail_community" width="350" height="232"/>

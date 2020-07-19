@@ -53,8 +53,10 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         super.viewWillAppear(animated)
         
         
-       
+        
             loadPosts()
+        
+            
 
         
         
@@ -89,13 +91,13 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 cell.timeLabel.text = "\(p.pdatetime)"
                
         //DispatchQueue.global(qos: .userInitiated).async{
-        //if let data = try? Data(contentsOf: NSURL(string: p.pimageName)! as URL){
-             //DispatchQueue.main.async {
+            //if let data = try? Data(contentsOf: NSURL(string: p.pimageName)! as URL){
+            // DispatchQueue.main.async {
                 cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
                 //cell.ppimageView.image = UIImage(data: data)
                 
-              /// }
-           // }
+              //}
+            //}
         //}
         
                
