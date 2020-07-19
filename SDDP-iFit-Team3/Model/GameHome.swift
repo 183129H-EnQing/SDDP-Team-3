@@ -19,7 +19,7 @@ class GameHome: SKScene {
         if let playerarmyCount = self.userData?.value(forKey: "playerarmyCount"){
             print("GMAEINOOOOO: ", playerarmyCount)
             
-            playerTroops = playerarmyCount as! Int
+            playerTroops = Int((playerarmyCount as! NSString).doubleValue)
         }
         print("OIIIII")
         

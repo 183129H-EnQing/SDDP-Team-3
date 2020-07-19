@@ -41,19 +41,24 @@ class GameHomeViewController: UIViewController {
                     if data.userId != "" {
                         playerGameData = data
                         print("hiii VC DATAAA: ", playerGameData.armyCount)
-                        scene.userData?.setObject(playerGameData.armyCount, forKey: "playerarmyCount" as NSCopying)
+                        
+                        var armyCount: String = "\(playerGameData.armyCount)"
+                        scene.userData = NSMutableDictionary()
+                        scene.userData?.setObject(armyCount, forKey: "playerarmyCount" as NSCopying)
+                        
+                        // Present the scene
+                        view.presentScene(scene)
+                        //            }
+                        
+                        view.ignoresSiblingOrder = true
+                        
+                        view.showsFPS = true
+                        view.showsNodeCount = true
                     }
                 }
             }
             
-            // Present the scene
-            view.presentScene(scene)
-            //            }
             
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
         }
     }
     
