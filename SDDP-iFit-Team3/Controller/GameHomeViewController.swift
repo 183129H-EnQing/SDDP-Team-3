@@ -23,14 +23,35 @@ class GameHomeViewController: UIViewController {
             // Set the scale mode to scale to fit the window
             scene.scaleMode = .aspectFill
             
-            // Present the scene
-            view.presentScene(scene)
-            //            }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
+             var playerGameData: Game = Game(armyCount: 0, planets: [""], userId: "")
+            if let user = UserAuthentication.getLoggedInUser() {
+                DataManager.GamesClass.loadGames(userId: user.uid) { (data) in
+                    
+                    if data.userId != "" {
+                        playerGameData = data
+//                        print("hiii VC DATAAA: ", playerGameData.armyCount)
+                        
+                        var armyCount: String = "\(playerGameData.armyCount)"
+                        var planetCount : String = "\(playerGameData.planets.count)"
+                        
+                        scene.userData = NSMutableDictionary()
+                        scene.userData?.setObject(armyCount, forKey: "armyCount" as NSCopying)
+                        scene.userData?.setObject(planetCount, forKey: "planetCount" as NSCopying)
+                        
+                        // Present the scene
+                        view.presentScene(scene)
+                        //            }
+                        
+                        view.ignoresSiblingOrder = true
+                        
+                        view.showsFPS = true
+                        view.showsNodeCount = true
+                        
+                        var a = scene.userData?.value(forKey: "a")
+                        print("HIIII \(a)")
+                    }
+                }
+            }
         }
     }
     

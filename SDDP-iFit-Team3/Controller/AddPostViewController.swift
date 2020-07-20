@@ -188,8 +188,13 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                   // return
         if let user = UserAuthentication.getLoggedInUser(){
             
-           
-            
+           Team3Helper.colorTextFieldBorder(textField: contenttext, isRed: false)
+             if contenttext.text == ""{
+                       Team3Helper.colorTextFieldBorder(textField: contenttext, isRed: true)
+                       let alert = Team3Helper.makeAlert("Content Field is Empty")
+                       self.present(alert, animated: true, completion: nil)
+                       return
+                   }
             let content = contenttext.text ?? ""
                 
                 let date = Date()
@@ -205,20 +210,22 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
               let viewControllers = self.navigationController?.viewControllers
               
               let parent = viewControllers?[1] as! PostViewController
+            
+           //let child = viewControllers?[2] as! PersonalViewController
 
                 
             //let photo = imageview.image
             
-            let storage = Storage.storage()
+        let storage = Storage.storage()
             let storageRef = storage.reference()
             let imageName = NSUUID().uuidString
             
        
             let photoRef = storageRef.child("\(imageName)")
             
-                guard let imageData = self.imageview.image?.jpegData(compressionQuality: 0.5) else {
+               guard let imageData = self.imageview.image?.jpegData(compressionQuality: 0.5) else {
                 return
-            }
+        }
             
             
             let metadata = StorageMetadata()
@@ -228,18 +235,24 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                     print(error?.localizedDescription)
                     return
                 }
-                photoRef.downloadURL (completion: { (url, error) in
-                    if let metaImageUrl = url?.absoluteString{
-                        //print(metaImageUrl)
-                        let photo = metaImageUrl
-                        let name = self.userName
+               photoRef.downloadURL (completion: { (url, error) in
+                   if let metaImageUrl = url?.absoluteString{
+                        print(metaImageUrl)
+                       let photo = metaImageUrl
+           // StorageManager.uploadPostImage(userId: "helloo", image: self.imageview.image!) { url in
+                              // if let url = url {
+                                let name = self.userName
                 
                             let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false, commentPost: [ ] )
     
                          DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
                                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                            
+                           
 //
                       }
+                //}
+            //}
                     }
                     })
                             

@@ -10,11 +10,25 @@ import SpriteKit
 
 class GameHome: SKScene {
     
-    let playerFitness = 10
-    let playerPlanets = 3
-    let playerTroops = 2
+    var playerFitness = 10
+    var playerPlanets = 10
+    var playerTroops = 10
+    
+    var planetsList = ["earth", "fireball", "redcrater", "desert", "cat"]
     
     override func didMove(to view: SKView) {
+        self.userData?.setObject("HELLO", forKey: "a" as NSCopying)
+        
+        if let playerarmyCount = self.userData?.value(forKey: "armyCount"){
+//            print("GMAEINOOOOO: ", playerarmyCount)
+            
+            playerTroops = Int((playerarmyCount as! NSString).doubleValue)
+        }
+        if let playerplanetCount = self.userData?.value(forKey: "planetCount"){
+            
+            playerPlanets = Int((playerplanetCount as! NSString).doubleValue)
+        }
+//        print("OIIIII")
         
         let bg = SKSpriteNode(imageNamed: "space")
         bg.size = self.size
@@ -72,6 +86,19 @@ class GameHome: SKScene {
         researchText.position = CGPoint(x: self.size.width * 0.63, y: self.size.height * 0.255)
         researchText.zPosition = 3
         self.addChild(researchText)
+        
+        let discoverButton = SKSpriteNode(imageNamed: "yellowbutton")
+        discoverButton.name = "discoverButton"
+        discoverButton.size = CGSize(width: 220, height: 250)
+        discoverButton.position = CGPoint(x: self.size.width * 0.74, y: self.size.height * 0.14)
+        discoverButton.zPosition = 2
+        self.addChild(discoverButton)
+        
+        let discoverImg = SKSpriteNode(imageNamed: "rocket")
+        discoverImg.size = CGSize(width: 100, height: 100)
+        discoverImg.position = CGPoint(x: self.size.width * 0.74, y: self.size.height * 0.13)
+        discoverImg.zPosition = 3
+        self.addChild(discoverImg)
         //
         
         //
@@ -141,8 +168,36 @@ class GameHome: SKScene {
                     sceneChange.scaleMode = self.scaleMode
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
+                
+                if nodeTapped.name == "discoverButton"{
+                    
+//                    var playerNextPlanet = playerPlanets + 1
+//                    var sufficientCost = false
+//                    var planetCost = 0
+//
+//                    switch playerPlanets{
+//                    case 2: planetCost = 10
+//                    case 3: planetCost = 25
+//                    case 4: planetCost = 50
+//                    default:
+//                        planetCost = 100
+//                    }
+//
+//                    if playerFitness >= planetCost {
+//                        sufficientCost = true
+//
+//
+//                    }
+//                    else {
+//                        print("gg u need do more fit")
+//                    }
+                    let sceneChange = GamePlanet(size: self.size)
+                    sceneChange.scaleMode = self.scaleMode
+                    self.view!.presentScene(sceneChange, transition: transition)
+                }
             }
         }
     }
+    
     
 }

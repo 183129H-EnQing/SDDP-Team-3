@@ -18,6 +18,8 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
     
     var tickExercise: [String] = []
     
+    var exisitTP: Bool = false
+    var existingTPExercise: [String]? = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,25 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         // Do any additional setup after loading the view.
         exerciseList = ["Plank on forearms", "Elevated crunches", "Push-up", "Sit-up"]
         filterList = exerciseList
+        
+        if existingTPExercise != nil {
+            exisitTP = true
+            tickExercise = existingTPExercise!
+            print("hiiiiiii", tickExercise)
+            
+            for i in 0..<filterList.count {
+                for j in 0..<existingTPExercise!.count {
+                    
+                    if filterList[i] == existingTPExercise![j]{
+                        let indexPath = IndexPath(row: i, section: 0)
+                        tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableView.ScrollPosition.none)
+                        tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
+                    }
+                }
+            }
+        }
+        
+        tableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,12 +61,18 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  
+        print("runnnnnnn")
         if (tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.none) {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
             tickExercise.append(filterList[indexPath.row])
         }
         else {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.none
+            
+            if var index = tickExercise.firstIndex(of: filterList[indexPath.row]){
+                tickExercise.remove(at: index)
+            }
         }
     }
     
@@ -79,7 +106,15 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         let viewControllers = self.navigationController?.viewControllers
         print("ViewControllers length: \(viewControllers!.count)")
         
-        let addTPVC = viewControllers![1] as! TrainingPlanAddViewController
+        
+        var addTPVC: TrainingPlanAddViewController
+        
+        if exisitTP == true {
+            addTPVC = viewControllers![2] as! TrainingPlanAddViewController
+        }
+        else{
+            addTPVC = viewControllers![1] as! TrainingPlanAddViewController
+        }
         
         //let addTPVC = self.storyboard?.instantiateViewController(withIdentifier: "TrainingPlanAddVC") as! TrainingPlanAddViewController
         
@@ -92,7 +127,8 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
             }
         }
         
-//        addTPVC.exerciseListFrom = tickExercise
+        addTPVC.exerciseListFrom = tickExercise
+        addTPVC.viewWillAppear(true)
         
 //        addTPVC.tableView.reloadData()
         

@@ -32,6 +32,20 @@ class PostCell: UITableViewCell {
     
     @IBOutlet weak var cmt: UILabel!
     
+    
+    @IBOutlet weak var username: UILabel!
+    
+    
+    @IBOutlet weak var datelabel: UILabel!
+    
+    
+    @IBOutlet weak var place: UILabel!
+    
+    
+    @IBOutlet weak var photo: UIImageView!
+    
+    @IBOutlet weak var content: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

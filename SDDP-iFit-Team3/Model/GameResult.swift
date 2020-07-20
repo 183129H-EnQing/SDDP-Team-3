@@ -10,7 +10,7 @@ import SpriteKit
 
 class GameResult: SKScene {
     
-    let battleResult = false //true = won, false = lost
+    let battleResult = true //true = won, false = lost
     var result = "VICTORY"
     var bg = "raiseflag"
     
@@ -34,5 +34,32 @@ class GameResult: SKScene {
         resultText.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.8)
         resultText.zPosition = 1
         self.addChild(resultText)
+        
+        //
+        let closeButton = SKSpriteNode(imageNamed: "yellowbutton")
+        closeButton.name = "homeButton"
+        closeButton.size = CGSize(width: 80, height: 80)
+        closeButton.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.85)
+        closeButton.zPosition = 2
+        self.addChild(closeButton)
+        
+        
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+          for touch: AnyObject in touches {
+              
+              let pointOfTouch = touch.location(in: self)
+              for nodeTapped in nodes(at: pointOfTouch) {
+                  
+                  let transition = SKTransition.fade(withDuration: 0.5)
+                  
+                  if nodeTapped.name == "homeButton"{
+                      let sceneChange = GameHome(size: self.size)
+                      sceneChange.scaleMode = self.scaleMode
+                      self.view!.presentScene(sceneChange, transition: transition)
+                  }
+              }
+          }
+      }
 }

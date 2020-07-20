@@ -165,9 +165,17 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
                  formatter.dateFormat = "MMM d, h:mm a"
                   let datetime = formatter.string(from: date)
             
-       // let name = 
+       // let name =
         
-        let loca = location.text ?? ""
+        Team3Helper.colorTextFieldBorder(textField: textcontent, isRed: false)
+        if textcontent.text == ""{
+                  Team3Helper.colorTextFieldBorder(textField: textcontent, isRed: true)
+                  let alert = Team3Helper.makeAlert("Content Field is Empty")
+                  self.present(alert, animated: true, completion: nil)
+                  return
+              }
+            
+            let loca = location.text ?? ""
             
            
             let viewControllers = self.navigationController?.viewControllers

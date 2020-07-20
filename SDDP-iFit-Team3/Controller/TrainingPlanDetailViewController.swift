@@ -57,6 +57,7 @@ class TrainingPlanDetailViewController: UIViewController, UITableViewDelegate, U
         nameLabel.text = trainingPlanItem?.tpName
         descLabel.text = trainingPlanItem?.tpDesc
         repsLabel.text = "\(trainingPlanItem!.tpReps)"
+        tableView.reloadData()
         //exercises not added
     }
     
