@@ -228,7 +228,7 @@ class DataManager {
                         // Codable protocol.
                         //
                         
-                        if document.data()["userId"] as! String == userId {
+                        if document.data()["userId"] as! String == userId || document.data()["userId"] as! String == "default" {
                             let id = document.documentID
                             let userId = document.data()["userId"] as! String
                             let name = document.data()["name"] as! String
