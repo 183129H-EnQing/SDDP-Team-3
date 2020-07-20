@@ -10,6 +10,10 @@ import SpriteKit
 
 class GameDiscover: SKScene {
     
+    var playerFitness = 10
+    var playerPlanets = 10
+    var playerTroops = 10
+    
     override func didMove(to view: SKView) {
         
         let bg = SKSpriteNode(imageNamed: "lightspeed")
@@ -47,6 +51,9 @@ class GameDiscover: SKScene {
         let sceneChange = GameHome(size: self.size)
         let transition = SKTransition.fade(withDuration: 0.5)
         sceneChange.scaleMode = self.scaleMode
+        sceneChange.playerFitness = playerFitness
+        sceneChange.playerPlanets = playerPlanets
+        sceneChange.playerTroops = playerTroops
         self.view!.presentScene(sceneChange, transition: transition)
     }
 }
