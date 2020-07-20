@@ -98,6 +98,8 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
 
             let posts = postList[myIndexPath!.row]
                 detailViewController.postItem = posts
+                
+                //FOR PUSHING
 
          }
 
