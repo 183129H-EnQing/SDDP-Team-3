@@ -208,7 +208,7 @@ class DataManager {
                         // This requires the Movie object to implement the
                         // Codable protocol.
                         //
-                        
+                        print(document.data())
                         if document.data()["userId"] as! String == userId || document.data()["userId"] as! String == "default" {
                             let id = document.documentID
                             let userId = document.data()["userId"] as! String

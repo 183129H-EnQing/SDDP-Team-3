@@ -19,6 +19,7 @@
 		1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0ED24A37182003A35A9 /* PostViewController.swift */; };
 		1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */; };
 		1BD9C45224C2C027004EA6C9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */; };
+		340758FB24C55A21000F85A7 /* Fritz-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 340758FA24C55A21000F85A7 /* Fritz-Info.plist */; };
 		343BEC9224A97E570041352F /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9124A97E570041352F /* GoalCell.swift */; };
 		343BEC9424A97F010041352F /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9324A97F010041352F /* GoalViewController.swift */; };
 		343BEC9624A97F320041352F /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9524A97F320041352F /* ChallengeViewController.swift */; };
@@ -26,7 +27,6 @@
 		343BEC9A24A97F8A0041352F /* ActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9924A97F8A0041352F /* ActivityViewController.swift */; };
 		343BEC9C24A97FB70041352F /* AchievementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9B24A97FB70041352F /* AchievementViewController.swift */; };
 		345BF47D24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */; };
-		345BF47F24BC00E900BE04EA /* Fritz-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 345BF47E24BC00E900BE04EA /* Fritz-Info.plist */; };
 		34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */; };
 		34B27B9324C53D2F00C113A2 /* EditPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */; };
 		3CB035BE6C63CBE96F5D7F96 /* Pods_SDDP_iFit_Team3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39CB9401B99CF5A57CA6590 /* Pods_SDDP_iFit_Team3.framework */; };
@@ -107,6 +107,7 @@
 		1BB0D0ED24A37182003A35A9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ../PostViewController.swift; sourceTree = "<group>"; };
 		1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
+		340758FA24C55A21000F85A7 /* Fritz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fritz-Info.plist"; sourceTree = "<group>"; };
 		343BEC9124A97E570041352F /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		343BEC9324A97F010041352F /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 		343BEC9524A97F320041352F /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		343BEC9924A97F8A0041352F /* ActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewController.swift; sourceTree = "<group>"; };
 		343BEC9B24A97FB70041352F /* AchievementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AchievementViewController.swift; sourceTree = "<group>"; };
 		345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanStartViewController.swift; sourceTree = "<group>"; };
-		345BF47E24BC00E900BE04EA /* Fritz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fritz-Info.plist"; sourceTree = "<group>"; };
 		34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostViewController.swift; sourceTree = "<group>"; };
 		34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalViewController.swift; sourceTree = "<group>"; };
 		35E53669E5F9C4B111122A69 /* Pods-SDDP-iFit-Team3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.release.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.release.xcconfig"; sourceTree = "<group>"; };
@@ -234,8 +234,8 @@
 				09B1B93B249322B200D14CE6 /* Assets.xcassets */,
 				09B1B93D249322B200D14CE6 /* LaunchScreen.storyboard */,
 				09B1B940249322B200D14CE6 /* Info.plist */,
-				345BF47E24BC00E900BE04EA /* Fritz-Info.plist */,
 				7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */,
+				340758FA24C55A21000F85A7 /* Fritz-Info.plist */,
 				DC78681F24AE3DA20093BAE5 /* bulletSound_3.wav */,
 				DCC5778824B9A6D20003F215 /* bomb_07.wav */,
 				DC2C64A424B9C17F006B81D3 /* theboldfont.ttf */,
@@ -405,8 +405,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7ED68024A0E2F9001D52DA /* Game.storyboard in Resources */,
-				345BF47F24BC00E900BE04EA /* Fritz-Info.plist in Resources */,
 				7D6080E8249CFE2F001F3E6E /* Scheduler.storyboard in Resources */,
+				340758FB24C55A21000F85A7 /* Fritz-Info.plist in Resources */,
 				7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */,
 				09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */,
 				DCC5778924B9A6D20003F215 /* bomb_07.wav in Resources */,
