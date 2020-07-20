@@ -115,7 +115,7 @@ class HealthKitManager{
                                     
                                   }
                                   
-                    doSomeShitInsert()
+                    insertHealthKitData()
                          group.leave()
                               }
                   }
@@ -135,7 +135,7 @@ class HealthKitManager{
         
     }
     
-    static func doSomeShitInsert() {
+    static func insertHealthKitData() {
                  //   let calendar = Calendar.current
                     let user = UserAuthentication.getLoggedInUser()
                     let formatter = DateFormatter()
