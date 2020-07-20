@@ -210,7 +210,7 @@ class DataManager {
     class TrainingPlanClass {
         static let tableName = "trainingPlan"
         
-        static func loadTrainingPlan(onComplete: (([TrainingPlan]) -> Void)?) {
+        static func loadTrainingPlan(userId: String, onComplete: (([TrainingPlan]) -> Void)?) {
             db.collection(tableName).getDocuments() { (querySnapshot, err) in
                 var trainingPlanList : [TrainingPlan] = []
                 if let err = err
@@ -227,17 +227,20 @@ class DataManager {
                         // This requires the Movie object to implement the
                         // Codable protocol.
                         //
-                        let id = document.documentID
-                        let userId = document.data()["userId"] as! String
-                        let name = document.data()["name"] as! String
-                        let desc = document.data()["desc"] as! String
-                        let reps = document.data()["reps"] as! Int
-                        let exerciseList = document.data()["exercises"] as! [String]
-                        let image = document.data()["image"] as! String
                         
-                        let tp = TrainingPlan(id: id, userId: userId, tpName: name, tpDesc: desc, tpReps: reps, tpExercises: exerciseList, tpImage: image)
-                        if tp != nil {
-                            trainingPlanList.append(tp) }
+                        if document.data()["userId"] as! String == userId {
+                            let id = document.documentID
+                            let userId = document.data()["userId"] as! String
+                            let name = document.data()["name"] as! String
+                            let desc = document.data()["desc"] as! String
+                            let reps = document.data()["reps"] as! Int
+                            let exerciseList = document.data()["exercises"] as! [String]
+                            let image = document.data()["image"] as! String
+                            
+                            let tp = TrainingPlan(id: id, userId: userId, tpName: name, tpDesc: desc, tpReps: reps, tpExercises: exerciseList, tpImage: image)
+                            if tp != nil {
+                                trainingPlanList.append(tp) }
+                        }
                     } }
                 // Once we have completed processing, call the onCompletes
                 // closure passed in by the caller.
@@ -247,7 +250,7 @@ class DataManager {
             }
         }
         
-        static func insertTrainingPlan(_ trainingPlan: TrainingPlan, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+        static func insertTrainingPlan(_userId: String, trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool) -> Void)?) {
             
             
             db.collection(tableName).addDocument(data: [
@@ -269,7 +272,7 @@ class DataManager {
         }
         
         
-        static func updateTrainingPlan(trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+        static func updateTrainingPlan(userId: String, trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
             db.collection(tableName).document(trainingPlan.id).updateData([
                 "userId": trainingPlan.userId,
                 "name": trainingPlan.tpName,
@@ -288,7 +291,7 @@ class DataManager {
             }
         }
         
-        static func deleteTrainingPlan(trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+        static func deleteTrainingPlan(userId: String, trainingPlan: TrainingPlan, onComplete: ((_ isSuccess:Bool)-> Void)?) {
             db.collection(tableName).document(trainingPlan.id).delete { (err) in
                 if let err = err {
                     print("Error deleting trainingPlan: \(err)")
@@ -333,6 +336,44 @@ class DataManager {
                 //
                 onComplete?(exerciseList)
                 
+            }
+        }
+    }
+    
+    class GamesClass {
+        static let tableName = "game"
+        
+        static func loadGames(userId: String, onComplete: ((Game) -> Void)?) {
+            db.collection(tableName).getDocuments() { (querySnapshot, err) in
+                var gameItem : Game = Game(armyCount: 0, planets: [""], userId: "")
+                
+                if let err = err
+                { // Handle errors here.
+                    //
+                    print("Error getting documents: \(err)") }
+                else
+                {
+                    for document in querySnapshot!.documents
+                    {
+                        if document.data()["userId"] as! String == userId {
+                            // This line tells Firestore to retrieve all fields
+                            // and update it into our Movie object automatically.
+                            //
+                            // This requires the Movie object to implement the
+                            // Codable protocol.
+                            //
+                            // let id = document.documentID
+                            let userId = document.data()["userId"] as! String
+                            let armyCount = document.data()["armyCount"] as! Int
+                            let planetsList = document.data()["planets"] as! [String]
+                            
+                            gameItem = Game(armyCount: armyCount, planets: planetsList, userId: userId)
+                        }
+                    } }
+                // Once we have completed processing, call the onCompletes
+                // closure passed in by the caller.
+                //
+                onComplete?(gameItem)
             }
         }
     }
@@ -468,10 +509,10 @@ class DataManager {
                               
                               print("Got data: \(snapshot.count)")
                               for document in snapshot.documents {
-                                  // print("Retrieving a document")
+                                  print("Retrieving a document")
                                   let data = document.data()
                                   if userId.elementsEqual(data["userId"] as! String) {
-                                      //print("Document's creator matched")
+                                      print("Document's creator matched")
           
                                     let todayStep : Double = data["todayStep"] as! Double
                                     let todayCaloriesBurnt : Double = data["todayCaloriesBurnt"] as! Double
@@ -493,25 +534,6 @@ class DataManager {
                           onComplete?(healthKitActivities)
                       }
                   }
-        
-        static func updateHealthKitActivity(healthKitActivity:HealthKitActivity, healthKitActivityId:String, onComplete: ((_ isSuccess:Bool)-> Void)?) {
-                             // updateData will update the specified document for the schedule.id passed in, it will only overwrite the
-                             // specified fields inside the document.
-                  db.collection(tableName).document(healthKitActivityId).updateData([
-                               "todayStep": healthKitActivity.todayStep,
-                               "todayCaloriesBurnt": healthKitActivity.todayCaloriesBurnt,
-                               "dateSaved": healthKitActivity.dateSaved,
-                               "timeSaved": healthKitActivity.timeSaved,
-                             ]) { (err) in
-                                 if let err = err {
-                                     print("Error updating goal status: \(err)")
-                                     onComplete?(false)
-                                 } else {
-                                     onComplete?(true)
-                                 }
-                             }
-                         }
-        
     }
     
     class Posts {
@@ -616,6 +638,58 @@ class DataManager {
                             onComplete?(posts)
                         }
                     }
+        
+        static func loadAllPosts(userId: String, onComplete: (([Post]) -> Void)?) {
+            /* Process
+             1. Get all documents
+             2. Check for errors, check if there are data to retrieve
+             3. loop through all the documents
+             4. In each document, check if the creatorId is the same as the logged in user's id
+             5. Create empty array if our schedules variable' day is empty
+             6. Retrieve fields from document, as well as documentId from document
+             7. Put the fields into instance of Schedule and append Schedule to day array inside schedules variable
+             8. Then we sort the day array after appending
+             */
+            db.collection(tableName).getDocuments { (snapshot, err) in
+                var posts: [Post] = []
+                if let err = err {
+                    print("Error for \(tableName): \(err)")
+                } else if let snapshot = snapshot, snapshot.count > 0 {
+                    print("Got data: \(snapshot.count)")
+                    for document in snapshot.documents {
+                        print("Retrieving a document")
+                        let data = document.data()
+                        //if userId.elementsEqual(data["userId"] as! String) {
+                            print("Document's creator matched")
+                          let userName : String = data["userName"] as! String
+                          let pcontent : String = data["pcontent"] as! String
+                          let pdatetime : String = data["pdatetime"] as! String
+                          let userLocation : String = data["userLocation"] as! String
+                          let pimageName : String = data["pimageName"] as! String
+                          let opened    :    Bool = data["opened"] as! Bool
+                          let commentPost : [Comment] = data["commentPost"] as! [Comment]
+
+                            let post = Post( userName: userName, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, opened: opened, commentPost: commentPost)
+                            
+                            
+                            post.id = document.documentID
+                            
+                          posts.append(post)
+                       
+                       // }
+                    }
+                } else {
+                    print("No data for \(tableName)")
+                }
+                
+                onComplete?(posts)
+            }
+        }
+        
+        
                   }
+    
+    
+    
     
 }
