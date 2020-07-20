@@ -151,11 +151,15 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
                     }
                 }
             }
+            else{
+                let alert = Team3Helper.makeAlert("Please select an image")
+                self.present(alert, animated: true, completion: nil)
+            }
         }
         else if validateInput() == false && self.exisitngTP != nil {
             
             if self.uploadImage != nil {    //if user upload new photo
-                StorageManager.uploadTrainingPlanImage(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", image: self.uploadImage!) { url in
+                StorageManager.uploadTrainingPlanImage(userId: "random", image: self.uploadImage!) { url in
                     if let url = url {
                         self.exisitngTP!.tpImage = "\(url)"
                         
