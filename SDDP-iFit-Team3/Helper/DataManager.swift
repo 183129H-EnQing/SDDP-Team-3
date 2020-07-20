@@ -16,25 +16,6 @@ class DataManager {
     static let db = Firestore.firestore()
 
     static let userTableName = "usernames"
-    // User ID: User name
-    static func loadUsernames(onComplete: (([String: String]) -> Void)?) {
-        db.collection(userTableName).getDocuments() { (querySnapshot, err) in
-            var usernames: [String: String] = [:]
-            
-            if let err = err {
-                print("Error getting usernames: \(err)")
-            } else {
-                for document in querySnapshot!.documents {
-                    let userId = document.documentID
-                    let username = document.data()["username"] as! String
-                    
-                    usernames[userId] = username
-                }
-            }
-            
-            onComplete?(usernames)
-        }
-    }
     
     static func getUserData(userId: String, onComplete: ((User?) -> Void)?) {
         db.collection(userTableName).document(userId).getDocument { (document, err) in

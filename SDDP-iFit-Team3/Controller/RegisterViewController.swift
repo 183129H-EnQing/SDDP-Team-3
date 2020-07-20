@@ -16,20 +16,10 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var usernames: [String: String] = [:]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        DataManager.loadUsernames() { usernames in
-            print("Loading Usernames: \(usernames)")
-            
-            self.usernames = usernames
-        }
     }
     
 
@@ -55,21 +45,6 @@ class RegisterViewController: UIViewController {
         if password == "" {
             Team3Helper.colorTextFieldBorder(textField: passwordTextField, isRed: true)
             self.present(Team3Helper.makeAlert("Password cannot be empty"), animated: true)
-            return
-        }
-        
-        // Load Username array to check that the username is not taken
-        var isUsernameTaken = false
-        for user in self.usernames {
-            if user.value.elementsEqual(username) {
-                isUsernameTaken = true
-                break
-            }
-        }
-                
-        if isUsernameTaken {
-            Team3Helper.colorTextFieldBorder(textField: usernameTextField, isRed: true)
-            self.present(Team3Helper.makeAlert("Username is taken!"), animated: true)
             return
         }
         
