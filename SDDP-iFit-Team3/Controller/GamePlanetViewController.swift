@@ -11,6 +11,8 @@ import SpriteKit
 
 class GamePlanetViewController: UIViewController {
 
+    var selectedName = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,8 @@ class GamePlanetViewController: UIViewController {
             
             view.showsFPS = true
             view.showsNodeCount = true
+            
+            print("HIII", selectedName)
         }
     }
     

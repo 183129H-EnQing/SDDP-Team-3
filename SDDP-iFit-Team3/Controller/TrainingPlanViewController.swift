@@ -106,7 +106,7 @@ class TrainingPlanViewController: UIViewController, UITableViewDelegate, UITable
         
         DispatchQueue.global(qos: .userInitiated).async {
             if let data = try? Data(contentsOf: NSURL(string: t.tpImage)! as URL) {
-                print("HIIII\(data)")
+//                print("HIIII\(data)")
                 DispatchQueue.main.async {
                     cell.trainingPlanImageView.image = UIImage(data: data)
                 }

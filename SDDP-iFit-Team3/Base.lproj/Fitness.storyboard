@@ -485,6 +485,9 @@
                                 <state key="normal" title="Start Exercising">
                                     <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 </state>
+                                <connections>
+                                    <segue destination="x5e-5N-slc" kind="show" id="Fvw-YD-dfq"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cjN-sf-sRX">
                                 <rect key="frame" x="0.0" y="74" width="414" height="202"/>
@@ -540,20 +543,57 @@
             </objects>
             <point key="canvasLocation" x="3647.826086956522" y="219.64285714285714"/>
         </scene>
-        <!--View Controller-->
+        <!--Training Plan Start View Controller-->
         <scene sceneID="xgv-Lx-apN">
             <objects>
-                <viewController id="x5e-5N-slc" sceneMemberID="viewController">
+                <viewController id="x5e-5N-slc" customClass="TrainingPlanStartViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7gG-jd-GS4">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIl-Ey-d2x">
+                                <rect key="frame" x="169" y="759" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Start Video"/>
+                                <connections>
+                                    <action selector="takePicturePressed:" destination="JKM-Mh-9Kk" eventType="touchUpInside" id="n1A-FZ-9d9"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="fpsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EvT-xc-q75">
+                                <rect key="frame" x="174" y="633" width="66" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" modelIdLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ch-6t-b8f">
+                                <rect key="frame" x="153" y="673" width="108" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="modelVersionLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2uq-bx-QK3">
+                                <rect key="frame" x="134" y="714" width="146" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="wKJ-bK-oVy"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Mn1-0n-7ZF"/>
+                    <connections>
+                        <outlet property="fpsLabel" destination="EvT-xc-q75" id="cow-0b-uUi"/>
+                        <outlet property="modelIdLabel" destination="4ch-6t-b8f" id="gON-2x-5Z0"/>
+                        <outlet property="modelVersionLabel" destination="2uq-bx-QK3" id="L7J-Nj-sdH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HaT-FX-9dH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4412" y="220"/>
+            <point key="canvasLocation" x="4411.594202898551" y="219.64285714285714"/>
         </scene>
         <!--Training Plan Add Exercise View Controller-->
         <scene sceneID="Uuk-sG-5xt">
