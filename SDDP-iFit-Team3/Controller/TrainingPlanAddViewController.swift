@@ -128,25 +128,27 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         if validateInput() == false && self.exisitngTP == nil{
             
             if self.uploadImage != nil {
-                StorageManager.uploadTrainingPlanImage(userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", image: self.uploadImage!) { url in
-                    if let url = url {
-                        
-//                        let imageName = NSUUID().uuidString
-//                        self.uploadImageUUID = imageName
-                        
-                        print("hiii \(url)")
-                        
-                        self.newTrainingPlan = TrainingPlan(id: "", userId: "oPzKpyctwUTgC9cYBq6OYoNqpZ62", tpName: self.titleLabel.text!, tpDesc: self.descLabel.text!, tpReps: Int(self.repsLabel.text!)!, tpExercises: self.exerciseListFrom, tpImage: "\(url)")
-                        
-                        if let user = UserAuthentication.getLoggedInUser() {
-                            DataManager.TrainingPlanClass.insertTrainingPlan(_userId: user.uid, trainingPlan: self.newTrainingPlan!, onComplete: nil)
+                if let user = UserAuthentication.getLoggedInUser() {
+                    StorageManager.uploadTrainingPlanImage(userId: user.uid, image: self.uploadImage!) { url in
+                        if let url = url {
                             
-
-                            self.navigationController?.popViewController(animated: true)
-                            self.navigationController?.viewControllers[0].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)
+                            //                        let imageName = NSUUID().uuidString
+                            //                        self.uploadImageUUID = imageName
+                            
+                            print("hiii \(url)")
+                            
+                            self.newTrainingPlan = TrainingPlan(id: "", userId: user.uid, tpName: self.titleLabel.text!, tpDesc: self.descLabel.text!, tpReps: Int(self.repsLabel.text!)!, tpExercises: self.exerciseListFrom, tpImage: "\(url)")
+                            
+                            if let user = UserAuthentication.getLoggedInUser() {
+                                DataManager.TrainingPlanClass.insertTrainingPlan(_userId: user.uid, trainingPlan: self.newTrainingPlan!, onComplete: nil)
+                                
+                                
+                                self.navigationController?.popViewController(animated: true)
+                                self.navigationController?.viewControllers[0].present(Team3Helper.makeAlert("New Training Plan added!"), animated: true)
+                            }
                         }
+                        
                     }
-                    
                 }
             }
         }

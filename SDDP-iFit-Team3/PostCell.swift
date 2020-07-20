@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostCell: UITableViewCell {
+class PostCell: UITableViewCell{
 
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -46,6 +46,9 @@ class PostCell: UITableViewCell {
     
     @IBOutlet weak var content: UILabel!
     
+    
+    @IBOutlet weak var edit: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -57,5 +60,14 @@ class PostCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func editpressed(_ sender: Any) {
+        
+        
+       
+        
+        //navigationController?.pushViewController(addVC, animated: true)
+    }
+    
 
 }

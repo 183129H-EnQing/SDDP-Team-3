@@ -10,6 +10,12 @@ import SpriteKit
 
 class GamePlanet: SKScene {
     
+    var playerFitness = 10
+    var playerPlanets = 10
+    var playerTroops = 10
+    
+    var planetsList = ["earth", "fireball", "redcrater", "desert", "cat"]
+    
     override func didMove(to view: SKView) {
         let bg = SKSpriteNode(imageNamed: "space")
         bg.size = self.size
@@ -24,13 +30,58 @@ class GamePlanet: SKScene {
         closeButton.zPosition = 2
         self.addChild(closeButton)
         
+        let planetMainText = SKLabelNode(fontNamed: "The Bold Font")
+        planetMainText.text = "PLANETS"
+        planetMainText.fontSize = 65
+        planetMainText.fontColor = SKColor.white
+        planetMainText.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.85)
+        planetMainText.zPosition = 2
+        self.addChild(planetMainText)
+        
+        let finessIcon = SKSpriteNode(imageNamed: "barbell")
+        finessIcon.size = CGSize(width: 100, height: 100)
+        finessIcon.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.85)
+        finessIcon.zPosition = 2
+        self.addChild(finessIcon)
+        
+        let fitnessText = SKLabelNode(fontNamed: "The Bold Font")
+        fitnessText.text = "\(playerFitness)"
+        fitnessText.fontSize = 60
+        fitnessText.fontColor = SKColor.white
+        fitnessText.position = CGPoint(x: self.size.width * 0.33, y: self.size.height * 0.84)
+        fitnessText.zPosition = 2
+        self.addChild(fitnessText)
+        
+        //
+        let planetIcon = SKSpriteNode(imageNamed: "earth")
+        planetIcon.size = CGSize(width: 100, height: 100)
+        planetIcon.position = CGPoint(x: self.size.width * 0.75, y: self.size.height * 0.85)
+        planetIcon.zPosition = 2
+        self.addChild(planetIcon)
+        
         let planetText = SKLabelNode(fontNamed: "The Bold Font")
-        planetText.text = "PLANETS"
-        planetText.fontSize = 65
+        planetText.text = "\(playerPlanets)"
+        planetText.fontSize = 60
         planetText.fontColor = SKColor.white
-        planetText.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.85)
+        planetText.position = CGPoint(x: self.size.width * 0.67, y: self.size.height * 0.84)
         planetText.zPosition = 2
         self.addChild(planetText)
+        
+        let discoverButton = SKSpriteNode(imageNamed: "yellowbutton")
+        discoverButton.name = "discoverButton"
+        discoverButton.size = CGSize(width: 600, height: 120)
+        discoverButton.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.2)
+        discoverButton.zPosition = 1
+        self.addChild(discoverButton)
+        
+        let discoverText = SKLabelNode(fontNamed: "The Bold Font")
+        discoverText.text = "DISCOVER"
+        discoverText.fontSize = 60
+        discoverText.fontColor = SKColor.black
+        discoverText.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.19)
+        discoverText.zPosition = 2
+        self.addChild(discoverText)
+        //
         
         //
         let earth = SKSpriteNode(imageNamed: "earth")
@@ -60,6 +111,8 @@ class GamePlanet: SKScene {
         fireballText.position = CGPoint(x: self.size.width * 0.65, y: self.size.height * 0.6)
         fireballText.zPosition = 1
         self.addChild(fireballText)
+        
+        discoverPlanet()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -73,8 +126,55 @@ class GamePlanet: SKScene {
                 if nodeTapped.name == "homeButton"{
                     let sceneChange = GameHome(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
+                if nodeTapped.name == "discoverButton"{
+                    let sceneChange = GameDiscover(size: self.size)
+                    sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
+                    self.view!.presentScene(sceneChange, transition: transition)
+                }
+            }
+        }
+    }
+    
+    func discoverPlanet() {
+        var playerNextPlanet = playerPlanets + 1
+        var sufficientCost = false
+        var planetCost = 0
+        
+        switch playerPlanets{
+        case 2: planetCost = 10
+        case 3: planetCost = 25
+        case 4: planetCost = 50
+        default:
+            planetCost = 100
+        }
+        
+        if playerFitness >= planetCost {
+            sufficientCost = true
+            //not working yet
+            playerFitness -= planetCost
+            print("SCAMMMM ", playerFitness)
+        }
+        else {
+            print("gg u need do more fit")
+        }
+    }
+    
+    func loadPlanet() {
+        
+        //rmb call function
+        var sum = 0
+        for i in planetsList {
+            sum += 1
+            if sum < playerPlanets {
+                //load planets, else show qns mark image
             }
         }
     }

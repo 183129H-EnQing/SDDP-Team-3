@@ -193,6 +193,9 @@ class GameHome: SKScene {
 //                    }
                     let sceneChange = GamePlanet(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
             }

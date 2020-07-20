@@ -88,15 +88,19 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
            
            }
     
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if(segue.identifier == "ShowPostDetails")
-      { let detailViewController = segue.destination as! EditPostViewController
+         if(segue.identifier == "ShowPersonalDetails")
+      { let detailViewController = segue.destination as! EditPersonalViewController
          let myIndexPath = self.taleview.indexPathForSelectedRow
             if(myIndexPath != nil) {
-    
+
             let posts = postList[myIndexPath!.row]
                 detailViewController.postItem = posts
-                 
+                
+                //FOR PUSHING
+
          }
 
              }
