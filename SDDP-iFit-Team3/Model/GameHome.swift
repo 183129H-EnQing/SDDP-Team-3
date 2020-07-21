@@ -14,7 +14,7 @@ class GameHome: SKScene {
     var playerPlanets = 10
     var playerTroops = 10
     
-    var planetsList = ["earth", "fireball", "redcrater", "desert", "cat"]
+    var planetsList = ["earth", "fireball", "redcrater", "desert", "cat", "eagle"]
     
     override func didMove(to view: SKView) {
         self.userData?.setObject("HELLO", forKey: "a" as NSCopying)
