@@ -19,6 +19,10 @@ class ProfileViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         Team3Helper.makeImgViewRound(avatarImgView)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         DispatchQueue.global(qos: .userInitiated).async {
             if let user = UserAuthentication.user {
@@ -29,22 +33,19 @@ class ProfileViewController: UIViewController {
                         }
                     }
                 }
-            }
-        }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let user = UserAuthentication.user {
-            self.usernameLabel.text = (user.username != nil) ? user.username : "Need set username for Auth"
-            
-            if let fitnessInfo = user.fitnessInfo {
-                let weight = fitnessInfo.weight
-                let height = fitnessInfo.height
-                bmiLabel.text = "BMI: \(weight/pow(height, height))"
-            } else {
-                bmiLabel.text = "No BMI, please take the survey!"
+
+                var bmiMsg = "No BMI, please take the survey!"
+                
+                if let fitnessInfo = user.fitnessInfo {
+                    let weight = fitnessInfo.weight
+                    let height = fitnessInfo.height
+                    bmiMsg = "BMI: \(weight/pow(height, height))"
+                }
+                
+                DispatchQueue.main.async {
+                    self.usernameLabel.text = (user.username != nil) ? user.username : "Need set username for Auth"
+                    self.bmiLabel.text = bmiMsg
+                }
             }
         }
     }
