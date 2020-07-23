@@ -30,9 +30,10 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
         
        
            loadPosts()
-
         
+            let editButton = UIBarButtonItem(title: "Delete", style: UIBarButtonItem.Style.plain , target: self, action: #selector(enableEdit))
         
+             self.navigationItem.rightBarButtonItems = [editButton]
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,7 +89,38 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
            
            }
     
+     @objc func enableEdit(){
+            if !self.taleview.isEditing
+            {
+                
     
+                taleview.setEditing(true, animated: true)
+            }
+            else
+            {
+   
+                taleview.setEditing(false, animated: true)
+            }
+        }
+    
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+           
+           if (editingStyle == .delete){
+               //postList.remove(at: indexPath.row)
+              // tableView.deleteRows(at: [indexPath], with: .automatic)
+               
+               
+               
+               DataManager.Posts.deletePost(post: self.postList[indexPath.row]) { (isSuccess) in
+                              if isSuccess {
+                                  self.loadPosts()
+                              } else {
+                                  self.present(Team3Helper.makeAlert("Wasn't able to delete this schedule"), animated: true)
+                              }
+                          }
+               
+           }
+       }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
          if(segue.identifier == "ShowPersonalDetails")

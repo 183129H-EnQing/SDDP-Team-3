@@ -99,7 +99,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQv-yi-mCd">
-                                                    <rect key="frame" x="22" y="231" width="62" height="21"/>
+                                                    <rect key="frame" x="22" y="231" width="135" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -109,20 +109,11 @@
                                                     <rect key="frame" x="87" y="71" width="240" height="128"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0y-Kh-vs5">
-                                                    <rect key="frame" x="323" y="222" width="30" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Edit"/>
-                                                    <connections>
-                                                        <action selector="editpressed:" destination="a5r-M0-qwp" eventType="touchUpInside" id="KXT-Cd-6EE"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="content" destination="kQv-yi-mCd" id="wUE-HK-m0W"/>
                                             <outlet property="datelabel" destination="SL6-Vg-Oxd" id="Yag-w2-yGz"/>
-                                            <outlet property="edit" destination="p0y-Kh-vs5" id="Jcs-fu-oxJ"/>
                                             <outlet property="photo" destination="Jo9-Pb-aZO" id="QPu-ls-Y0o"/>
                                             <outlet property="place" destination="Jrd-92-zaj" id="6sX-H0-AR9"/>
                                             <outlet property="username" destination="xYA-BH-OU6" id="MrG-WQ-3pc"/>
@@ -152,7 +143,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lYJ-sp-gKx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-222" y="903"/>
+            <point key="canvasLocation" x="-223.18840579710147" y="902.67857142857133"/>
         </scene>
         <!--Edit Personal View Controller-->
         <scene sceneID="lxL-ip-AyJ">

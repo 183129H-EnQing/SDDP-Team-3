@@ -31,18 +31,18 @@ public enum BodySkeleton: Int, SkeletonType {
     case rightAnkle
 }
 
-class FritzVisionPosePredictor<T>{
-    // Register your model with the Fritz SDK
-    extension PoseEstimationFast1595485568: SwiftIdentifiedModel {
-        static let modelIdentifier = "a4228ab365cd4dc9aa8d33ad52be5906"
-        static let packagedModelVersion = 2
-    }
-
-    // Create the predictor
-    let BodyPoseModel = FritzVisionPosePredictor<BodySkeleton>(
-        model: PoseEstimationFast1595485568()
-    )
-}
+//class FritzVisionPosePredictor<T>{
+//    // Register your model with the Fritz SDK
+//    extension PoseEstimationFast1595485568: SwiftIdentifiedModel {
+//        static let modelIdentifier = "a4228ab365cd4dc9aa8d33ad52be5906"
+//        static let packagedModelVersion = 2
+//    }
+//
+//    // Create the predictor
+//    let BodyPoseModel = FritzVisionPosePredictor<BodySkeleton>(
+//        model: PoseEstimationFast1595485568()
+//    )
+//}
 
 extension Double {
   func format(f: String) -> String {
