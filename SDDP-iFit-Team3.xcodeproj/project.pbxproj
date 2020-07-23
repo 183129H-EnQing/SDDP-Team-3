@@ -76,6 +76,8 @@
 		DCE67B6D24BF280600B2DD27 /* GameLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE67B6C24BF280600B2DD27 /* GameLoad.swift */; };
 		DCE67B6F24BF31BF00B2DD27 /* GameResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE67B6E24BF31BF00B2DD27 /* GameResultViewController.swift */; };
 		DCE67B7124BF31FA00B2DD27 /* GameResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE67B7024BF31FA00B2DD27 /* GameResult.swift */; };
+		DCEEAD9124C97E3B00CF5FD5 /* PoseEstimationFast1595485568.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = DCEEAD9024C97E3B00CF5FD5 /* PoseEstimationFast1595485568.mlmodel */; };
+		DCEEAD9324C97E9500CF5FD5 /* PoseEstimationFast1595485568+Fritz.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEEAD9224C97E9500CF5FD5 /* PoseEstimationFast1595485568+Fritz.swift */; };
 		DCF73FB024C43E5B00530EE5 /* GamePlanet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF73FAF24C43E5B00530EE5 /* GamePlanet.swift */; };
 		DCF73FB224C43E8600530EE5 /* GamePlanetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */; };
 		DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */; };
@@ -166,6 +168,8 @@
 		DCE67B6C24BF280600B2DD27 /* GameLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLoad.swift; sourceTree = "<group>"; };
 		DCE67B6E24BF31BF00B2DD27 /* GameResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultViewController.swift; sourceTree = "<group>"; };
 		DCE67B7024BF31FA00B2DD27 /* GameResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResult.swift; sourceTree = "<group>"; };
+		DCEEAD9024C97E3B00CF5FD5 /* PoseEstimationFast1595485568.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = PoseEstimationFast1595485568.mlmodel; sourceTree = "<group>"; };
+		DCEEAD9224C97E9500CF5FD5 /* PoseEstimationFast1595485568+Fritz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PoseEstimationFast1595485568+Fritz.swift"; sourceTree = "<group>"; };
 		DCF73FAF24C43E5B00530EE5 /* GamePlanet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlanet.swift; sourceTree = "<group>"; };
 		DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlanetViewController.swift; sourceTree = "<group>"; };
 		DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanAddViewController.swift; sourceTree = "<group>"; };
@@ -313,6 +317,8 @@
 				DCF9358224A33CC000FD505B /* TrainingPlanAddViewController.swift */,
 				DC325A3A24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift */,
 				345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */,
+				DCEEAD9224C97E9500CF5FD5 /* PoseEstimationFast1595485568+Fritz.swift */,
+				DCEEAD9024C97E3B00CF5FD5 /* PoseEstimationFast1595485568.mlmodel */,
 				DCE0E33E24B45A4800B23C46 /* ExerciseViewController.swift */,
 				DCE0E34224B45CE000B23C46 /* ExerciseCollectionViewCell.swift */,
 				DCD142C524B7224B00AE431A /* ExerciseDetailViewController.swift */,
@@ -331,13 +337,13 @@
 				E3CA068B24ADCA6000339A39 /* AddGoalViewController.swift */,
 				DCC80B7124ADEBB0008AF933 /* GameViewController.swift */,
 				DC7A37A724BDA60700CB9A13 /* GameHomeViewController.swift */,
-				DCCA915924BEC4C300C3A816 /* GameResearchViewController.swift */,
 				DCE67B6A24BF26AB00B2DD27 /* GameLoadViewController.swift */,
 				DCE67B6E24BF31BF00B2DD27 /* GameResultViewController.swift */,
+				DCCA915924BEC4C300C3A816 /* GameResearchViewController.swift */,
 				DC0B46C024C31423001BB221 /* GameDiscoverViewController.swift */,
 				DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */,
-				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
 				1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */,
+				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
 				34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */,
 			);
 			path = Controller;
@@ -508,6 +514,7 @@
 				7DEE53CE24AC632800CE6293 /* LoginViewController.swift in Sources */,
 				1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */,
 				DC0B46C124C31423001BB221 /* GameDiscoverViewController.swift in Sources */,
+				DCEEAD9324C97E9500CF5FD5 /* PoseEstimationFast1595485568+Fritz.swift in Sources */,
 				E3CA068C24ADCA6000339A39 /* AddGoalViewController.swift in Sources */,
 				343BEC9224A97E570041352F /* GoalCell.swift in Sources */,
 				343BEC9824A97F4C0041352F /* LeaderboardViewController.swift in Sources */,
@@ -530,6 +537,7 @@
 				DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */,
 				DCCA915824BEC45100C3A816 /* GameResearch.swift in Sources */,
 				DC3B4E1624C3391B000B2502 /* Game.swift in Sources */,
+				DCEEAD9124C97E3B00CF5FD5 /* PoseEstimationFast1595485568.mlmodel in Sources */,
 				09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */,
 				DCE67B6F24BF31BF00B2DD27 /* GameResultViewController.swift in Sources */,
 				DCE67B7124BF31FA00B2DD27 /* GameResult.swift in Sources */,
