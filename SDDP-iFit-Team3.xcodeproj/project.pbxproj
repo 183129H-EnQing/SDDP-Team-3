@@ -21,6 +21,7 @@
 		1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */; };
 		1BD9C45224C2C027004EA6C9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */; };
 		340758FB24C55A21000F85A7 /* Fritz-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 340758FA24C55A21000F85A7 /* Fritz-Info.plist */; };
+		342BA8A524CA900700A8A085 /* ViewCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342BA8A424CA900700A8A085 /* ViewCommentsViewController.swift */; };
 		343BEC9224A97E570041352F /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9124A97E570041352F /* GoalCell.swift */; };
 		343BEC9424A97F010041352F /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9324A97F010041352F /* GoalViewController.swift */; };
 		343BEC9624A97F320041352F /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9524A97F320041352F /* ChallengeViewController.swift */; };
@@ -111,6 +112,7 @@
 		1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		340758FA24C55A21000F85A7 /* Fritz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fritz-Info.plist"; sourceTree = "<group>"; };
+		342BA8A424CA900700A8A085 /* ViewCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommentsViewController.swift; sourceTree = "<group>"; };
 		343BEC9124A97E570041352F /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		343BEC9324A97F010041352F /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 		343BEC9524A97F320041352F /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
 				34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */,
+				342BA8A424CA900700A8A085 /* ViewCommentsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				1BD9C45224C2C027004EA6C9 /* PersonalViewController.swift in Sources */,
 				7DC360E324BAD86D00280315 /* StorageManager.swift in Sources */,
 				343BEC9A24A97F8A0041352F /* ActivityViewController.swift in Sources */,
+				342BA8A524CA900700A8A085 /* ViewCommentsViewController.swift in Sources */,
 				1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */,
 				7D1C4BFE24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift in Sources */,
 				7D8929C224AD6D3200FCB173 /* DataManager.swift in Sources */,

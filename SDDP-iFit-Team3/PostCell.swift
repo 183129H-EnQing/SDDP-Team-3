@@ -49,6 +49,8 @@ class PostCell: UITableViewCell{
     
     @IBOutlet weak var edit: UIButton!
     
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

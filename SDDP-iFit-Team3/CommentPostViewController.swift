@@ -29,7 +29,7 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
     
     var postItem : Post?
     
-    
+    var cmtItem : Comment?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,22 +65,24 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
                
                    let viewControllers = self.navigationController?.viewControllers
                    let parent = viewControllers?[1] as! PostViewController
+            
+            let cmt = Comment(userName: name, comment: content, pdatetime: datetime )
                
-            //let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "", opened: false ,  commentPost: [ ] )
+            let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "", opened: false ,  commentPost: [ cmt] )
                
-                //if self.postItem != nil {
+                if self.postItem != nil {
                               // Update
-                            //  posts.id = self.postItem!.id!
-                             // DataManager.Posts.updatePost(post: posts) { (isSuccess) in
-                              //    self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
-                            //  }
-                        //  } else {
+                             posts.id = self.postItem!.id!
+                             DataManager.Posts.updatePost(post: posts) { (isSuccess) in
+                                  self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
+                              }
+                         } else {
                               // Add
-                           //   DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
-                                        //         self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                              DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                                 self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
                                          
-                                    // }
-                       //   }
+                                    }
+                          }
                }
         
     }

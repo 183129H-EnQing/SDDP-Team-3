@@ -8,30 +8,47 @@
 
 import UIKit
 
-class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate {
 
-    @IBOutlet weak var exercisePicker: UIPickerView!
+    @IBOutlet weak var exerciseTextField: UITextField!
+    @IBOutlet weak var dayTextField: UITextField!
+    
     @IBOutlet weak var hrsTextField: UITextField!
     @IBOutlet weak var minsTextField: UITextField!
     @IBOutlet weak var timePicker: UIDatePicker!
-    @IBOutlet weak var dayPicker: UIPickerView!
+    
+    var currentTextFieldPicker: String = ""
+    
+    var exercisePicker: UIPickerView = UIPickerView()
+    var dayPicker: UIPickerView = UIPickerView()
+    var selectedExercise = -1
+    var selectedDay = -1
     
     var schedule: Schedule?
-    var scheduleIndex: Int?
     
     static var exercises: [String] = ["Push Up", "Jumping Jacks", "Skipping Rope", "Sit Up"]
     static var days: [String] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] // because date component's weekDay starts from sunday, monday... and end with saturday
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.exerciseTextField.delegate = self
+        self.dayTextField.delegate = self
+        
+        self.exercisePicker.delegate = self
+        self.exercisePicker.dataSource = self
+        self.dayPicker.delegate = self
+        self.dayPicker.dataSource = self
+        
+        self.exerciseTextField.inputView = self.exercisePicker
+        self.dayTextField.inputView = self.dayPicker
+        
+        givePickerBarButton(exerciseTextField)
+        givePickerBarButton(dayTextField)
 
         // Do any additional setup after loading the view.
-        self.exercisePicker.layer.borderWidth = 1
-        self.exercisePicker.layer.borderColor = UIColor.systemGray3.cgColor
         self.timePicker.layer.borderWidth = 1
         self.timePicker.layer.borderColor = UIColor.systemGray3.cgColor
-        self.dayPicker.layer.borderWidth = 1
-        self.dayPicker.layer.borderColor = UIColor.systemGray3.cgColor
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,7 +56,13 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         var title = "Add Schedule"
         if let unwrapSchedule = self.schedule {
             title = "Edit Schedule"
+            
             self.exercisePicker.selectRow(unwrapSchedule.exerciseId, inComponent: 0, animated: true)
+            self.dayPicker.selectRow(unwrapSchedule.day, inComponent: 0, animated: true)
+            self.exerciseTextField.text = SchedulerDetailsViewController.exercises[unwrapSchedule.exerciseId]
+            self.dayTextField.text = SchedulerDetailsViewController.days[unwrapSchedule.day]
+            self.selectedExercise = unwrapSchedule.exerciseId
+            self.selectedDay = unwrapSchedule.day
             
             self.hrsTextField.text = "\(unwrapSchedule.duration[0])"
             self.minsTextField.text = "\(unwrapSchedule.duration[1])"
@@ -50,8 +73,6 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             components.hour = unwrapSchedule.time[0]
             components.minute = unwrapSchedule.time[1]
             self.timePicker.setDate(calender.date(from: components)!, animated: true)
-            
-            self.dayPicker.selectRow(unwrapSchedule.day, inComponent: 0, animated: true)
         }
         
         self.navigationItem.title = title
@@ -62,17 +83,52 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerView.tag == self.exercisePicker.tag ? SchedulerDetailsViewController.exercises.count : SchedulerDetailsViewController.days.count
+        return pickerView == self.exercisePicker ? SchedulerDetailsViewController.exercises.count : SchedulerDetailsViewController.days.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerView.tag == self.exercisePicker.tag ? SchedulerDetailsViewController.exercises[row] : SchedulerDetailsViewController.days[row]
+        return pickerView == self.exercisePicker ? SchedulerDetailsViewController.exercises[row] : SchedulerDetailsViewController.days[row]
+    }
+    
+    // prevent any typing for exercise and day text fields
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == exerciseTextField || textField == dayTextField {
+            return false
+        }
+        return true
+    }
+    
+    // change the currentTextFieldPicker string value
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == exerciseTextField {
+            self.currentTextFieldPicker = "exercise"
+        } else if textField == dayTextField {
+            self.currentTextFieldPicker = "day"
+        }
     }
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         if let user = UserAuthentication.getLoggedInUser() {
+            Team3Helper.colorTextFieldBorder(textField: exerciseTextField, isRed: false)
+            Team3Helper.colorTextFieldBorder(textField: dayTextField, isRed: false)
             Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: false)
             Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: false)
+            
+            if selectedExercise < 0 {
+                Team3Helper.colorTextFieldBorder(textField: exerciseTextField, isRed: true)
+                
+                let alert = Team3Helper.makeAlert("Please select an exercise!")
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
+            
+            if selectedDay < 0 {
+                Team3Helper.colorTextFieldBorder(textField: dayTextField, isRed: true)
+                
+                let alert = Team3Helper.makeAlert("Please select a day!")
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
             
             if !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) || !Team3Helper.ifInputIsInt(someInput: minsTextField.text!) {
                 Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
@@ -174,6 +230,33 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             }
         }
     }
+      
+    @objc func pickerDoneClick() {
+        if self.currentTextFieldPicker == "exercise" {
+            self.selectedExercise = exercisePicker.selectedRow(inComponent: 0)
+            self.exerciseTextField.text = SchedulerDetailsViewController.exercises[self.selectedExercise]
+            self.exerciseTextField.resignFirstResponder()
+        } else if self.currentTextFieldPicker == "day" {
+            self.selectedDay = dayPicker.selectedRow(inComponent: 0)
+            self.dayTextField.text = SchedulerDetailsViewController.days[self.selectedDay]
+            self.dayTextField.resignFirstResponder()
+        }
+        self.currentTextFieldPicker = ""
+    }
+    @objc func pickerCancelClick() {
+        if self.currentTextFieldPicker == "exercise" {
+            if selectedExercise >= 0 {
+                self.exercisePicker.selectRow(selectedExercise, inComponent: 0, animated: true)
+            }
+            self.exerciseTextField.resignFirstResponder()
+        } else if self.currentTextFieldPicker == "day" {
+            if selectedDay >= 0 {
+                self.dayPicker.selectRow(selectedDay, inComponent: 0, animated: true)
+            }
+            self.dayTextField.resignFirstResponder()
+        }
+        self.currentTextFieldPicker = ""
+    }
     
     func afterDbOperation(parent: SchedulerViewController, isSuccess: Bool, isUpdating: Bool) {
         if !isSuccess {
@@ -183,6 +266,23 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         
         parent.loadSchedules()
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func givePickerBarButton(_ textField: UITextField) {
+        // ToolBar
+        let toolBar = UIToolbar()
+        toolBar.barStyle = .default
+        toolBar.isTranslucent = true
+        //toolBar.tintColor = UIColor(red: 92/255, green: 216/255, blue: 255/255, alpha: 1)
+        toolBar.sizeToFit()
+
+        // Adding Button ToolBar
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(pickerDoneClick))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(pickerCancelClick))
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        textField.inputAccessoryView = toolBar
     }
     
     /*

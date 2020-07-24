@@ -130,7 +130,6 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
                 let day = getDayInSchedules(section: indexPath!.section)
                 let schedule = self.schedules[day]![indexPath!.row]
                 detailViewController.schedule = schedule
-                detailViewController.scheduleIndex = indexPath!.row
             }
         }
     }
