@@ -74,7 +74,7 @@ class HealthKitManager{
             getTodaysSteps(){
                 (steps) in
                  todaySteps = steps
-                 print("testing2",todaySteps)
+                addStepsToHealthKit(steps: 6000)
                  group.leave()
             }
           
@@ -86,7 +86,6 @@ class HealthKitManager{
               getTodayCaloriesBurnt(){
                             (calories) in
                   todayCalories = calories
-                  print(todayCalories)
                  group.leave()
                         }
       
@@ -103,15 +102,15 @@ class HealthKitManager{
                                   if data.count > 0 {
                                       self.healthKitDataArray = data
                                     //print(data.count)
-                                 //   for healthKitData in healthKitDataArray {
-                                
-//                                        if !healthKitDateData.contains(healthKitData.dateSaved){
-//                                             healthKitDateData.append(healthKitData.dateSaved)
-//
-//                                        }
+                                    for healthKitData in healthKitDataArray {
+                                        print("health kit date saved:",healthKitData.dateSaved)
+                                        print("inside date or not",healthKitDateData.contains(healthKitData.dateSaved))
+                                        if !healthKitDateData.contains(healthKitData.dateSaved){
+                                             healthKitDateData.append(healthKitData.dateSaved)
+
+                                        }
                                       
-                                   // }
-                                    // print("date data",healthKitDateData)
+                                    }
                                     
                                   }
                                   
@@ -125,13 +124,7 @@ class HealthKitManager{
         group.notify(queue: queue) {
             print("All tasks done")
         }
-//
-//        group.enter()
-//        queue.async {
-//            sleep(2)
-//            print("Task 2 done")
-//            group.leave()
-//        }
+
         
     }
     
@@ -219,6 +212,30 @@ class HealthKitManager{
            healthStore.execute(query)
     }
     
+    
+    static func addStepsToHealthKit(steps : Double) {
+
+      // 1.set the type of data we want to insert into healthkit
+      // 2. add in the amount and unit you want to the healthkit
+      let quantityType = HKQuantityType.quantityType(forIdentifier: .stepCount)!
+      
+      let quanitytUnit = HKUnit(from: "count")
+      let quantityAmount = HKQuantity(unit: quanitytUnit, doubleValue: steps)
+      let now = Date()
+
+      let sample = HKQuantitySample(type: quantityType, quantity: quantityAmount, start: now, end: now)
+      let correlationType = HKObjectType.correlationType(forIdentifier: HKCorrelationTypeIdentifier.food)
+
+      let waterCorrelationForWaterAmount = HKCorrelation(type: correlationType!, start: now, end: now, objects: [sample])
+     
+     
+      self.healthStore.save(waterCorrelationForWaterAmount, withCompletion: { (success, error) in
+        if (error != nil) {
+          print("got error saving data into healthkit")
+        }
+      })
+    }
+    // Write data into Healthkit
 //    static func getTodaySleepHour(completion: @escaping (Int) -> Void){
 //        let sleepCategoryType = HKQuantityType.categoryType(forIdentifier: .sleepAnalysis)!
 //           let now = Date()
