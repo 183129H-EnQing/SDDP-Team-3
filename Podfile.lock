@@ -425,6 +425,7 @@ DEPENDENCIES:
   - FirebaseFirestoreSwift
   - FirebaseUI
   - Fritz
+  - Fritz/Vision
   - Fritz/VisionPoseModel
 
 SPEC REPOS:
@@ -496,6 +497,6 @@ SPEC CHECKSUMS:
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
   SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
 
-PODFILE CHECKSUM: 961001573b84db350b3814be379f5080852f8bec
+PODFILE CHECKSUM: 18bb50b59becedbb267752a69f5d3c80ae32e882
 
 COCOAPODS: 1.9.3

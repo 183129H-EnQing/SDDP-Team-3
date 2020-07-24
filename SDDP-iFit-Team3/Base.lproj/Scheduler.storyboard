@@ -101,96 +101,91 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbJ-27-IFh">
-                                <rect key="frame" x="20" y="20" width="374" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dto-zi-Cin">
-                                <rect key="frame" x="20" y="48.5" width="374" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="KXo-N1-eOh"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="4uN-X6-gRl" id="Vxv-q3-Oz3"/>
-                                    <outlet property="delegate" destination="4uN-X6-gRl" id="ghr-y8-dcr"/>
-                                </connections>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogi-0n-C56">
-                                <rect key="frame" x="20" y="156.5" width="374" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aVu-1j-JIe">
-                                <rect key="frame" x="20" y="185" width="374" height="34"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="WwC-Ag-XgJ" userLabel="Exercise Stack View">
+                                <rect key="frame" x="20" y="20" width="374" height="34"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hours" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wyF-IV-1XN">
-                                        <rect key="frame" x="0.0" y="0.0" width="177" height="34"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exercise" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGl-qe-aUH">
+                                        <rect key="frame" x="0.0" y="0.0" width="64" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select an exercise" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e5T-mp-V3t">
+                                        <rect key="frame" x="76" y="0.0" width="298" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Minutes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Raf-vw-XRy">
-                                        <rect key="frame" x="197" y="0.0" width="177" height="34"/>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="sVf-oC-bXx" userLabel="Duration Stack View">
+                                <rect key="frame" x="20" y="66" width="374" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ogi-0n-C56">
+                                        <rect key="frame" x="0.0" y="0.0" width="65.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="aVu-1j-JIe" userLabel="Duration Fields Stack View">
+                                        <rect key="frame" x="77.5" y="0.0" width="296.5" height="34"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hours" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wyF-IV-1XN">
+                                                <rect key="frame" x="0.0" y="0.0" width="142.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Minutes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Raf-vw-XRy">
+                                                <rect key="frame" x="154.5" y="0.0" width="142" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="ZOe-fW-P7O" userLabel="Day Stack View">
+                                <rect key="frame" x="20" y="112" width="374" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8C-wp-4r3">
+                                        <rect key="frame" x="0.0" y="0.0" width="29.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Select a day" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qgp-V3-1Nh">
+                                        <rect key="frame" x="41.5" y="0.0" width="332.5" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSU-zW-sgg">
-                                <rect key="frame" x="20" y="227" width="374" height="20.5"/>
+                                <rect key="frame" x="20" y="154" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="j5h-Td-CKj">
-                                <rect key="frame" x="20" y="255.5" width="374" height="396"/>
+                                <rect key="frame" x="20" y="182.5" width="374" height="216"/>
                             </datePicker>
-                            <pickerView tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WNh-q7-Cg8">
-                                <rect key="frame" x="20" y="688" width="374" height="100"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="h74-4q-AY1"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="dataSource" destination="4uN-X6-gRl" id="m09-IL-BDe"/>
-                                    <outlet property="delegate" destination="4uN-X6-gRl" id="2aQ-Tl-p9Z"/>
-                                </connections>
-                            </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8C-wp-4r3">
-                                <rect key="frame" x="20" y="659.5" width="374" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="PbJ-27-IFh" secondAttribute="trailing" constant="20" id="2Yk-Dp-mC5"/>
-                            <constraint firstItem="ZSU-zW-sgg" firstAttribute="top" secondItem="aVu-1j-JIe" secondAttribute="bottom" constant="8" id="2kE-Ec-f4j"/>
+                            <constraint firstItem="ZSU-zW-sgg" firstAttribute="top" secondItem="ZOe-fW-P7O" secondAttribute="bottom" constant="8" id="2kE-Ec-f4j"/>
                             <constraint firstAttribute="trailing" secondItem="j5h-Td-CKj" secondAttribute="trailing" constant="20" id="6q5-VC-M3P"/>
-                            <constraint firstItem="aVu-1j-JIe" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="9kS-lL-9hU"/>
-                            <constraint firstItem="WNh-q7-Cg8" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="AlU-oa-mur"/>
                             <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="ZSU-zW-sgg" secondAttribute="trailing" constant="20" id="CnQ-AH-hx5"/>
-                            <constraint firstItem="aVu-1j-JIe" firstAttribute="top" secondItem="ogi-0n-C56" secondAttribute="bottom" constant="8" id="Em7-1N-GSl"/>
                             <constraint firstItem="ZSU-zW-sgg" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="Fcq-Wf-e6Y"/>
-                            <constraint firstItem="WNh-q7-Cg8" firstAttribute="top" secondItem="E8C-wp-4r3" secondAttribute="bottom" constant="8" id="KiS-6Q-f1N"/>
-                            <constraint firstItem="ogi-0n-C56" firstAttribute="top" secondItem="dto-zi-Cin" secondAttribute="bottom" constant="8" id="Lhr-FG-LvQ"/>
-                            <constraint firstItem="E8C-wp-4r3" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="NzW-cy-qAi"/>
-                            <constraint firstItem="dto-zi-Cin" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="OO4-hX-ZVW"/>
-                            <constraint firstItem="PbJ-27-IFh" firstAttribute="top" secondItem="3tM-uD-KWn" secondAttribute="top" constant="20" id="PFV-M5-gci"/>
-                            <constraint firstItem="ogi-0n-C56" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="Pzt-B1-DHw"/>
-                            <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="WNh-q7-Cg8" secondAttribute="trailing" constant="20" id="Y1G-M4-Lrz"/>
-                            <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="aVu-1j-JIe" secondAttribute="trailing" constant="20" id="c4M-5T-y8n"/>
-                            <constraint firstItem="dto-zi-Cin" firstAttribute="top" secondItem="PbJ-27-IFh" secondAttribute="bottom" constant="8" id="dSn-fU-0Uq"/>
+                            <constraint firstItem="sVf-oC-bXx" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="Hh2-FL-B9o"/>
+                            <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="ZOe-fW-P7O" secondAttribute="trailing" constant="20" id="Kgu-EX-LVa"/>
+                            <constraint firstItem="sVf-oC-bXx" firstAttribute="top" secondItem="WwC-Ag-XgJ" secondAttribute="bottom" constant="12" id="Mco-bw-CSD"/>
+                            <constraint firstItem="WwC-Ag-XgJ" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="RoY-rj-Mcc"/>
+                            <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="sVf-oC-bXx" secondAttribute="trailing" constant="20" id="Xg5-Qa-kkr"/>
+                            <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="WwC-Ag-XgJ" secondAttribute="trailing" constant="20" id="Yya-Hj-xre"/>
                             <constraint firstItem="j5h-Td-CKj" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="eOL-v6-DZM"/>
-                            <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="ogi-0n-C56" secondAttribute="trailing" constant="20" id="hZw-JU-RpS"/>
-                            <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="E8C-wp-4r3" secondAttribute="trailing" constant="20" id="p7F-Yq-h5M"/>
+                            <constraint firstItem="WwC-Ag-XgJ" firstAttribute="top" secondItem="3tM-uD-KWn" secondAttribute="top" constant="20" id="hNP-Mm-wcy"/>
+                            <constraint firstItem="ZOe-fW-P7O" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="mXH-y1-Rvn"/>
+                            <constraint firstItem="ZOe-fW-P7O" firstAttribute="top" secondItem="sVf-oC-bXx" secondAttribute="bottom" constant="12" id="q5Y-lm-wbL"/>
                             <constraint firstItem="j5h-Td-CKj" firstAttribute="top" secondItem="ZSU-zW-sgg" secondAttribute="bottom" constant="8" id="rmf-F0-iKM"/>
-                            <constraint firstItem="3tM-uD-KWn" firstAttribute="trailing" secondItem="dto-zi-Cin" secondAttribute="trailing" constant="20" id="sOA-3G-YPo"/>
-                            <constraint firstItem="E8C-wp-4r3" firstAttribute="top" secondItem="j5h-Td-CKj" secondAttribute="bottom" constant="8" id="weZ-MY-loy"/>
-                            <constraint firstItem="WNh-q7-Cg8" firstAttribute="bottom" secondItem="3tM-uD-KWn" secondAttribute="bottom" constant="-20" id="xwy-Lt-5rY"/>
-                            <constraint firstItem="PbJ-27-IFh" firstAttribute="leading" secondItem="3tM-uD-KWn" secondAttribute="leading" constant="20" id="zLS-3G-tGB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3tM-uD-KWn"/>
                     </view>
@@ -202,8 +197,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="dayPicker" destination="WNh-q7-Cg8" id="oJl-FV-OUV"/>
-                        <outlet property="exercisePicker" destination="dto-zi-Cin" id="VyG-OL-kQG"/>
+                        <outlet property="dayTextField" destination="qgp-V3-1Nh" id="49R-CF-WCo"/>
+                        <outlet property="exerciseTextField" destination="e5T-mp-V3t" id="p5D-lY-L7X"/>
                         <outlet property="hrsTextField" destination="wyF-IV-1XN" id="G8t-fl-FJ9"/>
                         <outlet property="minsTextField" destination="Raf-vw-XRy" id="aGe-oJ-C9p"/>
                         <outlet property="timePicker" destination="j5h-Td-CKj" id="kXj-JT-X9u"/>

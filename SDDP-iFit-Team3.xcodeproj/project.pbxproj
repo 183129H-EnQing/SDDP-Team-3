@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05955F265159F00FAC27E609 /* Pods_SDDP_iFit_Team3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDB9D82CCF5977B585C66857 /* Pods_SDDP_iFit_Team3.framework */; };
 		09B1B933249322AD00D14CE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B1B932249322AD00D14CE6 /* AppDelegate.swift */; };
 		09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B1B934249322AD00D14CE6 /* SceneDelegate.swift */; };
 		09B1B937249322AD00D14CE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B1B936249322AD00D14CE6 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 		1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */; };
 		1BD9C45224C2C027004EA6C9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */; };
 		340758FB24C55A21000F85A7 /* Fritz-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 340758FA24C55A21000F85A7 /* Fritz-Info.plist */; };
+		342BA8A524CA900700A8A085 /* ViewCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342BA8A424CA900700A8A085 /* ViewCommentsViewController.swift */; };
 		343BEC9224A97E570041352F /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9124A97E570041352F /* GoalCell.swift */; };
 		343BEC9424A97F010041352F /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9324A97F010041352F /* GoalViewController.swift */; };
 		343BEC9624A97F320041352F /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9524A97F320041352F /* ChallengeViewController.swift */; };
@@ -29,7 +31,6 @@
 		345BF47D24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */; };
 		34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */; };
 		34B27B9324C53D2F00C113A2 /* EditPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */; };
-		3CB035BE6C63CBE96F5D7F96 /* Pods_SDDP_iFit_Team3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39CB9401B99CF5A57CA6590 /* Pods_SDDP_iFit_Team3.framework */; };
 		7D0CAFA724C0AC4E00325F82 /* SurveyFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CAFA624C0AC4E00325F82 /* SurveyFormViewController.swift */; };
 		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
 		7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */; };
@@ -103,6 +104,7 @@
 		09B1B93B249322B200D14CE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09B1B93E249322B200D14CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09B1B940249322B200D14CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0A8D38EDB7CD73F99DD769AA /* Pods-SDDP-iFit-Team3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.debug.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.debug.xcconfig"; sourceTree = "<group>"; };
 		1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		1B3E8DA924A387B7001D9C8D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
 		1BB0D0E324A359FF003A35A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		340758FA24C55A21000F85A7 /* Fritz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fritz-Info.plist"; sourceTree = "<group>"; };
+		342BA8A424CA900700A8A085 /* ViewCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommentsViewController.swift; sourceTree = "<group>"; };
 		343BEC9124A97E570041352F /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		343BEC9324A97F010041352F /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 		343BEC9524A97F320041352F /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
@@ -119,8 +122,7 @@
 		345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanStartViewController.swift; sourceTree = "<group>"; };
 		34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostViewController.swift; sourceTree = "<group>"; };
 		34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalViewController.swift; sourceTree = "<group>"; };
-		35E53669E5F9C4B111122A69 /* Pods-SDDP-iFit-Team3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.release.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.release.xcconfig"; sourceTree = "<group>"; };
-		7B9907F6AE665572C008ECD0 /* Pods-SDDP-iFit-Team3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.debug.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.debug.xcconfig"; sourceTree = "<group>"; };
+		451FDF8A88D9210F4AFCBE25 /* Pods-SDDP-iFit-Team3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.release.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.release.xcconfig"; sourceTree = "<group>"; };
 		7D0CAFA624C0AC4E00325F82 /* SurveyFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyFormViewController.swift; sourceTree = "<group>"; };
 		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -141,7 +143,7 @@
 		7DEE53CB24AC5A5400CE6293 /* UserAuthentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthentication.swift; sourceTree = "<group>"; };
 		7DEE53CD24AC632800CE6293 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7DEE53CF24AC63E800CE6293 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		C39CB9401B99CF5A57CA6590 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDB9D82CCF5977B585C66857 /* Pods_SDDP_iFit_Team3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SDDP_iFit_Team3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0B46BE24C3140E001BB221 /* GameDiscover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDiscover.swift; sourceTree = "<group>"; };
 		DC0B46C024C31423001BB221 /* GameDiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDiscoverViewController.swift; sourceTree = "<group>"; };
 		DC2C64A424B9C17F006B81D3 /* theboldfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = theboldfont.ttf; sourceTree = "<group>"; };
@@ -191,7 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CB035BE6C63CBE96F5D7F96 /* Pods_SDDP_iFit_Team3.framework in Frameworks */,
+				05955F265159F00FAC27E609 /* Pods_SDDP_iFit_Team3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,7 +206,7 @@
 				09B1B931249322AD00D14CE6 /* SDDP-iFit-Team3 */,
 				09B1B930249322AD00D14CE6 /* Products */,
 				AFA3402D31D4EAF8922BF229 /* Pods */,
-				3F05061AA64D8F03556F417D /* Frameworks */,
+				2D8746EE2884D76E3639C32C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,10 +249,10 @@
 			path = "SDDP-iFit-Team3";
 			sourceTree = "<group>";
 		};
-		3F05061AA64D8F03556F417D /* Frameworks */ = {
+		2D8746EE2884D76E3639C32C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C39CB9401B99CF5A57CA6590 /* Pods_SDDP_iFit_Team3.framework */,
+				BDB9D82CCF5977B585C66857 /* Pods_SDDP_iFit_Team3.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -270,8 +272,8 @@
 		AFA3402D31D4EAF8922BF229 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				7B9907F6AE665572C008ECD0 /* Pods-SDDP-iFit-Team3.debug.xcconfig */,
-				35E53669E5F9C4B111122A69 /* Pods-SDDP-iFit-Team3.release.xcconfig */,
+				0A8D38EDB7CD73F99DD769AA /* Pods-SDDP-iFit-Team3.debug.xcconfig */,
+				451FDF8A88D9210F4AFCBE25 /* Pods-SDDP-iFit-Team3.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -345,6 +347,7 @@
 				1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
 				34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */,
+				342BA8A424CA900700A8A085 /* ViewCommentsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -356,12 +359,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09B1B943249322B200D14CE6 /* Build configuration list for PBXNativeTarget "SDDP-iFit-Team3" */;
 			buildPhases = (
-				B7530BE6200BDA21C0FD8886 /* [CP] Check Pods Manifest.lock */,
+				440AFE2B14CEE75A917EFAF7 /* [CP] Check Pods Manifest.lock */,
 				09B1B92B249322AC00D14CE6 /* Sources */,
 				09B1B92C249322AC00D14CE6 /* Frameworks */,
 				09B1B92D249322AC00D14CE6 /* Resources */,
-				37F56399E9C068E3AF79FF09 /* [CP] Embed Pods Frameworks */,
-				761A4BDAC027B08B08E61C8D /* [CP] Copy Pods Resources */,
+				4BA91FC79163F056B91C8128 /* [CP] Embed Pods Frameworks */,
+				C7F45262526219F7BFA1EBF0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -432,41 +435,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		37F56399E9C068E3AF79FF09 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		761A4BDAC027B08B08E61C8D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B7530BE6200BDA21C0FD8886 /* [CP] Check Pods Manifest.lock */ = {
+		440AFE2B14CEE75A917EFAF7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -486,6 +455,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4BA91FC79163F056B91C8128 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7F45262526219F7BFA1EBF0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -552,6 +555,7 @@
 				1BD9C45224C2C027004EA6C9 /* PersonalViewController.swift in Sources */,
 				7DC360E324BAD86D00280315 /* StorageManager.swift in Sources */,
 				343BEC9A24A97F8A0041352F /* ActivityViewController.swift in Sources */,
+				342BA8A524CA900700A8A085 /* ViewCommentsViewController.swift in Sources */,
 				1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */,
 				7D1C4BFE24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift in Sources */,
 				7D8929C224AD6D3200FCB173 /* DataManager.swift in Sources */,
@@ -746,7 +750,7 @@
 		};
 		09B1B944249322B200D14CE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B9907F6AE665572C008ECD0 /* Pods-SDDP-iFit-Team3.debug.xcconfig */;
+			baseConfigurationReference = 0A8D38EDB7CD73F99DD769AA /* Pods-SDDP-iFit-Team3.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -765,7 +769,7 @@
 		};
 		09B1B945249322B200D14CE6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 35E53669E5F9C4B111122A69 /* Pods-SDDP-iFit-Team3.release.xcconfig */;
+			baseConfigurationReference = 451FDF8A88D9210F4AFCBE25 /* Pods-SDDP-iFit-Team3.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

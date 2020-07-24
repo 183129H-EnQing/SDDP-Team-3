@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iy4-BP-qoo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Iy4-BP-qoo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -580,6 +580,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zj4-bD-ATp">
+                                <rect key="frame" x="0.0" y="92" width="414" height="174"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="wKJ-bK-oVy"/>
@@ -587,6 +591,7 @@
                     <navigationItem key="navigationItem" id="Mn1-0n-7ZF"/>
                     <connections>
                         <outlet property="fpsLabel" destination="EvT-xc-q75" id="cow-0b-uUi"/>
+                        <outlet property="imageView" destination="Zj4-bD-ATp" id="2uv-pk-eGV"/>
                         <outlet property="modelIdLabel" destination="4ch-6t-b8f" id="gON-2x-5Z0"/>
                         <outlet property="modelVersionLabel" destination="2uq-bx-QK3" id="L7J-Nj-sdH"/>
                     </connections>
