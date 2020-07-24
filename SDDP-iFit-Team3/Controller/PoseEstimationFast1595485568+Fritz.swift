@@ -14,4 +14,3 @@ extension PoseEstimationFast1595485568: SwiftIdentifiedModel {
    static let packagedModelVersion = 2
 }
 
-
