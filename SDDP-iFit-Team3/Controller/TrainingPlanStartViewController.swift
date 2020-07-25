@@ -148,91 +148,42 @@ class TrainingPlanStartViewController: UIViewController, AVCaptureVideoDataOutpu
         options.minPartThreshold = 0.3
         options.minPoseThreshold = 0.3
         
-        guard let poseResult = try? poseModel.predict(image),
-            let pose = poseResult.pose()
-            else { return }
+        
+       guard let result = try? poseModel.predict(image, options: options)
+//             ,let pose = poseResult.pose()
+        else {
+                // If there was no pose, display original image
+                displayInputImage(image)
+                return
+        }
+        
+        updateLabels()
+        
+        guard let pose = result.pose() else {
+            return
+        }
 
-        // Overlays pose on input image.
-        let imageWithPose = image.draw(pose: pose)
+        let leftArm: [Keypoint<CustomSkeleton>] = [
+            pose.getKeypoint(for: .leftWrist),
+            pose.getKeypoint(for: .leftElbow),
+            pose.getKeypoint(for: .leftShoulder)
+        ].compactMap { $0 }
+
+        let rightArm: [Keypoint<CustomSkeleton>] = [
+            pose.getKeypoint(for: .rightWrist),
+            pose.getKeypoint(for: .rightElbow),
+            pose.getKeypoint(for: .rightShoulder)
+        ].compactMap { $0 }
         
-        // Created from model prediction.
-//        let poseResult: FritzVisionPoseResult
-//        let pose = poseResult.pose()
-        
-        
+        guard let poseResult = image.draw(pose: pose) else {
+          displayInputImage(image)
+          return
+        }
+
+        DispatchQueue.main.async {
+          self.previewView.image = poseResult
+        }
     }
-        
-
-//    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-//
-//        let image = FritzVisionImage(sampleBuffer: sampleBuffer, connection: connection)
-//        let options = FritzVisionPoseModelOptions()
-//        options.minPoseThreshold = minPoseThreshold
-//        options.minPartThreshold = minPartThreshold
-//
-//        guard let result = try? poseModel.predict(image, options: options) else {
-//            // If there was no pose, display original image
-//            displayInputImage(image)
-//            return
-//        }
-//
-//        // To record predictions and send data back to Fritz AI via the Data Collection System, use the predictors's record method.
-//        // In addition to the input image, predicted model results can be collected as well as user-modified annotations.
-//        // This allows developers to both gather data on model performance and have users collect additional ground truth data for future model retraining.
-//        // Note, the Data Collection System is only available on paid plans.
-//        // poseModel.record(image, predicted: result.poses(), modified: nil)
-//
-//        updateLabels()
-//
-//        guard let pose = result.pose() else {
-//            displayInputImage(image)
-//            return
-//        }
-//
-//        // Uncomment to use pose smoothing to smoothe output of model.
-//        // Will increase lag of pose a bit.
-//        // pose = poseSmoother.smoothe(pose)
-//
-//        guard let poseResult = image.draw(pose: pose) else {
-//            displayInputImage(image)
-//            return
-//        }
-//
-//        DispatchQueue.main.async {
-//            self.previewView.image = poseResult
-//        }
-//    }
-
-        
-    
-//    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-//           // FritzVisionImage objects offer convient ways to manipulate
-//           // images used as input to machine learning models.
-//           // You can resize, crop, and scale images to your needs.
-//           let image = FritzVisionImage(sampleBuffer: sampleBuffer, connection: connection)
-//
-//           // Set options for our pose estimation model using the constants
-//           // we initialized earlier in the ViewController.
-//           let options = FritzVisionPoseModelOptions()
-//           options.minPoseThreshold = poseThreshold
-//
-//           // Run the model itself on an input image.
-//           guard let poseResult = try? poseModel.predict(image, options: options) else {
-//            if let rotated = image.rotated() {
-//                   let img = UIImage(pixelBuffer: rotated)
-//                   DispatchQueue.main.async {
-//                       self.previewView.image = img
-//                   }
-//               }
-//               return
-//           }
-//           let poses = poseResult.poses()
-//
-//           DispatchQueue.main.async {
-//               self.cameraView.image = image.draw(poses: poses)
-//           }
-//       }
-    
 
     /*
     // MARK: - Navigation
