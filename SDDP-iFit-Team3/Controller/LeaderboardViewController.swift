@@ -43,6 +43,7 @@ class LeaderboardViewController: UIViewController {
       PieChartView.data = pieChartData
         
         PieChartView.legend.enabled = false
+        pieChartDataSet.selectionShift = 0 //'ds' is my PieChartDataSet
     }
 
     /*

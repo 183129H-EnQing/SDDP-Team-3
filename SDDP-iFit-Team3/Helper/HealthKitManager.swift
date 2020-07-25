@@ -61,6 +61,7 @@ class HealthKitManager{
         
     }
  
+    static let endOfTheDayTime = "23:59"
     static let queue = DispatchQueue(label: "Serial queue")
     static let group = DispatchGroup()
     static var todaySteps:Double = 0
@@ -74,7 +75,7 @@ class HealthKitManager{
             getTodaysSteps(){
                 (steps) in
                  todaySteps = steps
-                addStepsToHealthKit(steps: 6000)
+                //addStepsToHealthKit(steps: 6000)
                  group.leave()
             }
           
@@ -95,26 +96,14 @@ class HealthKitManager{
         group.enter()
         queue.async{
             if let user = UserAuthentication.getLoggedInUser() {
-                        print("User is logged in")
                     
                 DataManager.HealthKitActivities.loadHealthKitActivity(userId: user.uid ) { (data) in
                     print("loading data")
                                   if data.count > 0 {
                                       self.healthKitDataArray = data
-                                    //print(data.count)
-                                    for healthKitData in healthKitDataArray {
-                                        print("health kit date saved:",healthKitData.dateSaved)
-                                        print("inside date or not",healthKitDateData.contains(healthKitData.dateSaved))
-                                        if !healthKitDateData.contains(healthKitData.dateSaved){
-                                             healthKitDateData.append(healthKitData.dateSaved)
-
-                                        }
-                                      
-                                    }
-                                    
+                                      print(type(of: healthKitDataArray))
+                                      insertOrUpdateHealthKitData(healthKitData:data)
                                   }
-                                  
-                    insertHealthKitData()
                          group.leave()
                               }
                   }
@@ -128,7 +117,7 @@ class HealthKitManager{
         
     }
     
-    static func insertHealthKitData() {
+    static func insertOrUpdateHealthKitData(healthKitData:[HealthKitActivity]) {
                  //   let calendar = Calendar.current
                     let user = UserAuthentication.getLoggedInUser()
                     let formatter = DateFormatter()
@@ -142,7 +131,37 @@ class HealthKitManager{
                     
                     print("todayTime:",todayTime)
                     print("todayDate:",todayDateString)
+                    // Check date exists or not in the dateArray, exist don't append else append
+                    // Does Not exist insert the data, if exists next step
+                    // Check current date and time not over 1159 of the exist date so we can update the data
+                    // Important: For now not checking the time and date for performance
+                    for healthKitData in healthKitDataArray {
+                        // not exists in the date array then we add the date ,to prevent dulicpate date inserting to db
+                        print(healthKitData.dateSaved)
+                        print("healthkitdataarry:",healthKitDateData)
+                        if !healthKitDateData.contains(healthKitData.dateSaved) {
+                             healthKitDateData.append(healthKitData.dateSaved)
+                                // insert the whole new data
+                                    let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: todayTime , dateSaved: todayDateString)
+             
+                                    DataManager.HealthKitActivities.insertHealthKitActivity(userId: user!.uid, newHealthKitActivity){ (isSuccess) in
+                                      print("insert")
+                                    }
+                        }
+                        else{
+                          let healthKitActivityId = healthKitData.healthKitActivityId!
+                                                
+                          let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: todayTime , dateSaved: todayDateString)
+                            
+                            DataManager.HealthKitActivities.updateHealthKitData(healthKitActivityId: healthKitActivityId,healthKitActivityData:newHealthKitActivity){ (isSuccess) in
+                             print("update")
+                           }
+                        }
+                    
+                        
+                        
                 
+                    }
                     // need to check whether over 1159 of the current date or not
                     // if got data already update else insert
                     
@@ -152,15 +171,12 @@ class HealthKitManager{
         //                    //update
         //                }else{
                            // print("date does not exist")
-                            let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: todayTime , dateSaved: todayDateString)
-                    print("after init")
-                            DataManager.HealthKitActivities.insertHealthKitActivity(userId: user!.uid, newHealthKitActivity){ (isSuccess) in
-                               print("insert")
-                            }
+                       
         //                }
         //            }
     }
     
+
       //https://stackoverflow.com/questions/36559581/healthkit-swift-getting-todays-steps/44111542
       static func getTodaysSteps(completion: @escaping (Double) -> Void) {
           

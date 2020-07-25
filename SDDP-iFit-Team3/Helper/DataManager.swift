@@ -515,6 +515,22 @@ class DataManager {
                           onComplete?(healthKitActivities)
                       }
                   }
+
+        static func updateHealthKitData(healthKitActivityId: String ,healthKitActivityData: HealthKitActivity,  onComplete: ((_ isSuccess:Bool)-> Void)?) {
+              
+            db.collection(tableName).document(healthKitActivityId).updateData([
+                                    "todayStep": healthKitActivityData.todayStep,
+                                    "todayCaloriesBurnt": healthKitActivityData.todayCaloriesBurnt,
+                                    "timeSaved": healthKitActivityData.timeSaved,
+                             ]) { (err) in
+                                 if let err = err {
+                                     print("Error updating goal status: \(err)")
+                                     onComplete?(false)
+                                 } else {
+                                     onComplete?(true)
+                                 }
+                             }
+                         }
     }
     
     class Posts {
