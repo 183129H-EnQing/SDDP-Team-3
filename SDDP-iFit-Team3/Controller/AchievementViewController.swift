@@ -37,8 +37,10 @@ class AchievementViewController: UIViewController {
            let chartData = BarChartData()
            chartData.addDataSet(chartDataSet)
            barChartView.data = chartData
-           
+           barChartView.doubleTapToZoomEnabled = false
        }
+    
+    
     
 
     /*

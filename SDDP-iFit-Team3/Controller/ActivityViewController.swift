@@ -35,9 +35,9 @@ class ActivityViewController: UIViewController {
             if (!authoriseStatusValue){
                 self.presentHealthDataNotAvailableError()
             }else{
-                print("no problem")
+                // print("no problem")
                 HealthKitManager.getHealthKitData(){
-                    print("hello world")
+                    //print("hello world")
                 }
             }
         }
