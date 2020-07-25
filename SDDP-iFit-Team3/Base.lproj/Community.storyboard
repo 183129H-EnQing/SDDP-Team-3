@@ -304,20 +304,19 @@
             </objects>
             <point key="canvasLocation" x="1451" y="903"/>
         </scene>
-        <!--View Comments View Controller-->
+        <!--View Comment View Controller-->
         <scene sceneID="gc8-W8-app">
             <objects>
-                <viewController id="ITJ-ey-NAI" customClass="ViewCommentsViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="ITJ-ey-NAI" customClass="ViewCommentViewController" customModule="SDDP_iFit_Team3" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Rq-N3-OUK">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EdJ-09-mxT">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="EdJ-09-mxT">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="92" id="a6X-37-3Pd">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="92" id="a6X-37-3Pd" customClass="PostCell" customModule="SDDP_iFit_Team3" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a6X-37-3Pd" id="RC8-hH-0QF">
@@ -347,15 +346,31 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="vcomment" destination="dDC-Zm-REb" id="tZL-cC-tpm"/>
+                                            <outlet property="vdate" destination="z09-b7-1lR" id="IDS-hz-5RP"/>
+                                            <outlet property="vusername" destination="38N-kG-fKg" id="lm3-0m-H2z"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ITJ-ey-NAI" id="iGH-ln-QnF"/>
+                                    <outlet property="delegate" destination="ITJ-ey-NAI" id="KIg-1h-DzW"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="EdJ-09-mxT" firstAttribute="leading" secondItem="LzN-Dc-Pb9" secondAttribute="leading" id="4I4-qK-Hes"/>
+                            <constraint firstItem="EdJ-09-mxT" firstAttribute="top" secondItem="LzN-Dc-Pb9" secondAttribute="top" id="86B-lf-Uec"/>
+                            <constraint firstItem="EdJ-09-mxT" firstAttribute="trailing" secondItem="LzN-Dc-Pb9" secondAttribute="trailing" id="ASF-ap-rA6"/>
+                            <constraint firstItem="EdJ-09-mxT" firstAttribute="bottom" secondItem="LzN-Dc-Pb9" secondAttribute="bottom" id="ENf-MP-Ep9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LzN-Dc-Pb9"/>
                     </view>
+                    <navigationItem key="navigationItem" id="wbH-b7-X2p"/>
                     <connections>
-                        <outlet property="tableView" destination="EdJ-09-mxT" id="ckn-eU-rYL"/>
+                        <outlet property="tableView" destination="EdJ-09-mxT" id="7I3-Xu-uxs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8ev-OK-HqW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -426,6 +441,9 @@
                                                     <rect key="frame" x="113" y="272" width="32" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="view"/>
+                                                    <connections>
+                                                        <segue destination="ITJ-ey-NAI" kind="show" identifier="ViewComments" id="U1E-MR-AMX"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blU-ay-Nz7">
                                                     <rect key="frame" x="279" y="14" width="38" height="21"/>

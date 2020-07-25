@@ -573,7 +573,24 @@ class DataManager {
                 }
             }
         }
-          static func loadPosts(userId: String, onComplete: (([Post]) -> Void)?) {
+        
+          static func insertComment(userId: String, _ post: Comment, onComplete: (((_ isSuccess:Bool) -> Void))?) {
+                           db.collection(tableName).addDocument(data: [
+                               "userId": userId,
+                               "userName": post.userName,
+                               "commentt": post.comment,
+                               "pdatetime": post.pdatetime,
+                              
+                                  
+                           ]) { err in
+                               if let _ = err {
+                                   onComplete?(false)
+                               } else {
+                                   onComplete?(true)
+                               }
+                           }
+                       }
+        static func loadPosts(userId: String, onComplete: (([Post]) -> Void)?) {
                         /* Process
                          1. Get all documents
                          2. Check for errors, check if there are data to retrieve
@@ -667,6 +684,49 @@ class DataManager {
             }
         }
         
+         static func loadComments(userId: String, onComplete: (([Comment]) -> Void)?) {
+                   /* Process
+                    1. Get all documents
+                    2. Check for errors, check if there are data to retrieve
+                    3. loop through all the documents
+                    4. In each document, check if the creatorId is the same as the logged in user's id
+                    5. Create empty array if our schedules variable' day is empty
+                    6. Retrieve fields from document, as well as documentId from document
+                    7. Put the fields into instance of Schedule and append Schedule to day array inside schedules variable
+                    8. Then we sort the day array after appending
+                    */
+                   db.collection(tableName).getDocuments { (snapshot, err) in
+                       var comments: [Comment] = []
+                       if let err = err {
+                           print("Error for \(tableName): \(err)")
+                       } else if let snapshot = snapshot, snapshot.count > 0 {
+                           print("Got data: \(snapshot.count)")
+                           for document in snapshot.documents {
+                               print("Retrieving a document")
+                               let data = document.data()
+                               //if userId.elementsEqual(data["userId"] as! String) {
+                                   print("Document's creator matched")
+                                 let userName : String = data["userName"] as! String
+                                 let comment : String = data["comment"] as! String
+                                 let pdatetime : String = data["pdatetime"] as! String
+                                 
+
+                                   let ccomment =  Comment(userName: userName, comment: comment, pdatetime: pdatetime)
+                                   
+                                   
+                                   //comment.id = document.documentID
+                                   
+                                 comments.append(ccomment)
+                              
+                              // }
+                           }
+                       } else {
+                           print("No data for \(tableName)")
+                       }
+                       
+                       onComplete?(comments)
+                   }
+               }
         
                   }
     

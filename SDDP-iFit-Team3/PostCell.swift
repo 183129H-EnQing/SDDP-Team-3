@@ -50,6 +50,13 @@ class PostCell: UITableViewCell{
     @IBOutlet weak var edit: UIButton!
     
     
+    @IBOutlet weak var vusername: UILabel!
+    
+    
+    @IBOutlet weak var vcomment: UILabel!
+    
+    
+    @IBOutlet weak var vdate: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

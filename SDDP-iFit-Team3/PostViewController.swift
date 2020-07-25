@@ -115,6 +115,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 // }
              //  }                    //UIImage(named:p.pimageName)
                 cell.commentbtn.tag = indexPath.row
+                cell.viewcmt.tag = indexPath.row
 
                 return cell
         
@@ -177,7 +178,19 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
              
 
                  }
-     }
+        
+//         if(segue.identifier == "ViewComments")
+//                {
+//                   let detailViewController = segue.destination as! ViewCommentViewController
+//
+//                   let posts = postList[(sender as! UIButton).tag]
+//                           detailViewController.comments = posts
+//
+//
+//
+//                        }
+//
+    }
     
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {

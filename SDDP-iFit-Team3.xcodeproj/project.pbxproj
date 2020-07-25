@@ -14,6 +14,7 @@
 		09B1B93A249322AD00D14CE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B1B938249322AD00D14CE6 /* Main.storyboard */; };
 		09B1B93C249322B200D14CE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09B1B93B249322B200D14CE6 /* Assets.xcassets */; };
 		09B1B93F249322B200D14CE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09B1B93D249322B200D14CE6 /* LaunchScreen.storyboard */; };
+		1B11A33A24CC0A880016C87A /* ViewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A33924CC0A880016C87A /* ViewCommentViewController.swift */; };
 		1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */; };
 		1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E8DA924A387B7001D9C8D /* PostCell.swift */; };
 		1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0E324A359FF003A35A9 /* Post.swift */; };
@@ -21,7 +22,6 @@
 		1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */; };
 		1BD9C45224C2C027004EA6C9 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */; };
 		340758FB24C55A21000F85A7 /* Fritz-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 340758FA24C55A21000F85A7 /* Fritz-Info.plist */; };
-		342BA8A524CA900700A8A085 /* ViewCommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 342BA8A424CA900700A8A085 /* ViewCommentsViewController.swift */; };
 		343BEC9224A97E570041352F /* GoalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9124A97E570041352F /* GoalCell.swift */; };
 		343BEC9424A97F010041352F /* GoalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9324A97F010041352F /* GoalViewController.swift */; };
 		343BEC9624A97F320041352F /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343BEC9524A97F320041352F /* ChallengeViewController.swift */; };
@@ -105,6 +105,7 @@
 		09B1B93E249322B200D14CE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		09B1B940249322B200D14CE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0A8D38EDB7CD73F99DD769AA /* Pods-SDDP-iFit-Team3.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.debug.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.debug.xcconfig"; sourceTree = "<group>"; };
+		1B11A33924CC0A880016C87A /* ViewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommentViewController.swift; sourceTree = "<group>"; };
 		1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		1B3E8DA924A387B7001D9C8D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
 		1BB0D0E324A359FF003A35A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
 		1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		340758FA24C55A21000F85A7 /* Fritz-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Fritz-Info.plist"; sourceTree = "<group>"; };
-		342BA8A424CA900700A8A085 /* ViewCommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommentsViewController.swift; sourceTree = "<group>"; };
 		343BEC9124A97E570041352F /* GoalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalCell.swift; sourceTree = "<group>"; };
 		343BEC9324A97F010041352F /* GoalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalViewController.swift; sourceTree = "<group>"; };
 		343BEC9524A97F320041352F /* ChallengeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
@@ -347,7 +347,7 @@
 				1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
 				34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */,
-				342BA8A424CA900700A8A085 /* ViewCommentsViewController.swift */,
+				1B11A33924CC0A880016C87A /* ViewCommentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -538,6 +538,7 @@
 				DC0B46BF24C3140E001BB221 /* GameDiscover.swift in Sources */,
 				34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */,
 				DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */,
+				1B11A33A24CC0A880016C87A /* ViewCommentViewController.swift in Sources */,
 				DCCA915824BEC45100C3A816 /* GameResearch.swift in Sources */,
 				DC3B4E1624C3391B000B2502 /* Game.swift in Sources */,
 				DCEEAD9124C97E3B00CF5FD5 /* PoseEstimationFast1595485568.mlmodel in Sources */,
@@ -555,7 +556,6 @@
 				1BD9C45224C2C027004EA6C9 /* PersonalViewController.swift in Sources */,
 				7DC360E324BAD86D00280315 /* StorageManager.swift in Sources */,
 				343BEC9A24A97F8A0041352F /* ActivityViewController.swift in Sources */,
-				342BA8A524CA900700A8A085 /* ViewCommentsViewController.swift in Sources */,
 				1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */,
 				7D1C4BFE24A4FD9000CD1F6F /* SchedulerDetailsViewController.swift in Sources */,
 				7D8929C224AD6D3200FCB173 /* DataManager.swift in Sources */,

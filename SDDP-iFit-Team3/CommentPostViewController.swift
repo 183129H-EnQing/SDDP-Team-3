@@ -70,19 +70,12 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
                
             let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "", opened: false ,  commentPost: [ cmt] )
                
-                if self.postItem != nil {
-                              // Update
-                             posts.id = self.postItem!.id!
-                             DataManager.Posts.updatePost(post: posts) { (isSuccess) in
-                                  self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
-                              }
-                         } else {
-                              // Add
-                              DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
-                                                 self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-                                         
-                                    }
-                          }
+                DataManager.Posts.insertComment(userId:user.uid,cmt) { (isSuccess) in
+                                                               self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                                            
+                                           
+                //
+                                      }
                }
         
     }
