@@ -55,24 +55,38 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
     @IBAction func savebtnpressed(_ sender: Any) {
          if let user = UserAuthentication.getLoggedInUser(){
                    
-                   let content = textbox.text ?? ""
+                   let content = comment.text ?? ""
                          let date = Date()
                          let formatter = DateFormatter()
                         formatter.dateFormat = "MMM d, h:mm a"
                          let datetime = formatter.string(from: date)
             let name = username.text ?? ""
                let loca = location.text ?? ""
+            let com = textbox.text ?? ""
                
                    let viewControllers = self.navigationController?.viewControllers
                    let parent = viewControllers?[1] as! PostViewController
             
-            let cmt = Comment(userName: name, comment: content, pdatetime: datetime )
+            let cmt = Comment(userName: name, comment: com, pdatetime: datetime )
                
-            let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "", opened: false ,  commentPost: [ cmt] )
+            let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "", opened: false ,  commentPost: [ ] )
                
                 DataManager.Posts.insertComment(userId:user.uid,cmt) { (isSuccess) in
                                                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-                                            
+                    
+                     if self.postItem != nil {
+                                           // Update
+                                           posts.id = self.postItem!.id!
+                                           DataManager.Posts.updatePost(post: posts) { (isSuccess) in
+                                               self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
+                                           }
+                                       } else {
+                                           // Add
+                                           DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+                                                              self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+                                                      
+                                                  }
+                                       }
                                            
                 //
                                       }
