@@ -66,8 +66,9 @@ class HealthKitManager{
     static let group = DispatchGroup()
     static var todaySteps:Double = 0
     static var todayCalories:Double = 0
-    static var healthKitDataArray: [HealthKitActivity] = []
-    static var healthKitDateData : [String] = []
+    static var dateArray : [String] = []
+    static var count = 0
+    static let user = UserAuthentication.getLoggedInUser()
     // completion should be healthkit data class
     static func getHealthKitData(completion: (() -> Void)?){
         group.enter()
@@ -100,9 +101,8 @@ class HealthKitManager{
                 DataManager.HealthKitActivities.loadHealthKitActivity(userId: user.uid ) { (data) in
                     print("loading data")
                                   if data.count > 0 {
-                                      self.healthKitDataArray = data
-                                      print(type(of: healthKitDataArray))
-                                      insertOrUpdateHealthKitData(healthKitData:data)
+   
+                                    insertOrUpdateHealthKitData(healthKitDataArray:data)
                                   }
                          group.leave()
                               }
@@ -117,66 +117,72 @@ class HealthKitManager{
         
     }
     
-    static func insertOrUpdateHealthKitData(healthKitData:[HealthKitActivity]) {
+    static func insertOrUpdateHealthKitData(healthKitDataArray:[HealthKitActivity]) {
                  //   let calendar = Calendar.current
-                    let user = UserAuthentication.getLoggedInUser()
                     let formatter = DateFormatter()
                     formatter.timeZone  = TimeZone(identifier: "Asia/Singapore") // set locale to reliable US_POSIX - usa , en_SG - sg
                     formatter.dateFormat = "dd MMM yyyy"
                     let todayDateString = formatter.string(from: Date())
-                   // let todayDate = formatter.date(from: todayDateString)!
-
+                    let todayDate = formatter.date(from: todayDateString)!
+                    let yesterdayDate = Calendar.current.date(byAdding: .day, value: -1, to: todayDate)
+                    let yesterdayDateString = formatter.string(from: yesterdayDate!)
                     formatter.dateFormat = "hh:mm"
                     let todayTime = formatter.string(from: Date())  //
                     
-                    print("todayTime:",todayTime)
                     print("todayDate:",todayDateString)
+                    print("yesterday date:",yesterdayDateString)
                     // Check date exists or not in the dateArray, exist don't append else append
                     // Does Not exist insert the data, if exists next step
-                    // Check current date and time not over 1159 of the exist date so we can update the data
+                    // Check current date and time not over 1159 of the exist date so we can update the data'
                     // Important: For now not checking the time and date for performance
+      
                     for healthKitData in healthKitDataArray {
                         // not exists in the date array then we add the date ,to prevent dulicpate date inserting to db
-                        print(healthKitData.dateSaved)
-                        print("healthkitdataarry:",healthKitDateData)
-                        if !healthKitDateData.contains(healthKitData.dateSaved) {
-                             healthKitDateData.append(healthKitData.dateSaved)
-                                // insert the whole new data
-                                    let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: todayTime , dateSaved: todayDateString)
-             
-                                    DataManager.HealthKitActivities.insertHealthKitActivity(userId: user!.uid, newHealthKitActivity){ (isSuccess) in
-                                      print("insert")
-                                    }
-                        }
-                        else{
-                          let healthKitActivityId = healthKitData.healthKitActivityId!
-                                                
-                          let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: todayTime , dateSaved: todayDateString)
-                            
-                            DataManager.HealthKitActivities.updateHealthKitData(healthKitActivityId: healthKitActivityId,healthKitActivityData:newHealthKitActivity){ (isSuccess) in
-                             print("update")
-                           }
-                        }
-                    
-                        
-                        
+     
+                        let healthKitDate = "\(healthKitData.dateSaved)"
                 
-                    }
-                    // need to check whether over 1159 of the current date or not
-                    // if got data already update else insert
-                    
-        //            for healthKitData in healthKitDataArray{
-        //                if healthKitDateData.contains(healthKitData.dateSaved){
-        //                    print("date exists",healthKitData.dateSaved)
-        //                    //update
-        //                }else{
-                           // print("date does not exist")
-                       
-        //                }
-        //            }
+                        if !dateArray.contains(healthKitDate) {
+                                dateArray.append(healthKitDate)
+                            }
+                        
+                        if todayDateString == healthKitDate{
+                           let healthKitActivityId = healthKitData.healthKitActivityId!
+                            updateHealthKitData(yesterdayDateString: yesterdayDateString, hasUpdatedForYtd: false, healthKitActivityId: healthKitActivityId,time: todayTime)
+                           print(healthKitDate,healthKitActivityId)
+                        
+                        }else {
+                            if healthKitData.hasUpdatedForYtd == false {
+                              let healthKitActivityId = healthKitData.healthKitActivityId!
+                                updateHealthKitData(yesterdayDateString: yesterdayDateString, hasUpdatedForYtd: true, healthKitActivityId: healthKitActivityId,time:"11.59PM")
+                            
+                          }else {
+                              if !dateArray.contains(todayDateString){
+                                 dateArray.append(todayDateString)
+                           // insert the whole new data
+                                insertHealthKitData(todayTime: todayTime, todayDateString: todayDateString)
+                            print("creating healthkit init")
+                          
+                              }
+                          }
+                        }
+                        
+        }
     }
     
+    static func insertHealthKitData(todayTime : String, todayDateString: String){
+        let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: todayTime , dateSaved: todayDateString,hasUpdatedForYtd: false)
+          
+                                 DataManager.HealthKitActivities.insertHealthKitActivity(userId: user!.uid, newHealthKitActivity){ (isSuccess) in
+                                   print("insert")
+                                        }
+    }
+    static func updateHealthKitData(yesterdayDateString : String, hasUpdatedForYtd: Bool, healthKitActivityId: String,time: String){
+        let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: time , dateSaved: yesterdayDateString,hasUpdatedForYtd : hasUpdatedForYtd)
 
+             DataManager.HealthKitActivities.updateHealthKitData(healthKitActivityId: healthKitActivityId,healthKitActivityData:newHealthKitActivity){ (isSuccess) in
+              print("update")
+            }
+    }
       //https://stackoverflow.com/questions/36559581/healthkit-swift-getting-todays-steps/44111542
       static func getTodaysSteps(completion: @escaping (Double) -> Void) {
           

@@ -14,11 +14,19 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var bmiLabel: UILabel!
     
+    @IBOutlet weak var heightWeightStackView: UIStackView!
+    @IBOutlet weak var heightView: UIView!
+    @IBOutlet weak var weightView: UIView!
+    @IBOutlet weak var heightLabel: UILabel!
+    @IBOutlet weak var weightLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         Team3Helper.makeImgViewRound(avatarImgView)
+        Team3Helper.colorTextFieldBorder(textField: heightView, isRed: false)
+        Team3Helper.colorTextFieldBorder(textField: weightView, isRed: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,16 +43,24 @@ class ProfileViewController: UIViewController {
                 }
 
                 var bmiMsg = "No BMI, please take the survey!"
+                var showHeightWeight = false
                 
                 if let fitnessInfo = user.fitnessInfo {
                     let weight = fitnessInfo.weight
                     let height = fitnessInfo.height
-                    bmiMsg = "BMI: \(weight/pow(height, height))"
+                    bmiMsg = "BMI: " + String(format: "%.1f", (weight/pow(height, height)))
+                    showHeightWeight = true
                 }
                 
                 DispatchQueue.main.async {
                     self.usernameLabel.text = (user.username != nil) ? user.username : "Need set username for Auth"
                     self.bmiLabel.text = bmiMsg
+                    
+                    self.heightWeightStackView.isHidden = !showHeightWeight
+                    if showHeightWeight {
+                        self.heightLabel.text = String(format: "%.0f", user.fitnessInfo!.height * 100) + " cm"
+                        self.weightLabel.text = String(format: "%.1f", user.fitnessInfo!.weight) + " kg"
+                    }
                 }
             }
         }

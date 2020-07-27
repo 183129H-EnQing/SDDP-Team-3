@@ -14,11 +14,12 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var noGoalLabel: UILabel!
     @IBOutlet weak var goalTableView: UITableView!
     var goalList : [Goal] = []
+    var healthKitActivityList : [HealthKitActivity] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGoals()
-       
+        
     }
     
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,19 +29,23 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
      }
      func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          // First we query the table view to see if there are // any UITableViewCells that can be reused. iOS will // create a new one if there aren't any. //
-    
-                 let cell : GoalCell = tableView
-                 .dequeueReusableCell (withIdentifier: "GoalCell", for: indexPath) as! GoalCell
-
         let g = goalList[indexPath.row]
+        for activity in healthKitActivityList{
+            // g.date + g.duration
+            // activity.todayStep
+        }
+         let cell : GoalCell = tableView
+         .dequeueReusableCell (withIdentifier: "GoalCell", for: indexPath) as! GoalCell
+
+       
         cell.goalTitle.text = g.goalTitle;
         cell.percentageLabel.text = "\(g.progressPercent * 10)%";
         cell.duration.text = "\(g.duration) "
-
+        
         cell.dateRange.text = "\(g.date)" 
         cell.progressView.setProgress(Float(g.progressPercent) / 10 , animated: false)
         
-        cell.progressView.transform = cell.progressView.transform.scaledBy(x: 1, y: 15)
+      //  cell.progressView.transform = cell.progressView.transform.scaledBy(x: 1, y: 15)
        // cell.selectionStyle = .none
 
                  return cell
@@ -72,6 +77,14 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         }
     }
     
+    func loadHealthKitData(){
+        DataManager.HealthKitActivities.loadHealthKitActivity(userId: UserAuthentication.user!.userId){
+            (data) in
+            if data.count > 0 {
+                self.healthKitActivityList = data
+            }
+        }
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowGoalDetails" {
             let detailViewController = segue.destination as! GoalDetailsViewController

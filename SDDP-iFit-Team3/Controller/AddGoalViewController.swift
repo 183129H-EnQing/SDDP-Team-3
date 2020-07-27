@@ -10,7 +10,7 @@ import UIKit
 
 class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate {
 
-    let activityNamesPickerData = ["Running","Push Up","Sit Up"];
+    let activityNamesPickerData = ["Running","Push Up","Sit Up","Steps"];
     @IBOutlet weak var goalTitle: UITextField!
     @IBOutlet weak var activityName: UITextField!
     @IBOutlet weak var datePicker: UITextField!

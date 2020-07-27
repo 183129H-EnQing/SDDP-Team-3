@@ -16,11 +16,13 @@ class HealthKitActivity: NSObject {
      var timeSaved: String;
      var dateSaved : String;
      var userId: String?;
-   
-    init(todayStep: Double, todayCaloriesBurnt: Double, timeSaved: String, dateSaved: String) {
+     var hasUpdatedForYtd : Bool = false;
+    
+    init(todayStep: Double, todayCaloriesBurnt: Double, timeSaved: String, dateSaved: String,hasUpdatedForYtd: Bool) {
            self.todayStep = todayStep
            self.todayCaloriesBurnt = todayCaloriesBurnt
            self.timeSaved = timeSaved
            self.dateSaved = dateSaved
+           self.hasUpdatedForYtd = hasUpdatedForYtd
        }
 }

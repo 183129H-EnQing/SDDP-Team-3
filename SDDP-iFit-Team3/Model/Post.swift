@@ -8,16 +8,16 @@
 
 import UIKit
 
-class Comment {
+class Comment:Codable {
     
-    var userName: String
+    var userId: String
     var comment: String
     var pdatetime:String
   
 
-init(userName: String, comment:String, pdatetime:String)
+init(userId: String, comment:String, pdatetime:String)
  {
-    self.userName = userName
+    self.userId = userId
     self.comment = comment
     self.pdatetime = pdatetime
     
