@@ -13,7 +13,7 @@ class SpeechSynthesizer {
     private let synthesizer = AVSpeechSynthesizer()
     
     var rate: Float = AVSpeechUtteranceDefaultSpeechRate
-    var voice = AVSpeechSynthesisVoice(language: "en-US")
+    var voice = AVSpeechSynthesisVoice(language: "en-GB")
     
     func say(_ phrase: String){
         
