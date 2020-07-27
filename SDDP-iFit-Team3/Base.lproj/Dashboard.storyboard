@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -744,13 +744,68 @@
                     <view key="view" contentMode="scaleToFill" id="w1b-RW-5XU">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQu-6D-C19">
+                                <rect key="frame" x="0.0" y="64" width="1500" height="150"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7e-2J-ql5">
+                                        <rect key="frame" x="15" y="0.0" width="1500" height="128"/>
+                                        <subviews>
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NBG-LH-bUu">
+                                                <rect key="frame" x="0.0" y="49" width="1500" height="80"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1500" id="trI-Q5-CnJ"/>
+                                                </constraints>
+                                                <segments>
+                                                    <segment title="First"/>
+                                                    <segment title="Second"/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                    <segment title=""/>
+                                                </segments>
+                                            </segmentedControl>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="NBG-LH-bUu" firstAttribute="leading" secondItem="h7e-2J-ql5" secondAttribute="leading" id="Gea-9v-If0"/>
+                                            <constraint firstAttribute="height" constant="128" id="SvC-ex-iyK"/>
+                                            <constraint firstAttribute="trailing" secondItem="NBG-LH-bUu" secondAttribute="trailing" id="TIN-Np-09N"/>
+                                            <constraint firstAttribute="bottom" secondItem="NBG-LH-bUu" secondAttribute="bottom" id="hYV-cL-Cn9"/>
+                                            <constraint firstItem="NBG-LH-bUu" firstAttribute="top" secondItem="h7e-2J-ql5" secondAttribute="top" constant="49" id="s4G-rm-Hjq"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="h7e-2J-ql5" secondAttribute="trailing" constant="15" id="EPb-PR-xLz"/>
+                                    <constraint firstAttribute="height" constant="150" id="LwD-uO-UV4"/>
+                                    <constraint firstItem="h7e-2J-ql5" firstAttribute="width" secondItem="qQu-6D-C19" secondAttribute="width" id="PED-cK-ktG"/>
+                                    <constraint firstItem="h7e-2J-ql5" firstAttribute="leading" secondItem="qQu-6D-C19" secondAttribute="leading" constant="15" id="WCJ-ts-vuu"/>
+                                    <constraint firstItem="h7e-2J-ql5" firstAttribute="top" secondItem="qQu-6D-C19" secondAttribute="top" id="eWA-7R-2TA"/>
+                                    <constraint firstItem="NBG-LH-bUu" firstAttribute="width" secondItem="qQu-6D-C19" secondAttribute="width" id="rB2-vX-fcA"/>
+                                    <constraint firstAttribute="bottom" secondItem="h7e-2J-ql5" secondAttribute="bottom" id="zPj-HO-buX"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="qQu-6D-C19" firstAttribute="leading" secondItem="bF6-Dh-7R0" secondAttribute="leading" id="B2U-db-weE"/>
+                            <constraint firstItem="qQu-6D-C19" firstAttribute="top" secondItem="bF6-Dh-7R0" secondAttribute="top" constant="20" id="k4X-mp-oBZ"/>
+                            <constraint firstItem="qQu-6D-C19" firstAttribute="trailing" secondItem="bF6-Dh-7R0" secondAttribute="trailing" id="t0V-Wx-mHz"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="bF6-Dh-7R0"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iLK-VC-Gg4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2087" y="-466"/>
+            <point key="canvasLocation" x="2085.507246376812" y="-416.51785714285711"/>
         </scene>
         <!--Achievement View Controller-->
         <scene sceneID="Yrp-6l-Oln">
@@ -824,7 +879,6 @@
                                                 </label>
                                                 <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0x3-XN-wpZ">
                                                     <rect key="frame" x="22" y="119" width="372" height="2"/>
-                                                    <color key="backgroundColor" name="steps"/>
                                                 </progressView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E3Y-75-IEI">
                                                     <rect key="frame" x="359" y="78" width="35" height="21"/>

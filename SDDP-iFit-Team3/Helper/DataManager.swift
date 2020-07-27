@@ -460,7 +460,7 @@ class DataManager {
                             "todayCaloriesBurnt": healthKitActivity.todayCaloriesBurnt,
                             "dateSaved": healthKitActivity.dateSaved,
                             "timeSaved": healthKitActivity.timeSaved,
-                               
+                            "hasUpdatedForYtd" : healthKitActivity.hasUpdatedForYtd
                         ]) { err in
                             if let _ = err {
                                 onComplete?(false)
@@ -499,8 +499,9 @@ class DataManager {
                                     let todayCaloriesBurnt : Double = data["todayCaloriesBurnt"] as! Double
                                     let dateSaved : String = data["dateSaved"] as! String
                                     let timeSaved : String = data["timeSaved"] as! String
-                           
-                                    let healthKitActivity = HealthKitActivity(todayStep: todayStep, todayCaloriesBurnt: todayCaloriesBurnt, timeSaved: timeSaved, dateSaved: dateSaved)
+                                    let hasUpdatedForYtd : Bool = data["hasUpdatedForYtd"] as! Bool
+                                    
+                                    let healthKitActivity = HealthKitActivity(todayStep: todayStep, todayCaloriesBurnt: todayCaloriesBurnt, timeSaved: timeSaved, dateSaved: dateSaved,hasUpdatedForYtd: hasUpdatedForYtd)
                                     
                                     healthKitActivity.healthKitActivityId = document.documentID
                               
@@ -522,6 +523,7 @@ class DataManager {
                                     "todayStep": healthKitActivityData.todayStep,
                                     "todayCaloriesBurnt": healthKitActivityData.todayCaloriesBurnt,
                                     "timeSaved": healthKitActivityData.timeSaved,
+                                    "hasUpdatedForYtd": healthKitActivityData.hasUpdatedForYtd
                              ]) { (err) in
                                  if let err = err {
                                      print("Error updating goal status: \(err)")
