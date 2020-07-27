@@ -14,3 +14,7 @@ extension PoseEstimationFast1595485568: SwiftIdentifiedModel {
    static let packagedModelVersion = 2
 }
 
+let poseModel = FritzVisionPosePredictor<CustomSkeleton>(
+    model: PoseEstimationFast1595485568()
+)
+//let predictor = FritzVisionPosePredictor<CustomSkeleton>(model: PoseEstimationFast1595485568().fritz())
