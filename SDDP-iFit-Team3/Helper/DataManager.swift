@@ -590,14 +590,21 @@ class DataManager {
             }
         }
         
-          static func insertComment(userId: String, _ post: Comment, onComplete: (((_ isSuccess:Bool) -> Void))?) {
-                           db.collection(tableName).addDocument(data: [
-                               "userId": userId,
-                               "userName": post.userName,
-                               "commentt": post.comment,
-                               "pdatetime": post.pdatetime,
-                              
-                                  
+        static func insertComment(userId: String, postId: String, _ comments: [Comment], onComplete: (((_ isSuccess:Bool) -> Void))?) {
+            // json encode for raw Comment object https://stackoverflow.com/a/55069484
+            var list_comment = [Any]()
+            for item in comments {
+                do {
+                    let jsonData = try JSONEncoder().encode(item)
+                    let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                    list_comment.append(jsonObject)
+                }
+                catch {
+                    // handle error
+                }
+            }
+            db.collection(tableName).document(postId).updateData([
+                               "commentPost": list_comment
                            ]) { err in
                                if let _ = err {
                                    onComplete?(false)
@@ -727,7 +734,7 @@ class DataManager {
                                  let pdatetime : String = data["pdatetime"] as! String
                                  
 
-                                   let ccomment =  Comment(userName: userName, comment: comment, pdatetime: pdatetime)
+                                   let ccomment =  Comment(userId: userName, comment: comment, pdatetime: pdatetime)
                                    
                                    
                                    //comment.id = document.documentID

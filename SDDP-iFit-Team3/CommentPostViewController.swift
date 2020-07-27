@@ -25,6 +25,7 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
     
     @IBOutlet weak var comment: UILabel!
     
+   
     @IBOutlet weak var savebtn: UIButton!
     
     var postItem : Post?
@@ -43,53 +44,57 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
     comment.text = postItem?.pcontent
     imageview.image = UIImage(named: (postItem?.pimageName)!)
     username.text = postItem?.userName
-    
+    location.text = postItem?.userLocation
     imageview.sd_setImage(with: URL(string : postItem!.pimageName))
       
-    self.navigationItem.title = "Comment"
+    self.navigationItem.title = "Comments"
         
     }
     
     
     
     @IBAction func savebtnpressed(_ sender: Any) {
-         if let user = UserAuthentication.getLoggedInUser(){
+         if let user = UserAuthentication.user {
                    
-                   let content = comment.text ?? ""
+                   let content = comment.text!
                          let date = Date()
                          let formatter = DateFormatter()
                         formatter.dateFormat = "MMM d, h:mm a"
                          let datetime = formatter.string(from: date)
-            let name = username.text ?? ""
+            let name = user.username
                let loca = location.text ?? ""
             let com = textbox.text ?? ""
                
                    let viewControllers = self.navigationController?.viewControllers
+                
                    let parent = viewControllers?[1] as! PostViewController
             
-            let cmt = Comment(userName: name, comment: com, pdatetime: datetime )
+            print("pussy",user.userId)
+            postItem?.commentPost.append(Comment(userId: user.userId, comment: com, pdatetime: datetime ))
                
-            let  posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: "", opened: false ,  commentPost: [ ] )
-               
-                DataManager.Posts.insertComment(userId:user.uid,cmt) { (isSuccess) in
+            DataManager.Posts.insertComment(userId:user.userId, postId: postItem!.id!, postItem!.commentPost) { (isSuccess) in
                                                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-                    
-                     if self.postItem != nil {
-                                           // Update
-                                           posts.id = self.postItem!.id!
-                                           DataManager.Posts.updatePost(post: posts) { (isSuccess) in
-                                               self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
-                                           }
-                                       } else {
-                                           // Add
-                                           DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
-                                                              self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-                                                      
-                                                  }
-                                       }
+
+            }
+
+//                     if self.postItem != nil {
+//                                           // Update
+//
+//
+//                                           posts.id = self.postItem!.id!
+//                                           DataManager.Posts.updatePost(post: posts) { (isSuccess) in
+//                                               self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
+//                                           }
+//                                       } else {
+//                                           // Add
+//                                           DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
+//                                                              self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
+//
+//                                                  }
+//                                       }
                                            
                 //
-                                      }
+                                      
                }
         
     }
