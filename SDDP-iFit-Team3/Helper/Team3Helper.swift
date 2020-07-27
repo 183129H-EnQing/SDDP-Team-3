@@ -42,7 +42,7 @@ class Team3Helper {
         return true
     }
     
-    static func colorTextFieldBorder(textField: UITextField, isRed: Bool) {
+    static func colorTextFieldBorder(textField: UIView, isRed: Bool) {
         textField.layer.borderWidth = 1
         textField.layer.borderColor = isRed ? UIColor.systemRed.cgColor : UIColor.systemGray3.cgColor
     }
