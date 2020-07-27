@@ -599,7 +599,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save"/>
                                 <connections>
-                                    <action selector="savebtnpressed:" destination="iCB-GU-gMh" eventType="touchUpInside" id="uWM-ib-tKV"/>
+                                    <action selector="savebtnpressed:" destination="iCB-GU-gMh" eventType="touchUpInside" id="Ivf-BF-yuZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -611,7 +611,7 @@
                         <outlet property="comment" destination="IV1-gW-Dsn" id="YBA-hh-atE"/>
                         <outlet property="imageview" destination="DaK-9f-TU2" id="HZv-Sy-xtN"/>
                         <outlet property="location" destination="8Mo-PG-Dk7" id="msg-iw-N3W"/>
-                        <outlet property="savebtn" destination="dTV-YE-kbT" id="bJE-RV-6ng"/>
+                        <outlet property="savebtn" destination="dTV-YE-kbT" id="0k1-k7-ctD"/>
                         <outlet property="textbox" destination="mjk-Xe-CND" id="AeL-QI-17j"/>
                         <outlet property="time" destination="jl0-Rg-fWS" id="uTh-EO-W4E"/>
                         <outlet property="username" destination="Dqx-Hh-Ie0" id="5df-25-kcg"/>

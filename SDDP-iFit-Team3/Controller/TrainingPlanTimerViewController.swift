@@ -19,7 +19,7 @@ class TrainingPlanTimerViewController: UIViewController {
     var isTimerOn = false
     var timer = Timer()
     
-    var duration = 5
+    var duration = 30
     
     let speechSyntehsizer = SpeechSynthesizer()
     
@@ -41,28 +41,34 @@ class TrainingPlanTimerViewController: UIViewController {
     
     func toggleTimer(on: Bool){
         if on {
-            speechSyntehsizer.say("Starting Timer. \(duration) seconds")
-            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
-                
-                guard let strongSelf = self else { return }
-                
-                strongSelf.duration -= 1
-                strongSelf.timeLabel.text = String(strongSelf.duration)
-                
-                if strongSelf.duration > 0 && strongSelf.duration % 10 == 0 && strongSelf.duration < self!.duration {
-                    self!.speechSyntehsizer.say("\(self!.duration) seconds")
-                }
-                
-                if self!.duration < 5 {
-                    self!.speechSyntehsizer.say("\(self!.duration)")
-                }
-                
-                if self!.duration == 0 {
-                    self!.speechSyntehsizer.say("Exercise Complete")
-                    self!.isTimerOn = false
-                    self!.timer.invalidate()
-                }
-            })
+            speechSyntehsizer.say("Starting Exercise, \(duration) seconds begin")
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                // your code here
+                self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
+                    
+                    guard let strongSelf = self else { return }
+                    
+                    strongSelf.duration -= 1
+                    strongSelf.timeLabel.text = String(strongSelf.duration)
+                    
+                    if strongSelf.duration > 0 && strongSelf.duration % 10 == 0  {
+                        self!.speechSyntehsizer.say("\(self!.duration) seconds")
+                    }
+                    
+                    if self!.duration < 5 {
+                        self!.speechSyntehsizer.say("\(self!.duration)")
+                    }
+                    
+                    if self!.duration == 0 {
+                        self!.speechSyntehsizer.say("Exercise Complete")
+                        self!.isTimerOn = false
+                        self!.timer.invalidate()
+                        self!.resetButton.isEnabled = true
+                    }
+                })
+            }
+           
         }
     }
     
@@ -72,13 +78,14 @@ class TrainingPlanTimerViewController: UIViewController {
         isTimerOn = true
         toggleTimer(on: isTimerOn)
         playButton.isEnabled = false
+        resetButton.isEnabled = false
         
     }
     
     @IBAction func resetButtonPressed(_ sender: Any) {
         
         speechSyntehsizer.say("Reseting Timer")
-        duration = 5
+        duration = 30
         timeLabel.text = String(duration)
         
         playButton.isEnabled = true
