@@ -33,9 +33,10 @@ init(userId: String, comment:String, pdatetime:String)
         var pimageName: String
         var userLocation: String
         var opened : Bool
+        var profileImg : String
         var commentPost : [Comment]
 
-    init(userName: String, pcontent:String, pdatetime:String, userLocation:String,  pimageName:String , opened:Bool , commentPost: [Comment] )
+    init(userName: String, pcontent:String, pdatetime:String, userLocation:String,  pimageName:String , opened:Bool , profileImg:String, commentPost: [Comment] )
      {
     
         self.userName = userName
@@ -44,6 +45,7 @@ init(userId: String, comment:String, pdatetime:String)
         self.userLocation = userLocation
         self.pimageName = pimageName
         self.opened = opened
+        self.profileImg = profileImg
         self.commentPost = commentPost
         
         }

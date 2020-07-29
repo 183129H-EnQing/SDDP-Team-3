@@ -211,7 +211,7 @@ class EditPersonalViewController: UIViewController,UIImagePickerControllerDelega
                      //print(metaImageUrl)
                      let photo = metaImageUrl
                      let name = self.userName
-                     let  posts = Post(userName: name, pcontent: ccontent, pdatetime: datetime, userLocation: loca, pimageName: photo ,opened:false , commentPost: [ ] )
+                    let  posts = Post(userName: name, pcontent: ccontent, pdatetime: datetime, userLocation: loca, pimageName: photo ,opened:false , profileImg: "",commentPost: [ ] )
          
                      if self.postItem != nil {
                         // Update

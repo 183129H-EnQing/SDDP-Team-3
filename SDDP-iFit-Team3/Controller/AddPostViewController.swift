@@ -32,6 +32,9 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     
     @IBOutlet weak var dateText: UILabel!
     
+    
+    @IBOutlet weak var imgProfile: UIImageView!
+    
     //var image: UIImage? = nil
     var postItem : Post?
     var locationManager:CLLocationManager!
@@ -56,6 +59,22 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let user = UserAuthentication.user, let url = user.avatarURL {
+                if let data = try? Data(contentsOf: url) {
+                    // to make the image color default color: https://stackoverflow.com/a/22483234
+                    let image = UIImage(data: data)?.sd_resizedImage(with: CGSize(width: 30, height: 30), scaleMode: .aspectFit)?.withRenderingMode(.alwaysOriginal)
+                    
+                    DispatchQueue.main.async {
+                        self.imgProfile.image = image
+                    }
+                }
+            }
+        }
+    }
     func textFieldDidEndEditing(_ textField: UITextField) {
         updateSaveButtonState()
         
@@ -243,7 +262,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                               // if let url = url {
                                 let name = self.userName
                 
-                            let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false, commentPost: [ ] )
+                            let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false,profileImg:"", commentPost: [ ] )
     
                          DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
                                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)

@@ -58,6 +58,9 @@ class PostCell: UITableViewCell{
     
     @IBOutlet weak var vdate: UILabel!
     
+    
+    @IBOutlet weak var profileimg: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
