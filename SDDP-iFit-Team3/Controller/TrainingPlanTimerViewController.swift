@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class TrainingPlanTimerViewController: UIViewController {
 
@@ -21,12 +22,20 @@ class TrainingPlanTimerViewController: UIViewController {
     
     var duration = 30
     
+    var isVoiceOn = true
+    
+    
     let speechSyntehsizer = SpeechSynthesizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.title = "Training Plan"
+        
+        let imageButton = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(imageValidation))
+        let soundButton = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(isSoundEnabled))
+        self.navigationItem.rightBarButtonItems = [imageButton, soundButton]
         
         speechSyntehsizer.getVoices()
         
@@ -37,6 +46,25 @@ class TrainingPlanTimerViewController: UIViewController {
         
         resetButton.setImage(UIImage(named: "resetIcon"), for: .normal)
         resetButton.backgroundColor = .red
+    }
+    
+    @objc func imageValidation(){
+        let vc = SFSafariViewController(url: URL(string: "https://editor.p5js.org/182452K/sketches/EHF_lPwP6")!)
+        present(vc, animated: true)
+    }
+    
+    @objc func isSoundEnabled(){
+        
+        if isVoiceOn == true {
+            speechSyntehsizer.say("Voice disabled")
+            speechSyntehsizer.stopVoice()
+            isVoiceOn = false
+        }
+        else {
+            speechSyntehsizer.startVoice()
+            speechSyntehsizer.say("Voice enableds")
+            isVoiceOn = true
+        }
     }
     
     func toggleTimer(on: Bool){
@@ -68,7 +96,9 @@ class TrainingPlanTimerViewController: UIViewController {
                     }
                 })
             }
-           
+        }
+        else {
+            timer.invalidate()
         }
     }
     
@@ -78,13 +108,16 @@ class TrainingPlanTimerViewController: UIViewController {
         isTimerOn = true
         toggleTimer(on: isTimerOn)
         playButton.isEnabled = false
-        resetButton.isEnabled = false
+//        resetButton.isEnabled = sfalse
         
     }
     
     @IBAction func resetButtonPressed(_ sender: Any) {
         
         speechSyntehsizer.say("Reseting Timer")
+        isTimerOn = false
+        toggleTimer(on: isTimerOn)
+        
         duration = 30
         timeLabel.text = String(duration)
         

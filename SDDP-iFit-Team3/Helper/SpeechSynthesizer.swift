@@ -29,4 +29,12 @@ class SpeechSynthesizer {
     func getVoices(){
         AVSpeechSynthesisVoice.speechVoices().forEach({ print($0.language)})
     }
+    
+    func stopVoice(){
+        synthesizer.stopSpeaking(at: .word)
+    }
+    
+    func startVoice(){
+        synthesizer.continueSpeaking()
+    }
 }

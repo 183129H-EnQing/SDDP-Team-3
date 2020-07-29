@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="x5e-5N-slc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xc2-Dz-fxa">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -611,31 +611,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A08-gj-EPn">
-                                <rect key="frame" x="186" y="480" width="42" height="21"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="zfv-tB-jiG">
+                                <rect key="frame" x="0.0" y="612" width="414" height="200"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llC-yG-KhH">
+                                        <rect key="frame" x="0.0" y="0.0" width="207" height="200"/>
+                                        <state key="normal" title="Reset"/>
+                                        <connections>
+                                            <action selector="resetButtonPressed:" destination="Xc2-Dz-fxa" eventType="touchUpInside" id="KTb-SH-78A"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLp-ZR-qbI">
+                                        <rect key="frame" x="207" y="0.0" width="207" height="200"/>
+                                        <state key="normal" title="Play"/>
+                                        <connections>
+                                            <action selector="playButtonPressed:" destination="Xc2-Dz-fxa" eventType="touchUpInside" id="wz4-Sq-MJj"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="MrV-JE-Mi4"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A08-gj-EPn">
+                                <rect key="frame" x="152" y="523" width="110" height="57"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="47"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="llC-yG-KhH">
-                                <rect key="frame" x="97" y="705" width="39" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reset"/>
-                                <connections>
-                                    <action selector="resetButtonPressed:" destination="Xc2-Dz-fxa" eventType="touchUpInside" id="KTb-SH-78A"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLp-ZR-qbI">
-                                <rect key="frame" x="293" y="705" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play"/>
-                                <connections>
-                                    <action selector="playButtonPressed:" destination="Xc2-Dz-fxa" eventType="touchUpInside" id="wz4-Sq-MJj"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="zfv-tB-jiG" firstAttribute="trailing" secondItem="n5e-ky-CIs" secondAttribute="trailing" id="S22-oo-TR9"/>
+                            <constraint firstItem="zfv-tB-jiG" firstAttribute="leading" secondItem="n5e-ky-CIs" secondAttribute="leading" id="Y6r-as-2fy"/>
+                            <constraint firstItem="n5e-ky-CIs" firstAttribute="bottom" secondItem="zfv-tB-jiG" secondAttribute="bottom" constant="50" id="pDM-ox-su8"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="n5e-ky-CIs"/>
                     </view>
                     <connections>
@@ -646,7 +658,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXQ-J0-Ux0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5242" y="220"/>
+            <point key="canvasLocation" x="5240.579710144928" y="219.64285714285714"/>
         </scene>
         <!--Training Plan Add Exercise View Controller-->
         <scene sceneID="Uuk-sG-5xt">
