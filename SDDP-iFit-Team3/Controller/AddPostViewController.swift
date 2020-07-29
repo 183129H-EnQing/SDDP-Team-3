@@ -39,6 +39,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     var postItem : Post?
     var locationManager:CLLocationManager!
     var userName : String = ""
+    var uurl : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,6 +57,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         }
         // Do any additional setup after loading the view.
         getUserName()
+        getProfilePic()
 
     }
     
@@ -64,6 +66,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
         
         DispatchQueue.global(qos: .userInitiated).async {
             if let user = UserAuthentication.user, let url = user.avatarURL {
+              
                 if let data = try? Data(contentsOf: url) {
                     // to make the image color default color: https://stackoverflow.com/a/22483234
                     let image = UIImage(data: data)?.sd_resizedImage(with: CGSize(width: 30, height: 30), scaleMode: .aspectFit)?.withRenderingMode(.alwaysOriginal)
@@ -113,11 +116,36 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                 DataManager.getUserData(userId: user.uid) { (data) in
                         if let user = data {
                             self.userName = user.username!
+                             print("fdfdfdfd", self.userName)
                             print("data",data)
                             }
                         }
                     }
             }
+    
+    func getProfilePic(){
+        if let user = UserAuthentication.getLoggedInUser() {
+           
+        
+            DataManager.getUserData(userId: user.uid) { (UserAunthentication) in
+                    if let user = UserAuthentication.user{
+                        
+                       // let urrrl : String = ""
+                      
+                       let url =  user.avatarURL
+                        let uu = url?.absoluteString
+                        self.uurl = uu!
+                        
+                        
+                        print("aaaaaaaa", self.uurl)
+                                    
+                       
+                        }
+                    }
+                }
+       
+        
+    }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation :CLLocation = locations[0] as CLLocation
 
@@ -261,14 +289,16 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
            // StorageManager.uploadPostImage(userId: "helloo", image: self.imageview.image!) { url in
                               // if let url = url {
                                 let name = self.userName
-                
-                            let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false,profileImg:"", commentPost: [ ] )
-    
+                                let purl = self.uurl
+                    
+                    
+                            let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false,profileImg:purl, commentPost: [ ] )
+
                          DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
                                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-                            
-                           
-//
+
+
+
                       }
                 //}
             //}
