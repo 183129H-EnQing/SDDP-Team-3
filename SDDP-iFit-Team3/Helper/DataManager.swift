@@ -400,12 +400,12 @@ class DataManager {
                           print("Error for \(tableName): \(err)")
                       } else if let snapshot = snapshot, snapshot.count > 0 {
                           
-                          print("Got data: \(snapshot.count)")
+                          //print("Got data: \(snapshot.count)")
                           for document in snapshot.documents {
-                              print("Retrieving a document")
+                             // print("Retrieving a document")
                               let data = document.data()
                               if userId.elementsEqual(data["userId"] as! String) {
-                                  print("Document's creator matched")
+                                //  print("Document's creator matched")
       
                                 let goalTitle : String = data["goalTitle"] as! String
                                 let activityName : String = data["activityName"] as! String
@@ -446,8 +446,21 @@ class DataManager {
                            }
                        }
                    }
+        static func updateGoalProcessPercent(processPercent: Int, goalId:String, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+                       // updateData will update the specified document for the schedule.id passed in, it will only overwrite the
+                       // specified fields inside the document.
+            db.collection(tableName).document(goalId).updateData([
+                         "processPercent": processPercent
+                       ]) { (err) in
+                           if let err = err {
+                               print("Error updating goal status: \(err)")
+                               onComplete?(false)
+                           } else {
+                               onComplete?(true)
+                           }
+                       }
+                   }
         
-
     }
     
     class HealthKitActivities{
@@ -488,12 +501,12 @@ class DataManager {
                               print("Error for \(tableName): \(err)")
                           } else if let snapshot = snapshot, snapshot.count > 0 {
                               
-                              print("Got data: \(snapshot.count)")
+                             // print("Got data: \(snapshot.count)")
                               for document in snapshot.documents {
-                                  print("Retrieving a document")
+                                //  print("Retrieving a document")
                                   let data = document.data()
                                   if userId.elementsEqual(data["userId"] as! String) {
-                                      print("Document's creator matched")
+                                    //  print("Document's creator matched")
           
                                     let todayStep : Double = data["todayStep"] as! Double
                                     let todayCaloriesBurnt : Double = data["todayCaloriesBurnt"] as! Double

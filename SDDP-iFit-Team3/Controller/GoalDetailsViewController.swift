@@ -34,7 +34,7 @@ class GoalDetailsViewController: UIViewController {
         if let unwrappedGoal = self.goal {
             let calendar = Calendar.current
             let formatter = DateFormatter()
-            formatter.timeZone  = TimeZone(identifier: "Asia/Singapore") // set locale to reliable US_POSIX - usa , en_SG - sg
+            formatter.timeZone  = TimeZone(identifier: "Asia/Singapore") // US_POSIX - usa , en_SG
             formatter.dateFormat = "dd MMM yyyy"
             
             let startDate = formatter.date(from:unwrappedGoal.date)!

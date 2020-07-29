@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -746,13 +746,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQu-6D-C19">
-                                <rect key="frame" x="0.0" y="64" width="1500" height="150"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7e-2J-ql5">
-                                        <rect key="frame" x="15" y="0.0" width="1500" height="128"/>
+                                        <rect key="frame" x="15" y="0.0" width="414" height="128"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NBG-LH-bUu">
-                                                <rect key="frame" x="0.0" y="49" width="1500" height="80"/>
+                                                <rect key="frame" x="0.0" y="49" width="414" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1500" id="trI-Q5-CnJ"/>
                                                 </constraints>
@@ -889,12 +889,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="0x3-XN-wpZ" firstAttribute="top" secondItem="E3Y-75-IEI" secondAttribute="bottom" constant="20" id="1QV-d8-Pmk"/>
-                                                <constraint firstItem="E3Y-75-IEI" firstAttribute="leading" secondItem="C2f-mo-9L6" secondAttribute="trailing" constant="271" id="7mg-au-2yu"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="yb0-a8-RuF" secondAttribute="trailing" id="7tz-QZ-Mtf"/>
                                                 <constraint firstItem="ZD4-a6-niZ" firstAttribute="top" secondItem="yb0-a8-RuF" secondAttribute="bottom" constant="4" id="8v6-M7-0pU"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="0x3-XN-wpZ" secondAttribute="bottom" constant="19" id="9jv-qD-IB9"/>
                                                 <constraint firstItem="0x3-XN-wpZ" firstAttribute="trailing" secondItem="xah-jg-3xH" secondAttribute="trailingMargin" id="Nh7-nJ-FXe"/>
-                                                <constraint firstItem="E3Y-75-IEI" firstAttribute="leading" secondItem="C2f-mo-9L6" secondAttribute="trailing" constant="271" id="Oop-75-U1o"/>
                                                 <constraint firstItem="C2f-mo-9L6" firstAttribute="leading" secondItem="xah-jg-3xH" secondAttribute="leadingMargin" constant="2" id="QSw-DO-5q3"/>
                                                 <constraint firstItem="E3Y-75-IEI" firstAttribute="trailing" secondItem="xah-jg-3xH" secondAttribute="trailingMargin" id="RAV-ia-2cd"/>
                                                 <constraint firstItem="0x3-XN-wpZ" firstAttribute="top" secondItem="C2f-mo-9L6" secondAttribute="bottom" constant="21" id="Ro2-5A-njv"/>
@@ -1232,6 +1230,8 @@
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aAV-Bs-bNO">
                                                         <rect key="frame" x="0.0" y="122" width="372" height="30"/>
+                                                        <color key="backgroundColor" name="running"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <state key="normal" title="End Goal"/>
                                                         <connections>
                                                             <action selector="endGoalPressed:" destination="pkm-RQ-Z6F" eventType="touchUpInside" id="8rm-q1-NVj"/>
