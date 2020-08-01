@@ -61,6 +61,10 @@ class PostCell: UITableViewCell{
     
     @IBOutlet weak var profileimg: UIImageView!
     
+    
+    @IBOutlet weak var proImg: UIImageView!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -68,7 +68,22 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
                  /// }
               // }
            //}
-           
+         DispatchQueue.global(qos: .userInitiated).async {
+                                   if let user = UserAuthentication.user, let url = user.avatarURL {
+                                     
+                                       if let data = try? Data(contentsOf: url) {
+                                           // to make the image color default color: https://stackoverflow.com/a/22483234
+                                           let image = UIImage(data: data)
+                                           
+                                           DispatchQueue.main.async {
+                                            cell.proImg.layer.cornerRadius = cell.proImg.frame.size.width / 2
+                                            cell.proImg.clipsToBounds = true
+                                               cell.proImg.image = image
+                                            
+                                           }
+                                       }
+                                   }
+                               }
                   
                    
                
