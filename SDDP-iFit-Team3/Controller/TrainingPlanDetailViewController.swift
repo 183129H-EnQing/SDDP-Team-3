@@ -82,6 +82,14 @@ class TrainingPlanDetailViewController: UIViewController, UITableViewDelegate, U
         return cell
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "StartExercise"){
+            let tpStartVC = segue.destination as! TrainingPlanTimerViewController
+            
+            tpStartVC.trainingPlan = trainingPlanItem
+        }
+    }
+    
 
     /*
     // MARK: - Navigation

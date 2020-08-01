@@ -19,18 +19,20 @@ class TrainingPlanTimerViewController: UIViewController {
     
     var isTimerOn = false
     var timer = Timer()
-    
     var duration = 30
-    
     var isVoiceOn = true
-    
-    
-    
+
     let speechSyntehsizer = SpeechSynthesizer()
+    
+    var trainingPlan: TrainingPlan?
+    var exercises : [String]?
+    var skipsNo = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        exercises = trainingPlan?.tpExercises
+        
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Training Plan"
         
