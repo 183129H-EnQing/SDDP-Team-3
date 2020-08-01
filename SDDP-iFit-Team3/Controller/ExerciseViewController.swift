@@ -14,7 +14,7 @@ class ExerciseViewController: UIViewController, UICollectionViewDelegate, UIColl
     
     var exercise: [Exercise] = []
 //    let exercise = ["Jump", "Crawl", "Jump", "Crawl"]
-    let exerciseImage: [UIImage] = [UIImage(named: "pull_string")!, UIImage(named: "step_string")!, UIImage(named: "pull_string")!, UIImage(named: "step_string")!]
+//    let exerciseImage: [UIImage] = [UIImage(named: "pull_string")!, UIImage(named: "step_string")!, UIImage(named: "pull_string")!, UIImage(named: "step_string")!]
     
     override func viewDidLoad() {
         super.viewDidLoad()

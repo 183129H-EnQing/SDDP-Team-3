@@ -11,11 +11,15 @@ import SafariServices
 
 class TrainingPlanTimerViewController: UIViewController {
 
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var exerciseName: UILabel!
+    
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
+    @IBOutlet weak var skipButton: UIButton!
     
-//    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent}
+    //    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent}
     
     var isTimerOn = false
     var timer = Timer()
@@ -25,14 +29,17 @@ class TrainingPlanTimerViewController: UIViewController {
     let speechSyntehsizer = SpeechSynthesizer()
     
     var trainingPlan: TrainingPlan?
-    var exercises : [String]?
+    var exerciseList : [Exercise] = []
+    var currentReps = 0
     var skipsNo = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        exercises = trainingPlan?.tpExercises
         
+        loadExercise()
+        print(exerciseList)
+        exerciseName.text = trainingPlan?.tpExercises[0]
+        matchExerciseImage()
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Training Plan"
         
@@ -50,6 +57,28 @@ class TrainingPlanTimerViewController: UIViewController {
 //        
 //        resetButton.setImage(UIImage(named: "resetIcon"), for: .normal)
 //        resetButton.backgroundColor = .red
+    }
+    
+    func loadExercise(){
+        DataManager.ExerciseClass.loadExercises { (data) in
+            
+            if data.count > 0 {
+                self.exerciseList = data
+                
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                }
+            }
+        }
+    }
+    
+    func matchExerciseImage(){
+        for i in exerciseList {
+            print("HELLO", i)
+            if exerciseName.text ==  i.exName{
+                imageView.image = UIImage(named: i.exImage)
+            }
+        }
     }
     
     @objc func imageValidation(){
@@ -143,6 +172,11 @@ class TrainingPlanTimerViewController: UIViewController {
 //        playButton.backgroundColor = .green
     }
     
+    
+    @IBAction func skipButtonPressed(_ sender: Any) {
+        skipsNo += 1
+        
+    }
     /*
     // MARK: - Navigation
 

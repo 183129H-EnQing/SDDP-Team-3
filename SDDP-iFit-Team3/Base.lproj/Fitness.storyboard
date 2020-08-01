@@ -653,10 +653,6 @@
                                     <action selector="playButtonPressed:" destination="Xc2-Dz-fxa" eventType="touchUpInside" id="wz4-Sq-MJj"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3uu-pY-l16">
-                                <rect key="frame" x="-15" y="144" width="429" height="174"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Exercise Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aQg-nW-CYA">
                                 <rect key="frame" x="121" y="382" width="172" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -676,21 +672,31 @@
                                         <integer key="value" value="30"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="skipButtonPressed:" destination="Xc2-Dz-fxa" eventType="touchUpInside" id="5GM-sb-7X0"/>
+                                </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3uu-pY-l16">
+                                <rect key="frame" x="0.0" y="76" width="414" height="202"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="n5e-ky-CIs"/>
                     </view>
                     <navigationItem key="navigationItem" id="1Dx-IV-iwt"/>
                     <connections>
+                        <outlet property="exerciseName" destination="aQg-nW-CYA" id="KkU-Kl-6IA"/>
+                        <outlet property="imageView" destination="3uu-pY-l16" id="LG4-kh-5lz"/>
                         <outlet property="playButton" destination="gLp-ZR-qbI" id="63n-ve-8o2"/>
                         <outlet property="resetButton" destination="llC-yG-KhH" id="dWy-Bo-cS5"/>
+                        <outlet property="skipButton" destination="GeD-Bh-qGq" id="EE7-tR-jOx"/>
                         <outlet property="timeLabel" destination="A08-gj-EPn" id="qVa-K8-JMM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fXQ-J0-Ux0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4493" y="220"/>
+            <point key="canvasLocation" x="4492.753623188406" y="219.64285714285714"/>
         </scene>
         <!--Training Plan Add Exercise View Controller-->
         <scene sceneID="Uuk-sG-5xt">
