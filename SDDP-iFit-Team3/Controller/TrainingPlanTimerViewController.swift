@@ -25,6 +25,7 @@ class TrainingPlanTimerViewController: UIViewController {
     var isVoiceOn = true
     
     
+    
     let speechSyntehsizer = SpeechSynthesizer()
     
     override func viewDidLoad() {
@@ -37,15 +38,16 @@ class TrainingPlanTimerViewController: UIViewController {
         let soundButton = UIBarButtonItem(barButtonSystemItem: .play, target: self, action: #selector(isSoundEnabled))
         self.navigationItem.rightBarButtonItems = [imageButton, soundButton]
         
-        speechSyntehsizer.getVoices()
+//        speechSyntehsizer.getVoices()
         
         timeLabel.text = String(duration)
         
-        playButton.setImage(UIImage(named: "playIcon"), for: .normal)
-        playButton.backgroundColor = .green
-        
-        resetButton.setImage(UIImage(named: "resetIcon"), for: .normal)
-        resetButton.backgroundColor = .red
+//        playButton.setImage(UIImage(named: "playIcon"), for: .normal)
+//        playButton.backgroundColor = .green
+//        
+//        
+//        resetButton.setImage(UIImage(named: "resetIcon"), for: .normal)
+//        resetButton.backgroundColor = .red
     }
     
     @objc func imageValidation(){
@@ -59,13 +61,24 @@ class TrainingPlanTimerViewController: UIViewController {
             speechSyntehsizer.say("Voice disabled")
             speechSyntehsizer.stopVoice()
             isVoiceOn = false
+            
+            let alertController = UIAlertController(title: "Voice Disabled", message: "", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            
+            self.present(alertController, animated: true, completion: nil)
         }
         else {
             speechSyntehsizer.startVoice()
-            speechSyntehsizer.say("Voice enableds")
+            speechSyntehsizer.say("Voice enabled")
             isVoiceOn = true
+            
+            let alertController = UIAlertController(title: "Voice Enabled", message: "", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            
+            self.present(alertController, animated: true, completion: nil)
         }
     }
+    
     
     func toggleTimer(on: Bool){
         if on {
