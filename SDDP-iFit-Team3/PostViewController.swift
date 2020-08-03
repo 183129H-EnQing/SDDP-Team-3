@@ -107,6 +107,8 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 //                                }
 //                            }
 //                        }
+        cell.profileimg.layer.cornerRadius = cell.profileimg.frame.size.width / 2
+        cell.profileimg.clipsToBounds = true
         cell.profileimg.sd_setImage(with: URL(string: p.profileImg))
         //cell.ppimageView.image = UIImage(data: data)
                 
