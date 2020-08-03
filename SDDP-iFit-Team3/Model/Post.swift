@@ -27,7 +27,7 @@ init(userId: String, comment:String, pdatetime:String)
 
   class Post : NSObject {
         var id: String?
-        var userName: String
+        var userId: String
         var pcontent: String
         var pdatetime:String
         var pimageName: String
@@ -36,10 +36,10 @@ init(userId: String, comment:String, pdatetime:String)
         var profileImg : String
         var commentPost : [Comment]
 
-    init(userName: String, pcontent:String, pdatetime:String, userLocation:String,  pimageName:String , opened:Bool , profileImg:String, commentPost: [Comment] )
+    init(userId: String, pcontent:String, pdatetime:String, userLocation:String,  pimageName:String , opened:Bool , profileImg:String, commentPost: [Comment] )
      {
     
-        self.userName = userName
+        self.userId = userId
         self.pcontent = pcontent
         self.pdatetime = pdatetime
         self.userLocation = userLocation

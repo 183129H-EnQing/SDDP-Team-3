@@ -85,7 +85,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 let cell : PostCell = tableView
                 .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
                 let p = searchPost[indexPath.row]
-                cell.nameLabel.text = p.userName
+                cell.nameLabel.text = p.userId
                 cell.pcontentLabel.text = "\(p.pcontent) "
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
@@ -94,19 +94,21 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             //if let data = try? Data(contentsOf: NSURL(string: p.pimageName)! as URL){
             // DispatchQueue.main.async {
                 cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
-                  DispatchQueue.global(qos: .userInitiated).async {
-                            if let user = UserAuthentication.user, let url = user.avatarURL {
-                              
-                                if let data = try? Data(contentsOf: url) {
-                                    // to make the image color default color: https://stackoverflow.com/a/22483234
-                                    let image = UIImage(data: data)?.sd_resizedImage(with: CGSize(width: 40, height: 30), scaleMode: .aspectFit)?.withRenderingMode(.alwaysOriginal)
-                                    
-                                    DispatchQueue.main.async {
-                                        cell.profileimg.image = image
-                                    }
-                                }
-                            }
-                        }                //cell.ppimageView.image = UIImage(data: data)
+//                  DispatchQueue.global(qos: .userInitiated).async {
+//                            if let user = UserAuthentication.user, let url = user.avatarURL {
+//
+//                                if let data = try? Data(contentsOf: url) {
+//                                    // to make the image color default color: https://stackoverflow.com/a/22483234
+//                                    let image = UIImage(data: data)?.sd_resizedImage(with: CGSize(width: 40, height: 30), scaleMode: .aspectFit)?.withRenderingMode(.alwaysOriginal)
+//
+//                                    DispatchQueue.main.async {
+//                                        cell.profileimg.image = image
+//                                    }
+//                                }
+//                            }
+//                        }
+        cell.profileimg.sd_setImage(with: URL(string: p.profileImg))
+        //cell.ppimageView.image = UIImage(data: data)
                 
               //}
             //}
