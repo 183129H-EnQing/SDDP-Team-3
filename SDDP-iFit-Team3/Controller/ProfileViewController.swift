@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController {
                 }
 
                 var bmiMsg = "No BMI, please take the survey!"
-                var riskMsg = "Your classification is  "
+                var riskMsg = "Your classification is "
                 var showHeightWeight = false
                 
                 if let fitnessInfo = user.fitnessInfo {
