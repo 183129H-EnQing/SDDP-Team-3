@@ -153,7 +153,7 @@
                                                             <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         </state>
                                                         <connections>
-                                                            <segue destination="HZo-6k-GRQ" kind="show" identifier="RetakeFitness Survey" id="5ym-iy-qKK"/>
+                                                            <segue destination="HZo-6k-GRQ" kind="show" identifier="RetakeFitnessSurvey" id="5ym-iy-qKK"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -203,6 +203,7 @@
                         <outlet property="heightLabel" destination="spl-pm-RXI" id="QJb-6m-0ln"/>
                         <outlet property="heightView" destination="Ehm-5S-38x" id="hq4-UH-fOu"/>
                         <outlet property="heightWeightStackView" destination="cFN-nW-phe" id="KHf-Q3-9pk"/>
+                        <outlet property="riskLabel" destination="v3w-dx-FFs" id="ixe-Vd-Ejv"/>
                         <outlet property="usernameLabel" destination="HNp-Gv-vSZ" id="wNf-mK-hsQ"/>
                         <outlet property="weightLabel" destination="GW1-vm-6dG" id="tJm-ZT-rzh"/>
                         <outlet property="weightView" destination="JRs-T8-4BL" id="0j9-V8-itE"/>
