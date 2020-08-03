@@ -12,11 +12,19 @@ class SurveyFormViewController: UIViewController {
 
     @IBOutlet weak var weightTextField: UITextField!
     @IBOutlet weak var heightTextField: UITextField!
+    var fitnessInfo: FitnessInfo?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let fitnessInfo = self.fitnessInfo {
+            weightTextField.text = "\(fitnessInfo.weight)"
+            heightTextField.text = "\(fitnessInfo.height)"
+        }
     }
     
     @IBAction func submitButtonPressed(_ sender: Any) {

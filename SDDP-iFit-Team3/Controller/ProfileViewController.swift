@@ -19,6 +19,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var weightView: UIView!
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
+    @IBOutlet weak var riskLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,13 +44,17 @@ class ProfileViewController: UIViewController {
                 }
 
                 var bmiMsg = "No BMI, please take the survey!"
+                var riskMsg = "Your classification is  "
                 var showHeightWeight = false
                 
                 if let fitnessInfo = user.fitnessInfo {
                     let weight = fitnessInfo.weight
                     let height = fitnessInfo.height
-                    bmiMsg = "BMI: " + String(format: "%.1f", (weight/pow(height, height)))
+                    let bmi: Float = weight/pow(height, height)
+                    bmiMsg = "BMI: " + String(format: "%.1f", bmi)
                     showHeightWeight = true
+                    
+                    riskMsg += self.getRisk(bmi)
                 }
                 
                 DispatchQueue.main.async {
@@ -57,9 +62,13 @@ class ProfileViewController: UIViewController {
                     self.bmiLabel.text = bmiMsg
                     
                     self.heightWeightStackView.isHidden = !showHeightWeight
+                    self.riskLabel.isHidden = !showHeightWeight
+                    
                     if showHeightWeight {
                         self.heightLabel.text = String(format: "%.0f", user.fitnessInfo!.height * 100) + " cm"
                         self.weightLabel.text = String(format: "%.1f", user.fitnessInfo!.weight) + " kg"
+                        
+                        self.riskLabel.text = riskMsg
                     }
                 }
             }
@@ -80,7 +89,22 @@ class ProfileViewController: UIViewController {
                 editController.previousUsername = username
             }
         } else if segue.identifier == "RetakeFitnessSurvey" {
-            
+            if let fitnessinfo = UserAuthentication.user?.fitnessInfo {
+                let surveyController = segue.destination as! SurveyFormViewController
+                surveyController.fitnessInfo = fitnessinfo
+            }
+        }
+    }
+    
+    func getRisk(_ bmi:Float) -> String {
+        if bmi < 18.5 {
+            return "Underweight"
+        } else if bmi <= 24.9 {
+            return "Normal"
+        } else if bmi <= 29.9 {
+            return "Overweight"
+        } else {
+            return "Obese"
         }
     }
 }
