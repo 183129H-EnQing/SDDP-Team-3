@@ -54,7 +54,7 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
                    let cell : PostCell = tableView
                    .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
                    let p = postList[indexPath.row]
-                   cell.username.text = p.userName
+                   cell.username.text = p.userId
                    cell.content.text = "\(p.pcontent) "
                    cell.place.text = "\(p.userLocation)"
                    cell.datelabel.text = "\(p.pdatetime)"

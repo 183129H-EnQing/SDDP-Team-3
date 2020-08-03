@@ -292,7 +292,7 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                                 let purl = self.uurl
                     
                     
-                            let posts = Post(userName: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false,profileImg:purl, commentPost: [ ] )
+                            let posts = Post(userId: name, pcontent: content, pdatetime: datetime, userLocation:loca, pimageName: photo,opened: false,profileImg:purl, commentPost: [ ] )
 
                          DataManager.Posts.insertPost(userId:user.uid,posts) { (isSuccess) in
                                                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)

@@ -554,7 +554,7 @@ class DataManager {
         static func insertPost(userId: String, _ post: Post, onComplete: (((_ isSuccess:Bool) -> Void))?) {
                      db.collection(tableName).addDocument(data: [
                          "userId": userId,
-                         "userName": post.userName,
+                         "userName": post.userId,
                          "pcontent": post.pcontent,
                          "pdatetime": post.pdatetime,
                          "userLocation": post.userLocation,
@@ -576,7 +576,7 @@ class DataManager {
                   // updateData will update the specified document for the schedule.id passed in, it will only overwrite the
                   // specified fields inside the document.
                   db.collection(tableName).document(post.id!).updateData([
-                      "userName": post.userName,
+                      "userName": post.userId,
                       "pcontent": post.pcontent,
                       "pdatetime": post.pdatetime,
                       "userLocation": post.userLocation,
@@ -651,7 +651,7 @@ class DataManager {
                                     let data = document.data()
                                     if userId.elementsEqual(data["userId"] as! String) {
                                         print("Document's creator matched")
-                                      let userName : String = data["userName"] as! String
+                                      let userId : String = data["userName"] as! String
                                       let pcontent : String = data["pcontent"] as! String
                                       let pdatetime : String = data["pdatetime"] as! String
                                       let userLocation : String = data["userLocation"] as! String
@@ -660,7 +660,7 @@ class DataManager {
                                       let profileImg : String = data["profileImg"] as! String
                                       let commentPost : [Comment] = data["commentPost"] as! [Comment]
 
-                                        let post = Post( userName: userName, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, opened: opened,profileImg: profileImg, commentPost: commentPost)
+                                        let post = Post( userId: userId, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, opened: opened,profileImg: profileImg, commentPost: commentPost)
                                         
                                         
                                         post.id = document.documentID
@@ -699,7 +699,7 @@ class DataManager {
                         let data = document.data()
                         //if userId.elementsEqual(data["userId"] as! String) {
                             print("Document's creator matched")
-                          let userName : String = data["userName"] as! String
+                          let userId : String = data["userName"] as! String
                           let pcontent : String = data["pcontent"] as! String
                           let pdatetime : String = data["pdatetime"] as! String
                           let userLocation : String = data["userLocation"] as! String
@@ -708,7 +708,7 @@ class DataManager {
                         let profileImg : String = data ["profileImg"] as! String
                           let commentPost : [Comment] = data["commentPost"] as! [Comment]
 
-                            let post = Post( userName: userName, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, opened: opened,profileImg: profileImg,  commentPost: commentPost)
+                        let post = Post(userId: userId, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, opened: opened,profileImg: profileImg,  commentPost: commentPost)
                             
                             
                             post.id = document.documentID
