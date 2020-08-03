@@ -30,16 +30,19 @@ class TrainingPlanTimerViewController: UIViewController {
     
     var trainingPlan: TrainingPlan?
     var exerciseList : [Exercise] = []
+    
+    var maxOneRep = 0
     var currentReps = 0
+    var currentRepsExercise = 0
+    
     var skipsNo = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadExercise()
-        print(exerciseList)
-        exerciseName.text = trainingPlan?.tpExercises[0]
-        matchExerciseImage()
+//        print(exerciseList)
+        
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Training Plan"
         
@@ -65,9 +68,13 @@ class TrainingPlanTimerViewController: UIViewController {
             if data.count > 0 {
                 self.exerciseList = data
                 
-//                DispatchQueue.main.async {
+                DispatchQueue.main.async {
 //                    self.collectionView.reloadData()
-//                }
+                    self.exerciseName.text = self.trainingPlan?.tpExercises[self.currentRepsExercise]
+                    self.maxOneRep = self.trainingPlan?.tpExercises.count as! Int
+                    print("hi", self.maxOneRep)
+                    self.matchExerciseImage()
+                }
             }
         }
     }
@@ -174,7 +181,17 @@ class TrainingPlanTimerViewController: UIViewController {
     
     
     @IBAction func skipButtonPressed(_ sender: Any) {
-        skipsNo += 1
+//        skipsNo += 1
+        if currentRepsExercise < maxOneRep {
+            currentRepsExercise += 1
+            exerciseName.text = trainingPlan?.tpExercises[currentRepsExercise]
+            matchExerciseImage()
+        }
+        else if currentRepsExercise == maxOneRep {
+            currentRepsExercise = 0
+            exerciseName.text = trainingPlan?.tpExercises[currentRepsExercise]
+            matchExerciseImage()
+        }
         
     }
     /*

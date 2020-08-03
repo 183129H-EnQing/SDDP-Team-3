@@ -10,6 +10,13 @@ import SpriteKit
 
 class GameLoad: SKScene {
     
+    var playerFitness = 10
+    var playerPlanets = 10
+    var playerTroops = 10
+    
+    var battleResult = false
+    var enemyTroops = 0
+    
     override func didMove(to view: SKView) {
         
         let bg = SKSpriteNode(imageNamed: "stormtrooper")
@@ -42,6 +49,8 @@ class GameLoad: SKScene {
         quote1.zPosition = 1
         self.addChild(quote1)
         
+        createFight()
+        
         delay(3.0) {
             self.launchAttack()
         }
@@ -57,7 +66,28 @@ class GameLoad: SKScene {
         let sceneChange = GameResult(size: self.size)
         let transition = SKTransition.fade(withDuration: 0.5)
         sceneChange.scaleMode = self.scaleMode
+        sceneChange.playerFitness = playerFitness
+        sceneChange.playerPlanets = playerPlanets
+        sceneChange.playerTroops = playerTroops
+        sceneChange.battleResult = battleResult
+        sceneChange.enemyTroop = enemyTroops
         self.view!.presentScene(sceneChange, transition: transition)
     }
     
+    func createFight(){     //+- 5 of player armyCount
+        let random = arc4random_uniform(2)
+        let randomTroops = arc4random_uniform(5)
+        enemyTroops = playerTroops
+        
+//        print("random \(random)")
+        
+        if random == 1 {        //win
+            enemyTroops -= Int(randomTroops)
+            battleResult = true
+        }
+        else {                  //lose
+            enemyTroops += Int(randomTroops)
+            battleResult = false
+        }
+    }
 }

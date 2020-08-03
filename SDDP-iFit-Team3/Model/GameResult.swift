@@ -10,15 +10,25 @@ import SpriteKit
 
 class GameResult: SKScene {
     
-    let battleResult = true //true = won, false = lost
-    var result = "VICTORY"
-    var bg = "raiseflag"
+    var playerFitness = 10
+    var playerPlanets = 10
+    var playerTroops = 10
+    
+    var battleResult : Bool = true //true = won, false = lost
+    var result : String = ""
+    var bg : String = ""
+    
+    var enemyTroop = 0
     
     override func didMove(to view: SKView) {
         
-        if battleResult == false{
+        if battleResult == false {
             result = "DEFEAT"
             bg = "grave"
+        }
+        else {
+            result = "VICTORY"
+            bg = "raiseflag"
         }
         
         let bg = SKSpriteNode(imageNamed: self.bg)
@@ -54,9 +64,12 @@ class GameResult: SKScene {
                   
                   let transition = SKTransition.fade(withDuration: 0.5)
                   
-                  if nodeTapped.name == "homeButton"{
-                      let sceneChange = GameHome(size: self.size)
-                      sceneChange.scaleMode = self.scaleMode
+                if nodeTapped.name == "homeButton"{
+                    let sceneChange = GameHome(size: self.size)
+                    sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
                       self.view!.presentScene(sceneChange, transition: transition)
                   }
               }

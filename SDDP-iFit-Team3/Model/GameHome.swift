@@ -159,6 +159,9 @@ class GameHome: SKScene {
                 if nodeTapped.name == "battleButton"{
                     let sceneChange = GameLoad(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
                 

@@ -176,6 +176,8 @@ class GamePlanet: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
             
+            playerPlanets += 1 //restore back readable number. list index to readable number
+            
             let pointOfTouch = touch.location(in: self)
             for nodeTapped in nodes(at: pointOfTouch) {
                 
@@ -237,6 +239,7 @@ class GamePlanet: SKScene {
         
         var planetImage = [String]()
         var planetText = [String]()
+        playerPlanets -= 1      //change to list index
         
         for i in 0..<planetsList.count{
             

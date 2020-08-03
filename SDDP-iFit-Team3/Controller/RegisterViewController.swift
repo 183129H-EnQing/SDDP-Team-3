@@ -66,6 +66,9 @@ class RegisterViewController: UIViewController {
             // Add Username after user is successfully registered
             DataManager.addUser(userId: user.uid, username: username, email: email)
             
+            //Insert Game
+            DataManager.GamesClass.insertGame(_userId: user.uid)
+            
             print("\(user.email!) successfully created!")
             print("\(user.providerID) successfully created!")
             self.navigationController?.popViewController(animated: true)
