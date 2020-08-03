@@ -10,10 +10,10 @@ import Foundation
 
 class Game: NSObject {
     var armyCount: Int
-    var planets: [String]
+    var planets: Int
     var userId: String
     
-    init(armyCount: Int, planets: [String], userId: String){
+    init(armyCount: Int, planets: Int, userId: String){
         self.armyCount = armyCount
         self.planets = planets
         self.userId = userId

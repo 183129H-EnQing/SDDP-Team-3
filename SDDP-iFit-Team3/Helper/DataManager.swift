@@ -326,7 +326,7 @@ class DataManager {
         
         static func loadGames(userId: String, onComplete: ((Game) -> Void)?) {
             db.collection(tableName).getDocuments() { (querySnapshot, err) in
-                var gameItem : Game = Game(armyCount: 0, planets: [""], userId: "")
+                var gameItem : Game = Game(armyCount: 0, planets: 0, userId: "")
                 
                 if let err = err
                 { // Handle errors here.
@@ -346,15 +346,57 @@ class DataManager {
                             // let id = document.documentID
                             let userId = document.data()["userId"] as! String
                             let armyCount = document.data()["armyCount"] as! Int
-                            let planetsList = document.data()["planets"] as! [String]
+                            let planets = document.data()["planets"] as! Int
                             
-                            gameItem = Game(armyCount: armyCount, planets: planetsList, userId: userId)
+                            gameItem = Game(armyCount: armyCount, planets: planets, userId: userId)
                         }
                     } }
                 // Once we have completed processing, call the onCompletes
                 // closure passed in by the caller.
                 //
                 onComplete?(gameItem)
+            }
+        }
+        
+        static func addUser(userId: String, username: String, email: String) {
+              db.collection(userTableName).document(userId).setData([
+                  "username": username,
+                  "email": email,
+                  "tookSurvey": false
+              ]) { err in
+                  if let err = err {
+                      print("Error adding username: \(err)")
+                  } else {
+                      print("Username '\(username)' successfully added")
+                  }
+              }
+          }
+        static func insertGame(_userId: String) {
+            
+            db.collection(tableName).addDocument(data: [
+                "armyCount": 5,
+                "planets": 1
+            ]) { err in
+                if let _ = err {
+//                    print("false")
+                } else {
+//                    print("true")
+                }
+            }
+        }
+        
+        static func updateGame(userId: String, game: Game, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+            db.collection(tableName).document(userId).updateData([
+                "armyCount": game.armyCount,
+                "planets": game.planets
+            ]) { err in
+                if let _ = err {
+                    onComplete?(false)
+                    //                    print("false")
+                } else {
+                    onComplete?(true)
+                    //                    print("true")
+                }
             }
         }
     }

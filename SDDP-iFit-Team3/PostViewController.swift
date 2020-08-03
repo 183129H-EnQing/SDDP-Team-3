@@ -93,7 +93,9 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         //DispatchQueue.global(qos: .userInitiated).async{
             //if let data = try? Data(contentsOf: NSURL(string: p.pimageName)! as URL){
             // DispatchQueue.main.async {
-                cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+                //cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+        cell.photo.sd_setImage(with: URL(string: p.pimageName))
+        
 //                  DispatchQueue.global(qos: .userInitiated).async {
 //                            if let user = UserAuthentication.user, let url = user.avatarURL {
 //
@@ -107,6 +109,8 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 //                                }
 //                            }
 //                        }
+        cell.profileimg.layer.cornerRadius = cell.profileimg.frame.size.width / 2
+        cell.profileimg.clipsToBounds = true
         cell.profileimg.sd_setImage(with: URL(string: p.profileImg))
         //cell.ppimageView.image = UIImage(data: data)
                 

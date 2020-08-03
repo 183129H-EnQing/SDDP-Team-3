@@ -14,9 +14,6 @@ class PostCell: UITableViewCell{
     
     @IBOutlet weak var locationLabel: UILabel!
     
-   
-    @IBOutlet weak var ppimageView: UIImageView!
-    
     @IBOutlet weak var pcontentLabel: UILabel!
     
     @IBOutlet weak var timeLabel: UILabel!

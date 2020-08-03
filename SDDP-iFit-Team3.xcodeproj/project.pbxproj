@@ -341,6 +341,9 @@
 				E39EE04524A356AB00DDD571 /* DashboardViewController.swift */,
 				1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */,
 				1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */,
+				1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */,
+				1B11A33924CC0A880016C87A /* ViewCommentViewController.swift */,
+				34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */,
 				E30440E724A609110013D053 /* CardDesign.swift */,
 				343BEC9124A97E570041352F /* GoalCell.swift */,
 				343BEC9324A97F010041352F /* GoalViewController.swift */,
@@ -356,10 +359,7 @@
 				DCCA915924BEC4C300C3A816 /* GameResearchViewController.swift */,
 				DC0B46C024C31423001BB221 /* GameDiscoverViewController.swift */,
 				DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */,
-				1BD9C45124C2C027004EA6C9 /* PersonalViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
-				34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */,
-				1B11A33924CC0A880016C87A /* ViewCommentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
