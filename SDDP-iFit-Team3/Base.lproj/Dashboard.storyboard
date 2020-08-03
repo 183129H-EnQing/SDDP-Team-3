@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tcy-fr-9dV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -1169,7 +1169,7 @@
                                                 <rect key="frame" x="21" y="125" width="372" height="100"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFq-9a-aTL">
-                                                        <rect key="frame" x="8" y="8" width="103" height="26"/>
+                                                        <rect key="frame" x="8" y="8" width="26.5" height="26"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1183,9 +1183,8 @@
                                                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iky-Wm-rfX">
                                                         <rect key="frame" x="7" y="75" width="330" height="2"/>
                                                     </progressView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="90%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MR4-b0-BWN">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="90%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MR4-b0-BWN">
                                                         <rect key="frame" x="281" y="36" width="35" height="21"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1197,11 +1196,12 @@
                                                     <constraint firstItem="iky-Wm-rfX" firstAttribute="leading" secondItem="BJM-Rx-344" secondAttribute="leading" constant="7" id="4n8-WA-BCv"/>
                                                     <constraint firstItem="iky-Wm-rfX" firstAttribute="top" secondItem="8qC-W2-N0I" secondAttribute="bottom" constant="18" id="5oE-sJ-Mwb"/>
                                                     <constraint firstAttribute="bottom" secondItem="iky-Wm-rfX" secondAttribute="bottom" constant="23" id="6HY-dB-WJr"/>
+                                                    <constraint firstItem="MR4-b0-BWN" firstAttribute="leading" secondItem="8qC-W2-N0I" secondAttribute="trailing" constant="120.5" id="8Og-rA-khr"/>
                                                     <constraint firstAttribute="height" constant="100" id="J1e-QP-lFk"/>
+                                                    <constraint firstItem="iky-Wm-rfX" firstAttribute="top" secondItem="MR4-b0-BWN" secondAttribute="bottom" constant="18" id="McL-6Q-TgY"/>
                                                     <constraint firstItem="iky-Wm-rfX" firstAttribute="top" secondItem="8qC-W2-N0I" secondAttribute="bottom" constant="18" id="QMh-6Y-Ncy"/>
                                                     <constraint firstItem="8qC-W2-N0I" firstAttribute="leading" secondItem="BJM-Rx-344" secondAttribute="leading" constant="7" id="Rts-vP-hlH"/>
                                                     <constraint firstAttribute="trailing" secondItem="iky-Wm-rfX" secondAttribute="trailing" constant="35" id="c1H-bV-7ce"/>
-                                                    <constraint firstAttribute="trailing" secondItem="pFq-9a-aTL" secondAttribute="trailing" constant="261" id="gJm-fU-g15"/>
                                                     <constraint firstItem="8qC-W2-N0I" firstAttribute="leading" secondItem="BJM-Rx-344" secondAttribute="leading" constant="7" id="gXf-sN-glR"/>
                                                     <constraint firstItem="8qC-W2-N0I" firstAttribute="top" secondItem="pFq-9a-aTL" secondAttribute="bottom" constant="2" id="smg-sG-Jvv"/>
                                                     <constraint firstItem="pFq-9a-aTL" firstAttribute="leading" secondItem="BJM-Rx-344" secondAttribute="leading" constant="8" id="u67-hK-kEt"/>

@@ -189,7 +189,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let durationText = Int(duration.text!)!
         let totalExerciseAmountText = Int(totalExerciseAmount.text!)!
         let user = UserAuthentication.getLoggedInUser()
-        let processPercent = 0
+        let processPercent : Double = 0
         let status = "onGoing"
         let newGoal = Goal(goalTitle: goalTitleText, activityName: activityNameText, date: dateText, duration: durationText, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmountText,status:status)
 

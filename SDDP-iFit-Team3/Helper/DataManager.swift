@@ -411,7 +411,7 @@ class DataManager {
                                 let activityName : String = data["activityName"] as! String
                                 let date : String = data["date"] as! String
                                 let duration : Int = data["duration"] as! Int
-                                let processPercent : Int = data["processPercent"] as! Int
+                                let processPercent : Double = data["processPercent"] as! Double
                                 let totalExerciseAmount : Int = data["totalExerciseAmount"] as! Int
                                 let status : String = data["status"] as! String
                                 let goal = Goal(goalTitle: goalTitle, activityName: activityName, date: date, duration: duration, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmount,status: status)
@@ -446,7 +446,7 @@ class DataManager {
                            }
                        }
                    }
-        static func updateGoalProcessPercent(processPercent: Int, goalId:String, onComplete: ((_ isSuccess:Bool)-> Void)?) {
+        static func updateGoalProcessPercent(processPercent: Double, goalId:String, onComplete: ((_ isSuccess:Bool)-> Void)?) {
                        // updateData will update the specified document for the schedule.id passed in, it will only overwrite the
                        // specified fields inside the document.
             db.collection(tableName).document(goalId).updateData([

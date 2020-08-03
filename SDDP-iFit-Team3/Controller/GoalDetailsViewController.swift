@@ -51,10 +51,10 @@ class GoalDetailsViewController: UIViewController {
             goalTitle.text = unwrappedGoal.goalTitle
             exerciseProgressTitle.text = unwrappedGoal.activityName + " Completed"
             // exercise done / totalAmountExercise = Total Exercise Done
-            exerciseProgressPercent.text = "\(unwrappedGoal.progressPercent)%"
-            totalAmountExerciseDone.text = "0" // need fetch data to update the data status
+            exerciseProgressPercent.text = "\(unwrappedGoal.progressPercent * 100)%"
+            totalAmountExerciseDone.text = "\(unwrappedGoal.progressPercent * Double(unwrappedGoal.totalExerciseAmount))" // need fetch data to update the data status
             
-            exerciseProgressBar.setProgress(Float(unwrappedGoal.progressPercent) / 10, animated: false)
+            exerciseProgressBar.setProgress(Float(unwrappedGoal.progressPercent) , animated: false)
             exerciseProgressBar.transform = exerciseProgressBar.transform.scaledBy(x: 1, y: 10)
              
            // let todayDate = calendar.dateComponents([.year, .month, .day], from: Date())

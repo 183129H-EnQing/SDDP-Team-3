@@ -15,9 +15,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var goalTableView: UITableView!
     var goalList : [Goal] = []
     var healthKitActivityList : [HealthKitActivity] = []
-    var totalSteps : Double = 0
-    var totalCalories : Double = 0
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGoals()
@@ -48,30 +46,50 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
   
         let cell : GoalCell = tableView
              .dequeueReusableCell (withIdentifier: "GoalCell", for: indexPath) as! GoalCell
-        //let goalId = g.goalId!
+        let goalId = g.goalId!
+        var processPercent : Double = 0
+        var totalSteps : Double = 0
+        var totalCalories : Double = 0
+          
         // Move to a background thread to do some long running work
         DispatchQueue.global(qos: .userInitiated).async {
                for activityData in self.healthKitActivityList{
                         // Check whether the date is in between or start or end, if true - do something to the data, false-ignore data
-                
+                        
                         if startEndDateRange.contains(activityData.dateSaved){
                             print(startEndDateRange.contains(activityData.dateSaved))
-                            self.totalSteps += activityData.todayStep
-                            self.totalCalories += activityData.todayCaloriesBurnt
+                            totalSteps += activityData.todayStep
+                            totalCalories += activityData.todayCaloriesBurnt
                         }
                     }
-//               let processPercent = 1
-//               DataManager.Goals.updateGoalProcessPercent(processPercent: processPercent, goalId: goalId){ (isSuccess) in
-//                         print("success i guess")
-//                     }
+            
+                if (g.activityName == "Steps"){
+                    print(totalSteps)
+                    print(g.totalExerciseAmount)
+                    processPercent = totalSteps / Double(g.totalExerciseAmount)
+                    print(totalSteps / Double(g.totalExerciseAmount))
+                    print("hello")
+                    self.updateGoalProcessPercent(goalId: goalId,processPercent: processPercent)
+                }
+                if (g.activityName == "Running"){
+                    processPercent = totalCalories / Double(g.totalExerciseAmount)
+                    self.updateGoalProcessPercent(goalId:goalId,processPercent: processPercent)
+                }
+//                if (g.activityName == ""){
+//                    processPercent =
+//                    self.updateGoalProcessPercent(goalId: goalId,)
+//                }
+//               update progress
+
+            
                // Bounce back to the main thread to update the UI
                DispatchQueue.main.async {
                    cell.goalTitle.text = g.goalTitle;
-                   cell.percentageLabel.text = "\(g.progressPercent * 10)%";
+                   cell.percentageLabel.text = "\(processPercent * 100)%";
                    cell.duration.text = "Duration: \(g.duration) Days"
                    
                    cell.dateRange.text = "Starting Date: \(g.date)"
-                   cell.progressView.setProgress(Float(g.progressPercent) / 10 , animated: false)
+                   cell.progressView.setProgress(Float(processPercent) , animated: false)
 
                }
            }
@@ -116,6 +134,11 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         }
     }
     
+    func updateGoalProcessPercent(goalId: String,processPercent:Double){
+        DataManager.Goals.updateGoalProcessPercent(processPercent: processPercent, goalId: goalId){ (isSuccess) in
+                              print("success i guess")
+                          }
+    }
     func addActivityDataToVariable(){
         
     }
