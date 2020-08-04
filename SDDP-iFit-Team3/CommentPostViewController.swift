@@ -56,20 +56,20 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
     @IBAction func savebtnpressed(_ sender: Any) {
          if let user = UserAuthentication.user {
                    
-                   let content = comment.text!
+                  // let content = comment.text!
                          let date = Date()
                          let formatter = DateFormatter()
                         formatter.dateFormat = "MMM d, h:mm a"
                          let datetime = formatter.string(from: date)
-            let name = user.username
-               let loca = location.text ?? ""
+            //let name = user.username
+              // let loca = location.text ?? ""
             let com = textbox.text ?? ""
                
                    let viewControllers = self.navigationController?.viewControllers
                 
                    let parent = viewControllers?[1] as! PostViewController
             
-            print("pussy",user.userId)
+            
             postItem?.commentPost.append(Comment(userId: user.userId, comment: com, pdatetime: datetime ))
                
             DataManager.Posts.insertComment(userId:user.userId, postId: postItem!.id!, postItem!.commentPost) { (isSuccess) in

@@ -780,24 +780,16 @@ class DataManager {
                     */
                    db.collection(tableName).getDocuments { (snapshot, err) in
                     var commentList : [Comment] = []
-                       var comments = [Any]()
-                     for item in commentList {
-                                   do {
-                                       let jsonData = try JSONEncoder().encode(item)
-                                       let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
-                                       comments.append(jsonObject)
-                                   }
-                                   catch {
-                                       // handle error
-                                   }
-                               }
+                     
+                    
                     if let err = err {
                            print("Error for \(tableName): \(err)")
                        } else if let snapshot = snapshot, snapshot.count > 0 {
                            print("Got data: \(snapshot.count)")
                            for document in snapshot.documents {
                                print("Retrieving a document")
-                               let data = document.data()
+                           
+                                let data = document.data()
                                //if userId.elementsEqual(data["userId"] as! String) {
                                    print("Document's creator matched")
                                  let userName : String = data["userName"] as! String

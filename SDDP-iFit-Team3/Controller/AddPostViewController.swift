@@ -72,6 +72,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                     let image = UIImage(data: data)?.sd_resizedImage(with: CGSize(width: 30, height: 30), scaleMode: .aspectFit)?.withRenderingMode(.alwaysOriginal)
                     
                     DispatchQueue.main.async {
+                        self.imgProfile.layer.cornerRadius = self.imgProfile.frame.size.width / 2
+                         self.imgProfile.clipsToBounds = true
                         self.imgProfile.image = image
                     }
                 }
