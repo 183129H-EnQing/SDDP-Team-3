@@ -15,7 +15,7 @@ import FirebaseFirestore
 class DataManager {
     static let db = Firestore.firestore()
 
-    static let userTableName = "usernames"
+    static let userTableName = "users"
     
     static func getUserData(userId: String, onComplete: ((User?) -> Void)?) {
         db.collection(userTableName).document(userId).getDocument { (document, err) in
