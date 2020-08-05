@@ -16,12 +16,15 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     var cmt = [Comment]()
     
     
-
+    var currentUserId : String = ""
+    
+  // var userName : String = ""
     @IBOutlet weak var tableView: UITableView!
     
    
     @IBOutlet weak var searchbar: UISearchBar!
     var  searchPost : [Post] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +35,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
         self.navigationItem.title = "Posts"
         
-       
+       //getCurrentUser()
         
         
         
@@ -85,8 +88,38 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 let cell : PostCell = tableView
                 .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
                 let p = searchPost[indexPath.row]
-                cell.nameLabel.text = p.userId
-                cell.pcontentLabel.text = "\(p.pcontent) "
+//         DispatchQueue.global(qos: .userInitiated).async {
+//            if let user = UserAuthentication.user {
+//
+//
+//                 let userName = user.username
+//
+//             DispatchQueue.main.async {
+//                cell.nameLabel.text = userName
+//            }
+//            }
+//        }
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            if let user = UserAuthentication.getLoggedInUser() {
+                      print("User is logged in")
+                 
+                
+            DispatchQueue.main.async {
+                
+                DataManager.getUserData(userId: p.userId) { (data) in
+                    if let user = data {
+                        let userName = user.username!
+                         print("fddddd", userName)
+                         cell.nameLabel.text = userName
+                        print("data",data)
+                        }
+                    }
+                           
+                      }
+        }
+        }
+        cell.pcontentLabel.text = "\(p.pcontent) "
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
                
@@ -155,23 +188,55 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     //delete
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+         
+        let p = searchPost[indexPath.row]
+    
+                   
+       
         if (editingStyle == .delete){
             //postList.remove(at: indexPath.row)
            // tableView.deleteRows(at: [indexPath], with: .automatic)
+            print("plsss", p.userId,UserAuthentication.getLoggedInUser()?.uid)
             
+            if p.userId == UserAuthentication.getLoggedInUser()!.uid{
             
-            
-            DataManager.Posts.deletePost(post: self.postList[indexPath.row]) { (isSuccess) in
+                DataManager.Posts.deletePost(post: self.searchPost[indexPath.row]) { (isSuccess) in
                            if isSuccess {
                                self.loadPosts()
                            } else {
                                self.present(Team3Helper.makeAlert("Wasn't able to delete this schedule"), animated: true)
                            }
                        }
-            
+            }
+             else{
+                 let alert = Team3Helper.makeAlert("You cant delete others post")
+                                      self.present(alert, animated: true, completion: nil)
+                                      return
+            }
         }
+        
     }
+    
+//     func getCurrentUser() {
+//
+//             //  self.noSchedulesLabel.isHidden = false
+//
+//               if let user = UserAuthentication.getLoggedInUser() {
+//                   print("User is logged in")
+//
+//                   DataManager.getUserData(userId: user.uid) { (data) in
+//
+//                    self.currentUserId = UserAuthentication.
+//                                print("fdfdfdfd", self.currentUserId)
+//                               print("data",data)
+//
+//                           }
+//                       }
+//               }
+    
+    
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "ShowPostDetails")
      { let detailViewController = segue.destination as! EditPostViewController
@@ -217,6 +282,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             tableView.reloadData()
             return
         }
+        
         searchPost = postList.filter({ (Post) -> Bool in
           guard  let text = searchBar.text else {return false}
             return Post.pcontent.lowercased().contains(text.lowercased())

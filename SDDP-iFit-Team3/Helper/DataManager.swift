@@ -596,7 +596,6 @@ class DataManager {
         static func insertPost(userId: String, _ post: Post, onComplete: (((_ isSuccess:Bool) -> Void))?) {
                      db.collection(tableName).addDocument(data: [
                          "userId": userId,
-                         "userName": post.userId,
                          "pcontent": post.pcontent,
                          "pdatetime": post.pdatetime,
                          "userLocation": post.userLocation,
@@ -637,24 +636,32 @@ class DataManager {
               }
         
         
-        static func deletePost(post: Post, onComplete: ((_ isSuccess:Bool)-> Void)?) {
-            db.collection(tableName).document(post.id!).delete { (err) in
-                if let err = err {
+        static func deletePost(post: Post,  onComplete: ((_ isSuccess:Bool)-> Void)?) {
+           
+                db.collection(tableName).document(post.id!).delete { (err) in
+                  
+                    if let err = err {
                     print("Error deleting post: \(err)")
                     onComplete?(false)
                 } else {
                     onComplete?(true)
                 }
+            
             }
+            
+            
         }
         
         static func insertComment(userId: String, postId: String, _ comments: [Comment], onComplete: (((_ isSuccess:Bool) -> Void))?) {
             // json encode for raw Comment object https://stackoverflow.com/a/55069484
             var list_comment = [Any]()
+           
+     
             for item in comments {
                 do {
                     let jsonData = try JSONEncoder().encode(item)
                     let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                
                     list_comment.append(jsonObject)
                 }
                 catch {
@@ -693,7 +700,7 @@ class DataManager {
                                     let data = document.data()
                                     if userId.elementsEqual(data["userId"] as! String) {
                                         print("Document's creator matched")
-                                      let userId : String = data["userName"] as! String
+                                      let userId : String = data["userId"] as! String
                                       let pcontent : String = data["pcontent"] as! String
                                       let pdatetime : String = data["pdatetime"] as! String
                                       let userLocation : String = data["userLocation"] as! String
@@ -741,7 +748,7 @@ class DataManager {
                         let data = document.data()
                         //if userId.elementsEqual(data["userId"] as! String) {
                             print("Document's creator matched")
-                          let userId : String = data["userName"] as! String
+                          let userId : String = data["userId"] as! String
                           let pcontent : String = data["pcontent"] as! String
                           let pdatetime : String = data["pdatetime"] as! String
                           let userLocation : String = data["userLocation"] as! String

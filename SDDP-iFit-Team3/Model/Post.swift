@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Comment:Codable {
+class Comment:Codable{
     
     var userId: String
     var comment: String
