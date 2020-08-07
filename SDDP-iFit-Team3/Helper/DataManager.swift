@@ -15,7 +15,7 @@ import FirebaseFirestore
 class DataManager {
     static let db = Firestore.firestore()
 
-    static let userTableName = "users"
+    private static let userTableName = "users"
     
     static func getUserData(userId: String, onComplete: ((User?) -> Void)?) {
         db.collection(userTableName).document(userId).getDocument { (document, err) in
@@ -51,8 +51,7 @@ class DataManager {
     static func addUser(userId: String, username: String, email: String) {
         db.collection(userTableName).document(userId).setData([
             "username": username,
-            "email": email,
-            "tookSurvey": false
+            "email": email
         ]) { err in
             if let err = err {
                 print("Error adding username: \(err)")
