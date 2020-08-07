@@ -754,7 +754,17 @@ class DataManager {
                           let pimageName : String = data["pimageName"] as! String
                           let opened    :    Bool = data["opened"] as! Bool
                         let profileImg : String = data ["profileImg"] as! String
-                          let commentPost : [Comment] = data["commentPost"] as! [Comment]
+                        
+                        let comments: [[String:String]] = data["commentPost"] as! [[String:String]]
+                        var commentPost : [Comment] = []
+                        comments.forEach{ commentObj in
+                            let commentText = commentObj["comment"]!
+                            let pDateTime = commentObj["pdatetime"]!
+                            let commentOwnerId = commentObj["userId"]!
+                            
+                            commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime))
+                            print("comment: \(commentObj)")
+                        }
 
                         let post = Post(userId: userId, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, opened: opened,profileImg: profileImg,  commentPost: commentPost)
                             
