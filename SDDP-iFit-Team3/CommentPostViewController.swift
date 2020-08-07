@@ -43,7 +43,15 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
 
     comment.text = postItem?.pcontent
     imageview.image = UIImage(named: (postItem?.pimageName)!)
-    username.text = postItem?.userId
+        
+        DataManager.getUserData(userId: postItem!.userId) { (data) in
+                       if let user = data {
+                           let userName = user.username!
+                            print("fddddd", userName)
+                        self.username.text = userName
+                           print("data",data)
+                           }
+                       }
     location.text = postItem?.userLocation
     imageview.sd_setImage(with: URL(string : postItem!.pimageName))
       

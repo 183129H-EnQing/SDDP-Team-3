@@ -100,12 +100,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 //            }
 //        }
         
-        DispatchQueue.global(qos: .userInitiated).async {
-            if let user = UserAuthentication.getLoggedInUser() {
-                      print("User is logged in")
-                 
-                
-            DispatchQueue.main.async {
+       
                 
                 DataManager.getUserData(userId: p.userId) { (data) in
                     if let user = data {
@@ -116,9 +111,9 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                         }
                     }
                            
-                      }
-        }
-        }
+                      
+        
+        
         cell.pcontentLabel.text = "\(p.pcontent) "
                 cell.locationLabel.text = "\(p.userLocation)"
                 cell.timeLabel.text = "\(p.pdatetime)"
@@ -238,7 +233,10 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "ShowPostDetails")
+      let pIndexPath = self.tableView.indexPathForSelectedRow
+       
+            if(segue.identifier == "ShowPostDetails")
+            
      { let detailViewController = segue.destination as! EditPostViewController
         let myIndexPath = self.tableView.indexPathForSelectedRow
            if(myIndexPath != nil) {
@@ -249,6 +247,8 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         }
 
             }
+           
+        
         
         
         if(segue.identifier == "ShowPostComments")
