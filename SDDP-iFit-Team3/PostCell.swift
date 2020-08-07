@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostCell: UITableViewCell{
+class PostCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -25,6 +25,9 @@ class PostCell: UITableViewCell{
     @IBOutlet weak var commmentview: UITextView!
     
     @IBOutlet weak var viewcmt: UIButton!
+    
+    @IBOutlet weak var commentsTableView: UITableView!
+    var comments: [Comment] = []
     
     
     @IBOutlet weak var cmt: UILabel!
@@ -65,6 +68,8 @@ class PostCell: UITableViewCell{
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        commentsTableView.delegate = self
+        commentsTableView.dataSource = self
     }
    
     
@@ -82,5 +87,20 @@ class PostCell: UITableViewCell{
         //navigationController?.pushViewController(addVC, animated: true)
     }
     
-
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if comments.count > 2 {
+            return 2
+        }
+        return comments.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath)
+        let comment = self.comments[indexPath.row]
+        
+        cell.textLabel?.text = comment.userId
+        cell.detailTextLabel?.text = comment.comment
+        
+        return cell
+    }
 }

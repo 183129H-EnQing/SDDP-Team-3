@@ -54,118 +54,45 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
-        
-        
-        
-            loadPosts()
-        
-            
-
-        
-        
+        loadPosts()
     }
-    
-    
-   
-   
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        
-        
-       
             return searchPost.count
-       
-        
-   
-        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // First we query the table view to see if there are // any UITableViewCells that can be reused. iOS will // create a new one if there aren't any. //
-        //let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
        
-                let cell : PostCell = tableView
-                .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
-                let p = searchPost[indexPath.row]
-//         DispatchQueue.global(qos: .userInitiated).async {
-//            if let user = UserAuthentication.user {
-//
-//
-//                 let userName = user.username
-//
-//             DispatchQueue.main.async {
-//                cell.nameLabel.text = userName
-//            }
-//            }
-//        }
-        
-       
-                
-                DataManager.getUserData(userId: p.userId) { (data) in
-                    if let user = data {
-                        let userName = user.username!
-                         print("fddddd", userName)
-                         cell.nameLabel.text = userName
-                        print("data",data)
-                        }
-                    }
-                           
-                      
-        
+        let cell : PostCell = tableView
+        .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
+        let p = searchPost[indexPath.row]
+
+        DataManager.getUserData(userId: p.userId) { (data) in
+            if let user = data {
+                let userName = user.username!
+                print("fddddd", userName)
+                cell.nameLabel.text = userName
+                print("data",data)
+            }
+        }
+        cell.comments = p.commentPost
+        cell.commentsTableView.reloadData()
         
         cell.pcontentLabel.text = "\(p.pcontent) "
-                cell.locationLabel.text = "\(p.userLocation)"
-                cell.timeLabel.text = "\(p.pdatetime)"
-               
-        //DispatchQueue.global(qos: .userInitiated).async{
-            //if let data = try? Data(contentsOf: NSURL(string: p.pimageName)! as URL){
-            // DispatchQueue.main.async {
-                //cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
+        cell.locationLabel.text = "\(p.userLocation)"
+        cell.timeLabel.text = "\(p.pdatetime)"
         cell.photo.sd_setImage(with: URL(string: p.pimageName))
         
-//                  DispatchQueue.global(qos: .userInitiated).async {
-//                            if let user = UserAuthentication.user, let url = user.avatarURL {
-//
-//                                if let data = try? Data(contentsOf: url) {
-//                                    // to make the image color default color: https://stackoverflow.com/a/22483234
-//                                    let image = UIImage(data: data)?.sd_resizedImage(with: CGSize(width: 40, height: 30), scaleMode: .aspectFit)?.withRenderingMode(.alwaysOriginal)
-//
-//                                    DispatchQueue.main.async {
-//                                        cell.profileimg.image = image
-//                                    }
-//                                }
-//                            }
-//                        }
         cell.profileimg.layer.cornerRadius = cell.profileimg.frame.size.width / 2
         cell.profileimg.clipsToBounds = true
         cell.profileimg.sd_setImage(with: URL(string: p.profileImg))
-        //cell.ppimageView.image = UIImage(data: data)
-                
-              //}
-            //}
-        //}
-        
-               
-                
-            
-            
-                
-        
-             //  DispatchQueue.global(qos: .userInitiated).async {
-                 // cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
-                   // Bounce back to the main thread to update the UI
-                //DispatchQueue.main.async {
-                   // cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
-                
-                // }
-             //  }                    //UIImage(named:p.pimageName)
-                cell.commentbtn.tag = indexPath.row
-                cell.viewcmt.tag = indexPath.row
+        cell.commentbtn.tag = indexPath.row
+        cell.viewcmt.tag = indexPath.row
 
-                return cell
+        return cell
         
-        }
+    }
     
     //func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //if postList[indexPath.section].opened == true {
@@ -338,20 +265,16 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
     func loadPosts() {
         self.postList = []
-        
-       
-        
         self.tableView.isHidden = true
-     
         
         if let user = UserAuthentication.getLoggedInUser() {
             print("User is logged in")
         
             DataManager.Posts.loadAllPosts(userId: user.uid) { (data) in
                     if data.count > 0 {
-                        print("data loaded")
+                        print("posts data loaded")
                         self.postList = data
-                        self.searchPost = self.postList
+                        self.searchPost = data
                         
                         DispatchQueue.main.async {
                             print("async tableview label")

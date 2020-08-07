@@ -81,8 +81,7 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
             postItem?.commentPost.append(Comment(userId: user.userId, comment: com, pdatetime: datetime ))
                
             DataManager.Posts.insertComment(userId:user.userId, postId: postItem!.id!, postItem!.commentPost) { (isSuccess) in
-                                                               self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
-
+               self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
             }
 
 //                     if self.postItem != nil {
