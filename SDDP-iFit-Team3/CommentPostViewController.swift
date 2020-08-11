@@ -78,7 +78,7 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
                    let parent = viewControllers?[1] as! PostViewController
             
             
-            postItem?.commentPost.append(Comment(userId: user.userId, comment: com, pdatetime: datetime ))
+            postItem?.commentPost.append(Comment(userId: user.username!, comment: com, pdatetime: datetime ))
                
             DataManager.Posts.insertComment(userId:user.userId, postId: postItem!.id!, postItem!.commentPost) { (isSuccess) in
                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)

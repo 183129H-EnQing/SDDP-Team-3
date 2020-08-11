@@ -49,8 +49,8 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
               let cell : PostCell = tableView
               .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
               let p = comments[indexPath.row]
-              cell.vusername.text = p.userId
-              cell.vcomment.text = "\(p.comment) "
+              cell.vusername?.text = p.userId
+              cell.vcomment?.text = "\(p.comment) "
               cell.vdate.text = "\(p.pdatetime)"
               //cell.datelabel.text = "\(p.pdatetime)"
              

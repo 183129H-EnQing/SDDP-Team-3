@@ -795,9 +795,8 @@ class DataManager {
                     8. Then we sort the day array after appending
                     */
                    db.collection(tableName).getDocuments { (snapshot, err) in
-                    var commentList : [Comment] = []
-                     
-                    
+                  
+                      var commentPost : [Comment] = []
                     if let err = err {
                            print("Error for \(tableName): \(err)")
                        } else if let snapshot = snapshot, snapshot.count > 0 {
@@ -806,28 +805,29 @@ class DataManager {
                                print("Retrieving a document")
                            
                                 let data = document.data()
-                               //if userId.elementsEqual(data["userId"] as! String) {
-                                   print("Document's creator matched")
-                                 let userName : String = data["userName"] as! String
-                                 let comment : String = data["comment"] as! String
-                                 let pdatetime : String = data["pdatetime"] as! String
-                                 
-
-                                   let ccomment =  Comment(userId: userName, comment: comment, pdatetime: pdatetime)
-                                   
+                              let comments: [[String:String]] = data["commentPost"] as! [[String:String]]
+                                                 
+                                                  comments.forEach{ commentObj in
+                                                      let commentText = commentObj["comment"]!
+                                                      let pDateTime = commentObj["pdatetime"]!
+                                                      let commentOwnerId = commentObj["userId"]!
+                                                      
+                                                      commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime))
+                                                      print("comment: \(commentObj)")
+                                                  }
                                    
                                    //comment.id = document.documentID
                                    
-                                 commentList.append(ccomment)
-                              
+                               
                               // }
                            }
                        } else {
                            print("No data for \(tableName)")
                        }
                        
-                       onComplete?(commentList)
-                   }
+                       onComplete?(commentPost)
+                    
+            }
                }
         
                   }

@@ -126,7 +126,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                            if isSuccess {
                                self.loadPosts()
                            } else {
-                               self.present(Team3Helper.makeAlert("Wasn't able to delete this schedule"), animated: true)
+                               self.present(Team3Helper.makeAlert("Wasn't able to delete this post"), animated: true)
                            }
                        }
             }
