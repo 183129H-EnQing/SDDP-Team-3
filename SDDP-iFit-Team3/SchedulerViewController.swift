@@ -97,20 +97,6 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
     }
-    @IBAction func notifyButtonPressed(_ sender: Any) {
-        Team3Helper.notificationCenter.getNotificationSettings { (settings) in
-            let status = settings.authorizationStatus
-            if status == .denied || status == .notDetermined {
-                print("Denied!")
-                return
-            }
-            
-            let content = Team3Helper.createNotificationContent(title: "Test", message: "Hello world")
-            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5.0, repeats: false)
-            
-            Team3Helper.notificationCenter.add(UNNotificationRequest(identifier: "scheduler.test", content: content, trigger: trigger))
-        }
-    }
     
     func getDayInSchedules(section: Int) -> Int {
         let day = Array(self.schedules.keys).sorted(by: {
