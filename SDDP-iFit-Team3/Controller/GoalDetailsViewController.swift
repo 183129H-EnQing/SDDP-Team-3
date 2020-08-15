@@ -21,6 +21,7 @@ class GoalDetailsViewController: UIViewController {
     @IBOutlet weak var deadLine: UILabel!
     
     var goal : Goal?
+    var processPercent: Double = 0;
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,16 +52,17 @@ class GoalDetailsViewController: UIViewController {
             goalTitle.text = unwrappedGoal.goalTitle
             exerciseProgressTitle.text = unwrappedGoal.activityName + " Completed"
             // exercise done / totalAmountExercise = Total Exercise Done
-            exerciseProgressPercent.text = "\(unwrappedGoal.progressPercent * 100)%"
-            totalAmountExerciseDone.text = "\(unwrappedGoal.progressPercent * Double(unwrappedGoal.totalExerciseAmount))" // need fetch data to update the data status
+            exerciseProgressPercent.text = "\(processPercent * 100)%"
+            totalAmountExerciseDone.text = "\(processPercent * Double(unwrappedGoal.totalExerciseAmount))"
             
-            exerciseProgressBar.setProgress(Float(unwrappedGoal.progressPercent) , animated: false)
+            exerciseProgressBar.setProgress(Float(processPercent) , animated: false)
             exerciseProgressBar.transform = exerciseProgressBar.transform.scaledBy(x: 1, y: 10)
              
            // let todayDate = calendar.dateComponents([.year, .month, .day], from: Date())
             let todayDateString = formatter.string(from: Date())
             let todayDate = formatter.date(from: todayDateString)!
             print("todadate",todayDateString)
+            //print(processPercent)
             let components = calendar.dateComponents([.day], from: todayDate, to: endDate)
             //print("\(components.day!)")
             deadLine.text = "\(components.day!)" + "Days more"

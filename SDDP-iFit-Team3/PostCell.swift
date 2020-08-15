@@ -30,6 +30,9 @@ class PostCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
     var comments: [Comment] = []
     
     
+ 
+    
+    
     @IBOutlet weak var cmt: UILabel!
     
     
@@ -70,6 +73,7 @@ class PostCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
         // Initialization code
         commentsTableView.delegate = self
         commentsTableView.dataSource = self
+       
     }
    
     
