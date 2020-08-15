@@ -25,9 +25,9 @@ class GameHomeViewController: UIViewController {
             
              var playerGameData: Game = Game(armyCount: 0, planets: 0, userId: "")
             if let user = UserAuthentication.getLoggedInUser() {
-                DataManager.GamesClass.loadGames(userId: user.uid) { (data) in
+                DataManager.GamesClass.loadGame(userId: user.uid) { (data) in
                     
-                    if data.userId != "" {
+                    if let data = data {
                         playerGameData = data
 //                        print("hiii VC DATAAA: ", playerGameData.armyCount)
                         
