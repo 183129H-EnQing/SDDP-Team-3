@@ -26,8 +26,8 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewWillAppear(animated)
         
         
-       
-           loadComments()
+       loadPosts()
+           //loadComments()
         
     }
     
@@ -48,10 +48,11 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
      
               let cell : PostCell = tableView
               .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
-              let p = comments[indexPath.row]
+              let p = postList[indexPath.row]
               cell.vusername?.text = p.userId
-              cell.vcomment?.text = "\(p.comment) "
+              cell.vcomment?.text = "\(p.commentPost) "
               cell.vdate.text = "\(p.pdatetime)"
+              
               //cell.datelabel.text = "\(p.pdatetime)"
              
       //DispatchQueue.global(qos: .userInitiated).async{
@@ -84,34 +85,30 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
       
       }
     
-    func loadComments() {
-        self.comments = []
-        
-       
-        
-        self.tableView.isHidden = true
-     
-        
-        if let user = UserAuthentication.getLoggedInUser() {
-            print("User is logged in")
-        
-            DataManager.Posts.loadComments(userId: user.uid) { (data) in
-                                  if data.count > 0 {
-                                      print("data loaded")
-                                      self.comments = data
-                                      //self.searchPost = self.postList
-                                      
-                                      DispatchQueue.main.async {
-                                          print("async tableview label")
-                                          self.tableView.reloadData()
-                                          self.tableView.isHidden = false
+     func loadPosts() {
+           self.postList = []
+           self.tableView.isHidden = true
+           
+           if let user = UserAuthentication.getLoggedInUser() {
+               print("User is logged in")
+           
+               DataManager.Posts.loadAllPosts(userId: user.uid) { (data) in
+                       if data.count > 0 {
+                           print("posts data loaded")
+                           self.postList = data
+                           //self.searchPost = data
+                           
+                           DispatchQueue.main.async {
+                               print("async tableview label")
+                               self.tableView.reloadData()
+                               self.tableView.isHidden = false
+                               
                             
-                         
-                        }
-                    }
-                }
-        }
-    }    /*
+                           }
+                       }
+                   }
+           }
+       }    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

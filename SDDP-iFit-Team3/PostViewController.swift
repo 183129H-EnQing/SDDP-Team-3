@@ -35,7 +35,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     
         self.navigationItem.title = "Posts"
         
-       //getCurrentUser()
+       getCurrentUser()
         
         
         
@@ -139,30 +139,32 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
     }
     
-//     func getCurrentUser() {
-//
-//             //  self.noSchedulesLabel.isHidden = false
-//
-//               if let user = UserAuthentication.getLoggedInUser() {
-//                   print("User is logged in")
-//
-//                   DataManager.getUserData(userId: user.uid) { (data) in
-//
-//                    self.currentUserId = UserAuthentication.
-//                                print("fdfdfdfd", self.currentUserId)
-//                               print("data",data)
-//
-//                           }
-//                       }
-//               }
+     func getCurrentUser() {
+
+             //  self.noSchedulesLabel.isHidden = false
+
+               if let user = UserAuthentication.getLoggedInUser() {
+                   print("User is logged in")
+
+                   DataManager.getUserData(userId: user.uid) { (data) in
+
+                    self.currentUserId = UserAuthentication.user!.userId
+                                print("fdfdfdfd", self.currentUserId)
+                               print("data",data)
+
+                           }
+                       }
+               }
     
     
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      let pIndexPath = self.tableView.indexPathForSelectedRow
-       
+    
+        
+        if self.currentUserId == UserAuthentication.getLoggedInUser()!.uid{
             if(segue.identifier == "ShowPostDetails")
+                
             
      { let detailViewController = segue.destination as! EditPostViewController
         let myIndexPath = self.tableView.indexPathForSelectedRow
@@ -174,8 +176,12 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         }
 
             }
-           
-        
+        }
+         else{
+                        let alert = Team3Helper.makeAlert("You cant Edit others post")
+                                             self.present(alert, animated: true, completion: nil)
+                                             return
+                   }
         
         
         if(segue.identifier == "ShowPostComments")
