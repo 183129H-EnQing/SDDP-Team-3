@@ -15,7 +15,9 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     @IBOutlet weak var goalTableView: UITableView!
     var goalList : [Goal] = []
     var healthKitActivityList : [HealthKitActivity] = []
-  
+    var processPercentArray : [Double] = []
+    var activityType : [String] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGoals()
@@ -70,17 +72,19 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                     print(totalSteps / Double(g.totalExerciseAmount))
                     print("hello")
                     self.updateGoalProcessPercent(goalId: goalId,processPercent: processPercent)
+                    self.processPercentArray.append(processPercent)
                 }
                 if (g.activityName == "Running"){
                     processPercent = totalCalories / Double(g.totalExerciseAmount)
                     self.updateGoalProcessPercent(goalId:goalId,processPercent: processPercent)
+                    self.processPercentArray.append(processPercent)
                 }
 //                if (g.activityName == ""){
 //                    processPercent =
 //                    self.updateGoalProcessPercent(goalId: goalId,)
 //                }
 //               update progress
-
+            
             
                // Bounce back to the main thread to update the UI
                DispatchQueue.main.async {
@@ -151,6 +155,10 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 
                 let goal = self.goalList[indexPath!.row]
                 detailViewController.goal = goal
+                detailViewController.processPercent = processPercentArray[indexPath!.row]
+                print(processPercentArray[indexPath!.row])
+                print(goal.progressPercent)
+            //    detailViewController.processPercent = goal.progressPercent
             }
         }
     }

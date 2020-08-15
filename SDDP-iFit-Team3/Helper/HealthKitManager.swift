@@ -144,7 +144,7 @@ class HealthKitManager{
                         if !dateArray.contains(healthKitDate) {
                                 dateArray.append(healthKitDate)
                             }
-                        
+                        print(healthKitDate,todayDateString)
                         if todayDateString == healthKitDate{
                            let healthKitActivityId = healthKitData.healthKitActivityId!
                             updateHealthKitData(yesterdayDateString: yesterdayDateString, hasUpdatedForYtd: false, healthKitActivityId: healthKitActivityId,time: todayTime)
