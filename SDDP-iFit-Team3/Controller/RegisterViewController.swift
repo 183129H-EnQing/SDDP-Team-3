@@ -67,7 +67,7 @@ class RegisterViewController: UIViewController {
             DataManager.addUser(userId: user.uid, username: username, email: email)
             
             //Insert Game
-            DataManager.GamesClass.insertGame(_userId: user.uid)
+            DataManager.GamesClass.insertGame(user.uid)
             
             print("\(user.email!) successfully created!")
             print("\(user.providerID) successfully created!")
