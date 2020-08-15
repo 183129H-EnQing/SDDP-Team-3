@@ -11,9 +11,10 @@ import Firebase
 import Fritz
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let notifyCenterDelegate = Team3NotificationCenterDelegate()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -26,14 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("Error getting notification perm: \(err)")
             }
         }
-        Team3Helper.notificationCenter.delegate = self
+        Team3Helper.notificationCenter.delegate = notifyCenterDelegate
         FritzCore.configure()
         
         return true
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .badge, .sound])
     }
 
     // MARK: UISceneSession Lifecycle
