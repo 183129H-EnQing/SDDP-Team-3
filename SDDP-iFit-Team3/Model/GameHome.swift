@@ -13,6 +13,7 @@ class GameHome: SKScene {
     var playerFitness = 10
     var playerPlanets = 10
     var playerTroops = 10
+    var playerScore = 10
     
     var planetsList = ["earth", "fireball", "redcrater", "desert", "cat", "eagle"]
     
@@ -28,6 +29,14 @@ class GameHome: SKScene {
             
             playerPlanets = Int((playerplanetCount as! NSString).doubleValue)
         }
+        if let playerpoints = self.userData?.value(forKey: "points"){
+            
+            playerFitness = Int((playerpoints as! NSString).doubleValue)
+        }
+        if let playerscore = self.userData?.value(forKey: "score"){
+            
+            playerScore = Int((playerscore as! NSString).doubleValue)
+        }
 //        print("OIIIII")
         
         let bg = SKSpriteNode(imageNamed: "space")
@@ -36,7 +45,7 @@ class GameHome: SKScene {
         bg.zPosition = 0
         self.addChild(bg)
         
-        let earth = SKSpriteNode(imageNamed: "earth")
+        let earth = SKSpriteNode(imageNamed: planetsList[playerPlanets - 1])
         earth.size = CGSize(width: 800, height: 800)
         earth.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
         earth.zPosition = 1
@@ -104,7 +113,7 @@ class GameHome: SKScene {
         //
         let finessIcon = SKSpriteNode(imageNamed: "barbell")
         finessIcon.size = CGSize(width: 100, height: 100)
-        finessIcon.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.85)
+        finessIcon.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.78)
         finessIcon.zPosition = 2
         self.addChild(finessIcon)
         
@@ -112,9 +121,23 @@ class GameHome: SKScene {
         fitnessText.text = "\(playerFitness)"
         fitnessText.fontSize = 60
         fitnessText.fontColor = SKColor.white
-        fitnessText.position = CGPoint(x: self.size.width * 0.33, y: self.size.height * 0.84)
+        fitnessText.position = CGPoint(x: self.size.width * 0.33, y: self.size.height * 0.77)
         fitnessText.zPosition = 2
         self.addChild(fitnessText)
+        
+        let scoreIcon = SKSpriteNode(imageNamed: "fire")
+        scoreIcon.size = CGSize(width: 100, height: 100)
+        scoreIcon.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.85)
+        scoreIcon.zPosition = 2
+        self.addChild(scoreIcon)
+        
+        let scoreText = SKLabelNode(fontNamed: "The Bold Font")
+        scoreText.text = "\(playerScore)"
+        scoreText.fontSize = 60
+        scoreText.fontColor = SKColor.white
+        scoreText.position = CGPoint(x: self.size.width * 0.33, y: self.size.height * 0.83)
+        scoreText.zPosition = 2
+        self.addChild(scoreText)
         //
         
         //
@@ -128,13 +151,13 @@ class GameHome: SKScene {
         planetText.text = "\(playerPlanets)"
         planetText.fontSize = 60
         planetText.fontColor = SKColor.white
-        planetText.position = CGPoint(x: self.size.width * 0.67, y: self.size.height * 0.84)
+        planetText.position = CGPoint(x: self.size.width * 0.67, y: self.size.height * 0.83)
         planetText.zPosition = 2
         self.addChild(planetText)
         
         let troopsIcon = SKSpriteNode(imageNamed: "tank1")
         troopsIcon.size = CGSize(width: 100, height: 100)
-        troopsIcon.position = CGPoint(x: self.size.width * 0.75, y: self.size.height * 0.8)
+        troopsIcon.position = CGPoint(x: self.size.width * 0.75, y: self.size.height * 0.78)
         troopsIcon.zPosition = 2
         self.addChild(troopsIcon)
         
@@ -142,7 +165,7 @@ class GameHome: SKScene {
         troopsText.text = "\(playerTroops)"
         troopsText.fontSize = 60
         troopsText.fontColor = SKColor.white
-        troopsText.position = CGPoint(x: self.size.width * 0.67, y: self.size.height * 0.79)
+        troopsText.position = CGPoint(x: self.size.width * 0.67, y: self.size.height * 0.77)
         troopsText.zPosition = 2
         self.addChild(troopsText)
         //
@@ -157,18 +180,25 @@ class GameHome: SKScene {
                 let transition = SKTransition.fade(withDuration: 0.5)
                 
                 if nodeTapped.name == "battleButton"{
-                    let sceneChange = GameLoad(size: self.size)
-                    sceneChange.scaleMode = self.scaleMode
-                    sceneChange.playerFitness = playerFitness
-                    sceneChange.playerPlanets = playerPlanets
-                    sceneChange.playerTroops = playerTroops
-                    self.view!.presentScene(sceneChange, transition: transition)
+                    if playerScore > 5 {
+                        let sceneChange = GameLoad(size: self.size)
+                        sceneChange.scaleMode = self.scaleMode
+                        sceneChange.playerFitness = playerFitness
+                        sceneChange.playerPlanets = playerPlanets
+                        sceneChange.playerTroops = playerTroops
+                        sceneChange.playerScore = playerScore
+                        self.view!.presentScene(sceneChange, transition: transition)
+                    }
                 }
                 
                 
                 if nodeTapped.name == "researchButton"{
                     let sceneChange = GameResearch(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
+                    sceneChange.playerScore = playerScore
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
                 

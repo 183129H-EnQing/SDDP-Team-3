@@ -13,6 +13,7 @@ class GameResult: SKScene {
     var playerFitness = 10
     var playerPlanets = 10
     var playerTroops = 10
+    var playerScore = 10
     
     var battleResult : Bool = true //true = won, false = lost
     var result : String = ""
@@ -70,6 +71,7 @@ class GameResult: SKScene {
                     sceneChange.playerFitness = playerFitness
                     sceneChange.playerPlanets = playerPlanets
                     sceneChange.playerTroops = playerTroops
+                    sceneChange.playerScore = playerScore
                       self.view!.presentScene(sceneChange, transition: transition)
                   }
               }

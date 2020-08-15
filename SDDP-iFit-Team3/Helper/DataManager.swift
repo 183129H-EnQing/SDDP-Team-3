@@ -352,8 +352,10 @@ class DataManager {
                 {
                     let armyCount = document.get("armyCount") as! Int
                     let planets = document.get("planets") as! Int
+                    let points = document.get("points") as! Int
+                    let score = document.get("score") as! Int
                     
-                    gameItem = Game(armyCount: armyCount, planets: planets, userId: userId)
+                    gameItem = Game(armyCount: armyCount, planets: planets, userId: userId, points: points, score: score)
                 }
                 // Once we have completed processing, call the onCompletes
                 // closure passed in by the caller.
@@ -364,7 +366,9 @@ class DataManager {
         static func insertGame(_ userId: String) {
             db.collection(tableName).document(userId).setData([
                 "armyCount": 5,
-                "planets": 1
+                "planets": 1,
+                "points": 15,
+                "score": 10
             ]) { err in
                 if let _ = err {
 //                    print("false")
@@ -377,7 +381,9 @@ class DataManager {
         static func updateGame(userId: String, game: Game, onComplete: ((_ isSuccess:Bool)-> Void)?) {
             db.collection(tableName).document(userId).updateData([
                 "armyCount": game.armyCount,
-                "planets": game.planets
+                "planets": game.planets,
+                "points": game.points,
+                "score": game.score
             ]) { err in
                 if let _ = err {
                     onComplete?(false)
@@ -783,17 +789,8 @@ class DataManager {
             }
         }
         
-         static func loadComments(userId: String, onComplete: (([Comment]) -> Void)?) {
-                   /* Process
-                    1. Get all documents
-                    2. Check for errors, check if there are data to retrieve
-                    3. loop through all the documents
-                    4. In each document, check if the creatorId is the same as the logged in user's id
-                    5. Create empty array if our schedules variable' day is empty
-                    6. Retrieve fields from document, as well as documentId from document
-                    7. Put the fields into instance of Schedule and append Schedule to day array inside schedules variable
-                    8. Then we sort the day array after appending
-                    */
+         static func loadAllComments(userId: String, onComplete: (([Comment]) -> Void)?) {
+                  
                    db.collection(tableName).getDocuments { (snapshot, err) in
                   
                       var commentPost : [Comment] = []
@@ -804,7 +801,7 @@ class DataManager {
                            for document in snapshot.documents {
                                print("Retrieving a document")
                            
-                                let data = document.data()
+                              let data = document.data()
                               let comments: [[String:String]] = data["commentPost"] as! [[String:String]]
                                                  
                                                   comments.forEach{ commentObj in
