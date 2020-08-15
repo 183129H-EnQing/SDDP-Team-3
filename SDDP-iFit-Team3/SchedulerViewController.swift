@@ -108,8 +108,9 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailViewController = segue.destination as! SchedulerDetailsViewController
+        detailViewController.userSchedules = self.schedules
         if segue.identifier == "EditSchedule" {
-            let detailViewController = segue.destination as! SchedulerDetailsViewController
             let indexPath = self.tableView.indexPathForSelectedRow
             
             if indexPath != nil {

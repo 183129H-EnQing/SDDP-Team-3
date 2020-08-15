@@ -135,6 +135,26 @@ class DataManager {
             }
         }
         
+        static func getSchedule(_ scheduleId: String, onComplete: ((Schedule?) -> Void)?) {
+            db.collection(tableName).document(scheduleId).getDocument { (document, err) in
+                var schedule: Schedule? = nil
+                
+                if let err = err {
+                    print("error retrieving a schedule: \(err)")
+                } else if let document = document {
+                    let day: Int = document.get("day") as! Int
+                    let exerciseId: Int = document.get("exerciseId") as! Int
+                    let duration: [Int] = document.get("duration") as! [Int]
+                    let time: [Int] = document.get("time") as! [Int]
+                    
+                    schedule = Schedule(exerciseId: exerciseId, duration: duration, day: day, time: time)
+                    schedule!.id = document.documentID
+                }
+                
+                onComplete?(schedule)
+            }
+        }
+        
         static func insertSchedule(userId: String, _ schedule: Schedule, onComplete: ((_ isSuccess:Bool, String?) -> Void)?) {
             // addDocument will create a document, with Firebase handling the auto-generation of ID
             var ref: DocumentReference?

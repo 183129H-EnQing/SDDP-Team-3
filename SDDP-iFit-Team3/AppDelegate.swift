@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let notifyCenterDelegate = Team3NotificationCenterDelegate()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        print("AppDelegate didFinishLaunch")
         // Override point for customization after application launch.
         FirebaseApp.configure()
         
@@ -29,6 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         Team3Helper.notificationCenter.delegate = notifyCenterDelegate
         FritzCore.configure()
+        
+        Team3Helper.notificationCenter.removeAllDeliveredNotifications()
         
         return true
     }
