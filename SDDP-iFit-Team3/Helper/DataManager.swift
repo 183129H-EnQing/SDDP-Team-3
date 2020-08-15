@@ -97,7 +97,6 @@ class DataManager {
              7. Put the fields into instance of Schedule and append Schedule to day array inside schedules variable
              8. Then we sort the day array after appending
              */
-            print("--- Start of loadSchedules ---")
             db.collection(tableName).getDocuments { (snapshot, err) in
                 var schedules: [Int: [Schedule]] = [:]
                 if let err = err {
@@ -105,10 +104,8 @@ class DataManager {
                 } else if let snapshot = snapshot, snapshot.count > 0 {
                     print("Got data: \(snapshot.count)")
                     for document in snapshot.documents {
-                        print("Retrieving a document")
                         let data = document.data()
                         if userId.elementsEqual(data["creatorId"] as! String) {
-                            print("Document's creator matched")
                             let day: Int = data["day"] as! Int
                             
                             if !schedules.keys.contains(day) {
@@ -133,13 +130,12 @@ class DataManager {
                 } else {
                     print("No data for \(tableName)")
                 }
-                print("--- End of loadSchedules ---")
                 
                 onComplete?(schedules)
             }
         }
         
-        static func insertSchedule(userId: String, _ schedule: Schedule, onComplete: (((_ isSuccess:Bool, String?) -> Void))?) {
+        static func insertSchedule(userId: String, _ schedule: Schedule, onComplete: ((_ isSuccess:Bool, String?) -> Void)?) {
             // addDocument will create a document, with Firebase handling the auto-generation of ID
             var ref: DocumentReference?
             ref = db.collection(tableName).addDocument(data: [

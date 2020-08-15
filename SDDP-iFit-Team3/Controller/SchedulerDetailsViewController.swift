@@ -179,6 +179,8 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             let viewControllers = self.navigationController?.viewControllers
             let parent = viewControllers?[0] as! SchedulerViewController
             
+            print("Chosen time is: \(timeComp.hour) \(timeComp.minute)")
+            
             // Schedule
             let newSchedule = Schedule(exerciseId: exercise, duration: duration, day: day, time: [timeComp.hour!, timeComp.minute!])
             // If not nil, is editing. Else if it is nil, is adding
@@ -202,7 +204,9 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         }
     }
     
+    // timeComp contains the schedule's time
     func makeNotification(exercise: Int, timeComp: DateComponents, day: Int, duration: [Int], scheduleId: String) {
+        // true date
         let actualDateComp = Calendar.current.dateComponents([.weekday, .hour, .minute], from: Date())
         
         // need to minus 1, cause weekDay starts is 1 to 7
@@ -226,7 +230,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
                 print("making notification")
                 let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
                 
-                Team3Helper.notificationCenter.add(UNNotificationRequest(identifier: "scheduler.test", content: content, trigger: trigger))
+                Team3Helper.notificationCenter.add(UNNotificationRequest(identifier: "scheduler.\(day).\(timeComp.hour!),\(timeComp.minute!)", content: content, trigger: trigger))
             }
         }
     }
