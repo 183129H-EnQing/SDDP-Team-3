@@ -332,8 +332,10 @@ class DataManager {
                 {
                     let armyCount = document.get("armyCount") as! Int
                     let planets = document.get("planets") as! Int
+                    let points = document.get("points") as! Int
+                    let score = document.get("score") as! Int
                     
-                    gameItem = Game(armyCount: armyCount, planets: planets, userId: userId)
+                    gameItem = Game(armyCount: armyCount, planets: planets, userId: userId, points: points, score: score)
                 }
                 // Once we have completed processing, call the onCompletes
                 // closure passed in by the caller.
@@ -344,7 +346,9 @@ class DataManager {
         static func insertGame(_ userId: String) {
             db.collection(tableName).document(userId).setData([
                 "armyCount": 5,
-                "planets": 1
+                "planets": 1,
+                "points": 15,
+                "score": 10
             ]) { err in
                 if let _ = err {
 //                    print("false")
@@ -357,7 +361,9 @@ class DataManager {
         static func updateGame(userId: String, game: Game, onComplete: ((_ isSuccess:Bool)-> Void)?) {
             db.collection(tableName).document(userId).updateData([
                 "armyCount": game.armyCount,
-                "planets": game.planets
+                "planets": game.planets,
+                "points": game.points,
+                "score": game.score
             ]) { err in
                 if let _ = err {
                     onComplete?(false)

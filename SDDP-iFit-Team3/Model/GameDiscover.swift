@@ -13,6 +13,7 @@ class GameDiscover: SKScene {
     var playerFitness = 10
     var playerPlanets = 10
     var playerTroops = 10
+    var playerScore = 10
     
     override func didMove(to view: SKView) {
         
@@ -54,6 +55,7 @@ class GameDiscover: SKScene {
         sceneChange.playerFitness = playerFitness
         sceneChange.playerPlanets = playerPlanets
         sceneChange.playerTroops = playerTroops
+        sceneChange.playerScore = playerScore
         self.view!.presentScene(sceneChange, transition: transition)
     }
 }

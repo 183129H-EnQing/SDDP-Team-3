@@ -23,7 +23,7 @@ class GameHomeViewController: UIViewController {
             // Set the scale mode to scale to fit the window
             scene.scaleMode = .aspectFill
             
-             var playerGameData: Game = Game(armyCount: 0, planets: 0, userId: "")
+            var playerGameData: Game = Game(armyCount: 0, planets: 0, userId: "", points: 0, score: 0)
             if let user = UserAuthentication.getLoggedInUser() {
                 DataManager.GamesClass.loadGame(userId: user.uid) { (data) in
                     
@@ -33,10 +33,15 @@ class GameHomeViewController: UIViewController {
                         
                         var armyCount: String = "\(playerGameData.armyCount)"
                         var planetCount : String = "\(playerGameData.planets)"
+                        var points : String = "\(playerGameData.points)"
+                        var score : String = "\(playerGameData.score)"
+                        
                         
                         scene.userData = NSMutableDictionary()
                         scene.userData?.setObject(armyCount, forKey: "armyCount" as NSCopying)
                         scene.userData?.setObject(planetCount, forKey: "planetCount" as NSCopying)
+                        scene.userData?.setObject(points, forKey: "points" as NSCopying)
+                        scene.userData?.setObject(score, forKey: "score" as NSCopying)
                         
                         // Present the scene
                         view.presentScene(scene)
@@ -47,7 +52,7 @@ class GameHomeViewController: UIViewController {
                         view.showsFPS = true
                         view.showsNodeCount = true
                         
-                        var a = scene.userData?.value(forKey: "a")
+//                        var a = scene.userData?.value(forKey: "a")
 //                        print("HIIII \(a)")
                     }
                 }

@@ -13,6 +13,7 @@ class GameLoad: SKScene {
     var playerFitness = 10
     var playerPlanets = 10
     var playerTroops = 10
+    var playerScore = 10
     
     var battleResult = false
     var enemyTroops = 0
@@ -69,6 +70,7 @@ class GameLoad: SKScene {
         sceneChange.playerFitness = playerFitness
         sceneChange.playerPlanets = playerPlanets
         sceneChange.playerTroops = playerTroops
+        sceneChange.playerScore = playerScore
         sceneChange.battleResult = battleResult
         sceneChange.enemyTroop = enemyTroops
         self.view!.presentScene(sceneChange, transition: transition)
@@ -84,10 +86,18 @@ class GameLoad: SKScene {
         if random == 1 {        //win
             enemyTroops -= Int(randomTroops)
             battleResult = true
+            playerScore += 5
         }
         else {                  //lose
             enemyTroops += Int(randomTroops)
             battleResult = false
+            playerScore -= 3
+        }
+        
+        if let user = UserAuthentication.getLoggedInUser() {
+            DataManager.GamesClass.updateGame(userId: user.uid, game: Game(armyCount: playerTroops, planets: playerPlanets, userId: user.uid, points: playerFitness, score: playerScore)) { (success) in
+                print("updated db")
+            }
         }
     }
 }
