@@ -48,7 +48,7 @@ class Team3NotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegat
                                     
                                     notificationIdentifiers.append(identifier)
                                 } else if schedule.id != scheduleId {
-                                    nextNotifReq = self.makeNotification(schedule: schedule, userId: userId)
+                                    nextNotifReq = Team3NotificationCenterDelegate.makeNotification(schedule: schedule, userId: userId)
                                 }
                             }
                             center.removeDeliveredNotifications(withIdentifiers: notificationIdentifiers)
@@ -64,7 +64,7 @@ class Team3NotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegat
         }
     }
     
-    func makeNotification(schedule: Schedule, userId: String) -> UNNotificationRequest {
+    static func makeNotification(schedule: Schedule, userId: String) -> UNNotificationRequest {
         print("going to add notification")
         let duration = schedule.duration
             

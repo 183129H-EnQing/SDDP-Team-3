@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Team3Helper.notificationCenter.delegate = notifyCenterDelegate
         FritzCore.configure()
         
+        Team3Helper.notificationCenter.removeAllPendingNotificationRequests()
         Team3Helper.notificationCenter.removeAllDeliveredNotifications()
         
         return true

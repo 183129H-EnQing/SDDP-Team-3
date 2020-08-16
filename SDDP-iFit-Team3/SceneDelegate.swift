@@ -26,6 +26,39 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 self.window?.rootViewController = controller
             }
             
+            // We want to make 1 notification for a schedule NOT yet occurred
+            DataManager.Schedules.loadSchedules(userId: user.uid) { (daySchedules) in
+                let actualDateComp = Calendar.current.dateComponents([.weekday, .hour, .minute], from: Date())
+                
+                print("weekDay: \(actualDateComp.weekday!)")
+                
+                // need to minus 1, cause weekDay starts is 1 to 7
+                // we try to get schedules for the current day
+                if let schedules = daySchedules[actualDateComp.weekday!-1] {
+                    print("there exists schedule(s) for today!")
+                    var scheduleNotifReq: UNNotificationRequest? = nil
+                    
+                    for schedule in schedules {
+                        let schHr = schedule.time[0]
+                        let schMin = schedule.time[1]
+                        
+                        /* 1. We check if hours are the same, if so, check that current minute is less than schedule's minute
+                          2. If hours not equal, then check if current hour is lesser */
+                        if (actualDateComp.hour == schHr && actualDateComp.minute! < schMin) || actualDateComp.hour! < schHr {
+                            print("making notif req!")
+                            scheduleNotifReq = Team3NotificationCenterDelegate.makeNotification(schedule: schedule, userId: user.uid)
+                            break
+                        }
+                    }
+                    
+                    if let scheduleNotifReq = scheduleNotifReq {
+                        DispatchQueue.main.async {
+                            print("sending notif")
+                            Team3Helper.notificationCenter.add(scheduleNotifReq, withCompletionHandler: nil)
+                        }
+                    }
+                }
+            }
         } else {
             print("No redirect, user to stay at welcome  since they are not logged in")
         }
