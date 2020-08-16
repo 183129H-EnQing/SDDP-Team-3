@@ -64,6 +64,13 @@ class GameHome: SKScene {
         tank.zPosition = 2
         self.addChild(tank)
         
+        let trophy = SKSpriteNode(imageNamed: "trophy")
+        trophy.name = "leaderboardButton"
+        trophy.size = CGSize(width: 180, height: 180)
+        trophy.position = CGPoint(x: self.size.width * 0.55, y: self.size.height * 0.15)
+        trophy.zPosition = 2
+        self.addChild(trophy)
+        
         //
         let battleButton = SKSpriteNode(imageNamed: "yellowbutton")
         battleButton.name = "battleButton"
@@ -205,6 +212,16 @@ class GameHome: SKScene {
                 
                 if nodeTapped.name == "miniGameButton"{
                     let sceneChange = GameScene(size: self.size)
+                    sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
+                    sceneChange.playerScore = playerScore
+                    self.view!.presentScene(sceneChange, transition: transition)
+                }
+                
+                if nodeTapped.name == "leaderboardButton"{
+                    let sceneChange = GameLeaderboard(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
                     sceneChange.playerFitness = playerFitness
                     sceneChange.playerPlanets = playerPlanets

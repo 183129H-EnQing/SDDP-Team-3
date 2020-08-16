@@ -66,6 +66,7 @@
 		DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */; };
 		DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EC24A07582003BFE6C /* Exercise.swift */; };
 		DCBA1EA324CD601400AF4743 /* TrainingPlanTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA1EA224CD601400AF4743 /* TrainingPlanTimerViewController.swift */; };
+		DCC040AF24E9203800C8D78F /* GameLeaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC040AE24E9203800C8D78F /* GameLeaderboard.swift */; };
 		DCC5778924B9A6D20003F215 /* bomb_07.wav in Resources */ = {isa = PBXBuildFile; fileRef = DCC5778824B9A6D20003F215 /* bomb_07.wav */; };
 		DCC80B7224ADEBB0008AF933 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC80B7124ADEBB0008AF933 /* GameViewController.swift */; };
 		DCC80B7424ADEDA5008AF933 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC80B7324ADEDA5008AF933 /* GameScene.swift */; };
@@ -164,6 +165,7 @@
 		DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanCell.swift; sourceTree = "<group>"; };
 		DCB218EC24A07582003BFE6C /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		DCBA1EA224CD601400AF4743 /* TrainingPlanTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanTimerViewController.swift; sourceTree = "<group>"; };
+		DCC040AE24E9203800C8D78F /* GameLeaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLeaderboard.swift; sourceTree = "<group>"; };
 		DCC5778824B9A6D20003F215 /* bomb_07.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bomb_07.wav; sourceTree = "<group>"; };
 		DCC80B7124ADEBB0008AF933 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		DCC80B7324ADEDA5008AF933 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 				DCE67B7024BF31FA00B2DD27 /* GameResult.swift */,
 				DC0B46BE24C3140E001BB221 /* GameDiscover.swift */,
 				DCF73FAF24C43E5B00530EE5 /* GamePlanet.swift */,
+				DCC040AE24E9203800C8D78F /* GameLeaderboard.swift */,
 				7D236F0324BD688C00C3CD2B /* User.swift */,
 				E3F1688024C0F1B000B2C42A /* HealthKitActivity.swift */,
 			);
@@ -523,6 +526,7 @@
 				DCE0E34324B45CE000B23C46 /* ExerciseCollectionViewCell.swift in Sources */,
 				DCD142C624B7224B00AE431A /* ExerciseDetailViewController.swift in Sources */,
 				1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */,
+				DCC040AF24E9203800C8D78F /* GameLeaderboard.swift in Sources */,
 				DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */,
 				1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */,
 				7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */,

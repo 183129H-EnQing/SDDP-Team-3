@@ -394,6 +394,9 @@ class DataManager {
                 }
             }
         }
+        
+        //retrieve all user score
+        
     }
     
     class Goals{
