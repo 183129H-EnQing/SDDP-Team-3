@@ -34,14 +34,44 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         let formatter = DateFormatter()
         formatter.timeZone  = TimeZone(identifier: "Asia/Singapore") // US_POSIX - usa , en_SG
         formatter.dateFormat = "dd MMM yyyy"
-           
+           // Get the current year
+           let year = Calendar.current.component(.year, from: Date())
+           // Get the first day of next year
+           let firstOfNextYear = Calendar.current.date(from: DateComponents(year: year + 1, month: 1, day: 1))
+               // Get the last day of the current year
+        let lastOfYear = Calendar.current.date(byAdding: .day, value: -1, to: firstOfNextYear!)
+        
+        let firstOfNextYearString = formatter.string(from: firstOfNextYear!)
+        let lastOfYearString = formatter.string(from: lastOfYear!)
+        
+          // print(firstOfNextYearString)
+           //print(lastOfYearString)
         let g = goalList[indexPath.row]
         let startDate = formatter.date(from:g.date)!
         let endDate = calendar.date(byAdding: .day, value: g.duration, to: startDate)!
 
         let startDateString = formatter.string(from: startDate)
         let endDateString = formatter.string(from: endDate)
-        let startEndDateRange = startDateString ... endDateString // An Array range of dates
+        var startEndDateRange : ClosedRange<String> = "1" ... "3";
+        
+        var startToLastOfYearDateRange : ClosedRange<String> = "1" ... "3";
+        var firstOfNextYearToEndDateRange: ClosedRange<String> = "1" ... "3";
+        var status = 0 // 0 - means startDate and end date within a year, 1 - means startDate and endDate not within the year
+
+        print(startDateString < endDateString)
+        if (startDateString > endDateString) {
+            startToLastOfYearDateRange = startDateString ... lastOfYearString
+            firstOfNextYearToEndDateRange = firstOfNextYearString ... endDateString
+            status = 1
+        }
+        else{
+             startEndDateRange = startDateString ... endDateString // An Array range of dates
+             print(startEndDateRange)
+             status = 0
+        }
+
+        //let startEndDateRange = startDateString ... endDateString // An Array range of dates
+      //  print(startEndDateRange)
 //        print(startEndDateRange)
 //        print("startDate: \(startDateString)")
 //        print("endDate: \(endDateString)")
@@ -54,23 +84,36 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         var totalCalories : Double = 0
           
         // Move to a background thread to do some long running work
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .utility).async {
                for activityData in self.healthKitActivityList{
                         // Check whether the date is in between or start or end, if true - do something to the data, false-ignore data
-                        
-                        if startEndDateRange.contains(activityData.dateSaved){
-                            print(startEndDateRange.contains(activityData.dateSaved))
-                            totalSteps += activityData.todayStep
-                            totalCalories += activityData.todayCaloriesBurnt
-                        }
+                if (status == 0){
+                    if startEndDateRange.contains(activityData.dateSaved){
+                           print(startEndDateRange.contains(activityData.dateSaved))
+                           totalSteps += activityData.todayStep
+                           totalCalories += activityData.todayCaloriesBurnt
+                      }
+                }
+                else{
+                    if (startToLastOfYearDateRange.contains(activityData.dateSaved)){
+                        totalSteps += activityData.todayStep
+                        totalCalories += activityData.todayCaloriesBurnt
+                    }
+                    if (firstOfNextYearToEndDateRange.contains(activityData.dateSaved)){
+                        totalSteps += activityData.todayStep
+                        totalCalories += activityData.todayCaloriesBurnt
+                    }
+                   
+                }
+                      
                     }
             
                 if (g.activityName == "Steps"){
-                    print(totalSteps)
-                    print(g.totalExerciseAmount)
+                    //print(totalSteps)
+                    //print(g.totalExerciseAmount)
                     processPercent = totalSteps / Double(g.totalExerciseAmount)
-                    print(totalSteps / Double(g.totalExerciseAmount))
-                    print("hello")
+                    //print(totalSteps / Double(g.totalExerciseAmount))
+                    //print("hello")
                     self.updateGoalProcessPercent(goalId: goalId,processPercent: processPercent)
                     self.processPercentArray.append(processPercent)
                 }
@@ -156,8 +199,8 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 let goal = self.goalList[indexPath!.row]
                 detailViewController.goal = goal
                 detailViewController.processPercent = processPercentArray[indexPath!.row]
-                print(processPercentArray[indexPath!.row])
-                print(goal.progressPercent)
+                //print(processPercentArray[indexPath!.row])
+                //print(goal.progressPercent)
             //    detailViewController.processPercent = goal.progressPercent
             }
         }

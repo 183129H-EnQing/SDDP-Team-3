@@ -10,25 +10,32 @@ import UIKit
 
 class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,UITextFieldDelegate {
 
-    let activityNamesPickerData = ["Running","Push Up","Sit Up","Steps"];
-    @IBOutlet weak var goalTitle: UITextField!
+    let activityNamesPickerData = ["Running","Steps","Squat"];
+    @IBOutlet weak var goalTitleText: UILabel!
     @IBOutlet weak var activityName: UITextField!
     @IBOutlet weak var datePicker: UITextField!
     @IBOutlet weak var duration: UITextField!
     @IBOutlet weak var totalExerciseAmount: UITextField!
     
+    @IBOutlet weak var targetAmountLabel: UILabel!
     weak var chooseTextField: UITextField?
-    
+ 
+    var activityValue = "Running"
+    var dateValue = ""
+    var durationValue = "0"
+    var targetAmount = "0" // distance,rep, steps
+    var goalTitleValue = ""
+    var sentenceStructure = 0 // 0 - activityValue then target amount , 1 - target amount then activityValue
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // textfield delegate
-        goalTitle.delegate = self
+       // goalTitle.delegate = self
         duration.delegate = self
         datePicker.delegate = self
         activityName.delegate = self
         totalExerciseAmount.delegate = self
-        
+
         // Activity Name Picker
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -54,7 +61,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
        
         // call function when user pick date
         datePickerView.addTarget(self, action: #selector(handleDatePicker(sender:)), for: .valueChanged)
-        
+    
         // default value inside the picker
         activityName.text = activityNamesPickerData[0]
          
@@ -64,32 +71,63 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let result = formatter.string(from: date)
         datePicker.text = result
      
-      
+    
     }
     
     @objc func handleDatePicker(sender: UIDatePicker) {
                let dateFormatter = DateFormatter()
                dateFormatter.dateFormat = "dd MMM yyyy"
         
+              // dateValue = dateFormatter.string(from: sender.date)
+        
                datePicker.text = dateFormatter.string(from: sender.date)
            }
     
     // Control what inside the textfield
+    // Need to type then can control the textfield
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
         // string value - user key in value
+      let updatedString = (textField.text as NSString?)?.replacingCharacters(in: range, with: string)
+        let unwrappedUpdatedString = updatedString!
+        print(unwrappedUpdatedString)
       if(textField == duration){
          let currentText = textField.text! + string
-
+        print(updatedString!.count)
+        let stringLength = updatedString!.count
+        if (stringLength > 3 ){
+           
+          durationValue = String(unwrappedUpdatedString.dropLast())
+        }
+        else{
+             durationValue = updatedString!
+        }
+        
+          formingGoalTitle()
          return currentText.count <= 3
       }
     
        if (textField == datePicker){
             return false // means user cannot type anything
         }
+        
         if(textField == activityName){
             return false
         }
+        
+        if(textField == totalExerciseAmount){
+            targetAmount = updatedString!
+        }
+        formingGoalTitle()
+        print("calling1")
+//       durationValue = duration.text!
+//       print("duration:",durationValue)
+//
+//
+//       activityValue = activityName.text!
+//       print("activityName:",activityValue)
+//       targetAmount = totalExerciseAmount.text!
+//       print("targetAmount",targetAmount)
+       
       return true;
     }
     // MARK: UIPickerView Delegation
@@ -107,27 +145,55 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
     func pickerView( _ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedValue = activityNamesPickerData[row]
+        if (selectedValue == "Running"){
+            targetAmountLabel.text = "Total Distance in KM(100)"
+            sentenceStructure = 0
+        }
+        if (selectedValue == "Steps"){
+               targetAmountLabel.text = "Total Amount of Steps(12000)"
+            sentenceStructure = 1
+        }
+        if (selectedValue == "Squat"){
+           targetAmountLabel.text = "Total Rep for Squat(40)"
+            sentenceStructure = 1
+        }
+        activityValue = selectedValue
+        formingGoalTitle()
         activityName.text = activityNamesPickerData[row]
     }
 
      func textFieldDidBeginEditing(_ textField: UITextField) {
 
         self.pickUp(textField)
+
      }
-    
+ 
+
+    func formingGoalTitle(){
+        
+        if (sentenceStructure == 0){
+            
+            goalTitleValue = "\(activityValue) \(targetAmount)Km In \(durationValue) Days"
+        }else{
+            
+            goalTitleValue = "\(targetAmount) \(activityValue)  In \(durationValue) Days"
+        }
+        goalTitleText.text = goalTitleValue
+    }
     @IBAction func addGoalPressed(_ sender: Any) {
-        Team3Helper.colorTextFieldBorder(textField: goalTitle, isRed: false)
+       // Team3Helper.colorTextFieldBorder(textField: goalTitle, isRed: false)
         Team3Helper.colorTextFieldBorder(textField: activityName, isRed: false)
         Team3Helper.colorTextFieldBorder(textField: datePicker, isRed: false)
         Team3Helper.colorTextFieldBorder(textField: duration, isRed: false)
         Team3Helper.colorTextFieldBorder(textField: totalExerciseAmount, isRed: false)
-        
-        if goalTitle.text == ""{
-            Team3Helper.colorTextFieldBorder(textField: goalTitle, isRed: true)
-            let alert = Team3Helper.makeAlert("Goal Title Text Field is Empty")
-            self.present(alert, animated: true, completion: nil)
-            return
-        }
+//
+//        if goalTitle.text == ""{
+//            Team3Helper.colorTextFieldBorder(textField: goalTitle, isRed: true)
+//            let alert = Team3Helper.makeAlert("Goal Title Text Field is Empty")
+//            self.present(alert, animated: true, completion: nil)
+//            return
+//        }
         
         // Just in case someone manage to delete the text from the picker hmm
         if (activityName.text == ""){
@@ -183,7 +249,8 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let viewControllers = self.navigationController?.viewControllers
         let parent = viewControllers?[1] as! GoalViewController
 
-        let goalTitleText = goalTitle.text!
+        let goalTitleText = self.goalTitleText.text!
+        print(goalTitleText)
         let activityNameText = activityName.text!
         let dateText = datePicker.text!
         let durationText = Int(duration.text!)!
