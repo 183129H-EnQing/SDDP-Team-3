@@ -58,6 +58,7 @@ class GameHome: SKScene {
         self.addChild(rocket)
         
         let tank = SKSpriteNode(imageNamed: "tank")
+        tank.name = "miniGameButton"
         tank.size = CGSize(width: 200, height: 200)
         tank.position = CGPoint(x: self.size.width * 0.4, y: self.size.height * 0.15)
         tank.zPosition = 2
@@ -194,6 +195,16 @@ class GameHome: SKScene {
                 
                 if nodeTapped.name == "researchButton"{
                     let sceneChange = GameResearch(size: self.size)
+                    sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
+                    sceneChange.playerScore = playerScore
+                    self.view!.presentScene(sceneChange, transition: transition)
+                }
+                
+                if nodeTapped.name == "miniGameButton"{
+                    let sceneChange = GameScene(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
                     sceneChange.playerFitness = playerFitness
                     sceneChange.playerPlanets = playerPlanets

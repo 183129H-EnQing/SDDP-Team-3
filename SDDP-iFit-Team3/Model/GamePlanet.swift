@@ -237,9 +237,9 @@ class GamePlanet: SKScene {
         else {
             print("gg u need do more fit")
             
-//            let alertController = UIAlertController(title: "Not enough points", message: "Try to do more workouts", preferredStyle: .alert)
-//            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
-//            self.view?.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+            let alertController = UIAlertController(title: "Not enough points", message: "Try to do more workouts", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            self.view?.window?.rootViewController?.present(alertController, animated: true, completion: nil)
         }
     }
     
