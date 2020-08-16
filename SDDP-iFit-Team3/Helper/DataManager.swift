@@ -97,7 +97,6 @@ class DataManager {
              7. Put the fields into instance of Schedule and append Schedule to day array inside schedules variable
              8. Then we sort the day array after appending
              */
-            print("--- Start of loadSchedules ---")
             db.collection(tableName).getDocuments { (snapshot, err) in
                 var schedules: [Int: [Schedule]] = [:]
                 if let err = err {
@@ -105,10 +104,8 @@ class DataManager {
                 } else if let snapshot = snapshot, snapshot.count > 0 {
                     print("Got data: \(snapshot.count)")
                     for document in snapshot.documents {
-                        print("Retrieving a document")
                         let data = document.data()
                         if userId.elementsEqual(data["creatorId"] as! String) {
-                            print("Document's creator matched")
                             let day: Int = data["day"] as! Int
                             
                             if !schedules.keys.contains(day) {
@@ -133,13 +130,32 @@ class DataManager {
                 } else {
                     print("No data for \(tableName)")
                 }
-                print("--- End of loadSchedules ---")
                 
                 onComplete?(schedules)
             }
         }
         
-        static func insertSchedule(userId: String, _ schedule: Schedule, onComplete: (((_ isSuccess:Bool, String?) -> Void))?) {
+        static func getSchedule(_ scheduleId: String, onComplete: ((Schedule?) -> Void)?) {
+            db.collection(tableName).document(scheduleId).getDocument { (document, err) in
+                var schedule: Schedule? = nil
+                
+                if let err = err {
+                    print("error retrieving a schedule: \(err)")
+                } else if let document = document {
+                    let day: Int = document.get("day") as! Int
+                    let exerciseId: Int = document.get("exerciseId") as! Int
+                    let duration: [Int] = document.get("duration") as! [Int]
+                    let time: [Int] = document.get("time") as! [Int]
+                    
+                    schedule = Schedule(exerciseId: exerciseId, duration: duration, day: day, time: time)
+                    schedule!.id = document.documentID
+                }
+                
+                onComplete?(schedule)
+            }
+        }
+        
+        static func insertSchedule(userId: String, _ schedule: Schedule, onComplete: ((_ isSuccess:Bool, String?) -> Void)?) {
             // addDocument will create a document, with Firebase handling the auto-generation of ID
             var ref: DocumentReference?
             ref = db.collection(tableName).addDocument(data: [
@@ -300,9 +316,6 @@ class DataManager {
                         // This line tells Firestore to retrieve all fields
                         // and update it into our Movie object automatically.
                         //
-                        // This requires the Movie object to implement the
-                        // Codable protocol.
-                        //
                         let name = document.documentID
                         let desc = document.data()["desc"] as! String
                         let image = document.data()["image"] as! String
@@ -336,8 +349,10 @@ class DataManager {
                 {
                     let armyCount = document.get("armyCount") as! Int
                     let planets = document.get("planets") as! Int
+                    let points = document.get("points") as! Int
+                    let score = document.get("score") as! Int
                     
-                    gameItem = Game(armyCount: armyCount, planets: planets, userId: userId)
+                    gameItem = Game(armyCount: armyCount, planets: planets, userId: userId, points: points, score: score)
                 }
                 // Once we have completed processing, call the onCompletes
                 // closure passed in by the caller.
@@ -348,7 +363,9 @@ class DataManager {
         static func insertGame(_ userId: String) {
             db.collection(tableName).document(userId).setData([
                 "armyCount": 5,
-                "planets": 1
+                "planets": 1,
+                "points": 15,
+                "score": 10
             ]) { err in
                 if let _ = err {
 //                    print("false")
@@ -361,7 +378,9 @@ class DataManager {
         static func updateGame(userId: String, game: Game, onComplete: ((_ isSuccess:Bool)-> Void)?) {
             db.collection(tableName).document(userId).updateData([
                 "armyCount": game.armyCount,
-                "planets": game.planets
+                "planets": game.planets,
+                "points": game.points,
+                "score": game.score
             ]) { err in
                 if let _ = err {
                     onComplete?(false)
@@ -370,6 +389,37 @@ class DataManager {
                     onComplete?(true)
                     //                    print("true")
                 }
+            }
+        }
+        
+        //retrieve all user score
+        static func loadAllGame(onComplete: ((Game?) -> Void)?) {
+            db.collection(tableName).getDocuments() { (querySnapshot, err) in
+                var gameList : [Game] = []
+                
+                if let err = err
+                { // Handle errors here.
+                    //
+                    print("Error getting documents: \(err)")
+                }
+                else
+                {
+                    for document in querySnapshot!.documents{
+                        let userId = document.documentID
+                        let armyCount = document.get("armyCount") as! Int
+                        let planets = document.get("planets") as! Int
+                        let points = document.get("points") as! Int
+                        let score = document.get("score") as! Int
+                        
+                        let gameItem = Game(armyCount: armyCount, planets: planets, userId: userId, points: points, score: score)
+                        if gameItem != nil{
+                            gameList.append(gameItem)
+                        }
+                    }
+                }
+                // Once we have completed processing, call the onCompletes
+                // closure passed in by the caller.
+//                onComplete?(gameItem)
             }
         }
     }
@@ -680,7 +730,17 @@ class DataManager {
                                       let pimageName : String = data["pimageName"] as! String
                                       let opened    :    Bool = data["opened"] as! Bool
                                       let profileImg : String = data["profileImg"] as! String
-                                      let commentPost : [Comment] = data["commentPost"] as! [Comment]
+                                      
+                                                             let comments: [[String:String]] = data["commentPost"] as! [[String:String]]
+                                                             var commentPost : [Comment] = []
+                                                             comments.forEach{ commentObj in
+                                                                 let commentText = commentObj["comment"]!
+                                                                 let pDateTime = commentObj["pdatetime"]!
+                                                                 let commentOwnerId = commentObj["userId"]!
+                                                                 
+                                                                 commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime))
+                                                                 print("comment: \(commentObj)")
+                                                             }
 
                                         let post = Post( userId: userId, pcontent: pcontent, pdatetime: pdatetime, userLocation: userLocation, pimageName: pimageName, opened: opened,profileImg: profileImg, commentPost: commentPost)
                                         
@@ -757,17 +817,8 @@ class DataManager {
             }
         }
         
-         static func loadComments(userId: String, onComplete: (([Comment]) -> Void)?) {
-                   /* Process
-                    1. Get all documents
-                    2. Check for errors, check if there are data to retrieve
-                    3. loop through all the documents
-                    4. In each document, check if the creatorId is the same as the logged in user's id
-                    5. Create empty array if our schedules variable' day is empty
-                    6. Retrieve fields from document, as well as documentId from document
-                    7. Put the fields into instance of Schedule and append Schedule to day array inside schedules variable
-                    8. Then we sort the day array after appending
-                    */
+         static func loadAllComments(userId: String, onComplete: (([Comment]) -> Void)?) {
+                  
                    db.collection(tableName).getDocuments { (snapshot, err) in
                   
                       var commentPost : [Comment] = []
@@ -778,8 +829,8 @@ class DataManager {
                            for document in snapshot.documents {
                                print("Retrieving a document")
                            
-                                let data = document.data()
-                              let comments: [[String:String]] = data["commentPost"] as! [[String:String]]
+                              let data = document.data()
+                                                       let comments: [[String:String]] = data["commentPost"] as! [[String:String]]
                                                  
                                                   comments.forEach{ commentObj in
                                                       let commentText = commentObj["comment"]!
@@ -794,6 +845,7 @@ class DataManager {
                                    
                                
                               // }
+                            
                            }
                        } else {
                            print("No data for \(tableName)")

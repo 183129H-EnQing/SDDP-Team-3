@@ -70,7 +70,7 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         // Convert from 24 hour to 12 hour time and style the time string
         let timeHour = schedule.time[0]
         let timeMin: Int = schedule.time[1]
-        let hourHand = timeHour > 12 ? timeHour - 1 : (timeHour > 0 ? timeHour : 12)
+        let hourHand = timeHour > 12 ? timeHour - 12 : (timeHour > 0 ? timeHour : 12)
         let minuteHand = timeMin > 9 ? "\(timeMin)" : "0\(timeMin)"
         let timeType = (schedule.time[0] > 11 ? "PM" : "AM")
         
@@ -108,8 +108,9 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailViewController = segue.destination as! SchedulerDetailsViewController
+        detailViewController.userSchedules = self.schedules
         if segue.identifier == "EditSchedule" {
-            let detailViewController = segue.destination as! SchedulerDetailsViewController
             let indexPath = self.tableView.indexPathForSelectedRow
             
             if indexPath != nil {

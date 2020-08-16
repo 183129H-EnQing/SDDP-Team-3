@@ -26,8 +26,8 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewWillAppear(animated)
         
         
-       loadPosts()
-           //loadComments()
+       
+           loadComments()
         
     }
     
@@ -46,56 +46,29 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
       // First we query the table view to see if there are // any UITableViewCells that can be reused. iOS will // create a new one if there aren't any. //
       //let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
      
-              let cell : PostCell = tableView
-              .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
-              let p = postList[indexPath.row]
+              let cell : CommentsCell = tableView
+              .dequeueReusableCell (withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
+              let p = comments[indexPath.row]
               cell.vusername?.text = p.userId
-              cell.vcomment?.text = "\(p.commentPost) "
+              cell.vcomment?.text = "\(p.comment) "
               cell.vdate.text = "\(p.pdatetime)"
-              
-              //cell.datelabel.text = "\(p.pdatetime)"
-             
-      //DispatchQueue.global(qos: .userInitiated).async{
-      //if let data = try? Data(contentsOf: NSURL(string: p.pimageName)! as URL){
-           //DispatchQueue.main.async {
-              //cell.photo.sd_setImage(with: URL(string: p.pimageName))
-              //cell.ppimageView.image = UIImage(data: data)
-              
-            /// }
-         // }
-      //}
-      
-             
-              
           
-          
-              
-      
-           //  DispatchQueue.global(qos: .userInitiated).async {
-               // cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
-                 // Bounce back to the main thread to update the UI
-              //DispatchQueue.main.async {
-                 // cell.ppimageView.sd_setImage(with: URL(string: p.pimageName))
-              
-              // }
-           //  }                    //UIImage(named:p.pimageName)
-              
 
               return cell
       
       }
     
-     func loadPosts() {
-           self.postList = []
+     func loadComments() {
+           self.comments = []
            self.tableView.isHidden = true
            
            if let user = UserAuthentication.getLoggedInUser() {
                print("User is logged in")
            
-               DataManager.Posts.loadAllPosts(userId: user.uid) { (data) in
+               DataManager.Posts.loadAllComments(userId: user.uid) { (data) in
                        if data.count > 0 {
                            print("posts data loaded")
-                           self.postList = data
+                           self.comments = data
                            //self.searchPost = data
                            
                            DispatchQueue.main.async {

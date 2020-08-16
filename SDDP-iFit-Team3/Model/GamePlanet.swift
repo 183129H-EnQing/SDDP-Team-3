@@ -13,8 +13,9 @@ class GamePlanet: SKScene {
     var playerFitness = 10
     var playerPlanets = 10
     var playerTroops = 10
+    var playerScore = 10
     
-    var planetsList = ["earth", "fireball", "redcrater", "desert", "cat", "eagle"]
+    var planetsList = ["earth", "fireball", "redcrater", "desert", "cat", "egg"]
     var planetsTextList = ["EARTH", "FIREBALL", "RED CRATER", "DESERT", "CAT'S PLAY", "EAGLE'S NEST"]
     
     override func didMove(to view: SKView) {
@@ -41,7 +42,7 @@ class GamePlanet: SKScene {
         
         let finessIcon = SKSpriteNode(imageNamed: "barbell")
         finessIcon.size = CGSize(width: 100, height: 100)
-        finessIcon.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.85)
+        finessIcon.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.79)
         finessIcon.zPosition = 2
         self.addChild(finessIcon)
         
@@ -49,7 +50,7 @@ class GamePlanet: SKScene {
         fitnessText.text = "\(playerFitness)"
         fitnessText.fontSize = 60
         fitnessText.fontColor = SKColor.white
-        fitnessText.position = CGPoint(x: self.size.width * 0.33, y: self.size.height * 0.84)
+        fitnessText.position = CGPoint(x: self.size.width * 0.33, y: self.size.height * 0.78)
         fitnessText.zPosition = 2
         self.addChild(fitnessText)
         
@@ -176,8 +177,6 @@ class GamePlanet: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
             
-            playerPlanets += 1 //restore back readable number. list index to readable number
-            
             let pointOfTouch = touch.location(in: self)
             for nodeTapped in nodes(at: pointOfTouch) {
                 
@@ -187,7 +186,7 @@ class GamePlanet: SKScene {
                     let sceneChange = GameHome(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
                     sceneChange.playerFitness = playerFitness
-                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerPlanets = playerPlanets + 1 //restore back readable number. list index to readable number
                     sceneChange.playerTroops = playerTroops
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
@@ -201,7 +200,7 @@ class GamePlanet: SKScene {
     }
     
     func discoverPlanet() {
-        var playerNextPlanet = playerPlanets + 1
+        var playerNextPlanet = playerPlanets + 2 //-1 on load, thus to compensate + 1 and +1 more for next planet
         var sufficientCost = false
         var planetCost = 0
         
@@ -217,19 +216,30 @@ class GamePlanet: SKScene {
             sufficientCost = true
             //not working yet
             playerFitness -= planetCost
-            playerPlanets += 1
+            playerPlanets += 2  //same logic as top, to compensate -1 on load
 //            print("SCAMMMM ", playerFitness)
+            
+            if let user = UserAuthentication.getLoggedInUser() {
+                DataManager.GamesClass.updateGame(userId: user.uid, game: Game(armyCount: playerTroops, planets: playerPlanets, userId: user.uid, points: playerFitness, score: playerScore)) { (success) in
+                    print("updated db")
+                }
+            }
             
             let sceneChange = GameDiscover(size: self.size)
             sceneChange.scaleMode = self.scaleMode
             sceneChange.playerFitness = playerFitness
             sceneChange.playerPlanets = playerPlanets
             sceneChange.playerTroops = playerTroops
+            sceneChange.playerScore = playerScore
             let transition = SKTransition.fade(withDuration: 0.5)
             self.view!.presentScene(sceneChange, transition: transition)
         }
         else {
             print("gg u need do more fit")
+            
+            let alertController = UIAlertController(title: "Not enough points", message: "Try to do more workouts", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            self.view?.window?.rootViewController?.present(alertController, animated: true, completion: nil)
         }
     }
     

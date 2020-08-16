@@ -25,6 +25,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     var selectedDay = -1
     
     var schedule: Schedule?
+    var userSchedules: [Int: [Schedule]] = [:]
     
     static var exercises: [String] = ["Push Up", "Jumping Jacks", "Skipping Rope", "Sit Up"]
     static var days: [String] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] // because date component's weekDay starts from sunday, monday... and end with saturday
@@ -171,9 +172,49 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
                 return
             }
             
-            let exercise = exercisePicker.selectedRow(inComponent: 0)
-            let timeComp = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
             let day = dayPicker.selectedRow(inComponent: 0)
+            let timeComp = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
+            
+            // do time validation
+            /*if let daySchedules = self.userSchedules[day] {
+                var isTimeTaken = false
+                for someSch in daySchedules {
+                    let schTime = someSch.time
+                    var schEndHr = schTime[0] + someSch.duration[0]
+                    var schEndMin = schTime[1] + someSch.duration[1]
+                    
+                    if schEndMin > 60 {
+                        print("schEndMin: \(schEndMin)")
+                        
+                        let excessHr = Int(schEndMin/60)
+                        print("excessHr: \(excessHr)")
+                        
+                        schEndHr += excessHr
+                        schEndMin = schEndMin - (excessHr * 60)
+                        print("schEndMin: \(schEndMin)")
+                    }
+                    
+                    /* check if other schedules' time + duration (end time
+                     */
+                    if (schEndHr == timeComp.hour && sch) || () {
+                        return
+                    }
+                    
+                    // make sure time is not the same
+                    if schTime[0] == timeComp.hour && schTime[1] == timeComp.minute {
+                        isTimeTaken = true
+                        break
+                    }
+                }
+                
+                if isTimeTaken {
+                    let alert = Team3Helper.makeAlert("This time is taken by another schedule!")
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+            }*/
+            
+            let exercise = exercisePicker.selectedRow(inComponent: 0)
             let duration = [hrs, mins]
             
             let viewControllers = self.navigationController?.viewControllers
@@ -186,13 +227,13 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
                 // Update
                 newSchedule.id = self.schedule!.id!
                 DataManager.Schedules.updateSchedule(schedule: newSchedule) { (isSuccess) in
-                    self.makeNotification(exercise: exercise, timeComp: timeComp, day: day, duration: duration, scheduleId: newSchedule.id!)
+                    self.makeNotification(exercise: exercise, timeComp: timeComp, day: day, duration: duration, scheduleId: newSchedule.id!, userId: user.uid)
                     self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: true)
                 }
             } else {
                 // Add
                 DataManager.Schedules.insertSchedule(userId: user.uid, newSchedule) { (isSuccess, id) in
-                    self.makeNotification(exercise: exercise, timeComp: timeComp, day: day, duration: duration, scheduleId: id!)
+                    self.makeNotification(exercise: exercise, timeComp: timeComp, day: day, duration: duration, scheduleId: id!, userId: user.uid)
                     self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
                 }
             }
@@ -202,7 +243,9 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         }
     }
     
-    func makeNotification(exercise: Int, timeComp: DateComponents, day: Int, duration: [Int], scheduleId: String) {
+    // timeComp contains the schedule's time
+    func makeNotification(exercise: Int, timeComp: DateComponents, day: Int, duration: [Int], scheduleId: String, userId: String) {
+        // true date
         let actualDateComp = Calendar.current.dateComponents([.weekday, .hour, .minute], from: Date())
         
         // need to minus 1, cause weekDay starts is 1 to 7
@@ -226,7 +269,8 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
                 print("making notification")
                 let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
                 
-                Team3Helper.notificationCenter.add(UNNotificationRequest(identifier: "scheduler.test", content: content, trigger: trigger))
+                /* set the identifer for day, hour, minute. The scheduleId is for,*/
+                Team3Helper.notificationCenter.add(UNNotificationRequest(identifier: "scheduler.\(scheduleId).\(userId)", content: content, trigger: trigger))
             }
         }
     }

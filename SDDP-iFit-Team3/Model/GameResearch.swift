@@ -10,6 +10,11 @@ import SpriteKit
 
 class GameResearch: SKScene {
     
+    var playerFitness = 10
+    var playerPlanets = 10
+    var playerTroops = 10
+    var playerScore = 10
+    
     override func didMove(to view: SKView) {
         
         let bg = SKSpriteNode(imageNamed: "space")
@@ -60,6 +65,14 @@ class GameResearch: SKScene {
         tank.position = CGPoint(x: self.size.width * 0.35, y: self.size.height * 0.3)
         tank.zPosition = 2
         self.addChild(tank)
+        
+        let attack = SKLabelNode(fontNamed: "The Bold Font")
+        attack.text = "ATTACK"
+        attack.fontSize = 65
+        attack.fontColor = SKColor.white
+        attack.position = CGPoint(x: self.size.width * 0.6, y: self.size.height * 0.4)
+        attack.zPosition = 2
+        self.addChild(attack)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -73,6 +86,10 @@ class GameResearch: SKScene {
                 if nodeTapped.name == "homeButton"{
                     let sceneChange = GameHome(size: self.size)
                     sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
+                    sceneChange.playerScore = playerScore
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
             }

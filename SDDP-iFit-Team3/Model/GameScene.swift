@@ -10,13 +10,18 @@ import SpriteKit
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    var playerFitness = 10
+    var playerPlanets = 10
+    var playerTroops = 10
+    var playerScore = 10
+    
     var score = 0
-    let scoreLabel = SKLabelNode(fontNamed: "The Bold Font") //font not in use
+    let scoreLabel = SKLabelNode(fontNamed: "The Bold Font")
     
     var level = 0
     
     var playerLives = 3
-    var playerLivesLabel = SKLabelNode(fontNamed: "The Bold Font") //font not in use
+    var playerLivesLabel = SKLabelNode(fontNamed: "The Bold Font")
     
     let player = SKSpriteNode(imageNamed: "survivor_handgun")
     
@@ -55,6 +60,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.position = CGPoint(x: self.size.width/2, y: self.size.height/2)
         background.zPosition = 0
         self.addChild(background)
+        
+        let closeButton = SKSpriteNode(imageNamed: "yellowbutton")
+        closeButton.name = "homeButton"
+        closeButton.size = CGSize(width: 80, height: 80)
+        closeButton.position = CGPoint(x: self.size.width * 0.25, y: self.size.height * 0.82)
+        closeButton.zPosition = 2
+        self.addChild(closeButton)
         
         
         player.setScale(1)
@@ -99,15 +111,55 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func loseLife() {
         
-        playerLives -= 1
-        playerLivesLabel.text = "Lives: \(playerLives)"
-        
-        
-        let scaleUp = SKAction.scale(to: 1.5, duration: 0.2)
-        let scaleDown = SKAction.scale(to: 1, duration: 0.2)
-        let dangerColor = SKAction.colorize(with: UIColor.red, colorBlendFactor: 0.8, duration: 0.2)
-        let scaleSequence = SKAction.sequence([scaleUp, dangerColor, scaleDown])
-        playerLivesLabel.run(scaleSequence)
+        if playerLives >= 1 {
+            playerLives -= 1
+            playerLivesLabel.text = "Lives: \(playerLives)"
+            
+            
+            let scaleUp = SKAction.scale(to: 1.5, duration: 0.2)
+            let scaleDown = SKAction.scale(to: 1, duration: 0.2)
+            let dangerColor = SKAction.colorize(with: UIColor.red, colorBlendFactor: 0.8, duration: 0.2)
+            let scaleSequence = SKAction.sequence([scaleUp, dangerColor, scaleDown])
+            playerLivesLabel.run(scaleSequence)
+        }
+        else {
+            
+            let alertController = UIAlertController(title: "Score: \(score)", message: "You failed to protect the convoy.Abort ship! Head into the escape pod", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Restart", style: .default, handler: { (action: UIAlertAction!) in
+                print("Restart")
+                
+                let sceneChange = GameHome(size: self.size)
+                sceneChange.scaleMode = self.scaleMode
+                sceneChange.playerFitness = self.playerFitness
+                sceneChange.playerPlanets = self.playerPlanets
+                sceneChange.playerTroops = self.playerTroops
+                sceneChange.playerScore = self.playerScore
+                let transition = SKTransition.fade(withDuration: 0.5)
+                self.view!.presentScene(sceneChange, transition: transition)
+                
+                let sceneChange1 = GameScene(size: self.size)
+                sceneChange1.scaleMode = self.scaleMode
+                sceneChange1.playerFitness = self.playerFitness
+                sceneChange1.playerPlanets = self.playerPlanets
+                sceneChange1.playerTroops = self.playerTroops
+                sceneChange1.playerScore = self.playerScore
+                let transition1 = SKTransition.fade(withDuration: 0.5)
+                self.view!.presentScene(sceneChange1, transition: transition1)
+            }))
+            alertController.addAction(UIAlertAction(title: "Return Home", style: .cancel, handler: { (action: UIAlertAction!) in
+                print("Return Home")
+                
+                let sceneChange = GameHome(size: self.size)
+                sceneChange.scaleMode = self.scaleMode
+                sceneChange.playerFitness = self.playerFitness
+                sceneChange.playerPlanets = self.playerPlanets
+                sceneChange.playerTroops = self.playerTroops
+                sceneChange.playerScore = self.playerScore
+                let transition = SKTransition.fade(withDuration: 0.5)
+                self.view!.presentScene(sceneChange, transition: transition)
+            }))
+            self.view?.window?.rootViewController?.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -215,7 +267,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.addChild(enemy)
         
-        let moveEnemy = SKAction.move(to: endPoint, duration: 1.5)
+        let moveEnemy = SKAction.move(to: endPoint, duration: 2.0)
         let deleteEnemy = SKAction.removeFromParent()
         let minusLife = SKAction.run(loseLife)
         let enemySequence = SKAction.sequence([moveEnemy, deleteEnemy, minusLife])
@@ -272,6 +324,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             if player.position.x < gameArea.minX + player.size.width / 2 {
                 player.position.x = gameArea.minX + player.size.width / 2
+            }
+            
+
+            for nodeTapped in nodes(at: pointOfTouch) {
+                
+                let transition = SKTransition.fade(withDuration: 0.5)
+                
+                if nodeTapped.name == "homeButton"{
+                    let sceneChange = GameHome(size: self.size)
+                    sceneChange.scaleMode = self.scaleMode
+                    sceneChange.playerFitness = playerFitness
+                    sceneChange.playerPlanets = playerPlanets
+                    sceneChange.playerTroops = playerTroops
+                    sceneChange.playerScore = playerScore
+                    self.view!.presentScene(sceneChange, transition: transition)
+                }
             }
         }
     }

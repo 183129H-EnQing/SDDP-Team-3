@@ -63,7 +63,9 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
                                print("data",data)
                                }
                            }
-                                  
+        
+                   cell.comments = p.commentPost
+                   cell.commentsTableView.reloadData()
                              
                    cell.content.text = "\(p.pcontent) "
                    cell.place.text = "\(p.userLocation)"

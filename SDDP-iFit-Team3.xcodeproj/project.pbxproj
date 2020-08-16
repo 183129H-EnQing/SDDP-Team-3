@@ -17,6 +17,7 @@
 		1B11A33A24CC0A880016C87A /* ViewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A33924CC0A880016C87A /* ViewCommentViewController.swift */; };
 		1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */; };
 		1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E8DA924A387B7001D9C8D /* PostCell.swift */; };
+		1B65804224E8FE3E002C0883 /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65804124E8FE3E002C0883 /* CommentsCell.swift */; };
 		1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0E324A359FF003A35A9 /* Post.swift */; };
 		1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0ED24A37182003A35A9 /* PostViewController.swift */; };
 		1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */; };
@@ -31,6 +32,7 @@
 		345BF47D24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 345BF47C24BBFD0A00BE04EA /* TrainingPlanStartViewController.swift */; };
 		34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */; };
 		34B27B9324C53D2F00C113A2 /* EditPersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */; };
+		4E4F987924E7DC1300339C98 /* Team3NotificationCenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4F987824E7DC1300339C98 /* Team3NotificationCenterDelegate.swift */; };
 		7D0CAFA724C0AC4E00325F82 /* SurveyFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D0CAFA624C0AC4E00325F82 /* SurveyFormViewController.swift */; };
 		7D1C4BDA24A4DC3600CD1F6F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */; };
 		7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */; };
@@ -64,6 +66,7 @@
 		DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */; };
 		DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB218EC24A07582003BFE6C /* Exercise.swift */; };
 		DCBA1EA324CD601400AF4743 /* TrainingPlanTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBA1EA224CD601400AF4743 /* TrainingPlanTimerViewController.swift */; };
+		DCC040AF24E9203800C8D78F /* GameLeaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC040AE24E9203800C8D78F /* GameLeaderboard.swift */; };
 		DCC5778924B9A6D20003F215 /* bomb_07.wav in Resources */ = {isa = PBXBuildFile; fileRef = DCC5778824B9A6D20003F215 /* bomb_07.wav */; };
 		DCC80B7224ADEBB0008AF933 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC80B7124ADEBB0008AF933 /* GameViewController.swift */; };
 		DCC80B7424ADEDA5008AF933 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC80B7324ADEDA5008AF933 /* GameScene.swift */; };
@@ -111,6 +114,7 @@
 		1B11A33924CC0A880016C87A /* ViewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommentViewController.swift; sourceTree = "<group>"; };
 		1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		1B3E8DA924A387B7001D9C8D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
+		1B65804124E8FE3E002C0883 /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		1BB0D0E324A359FF003A35A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		1BB0D0ED24A37182003A35A9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ../PostViewController.swift; sourceTree = "<group>"; };
 		1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 		34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentPostViewController.swift; sourceTree = "<group>"; };
 		34B27B9224C53D2F00C113A2 /* EditPersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPersonalViewController.swift; sourceTree = "<group>"; };
 		451FDF8A88D9210F4AFCBE25 /* Pods-SDDP-iFit-Team3.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SDDP-iFit-Team3.release.xcconfig"; path = "Target Support Files/Pods-SDDP-iFit-Team3/Pods-SDDP-iFit-Team3.release.xcconfig"; sourceTree = "<group>"; };
+		4E4F987824E7DC1300339C98 /* Team3NotificationCenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team3NotificationCenterDelegate.swift; sourceTree = "<group>"; };
 		7D0CAFA624C0AC4E00325F82 /* SurveyFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyFormViewController.swift; sourceTree = "<group>"; };
 		7D1C4BD924A4DC3600CD1F6F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D1C4BDB24A4DFCA00CD1F6F /* Schedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
@@ -160,6 +165,7 @@
 		DC9EE49A24A30C870080D3A2 /* TrainingPlanCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanCell.swift; sourceTree = "<group>"; };
 		DCB218EC24A07582003BFE6C /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
 		DCBA1EA224CD601400AF4743 /* TrainingPlanTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlanTimerViewController.swift; sourceTree = "<group>"; };
+		DCC040AE24E9203800C8D78F /* GameLeaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLeaderboard.swift; sourceTree = "<group>"; };
 		DCC5778824B9A6D20003F215 /* bomb_07.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bomb_07.wav; sourceTree = "<group>"; };
 		DCC80B7124ADEBB0008AF933 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		DCC80B7324ADEDA5008AF933 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -240,6 +246,7 @@
 				7D7ED67E24A0E2F9001D52DA /* Game.storyboard */,
 				7DE944F024B83304000A03DC /* Profile.storyboard */,
 				09B1B932249322AD00D14CE6 /* AppDelegate.swift */,
+				4E4F987824E7DC1300339C98 /* Team3NotificationCenterDelegate.swift */,
 				09B1B934249322AD00D14CE6 /* SceneDelegate.swift */,
 				09B1B936249322AD00D14CE6 /* ViewController.swift */,
 				34AD8B6224B2CD1A00CDA507 /* CommentPostViewController.swift */,
@@ -308,6 +315,7 @@
 				DCE67B7024BF31FA00B2DD27 /* GameResult.swift */,
 				DC0B46BE24C3140E001BB221 /* GameDiscover.swift */,
 				DCF73FAF24C43E5B00530EE5 /* GamePlanet.swift */,
+				DCC040AE24E9203800C8D78F /* GameLeaderboard.swift */,
 				7D236F0324BD688C00C3CD2B /* User.swift */,
 				E3F1688024C0F1B000B2C42A /* HealthKitActivity.swift */,
 			);
@@ -360,6 +368,7 @@
 				DC0B46C024C31423001BB221 /* GameDiscoverViewController.swift */,
 				DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
+				1B65804124E8FE3E002C0883 /* CommentsCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -517,6 +526,7 @@
 				DCE0E34324B45CE000B23C46 /* ExerciseCollectionViewCell.swift in Sources */,
 				DCD142C624B7224B00AE431A /* ExerciseDetailViewController.swift in Sources */,
 				1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */,
+				DCC040AF24E9203800C8D78F /* GameLeaderboard.swift in Sources */,
 				DC9EE49B24A30C870080D3A2 /* TrainingPlanCell.swift in Sources */,
 				1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */,
 				7D1C4BDC24A4DFCA00CD1F6F /* Schedule.swift in Sources */,
@@ -550,6 +560,7 @@
 				DCF73FB224C43E8600530EE5 /* GamePlanetViewController.swift in Sources */,
 				DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */,
 				DC0B46BF24C3140E001BB221 /* GameDiscover.swift in Sources */,
+				1B65804224E8FE3E002C0883 /* CommentsCell.swift in Sources */,
 				34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */,
 				DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */,
 				1B11A33A24CC0A880016C87A /* ViewCommentViewController.swift in Sources */,
@@ -563,6 +574,7 @@
 				E39EE04624A356AB00DDD571 /* DashboardViewController.swift in Sources */,
 				DCF9358324A33CC000FD505B /* TrainingPlanAddViewController.swift in Sources */,
 				DC325A3B24A45E4C005E5166 /* TrainingPlanAddExerciseViewController.swift in Sources */,
+				4E4F987924E7DC1300339C98 /* Team3NotificationCenterDelegate.swift in Sources */,
 				7DEE53D024AC63E800CE6293 /* RegisterViewController.swift in Sources */,
 				E3ED531624C091D000052436 /* HealthKitManager.swift in Sources */,
 				09B1B935249322AD00D14CE6 /* SceneDelegate.swift in Sources */,

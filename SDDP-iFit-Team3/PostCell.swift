@@ -30,6 +30,9 @@ class PostCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
     var comments: [Comment] = []
     
     
+ 
+    
+    
     @IBOutlet weak var cmt: UILabel!
     
     
@@ -50,13 +53,7 @@ class PostCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var edit: UIButton!
     
     
-    @IBOutlet weak var vusername: UILabel!
-    
-    
-    @IBOutlet weak var vcomment: UILabel!
-    
-    
-    @IBOutlet weak var vdate: UILabel!
+   
     
     
     @IBOutlet weak var profileimg: UIImageView!
@@ -70,6 +67,7 @@ class PostCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
         // Initialization code
         commentsTableView.delegate = self
         commentsTableView.dataSource = self
+       
     }
    
     
@@ -100,6 +98,7 @@ class PostCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
         
         cell.textLabel?.text = comment.userId
         cell.detailTextLabel?.text = comment.comment
+        
         
         return cell
     }
