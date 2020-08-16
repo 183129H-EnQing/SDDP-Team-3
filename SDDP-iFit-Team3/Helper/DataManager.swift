@@ -316,9 +316,6 @@ class DataManager {
                         // This line tells Firestore to retrieve all fields
                         // and update it into our Movie object automatically.
                         //
-                        // This requires the Movie object to implement the
-                        // Codable protocol.
-                        //
                         let name = document.documentID
                         let desc = document.data()["desc"] as! String
                         let image = document.data()["image"] as! String
@@ -396,7 +393,35 @@ class DataManager {
         }
         
         //retrieve all user score
-        
+        static func loadAllGame(onComplete: ((Game?) -> Void)?) {
+            db.collection(tableName).getDocuments() { (querySnapshot, err) in
+                var gameList : [Game] = []
+                
+                if let err = err
+                { // Handle errors here.
+                    //
+                    print("Error getting documents: \(err)")
+                }
+                else
+                {
+                    for document in querySnapshot!.documents{
+                        let userId = document.documentID
+                        let armyCount = document.get("armyCount") as! Int
+                        let planets = document.get("planets") as! Int
+                        let points = document.get("points") as! Int
+                        let score = document.get("score") as! Int
+                        
+                        let gameItem = Game(armyCount: armyCount, planets: planets, userId: userId, points: points, score: score)
+                        if gameItem != nil{
+                            gameList.append(gameItem)
+                        }
+                    }
+                }
+                // Once we have completed processing, call the onCompletes
+                // closure passed in by the caller.
+//                onComplete?(gameItem)
+            }
+        }
     }
     
     class Goals{

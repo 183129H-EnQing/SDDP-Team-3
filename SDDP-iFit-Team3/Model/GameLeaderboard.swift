@@ -9,10 +9,14 @@
 import SpriteKit
 import UIKit
 
-class GameTable: UITableView,UITableViewDelegate,UITableViewDataSource {
+class GameTable: UITableView, UITableViewDelegate, UITableViewDataSource {
     var items: [String] = ["Player1", "Player2", "Player3"]
-    //retrieve all players score
     
+    //retrieve all players score
+    DataManager.GamesClass.loadAllGame { (data) in
+        
+        
+    }
     //sort their score
     
     override init(frame: CGRect, style: UITableView.Style) {
