@@ -17,6 +17,7 @@
 		1B11A33A24CC0A880016C87A /* ViewCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B11A33924CC0A880016C87A /* ViewCommentViewController.swift */; };
 		1B17FCFD24A4E97000D15B00 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */; };
 		1B3E8DAA24A387B7001D9C8D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3E8DA924A387B7001D9C8D /* PostCell.swift */; };
+		1B65804224E8FE3E002C0883 /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B65804124E8FE3E002C0883 /* CommentsCell.swift */; };
 		1BB0D0E424A359FF003A35A9 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0E324A359FF003A35A9 /* Post.swift */; };
 		1BB0D0EE24A37182003A35A9 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB0D0ED24A37182003A35A9 /* PostViewController.swift */; };
 		1BB64B7324A7425700F7D8CE /* EditPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */; };
@@ -112,6 +113,7 @@
 		1B11A33924CC0A880016C87A /* ViewCommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCommentViewController.swift; sourceTree = "<group>"; };
 		1B17FCFC24A4E97000D15B00 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostViewController.swift; sourceTree = "<group>"; };
 		1B3E8DA924A387B7001D9C8D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../PostCell.swift; sourceTree = "<group>"; };
+		1B65804124E8FE3E002C0883 /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
 		1BB0D0E324A359FF003A35A9 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		1BB0D0ED24A37182003A35A9 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostViewController.swift; path = ../PostViewController.swift; sourceTree = "<group>"; };
 		1BB64B7224A7425700F7D8CE /* EditPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPostViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 				DC0B46C024C31423001BB221 /* GameDiscoverViewController.swift */,
 				DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
+				1B65804124E8FE3E002C0883 /* CommentsCell.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 				DCF73FB224C43E8600530EE5 /* GamePlanetViewController.swift in Sources */,
 				DCB218ED24A07582003BFE6C /* Exercise.swift in Sources */,
 				DC0B46BF24C3140E001BB221 /* GameDiscover.swift in Sources */,
+				1B65804224E8FE3E002C0883 /* CommentsCell.swift in Sources */,
 				34AD8B6324B2CD1A00CDA507 /* CommentPostViewController.swift in Sources */,
 				DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */,
 				1B11A33A24CC0A880016C87A /* ViewCommentViewController.swift in Sources */,

@@ -802,7 +802,7 @@ class DataManager {
                                print("Retrieving a document")
                            
                               let data = document.data()
-                              let comments: [[String:String]] = data["commentPost"] as! [[String:String]]
+                                                       let comments: [[String:String]] = data["commentPost"] as! [[String:String]]
                                                  
                                                   comments.forEach{ commentObj in
                                                       let commentText = commentObj["comment"]!
@@ -817,6 +817,7 @@ class DataManager {
                                    
                                
                               // }
+                            
                            }
                        } else {
                            print("No data for \(tableName)")

@@ -353,7 +353,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="759"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostCell" rowHeight="92" id="a6X-37-3Pd" customClass="PostCell" customModule="SDDP_iFit_Team3" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentsCell" rowHeight="92" id="a6X-37-3Pd" customClass="CommentsCell" customModule="SDDP_iFit_Team3" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a6X-37-3Pd" id="RC8-hH-0QF">
@@ -368,14 +368,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Comment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDC-Zm-REb">
-                                                    <rect key="frame" x="20" y="40" width="156" height="21"/>
+                                                    <rect key="frame" x="193" y="11" width="156" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z09-b7-1lR">
-                                                    <rect key="frame" x="20" y="69" width="36" height="21"/>
+                                                    <rect key="frame" x="20" y="40" width="36" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -384,9 +384,9 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="vcomment" destination="dDC-Zm-REb" id="tZL-cC-tpm"/>
-                                            <outlet property="vdate" destination="z09-b7-1lR" id="IDS-hz-5RP"/>
-                                            <outlet property="vusername" destination="38N-kG-fKg" id="lm3-0m-H2z"/>
+                                            <outlet property="vcomment" destination="dDC-Zm-REb" id="jWG-XT-ngd"/>
+                                            <outlet property="vdate" destination="z09-b7-1lR" id="z9C-6c-8ID"/>
+                                            <outlet property="vusername" destination="38N-kG-fKg" id="sjZ-QU-Y5Q"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

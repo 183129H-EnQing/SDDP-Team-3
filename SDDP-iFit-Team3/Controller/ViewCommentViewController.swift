@@ -46,11 +46,11 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
       // First we query the table view to see if there are // any UITableViewCells that can be reused. iOS will // create a new one if there aren't any. //
       //let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
      
-              let cell : PostCell = tableView
-              .dequeueReusableCell (withIdentifier: "PostCell", for: indexPath) as! PostCell
-              let p = postList[indexPath.row]
+              let cell : CommentsCell = tableView
+              .dequeueReusableCell (withIdentifier: "CommentsCell", for: indexPath) as! CommentsCell
+              let p = comments[indexPath.row]
               cell.vusername?.text = p.userId
-              cell.vcomment?.text = "\(p.commentPost) "
+              cell.vcomment?.text = "\(p.comment) "
               cell.vdate.text = "\(p.pdatetime)"
           
 
