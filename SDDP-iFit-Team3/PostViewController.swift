@@ -55,6 +55,8 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
         loadPosts()
+        
+        //getCurrentUser()
     }
     
     
@@ -120,7 +122,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
            // tableView.deleteRows(at: [indexPath], with: .automatic)
             print("plsss", p.userId,UserAuthentication.getLoggedInUser()?.uid)
             
-            if p.userId == UserAuthentication.getLoggedInUser()!.uid{
+        if p.userId == UserAuthentication.getLoggedInUser()!.uid{
             
                 DataManager.Posts.deletePost(post: self.searchPost[indexPath.row]) { (isSuccess) in
                            if isSuccess {
@@ -132,7 +134,7 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             }
              else{
                  let alert = Team3Helper.makeAlert("You cant delete others post")
-                                      self.present(alert, animated: true, completion: nil)
+                                     self.present(alert, animated: true, completion: nil)
                                       return
             }
         }
@@ -146,13 +148,13 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                if let user = UserAuthentication.getLoggedInUser() {
                    print("User is logged in")
 
-                   DataManager.getUserData(userId: user.uid) { (data) in
-
-                    self.currentUserId = UserAuthentication.user!.userId
-                                print("fdfdfdfd", self.currentUserId)
-                               print("data",data)
-
-                           }
+                 DataManager.getUserData(userId: user.uid) { (data) in
+                   if let user = data {
+                    self.currentUserId = user.userId
+                        print("fdfdfdfd", self.currentUserId)
+                       print("data",data)
+                       }
+                   }
                        }
                }
     
@@ -162,26 +164,34 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     
         
-        if self.currentUserId == UserAuthentication.getLoggedInUser()!.uid{
             if(segue.identifier == "ShowPostDetails")
                 
             
      { let detailViewController = segue.destination as! EditPostViewController
         let myIndexPath = self.tableView.indexPathForSelectedRow
            if(myIndexPath != nil) {
-   
-           let posts = postList[myIndexPath!.row]
-               detailViewController.postItem = posts
+            let posts = postList[myIndexPath!.row]
+            if posts.userId == UserAuthentication.getLoggedInUser()!.uid{
                 
-        }
-
+               detailViewController.postItem = posts
+               
             }
-        }
-         else{
-                        let alert = Team3Helper.makeAlert("You cant Edit others post")
-                                             self.present(alert, animated: true, completion: nil)
-                                             return
+             else{
+                       let alert = Team3Helper.makeAlert("You cant Edit others post")
+                       self.present(alert, animated: true, completion: nil)
+                       return
                    }
+            }
+            
+            
+        }
+        
+        
+       
+        
+    
+        
+       
         
         
         if(segue.identifier == "ShowPostComments")

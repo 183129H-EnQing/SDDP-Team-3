@@ -89,7 +89,10 @@ class PostCell: UITableViewCell, UITableViewDataSource, UITableViewDelegate {
         if comments.count > 2 {
             return 2
         }
-        return comments.count
+             return comments.count
+       
+       
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
