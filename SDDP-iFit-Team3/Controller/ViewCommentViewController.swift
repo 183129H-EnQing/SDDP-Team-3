@@ -14,6 +14,7 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
     
     var postList : [Post] = []
     var comments : [Comment] = []
+    var postItem : Post?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +65,10 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
            
            if let user = UserAuthentication.getLoggedInUser() {
                print("User is logged in")
+            
+            let post = postItem?.id
            
-               DataManager.Posts.loadAllComments(userId: user.uid) { (data) in
+            DataManager.Posts.loadAllComments(userId: post!) { (data) in
                        if data.count > 0 {
                            print("posts data loaded")
                            self.comments = data
