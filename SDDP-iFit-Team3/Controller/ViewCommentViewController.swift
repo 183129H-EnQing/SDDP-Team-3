@@ -56,6 +56,8 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
               cell.vusername?.text = p.userId
               cell.vcomment?.text = "\(p.comment) "
               cell.vdate.text = "\(p.pdatetime)"
+              cell.pimg.layer.cornerRadius = cell.pimg.frame.size.width / 2
+              cell.pimg.clipsToBounds = true
               cell.pimg.sd_setImage(with: URL(string: p.profile))
     
                                    return cell
