@@ -16,13 +16,21 @@ class ActivityViewController: UIViewController {
     @IBOutlet weak var energyBurnDataLabel: UILabel!
     @IBOutlet weak var stepsDataLabel: UILabel!
     @IBOutlet weak var runningDataLabel: UILabel!
-    @IBOutlet weak var cyclingDataLabel: UILabel!
+    @IBOutlet weak var squatDataLabel: UILabel!
+ 
+    var healthKitActivityList : [HealthKitActivity] = []
+    var todaySquat : Int = 0
+    var todaySteps : Double = 0
+    var todayCaloriesBurnt : Double = 0
+    var todayRunningWalkingDistance : Double = 0
     let healthStore = HKHealthStore()
-    
+    let queue = DispatchQueue(label: "Serial queue")
+    let group = DispatchGroup()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+   
         // Do any additional setup after loading the view.
         authorizeAndGetHealthKit()
     }
@@ -35,30 +43,62 @@ class ActivityViewController: UIViewController {
             if (!authoriseStatusValue){
                 self.presentHealthDataNotAvailableError()
             }else{
-                // print("no problem")
-                HealthKitManager.getHealthKitData(){
-                    //print("hello world")
-                }
+       
+                  HealthKitManager.getHealthKitData(){
+                        print("testing1")
+                                          
+                            }
+                    sleep(1);
+                DataManager.HealthKitActivities.loadHealthKitActivity(userId: UserAuthentication.user!.userId){
+                            (data) in
+                        if data.count > 0 {
+                         print("pui pui pui pui")
+                            //let calendar = Calendar.current
+                         self.healthKitActivityList = data
+                         self.displayData()
+
+                         }
+
+                     }
+                    
+                
+
             }
         }
-//                DispatchQueue.global(qos: .userInitiated).async {
-//
-//
-//                   DispatchQueue.main.async {
-//
-//                   }
-//
-//
-//                   }
-//
-//
-//
-//                   // UPDATE UI after all calculations have been done
-//                   DispatchQueue.main.async {
-//                    self.stepsDataLabel.text = "0"
-//
-//                   }
-               }
+
+    }
+    func displayData(){
+        let formatter = DateFormatter()
+        formatter.timeZone  = TimeZone(identifier: "Asia/Singapore") // US_POSIX - usa , en_SG
+        formatter.dateFormat = "dd MMM yyyy"
+        let todayDateString = formatter.string(from: Date())
+           //let todayDate = formatter.date(from: todayDateString)!
+               //self.healthKitActivityList = data
+
+        DispatchQueue.global(qos: .userInitiated).async {
+               for activityData in self.healthKitActivityList{
+                     print(todayDateString,activityData.dateSaved,"ggg")
+                 if (activityData.dateSaved == todayDateString){
+                     self.todaySquat = activityData.todaySquat
+                     self.todaySteps = activityData.todayStep
+                     self.todayCaloriesBurnt = activityData.todayCaloriesBurnt
+                     self.todayRunningWalkingDistance = activityData.todayRunningWalkingDistance
+         
+                    print("\(activityData.todayStep) pui pui")
+                }
+            }
+       DispatchQueue.main.async {
+        print("testing squat\(self.todaySquat)")
+            self.energyBurnDataLabel.text = "\(self.todayCaloriesBurnt)"
+            self.stepsDataLabel.text = "\(self.todaySteps)"
+            self.runningDataLabel.text = "\(self.todayRunningWalkingDistance)km"
+            self.squatDataLabel.text = "\(self.todaySquat)"
+            print("hello111111")
+            // self.group.leave()
+         
+       }
+           }
+    }
                
                 
              

@@ -578,7 +578,7 @@ class DataManager {
                                     let todayStep : Double = data["todayStep"] as! Double
                                     let todayCaloriesBurnt : Double = data["todayCaloriesBurnt"] as! Double
                                     let todaySquat : Int = data["todaySquat"] as! Int
-                                    let todayRunningWalkingDistance: Double = data["todayRunningDistance"] as! Double
+                                    let todayRunningWalkingDistance: Double = data["todayRunningWalkingDistance"] as! Double
                                     let dateSaved : String = data["dateSaved"] as! String
                                     let timeSaved : String = data["timeSaved"] as! String
                                     let hasUpdatedForYtd : Bool = data["hasUpdatedForYtd"] as! Bool
@@ -604,7 +604,7 @@ class DataManager {
             db.collection(tableName).document(healthKitActivityId).updateData([
                                     "todayStep": healthKitActivityData.todayStep,
                                     "todayCaloriesBurnt": healthKitActivityData.todayCaloriesBurnt,
-                                    "todayRunningDistance" :healthKitActivityData.todayRunningWalkingDistance,
+                                    "todayRunningWalkingDistance" :healthKitActivityData.todayRunningWalkingDistance,
                                     "timeSaved": healthKitActivityData.timeSaved,
                                     "hasUpdatedForYtd": healthKitActivityData.hasUpdatedForYtd
                              ]) { (err) in
