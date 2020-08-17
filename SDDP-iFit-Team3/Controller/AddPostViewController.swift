@@ -138,8 +138,10 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                       
                        let url =  user.avatarURL
                         let uu = url?.absoluteString
+                        if url != nil  {
                         self.uurl = uu!
-                        
+                        }
+                       
                         
                         print("aaaaaaaa", self.uurl)
                                     
