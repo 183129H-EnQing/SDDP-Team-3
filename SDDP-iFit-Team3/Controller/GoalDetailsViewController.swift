@@ -22,6 +22,7 @@ class GoalDetailsViewController: UIViewController {
     
     var goal : Goal?
     var processPercent: Double = 0;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,7 +53,8 @@ class GoalDetailsViewController: UIViewController {
             goalTitle.text = unwrappedGoal.goalTitle
             exerciseProgressTitle.text = unwrappedGoal.activityName + " Completed"
             // exercise done / totalAmountExercise = Total Exercise Done
-            exerciseProgressPercent.text = "\(processPercent * 100)%"
+            let processPercentString = String(format: "%.2f", processPercent * 100)
+            exerciseProgressPercent.text = "\(processPercentString)%"
             totalAmountExerciseDone.text = "\(processPercent * Double(unwrappedGoal.totalExerciseAmount))"
             
             exerciseProgressBar.setProgress(Float(processPercent) , animated: false)

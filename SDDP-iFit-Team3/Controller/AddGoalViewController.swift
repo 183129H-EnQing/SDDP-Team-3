@@ -26,6 +26,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var targetAmount = "0" // distance,rep, steps
     var goalTitleValue = ""
     var sentenceStructure = 0 // 0 - activityValue then target amount , 1 - target amount then activityValue
+    var activityType : [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,7 +36,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         datePicker.delegate = self
         activityName.delegate = self
         totalExerciseAmount.delegate = self
-
+        print(activityType)
         // Activity Name Picker
         let pickerView = UIPickerView()
         pickerView.delegate = self
@@ -118,7 +119,7 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             targetAmount = updatedString!
         }
         formingGoalTitle()
-        print("calling1")
+        //print("calling1")
 //       durationValue = duration.text!
 //       print("duration:",durationValue)
 //
@@ -246,6 +247,16 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
              self.present(alert, animated: true, completion: nil)
              return
          }
+        
+        if (activityType.contains(activityName.text!)){
+           
+            let alert = Team3Helper.makeAlert("You have created the same type(\(activityName.text!)) of goal already")
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        print(activityType)
+        print(activityName.text!)
+         print(activityType.contains(activityName.text!))
         let viewControllers = self.navigationController?.viewControllers
         let parent = viewControllers?[1] as! GoalViewController
 

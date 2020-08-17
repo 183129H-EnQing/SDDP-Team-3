@@ -104,6 +104,16 @@ class HealthKitManager{
    
                                     insertOrUpdateHealthKitData(healthKitDataArray:data)
                                   }
+                                  else{
+                                    let formatter = DateFormatter()
+                                             formatter.timeZone  = TimeZone(identifier: "Asia/Singapore") // set locale to reliable US_POSIX - usa , en_SG - sg
+                                             formatter.dateFormat = "dd MMM yyyy"
+                                             let todayDateString = formatter.string(from: Date())
+                                             print(todayDateString)
+                                             formatter.dateFormat = "hh:mm"
+                                             let todayTime = formatter.string(from: Date())
+                                     insertHealthKitData(todayTime: todayTime, todayDateString: todayDateString)
+                                  }
                          group.leave()
                               }
                   }
@@ -129,13 +139,13 @@ class HealthKitManager{
                     formatter.dateFormat = "hh:mm"
                     let todayTime = formatter.string(from: Date())  //
                     
-                    print("todayDate:",todayDateString)
-                    print("yesterday date:",yesterdayDateString)
+                   // print("todayDate:",todayDateString)
+                    //print("yesterday date:",yesterdayDateString)
                     // Check date exists or not in the dateArray, exist don't append else append
                     // Does Not exist insert the data, if exists next step
                     // Check current date and time not over 1159 of the exist date so we can update the data'
                     // Important: For now not checking the time and date for performance
-      
+                    print(healthKitDataArray.count)
                     for healthKitData in healthKitDataArray {
                         // not exists in the date array then we add the date ,to prevent dulicpate date inserting to db
      

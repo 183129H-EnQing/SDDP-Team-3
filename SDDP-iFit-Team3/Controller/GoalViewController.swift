@@ -57,8 +57,17 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         var startToLastOfYearDateRange : ClosedRange<String> = "1" ... "3";
         var firstOfNextYearToEndDateRange: ClosedRange<String> = "1" ... "3";
         var status = 0 // 0 - means startDate and end date within a year, 1 - means startDate and endDate not within the year
-
-        print(startDateString < endDateString)
+        var goalStatus = "OnGoing"
+        let todayDateString = formatter.string(from: Date())
+        let todayDate = formatter.date(from: todayDateString)!
+        let todayToEndDayLeft = calendar.dateComponents([.day], from: todayDate, to: endDate)
+        let todayToEndDayLeftString = String(todayToEndDayLeft.day!)
+        activityType.append(g.activityName)
+        print(todayToEndDayLeftString.contains("-"))
+        print(todayToEndDayLeftString)
+        if (todayToEndDayLeftString.contains("-")){
+            goalStatus = "Finish"
+        }
         if (startDateString > endDateString) {
             startToLastOfYearDateRange = startDateString ... lastOfYearString
             firstOfNextYearToEndDateRange = firstOfNextYearString ... endDateString
@@ -66,7 +75,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         }
         else{
              startEndDateRange = startDateString ... endDateString // An Array range of dates
-             print(startEndDateRange)
+             //print(startEndDateRange)
              status = 0
         }
 
@@ -89,7 +98,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                         // Check whether the date is in between or start or end, if true - do something to the data, false-ignore data
                 if (status == 0){
                     if startEndDateRange.contains(activityData.dateSaved){
-                           print(startEndDateRange.contains(activityData.dateSaved))
+                           //print(startEndDateRange.contains(activityData.dateSaved))
                            totalSteps += activityData.todayStep
                            totalCalories += activityData.todayCaloriesBurnt
                       }
@@ -131,10 +140,12 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             
                // Bounce back to the main thread to update the UI
                DispatchQueue.main.async {
+                   let processPercentString = String(format: "%.2f", processPercent * 100)
                    cell.goalTitle.text = g.goalTitle;
-                   cell.percentageLabel.text = "\(processPercent * 100)%";
+                   print(processPercentString) // fetch data slow maybe need change something
+                   cell.percentageLabel.text = "\(processPercentString)%";
                    cell.duration.text = "Duration: \(g.duration) Days"
-                   
+                   cell.goalStatus.text = "\(goalStatus)"
                    cell.dateRange.text = "Starting Date: \(g.date)"
                    cell.progressView.setProgress(Float(processPercent) , animated: false)
 
@@ -199,10 +210,14 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                 let goal = self.goalList[indexPath!.row]
                 detailViewController.goal = goal
                 detailViewController.processPercent = processPercentArray[indexPath!.row]
-                //print(processPercentArray[indexPath!.row])
-                //print(goal.progressPercent)
-            //    detailViewController.processPercent = goal.progressPercent
+                //detailViewController.activityType = activityType
+         
             }
+        }
+        
+        if (segue.identifier == "AddGoal"){
+            let addGoalViewController = segue.destination as! AddGoalViewController
+            addGoalViewController.activityType = activityType
         }
     }
 

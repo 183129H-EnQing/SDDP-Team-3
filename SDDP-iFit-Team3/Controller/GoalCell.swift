@@ -14,6 +14,7 @@ class GoalCell: UITableViewCell {
     @IBOutlet weak var dateRange: UILabel!
     @IBOutlet weak var duration: UILabel!
     
+    @IBOutlet weak var goalStatus: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var percentageLabel: UILabel!
     override func awakeFromNib() {
