@@ -74,8 +74,10 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
                          
                           let url =  user.avatarURL
                            let uu = url?.absoluteString
-                           self.uurl = uu!
-                           
+                           if url != nil  {
+                            self.uurl = uu!
+                                }
+                                                  
                            
                            print("aaaaaaaa", self.uurl)
                                        
