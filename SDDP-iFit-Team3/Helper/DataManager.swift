@@ -645,13 +645,8 @@ class DataManager {
                   // updateData will update the specified document for the schedule.id passed in, it will only overwrite the
                   // specified fields inside the document.
                   db.collection(tableName).document(post.id!).updateData([
-                      "userName": post.userId,
                       "pcontent": post.pcontent,
-                      "pdatetime": post.pdatetime,
-                      "userLocation": post.userLocation,
-                      "pimageName": post.pimageName,
-                      "opened"    : post.opened,
-                      "commentPost":post.commentPost
+                      "pimageName": post.pimageName
                     
                   ]) { (err) in
                       if let err = err {
