@@ -775,6 +775,14 @@
                                             </stackView>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w5Y-cg-kkK">
+                                        <rect key="frame" x="374" y="520" width="74" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button" image="escape" catalog="system"/>
+                                        <connections>
+                                            <action selector="exitButtonPressed:" destination="Xc2-Dz-fxa" eventType="touchUpInside" id="X69-LK-0pb"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QPR-CA-g6Z" secondAttribute="width" id="0kh-dL-LSd"/>
@@ -797,6 +805,7 @@
                     <navigationItem key="navigationItem" id="1Dx-IV-iwt"/>
                     <connections>
                         <outlet property="exerciseName" destination="aQg-nW-CYA" id="KkU-Kl-6IA"/>
+                        <outlet property="exitButton" destination="w5Y-cg-kkK" id="3Vm-BA-yLq"/>
                         <outlet property="imageView" destination="3uu-pY-l16" id="LG4-kh-5lz"/>
                         <outlet property="playButton" destination="gLp-ZR-qbI" id="63n-ve-8o2"/>
                         <outlet property="resetButton" destination="llC-yG-KhH" id="dWy-Bo-cS5"/>
@@ -888,6 +897,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="escape" catalog="system" width="128" height="121"/>
         <image name="plank" width="722" height="680"/>
         <image name="playIcon" width="267" height="213"/>
         <image name="plus" catalog="system" width="128" height="113"/>

@@ -218,6 +218,8 @@ class GamePlanet: SKScene {
             playerFitness -= planetCost
             playerPlanets += 2  //same logic as top, to compensate -1 on load
 //            print("SCAMMMM ", playerFitness)
+            playerTroops += 10
+            playerScore += 5
             
             if let user = UserAuthentication.getLoggedInUser() {
                 DataManager.GamesClass.updateGame(userId: user.uid, game: Game(armyCount: playerTroops, planets: playerPlanets, userId: user.uid, points: playerFitness, score: playerScore)) { (success) in

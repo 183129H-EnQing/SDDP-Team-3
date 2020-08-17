@@ -347,10 +347,14 @@ class DataManager {
                 }
                 else if let document = document
                 {
-                    let armyCount = document.get("armyCount") as! Int
-                    let planets = document.get("planets") as! Int
-                    let points = document.get("points") as! Int
-                    let score = document.get("score") as! Int
+//                    let armyCount = document.get("armyCount") as! Int
+//                    let planets = document.get("planets") as! Int
+//                    let points = document.get("points") as! Int
+//                    let score = document.get("score") as! Int
+                    let armyCount = 10
+                                       let planets = 5
+                                       let points = 10
+                                       let score = 10
                     
                     gameItem = Game(armyCount: armyCount, planets: planets, userId: userId, points: points, score: score)
                 }

@@ -10,11 +10,12 @@ import SpriteKit
 import UIKit
 
 class GameTable: UITableView, UITableViewDelegate, UITableViewDataSource {
-    var items: [String] = ["Player1", "Player2", "Player3"]
+//    var items: [String] = ["Player1", "Player2", "Player3"]
+    var items: [String] = ["100 - hulk", "95 - guanhong01", "88 - ironman", "68 - dinesh1998", "42 - a"]
+    
     
     //retrieve all players score
     //DataManager.GamesClass.loadAllGame { (data) in
-        
         
     //}
     //sort their score
@@ -39,9 +40,9 @@ class GameTable: UITableView, UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = self.items[indexPath.row]
         return cell
     }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Section \(section)"
-    }
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        return "Section \(section)"
+//    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You selected cell #\(indexPath.row)!")
     }
@@ -56,8 +57,12 @@ class GameLeaderboard: SKScene {
     
     var gameTableView = GameTable()
     private var label : SKLabelNode?
+//    var allData = []
     
     override func didMove(to view: SKView) {
+//        DataManager.GamesClass.loadAllGame { (data) in
+//            allData = data
+//        }
         
         self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
         if let label = self.label {
@@ -66,7 +71,7 @@ class GameLeaderboard: SKScene {
         }
         // Table setup
         gameTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        gameTableView.frame = CGRect(x: 20, y: 180, width: 380, height:200)
+        gameTableView.frame = CGRect(x: 20, y: 180, width: 380, height:400)
         self.scene?.view?.addSubview(gameTableView)
         gameTableView.reloadData()
         
@@ -92,6 +97,14 @@ class GameLeaderboard: SKScene {
         lbText.zPosition = 1
         self.addChild(lbText)
         //
+        
+        let pText = SKLabelNode(fontNamed: "The Bold Font")
+        pText.text = "Your score: \(playerScore)" 
+        pText.fontSize = 40
+        pText.fontColor = SKColor.white
+        pText.position = CGPoint(x: self.size.width/2, y: self.size.height * 0.25)
+        pText.zPosition = 1
+        self.addChild(pText)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -109,6 +122,7 @@ class GameLeaderboard: SKScene {
                     sceneChange.playerPlanets = playerPlanets
                     sceneChange.playerTroops = playerTroops
                     sceneChange.playerScore = playerScore
+                    gameTableView.removeFromSuperview()
                     self.view!.presentScene(sceneChange, transition: transition)
                 }
             }
