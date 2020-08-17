@@ -72,6 +72,7 @@ class HealthKitManager{
     static let user = UserAuthentication.getLoggedInUser()
     // completion should be healthkit data class
     static func getHealthKitData(completion: (() -> Void)?){
+        
         group.enter()
         queue.async {
             getTodaysSteps(){
@@ -98,8 +99,10 @@ class HealthKitManager{
         queue.async {
             getTodayRunningDistance(){
                 (distances) in
-                todayRunningDistance = distances
-                print(todayRunningDistance)
+                let distanceStringtwoDp = String(format: "%.2f", distances / 1000)
+               
+                todayRunningDistance = Double(distanceStringtwoDp)!
+                //print(todayRunningDistance)
                 group.leave()
             }
         }
@@ -110,7 +113,7 @@ class HealthKitManager{
             if let user = UserAuthentication.getLoggedInUser() {
                     
                 DataManager.HealthKitActivities.loadHealthKitActivity(userId: user.uid ) { (data) in
-                    print("loading data")
+                    //print("loading data")
                                   if data.count > 0 {
    
                                     insertOrUpdateHealthKitData(healthKitDataArray:data)
@@ -125,7 +128,7 @@ class HealthKitManager{
                                              let todayTime = formatter.string(from: Date())
                                      insertHealthKitData(todayTime: todayTime, todayDateString: todayDateString)
                                   }
-                         group.leave()
+                    
                               }
                   }
        
@@ -133,6 +136,7 @@ class HealthKitManager{
         
         group.notify(queue: queue) {
             print("All tasks done")
+            
         }
 
         
@@ -156,7 +160,6 @@ class HealthKitManager{
                     // Does Not exist insert the data, if exists next step
                     // Check current date and time not over 1159 of the exist date so we can update the data'
                     // Important: For now not checking the time and date for performance
-                    print(healthKitDataArray.count)
                     for healthKitData in healthKitDataArray {
                         // not exists in the date array then we add the date ,to prevent dulicpate date inserting to db
      
@@ -165,7 +168,7 @@ class HealthKitManager{
                         if !dateArray.contains(healthKitDate) {
                                 dateArray.append(healthKitDate)
                             }
-                        print(healthKitDate,todayDateString)
+                        //print(healthKitDate,todayDateString)
                         if todayDateString == healthKitDate{
                            let healthKitActivityId = healthKitData.healthKitActivityId!
                             updateHealthKitData(yesterdayDateString: yesterdayDateString, hasUpdatedForYtd: false, healthKitActivityId: healthKitActivityId,time: todayTime)
@@ -195,6 +198,7 @@ class HealthKitManager{
           
                                  DataManager.HealthKitActivities.insertHealthKitActivity(userId: user!.uid, newHealthKitActivity){ (isSuccess) in
                                    print("insert")
+                                         group.leave()
                                         }
     }
     static func updateHealthKitData(yesterdayDateString : String, hasUpdatedForYtd: Bool, healthKitActivityId: String,time: String){
@@ -202,6 +206,7 @@ class HealthKitManager{
 
              DataManager.HealthKitActivities.updateHealthKitData(healthKitActivityId: healthKitActivityId,healthKitActivityData:newHealthKitActivity){ (isSuccess) in
               print("update")
+                     group.leave()
             }
     }
       //https://stackoverflow.com/questions/36559581/healthkit-swift-getting-todays-steps/44111542
