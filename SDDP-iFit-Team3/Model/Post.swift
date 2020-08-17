@@ -13,13 +13,16 @@ class Comment:Codable{
     var userId: String
     var comment: String
     var pdatetime:String
+    var profile: String
   
 
-init(userId: String, comment:String, pdatetime:String)
+    init(userId: String, comment:String, pdatetime:String , profile:String)
  {
     self.userId = userId
     self.comment = comment
     self.pdatetime = pdatetime
+    self.profile = profile
+    
     
     }
 

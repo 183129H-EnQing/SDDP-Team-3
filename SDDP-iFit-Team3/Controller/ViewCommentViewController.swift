@@ -20,6 +20,7 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidLoad()
         
           self.navigationItem.title = "Comments"
+        
         // Do any additional setup after loading the view.
     }
     
@@ -28,7 +29,9 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
         
         
        
-           loadComments()
+           //loadComments()
+        
+        comments = postItem!.commentPost
         
     }
     
@@ -53,20 +56,23 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
               cell.vusername?.text = p.userId
               cell.vcomment?.text = "\(p.comment) "
               cell.vdate.text = "\(p.pdatetime)"
-          
-
-              return cell
+              cell.pimg.layer.cornerRadius = cell.pimg.frame.size.width / 2
+              cell.pimg.clipsToBounds = true
+              cell.pimg.sd_setImage(with: URL(string: p.profile))
+    
+                                   return cell
       
       }
     
      func loadComments() {
            self.comments = []
            self.tableView.isHidden = true
+        
            
            if let user = UserAuthentication.getLoggedInUser() {
                print("User is logged in")
             
-            let post = postItem?.id
+            let post = postItem?.userId
            
             DataManager.Posts.loadAllComments(userId: post!) { (data) in
                        if data.count > 0 {

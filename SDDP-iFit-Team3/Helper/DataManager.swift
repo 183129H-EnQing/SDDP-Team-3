@@ -112,11 +112,11 @@ class DataManager {
                                 schedules[day] = []
                             }
                             
-                            let exerciseId: Int = data["exerciseId"] as! Int
+                            let exerciseName: String = data["exerciseName"] as! String
                             let duration: [Int] = data["duration"] as! [Int]
                             let time: [Int] = data["time"] as! [Int]
                             
-                            let schedule = Schedule(exerciseId: exerciseId, duration: duration, day: day, time: time)
+                            let schedule = Schedule(exerciseName: exerciseName, duration: duration, day: day, time: time)
                             schedule.id = document.documentID
                             schedules[day]!.append(schedule)
                             
@@ -143,11 +143,11 @@ class DataManager {
                     print("error retrieving a schedule: \(err)")
                 } else if let document = document {
                     let day: Int = document.get("day") as! Int
-                    let exerciseId: Int = document.get("exerciseId") as! Int
+                    let exerciseName: String = document.get("exerciseName") as! String
                     let duration: [Int] = document.get("duration") as! [Int]
                     let time: [Int] = document.get("time") as! [Int]
                     
-                    schedule = Schedule(exerciseId: exerciseId, duration: duration, day: day, time: time)
+                    schedule = Schedule(exerciseName: exerciseName, duration: duration, day: day, time: time)
                     schedule!.id = document.documentID
                 }
                 
@@ -160,7 +160,7 @@ class DataManager {
             var ref: DocumentReference?
             ref = db.collection(tableName).addDocument(data: [
                 "creatorId": userId,
-                "exerciseId": schedule.exerciseId,
+                "exerciseName": schedule.exerciseName,
                 "duration": schedule.duration,
                 "day": schedule.day,
                 "time": schedule.time
@@ -177,7 +177,7 @@ class DataManager {
             // updateData will update the specified document for the schedule.id passed in, it will only overwrite the
             // specified fields inside the document.
             db.collection(tableName).document(schedule.id!).updateData([
-                "exerciseId": schedule.exerciseId,
+                "exerciseName": schedule.exerciseName,
                 "duration": schedule.duration,
                 "day": schedule.day,
                 "time": schedule.time
@@ -645,13 +645,8 @@ class DataManager {
                   // updateData will update the specified document for the schedule.id passed in, it will only overwrite the
                   // specified fields inside the document.
                   db.collection(tableName).document(post.id!).updateData([
-                      "userName": post.userId,
                       "pcontent": post.pcontent,
-                      "pdatetime": post.pdatetime,
-                      "userLocation": post.userLocation,
-                      "pimageName": post.pimageName,
-                      "opened"    : post.opened,
-                      "commentPost":post.commentPost
+                      "pimageName": post.pimageName
                     
                   ]) { (err) in
                       if let err = err {
@@ -742,8 +737,9 @@ class DataManager {
                                                                  let commentText = commentObj["comment"]!
                                                                  let pDateTime = commentObj["pdatetime"]!
                                                                  let commentOwnerId = commentObj["userId"]!
-                                                                 
-                                                                 commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime))
+                                                                 let profilepic = commentObj["profile"]!
+                                                                
+                                                                 commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime, profile: profilepic))
                                                                  print("comment: \(commentObj)")
                                                              }
 
@@ -800,8 +796,9 @@ class DataManager {
                             let commentText = commentObj["comment"]!
                             let pDateTime = commentObj["pdatetime"]!
                             let commentOwnerId = commentObj["userId"]!
+                            let profilepic = commentObj["profile"]!
                             
-                            commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime))
+                            commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime , profile: profilepic ))
                             print("comment: \(commentObj)")
                         }
 
@@ -841,8 +838,8 @@ class DataManager {
                                                       let commentText = commentObj["comment"]!
                                                       let pDateTime = commentObj["pdatetime"]!
                                                       let commentOwnerId = commentObj["userId"]!
-                                                      
-                                                      commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime))
+                                                        let profilepic = commentObj["profile"]!
+                                                      commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime,profile: profilepic ))
                                                       print("comment: \(commentObj)")
                                                   }
                                    

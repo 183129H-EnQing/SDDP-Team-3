@@ -64,6 +64,8 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.navigationItem.title = "Create Your Post"
+        
         DispatchQueue.global(qos: .userInitiated).async {
             if let user = UserAuthentication.user, let url = user.avatarURL {
               
@@ -136,8 +138,10 @@ class AddPostViewController: UIViewController,UIImagePickerControllerDelegate, U
                       
                        let url =  user.avatarURL
                         let uu = url?.absoluteString
+                        if url != nil  {
                         self.uurl = uu!
-                        
+                        }
+                       
                         
                         print("aaaaaaaa", self.uurl)
                                     

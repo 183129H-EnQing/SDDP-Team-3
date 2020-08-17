@@ -187,13 +187,6 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         }
         
         
-       
-        
-    
-        
-       
-        
-        
         if(segue.identifier == "ShowPostComments")
          {
             let detailViewController = segue.destination as! CommentPostViewController
@@ -205,17 +198,17 @@ class PostViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 
                  }
         
-//         if(segue.identifier == "ViewComments")
-//                {
-//                   let detailViewController = segue.destination as! ViewCommentViewController
-//
-//                   let posts = postList[(sender as! UIButton).tag]
-//                           detailViewController.comments = posts
-//
-//
-//
-//                        }
-//
+         if(segue.identifier == "ViewComments")
+                {
+                   let detailViewController = segue.destination as! ViewCommentViewController
+
+                   let posts = postList[(sender as! UIButton).tag]
+                    detailViewController.postItem = posts
+
+
+
+                        }
+
     }
     
     

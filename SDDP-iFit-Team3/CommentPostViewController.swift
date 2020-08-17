@@ -32,10 +32,14 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
     
     var cmtItem : Comment?
     
+     var uurl : String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         textbox.placeholder = "comment here"     // Do any additional setup after loading the view.
+         textbox.placeholder = "comment here"
+         getProfilePic()
+        // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +63,31 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
         
     }
     
+     func getProfilePic(){
+           if let user = UserAuthentication.getLoggedInUser() {
+              
+           
+               DataManager.getUserData(userId: user.uid) { (UserAunthentication) in
+                       if let user = UserAuthentication.user{
+                           
+                          // let urrrl : String = ""
+                         
+                          let url =  user.avatarURL
+                           let uu = url?.absoluteString
+                           if url != nil  {
+                            self.uurl = uu!
+                                }
+                                                  
+                           
+                           print("aaaaaaaa", self.uurl)
+                                       
+                          
+                           }
+                       }
+                   }
+          
+           
+       }
     
     
     @IBAction func savebtnpressed(_ sender: Any) {
@@ -76,9 +105,9 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
                    let viewControllers = self.navigationController?.viewControllers
                 
                    let parent = viewControllers?[1] as! PostViewController
+            let purl = self.uurl
             
-            
-            postItem?.commentPost.append(Comment(userId: user.username!, comment: com, pdatetime: datetime ))
+            postItem?.commentPost.append(Comment(userId: user.username!, comment: com, pdatetime: datetime , profile: purl  ))
                
             DataManager.Posts.insertComment(userId:user.userId, postId: postItem!.id!, postItem!.commentPost) { (isSuccess) in
                self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)

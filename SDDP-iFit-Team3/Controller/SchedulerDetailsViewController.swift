@@ -21,13 +21,13 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     
     var exercisePicker: UIPickerView = UIPickerView()
     var dayPicker: UIPickerView = UIPickerView()
+    var exercises: [Exercise] = []
     var selectedExercise = -1
     var selectedDay = -1
     
     var schedule: Schedule?
     var userSchedules: [Int: [Schedule]] = [:]
     
-    static var exercises: [String] = ["Push Up", "Jumping Jacks", "Skipping Rope", "Sit Up"]
     static var days: [String] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"] // because date component's weekDay starts from sunday, monday... and end with saturday
     
     override func viewDidLoad() {
@@ -54,15 +54,25 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         var title = "Add Schedule"
         if let unwrapSchedule = self.schedule {
             title = "Edit Schedule"
+
+            // After loading exercises, then fill up exercises picker and text field
+            self.loadExercises {
+                for exerciseIndex in 0..<self.exercises.count {
+                    if self.exercises[exerciseIndex].exName == unwrapSchedule.exerciseName {
+                        self.exercisePicker.selectRow(exerciseIndex, inComponent: 0, animated: true)
+                        self.exerciseTextField.text = self.exercises[exerciseIndex].exName
+                        self.selectedExercise = exerciseIndex
+                        break
+                    }
+                }
+            }
             
-            self.exercisePicker.selectRow(unwrapSchedule.exerciseId, inComponent: 0, animated: true)
             self.dayPicker.selectRow(unwrapSchedule.day, inComponent: 0, animated: true)
-            self.exerciseTextField.text = SchedulerDetailsViewController.exercises[unwrapSchedule.exerciseId]
             self.dayTextField.text = SchedulerDetailsViewController.days[unwrapSchedule.day]
-            self.selectedExercise = unwrapSchedule.exerciseId
             self.selectedDay = unwrapSchedule.day
             
             self.hrsTextField.text = "\(unwrapSchedule.duration[0])"
@@ -74,21 +84,24 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             components.hour = unwrapSchedule.time[0]
             components.minute = unwrapSchedule.time[1]
             self.timePicker.setDate(calender.date(from: components)!, animated: true)
+        } else {
+            self.loadExercises(nil)
         }
         
         self.navigationItem.title = title
     }
     
+    // --- Start Picker methods ---
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerView == self.exercisePicker ? SchedulerDetailsViewController.exercises.count : SchedulerDetailsViewController.days.count
+        return pickerView == self.exercisePicker ? self.exercises.count : SchedulerDetailsViewController.days.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerView == self.exercisePicker ? SchedulerDetailsViewController.exercises[row] : SchedulerDetailsViewController.days[row]
+        return pickerView == self.exercisePicker ? self.exercises[row].exName : SchedulerDetailsViewController.days[row]
     }
     
     // prevent any typing for exercise and day text fields
@@ -107,6 +120,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             self.currentTextFieldPicker = "day"
         }
     }
+    // --- End Picker methods ---
 
     @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
         if let user = UserAuthentication.getLoggedInUser() {
@@ -174,54 +188,14 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             
             let day = dayPicker.selectedRow(inComponent: 0)
             let timeComp = timePicker.calendar.dateComponents([.hour, .minute], from: timePicker.date)
-            
-            // do time validation
-            /*if let daySchedules = self.userSchedules[day] {
-                var isTimeTaken = false
-                for someSch in daySchedules {
-                    let schTime = someSch.time
-                    var schEndHr = schTime[0] + someSch.duration[0]
-                    var schEndMin = schTime[1] + someSch.duration[1]
-                    
-                    if schEndMin > 60 {
-                        print("schEndMin: \(schEndMin)")
-                        
-                        let excessHr = Int(schEndMin/60)
-                        print("excessHr: \(excessHr)")
-                        
-                        schEndHr += excessHr
-                        schEndMin = schEndMin - (excessHr * 60)
-                        print("schEndMin: \(schEndMin)")
-                    }
-                    
-                    /* check if other schedules' time + duration (end time
-                     */
-                    if (schEndHr == timeComp.hour && sch) || () {
-                        return
-                    }
-                    
-                    // make sure time is not the same
-                    if schTime[0] == timeComp.hour && schTime[1] == timeComp.minute {
-                        isTimeTaken = true
-                        break
-                    }
-                }
-                
-                if isTimeTaken {
-                    let alert = Team3Helper.makeAlert("This time is taken by another schedule!")
-                    self.present(alert, animated: true, completion: nil)
-                    return
-                }
-            }*/
-            
-            let exercise = exercisePicker.selectedRow(inComponent: 0)
+            let exercise = self.exercises[exercisePicker.selectedRow(inComponent: 0)].exName
             let duration = [hrs, mins]
             
             let viewControllers = self.navigationController?.viewControllers
             let parent = viewControllers?[0] as! SchedulerViewController
             
             // Schedule
-            let newSchedule = Schedule(exerciseId: exercise, duration: duration, day: day, time: [timeComp.hour!, timeComp.minute!])
+            let newSchedule = Schedule(exerciseName: exercise, duration: duration, day: day, time: [timeComp.hour!, timeComp.minute!])
             // If not nil, is editing. Else if it is nil, is adding
             if self.schedule != nil {
                 // Update
@@ -243,8 +217,10 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         }
     }
     
+    // --- Custom Methods ---
+    
     // timeComp contains the schedule's time
-    func makeNotification(exercise: Int, timeComp: DateComponents, day: Int, duration: [Int], scheduleId: String, userId: String) {
+    func makeNotification(exercise: String, timeComp: DateComponents, day: Int, duration: [Int], scheduleId: String, userId: String) {
         // true date
         let actualDateComp = Calendar.current.dateComponents([.weekday, .hour, .minute], from: Date())
         
@@ -260,7 +236,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
                 
                 // Notification
                 let timeMsg = (duration[0] > 0 ? "\(duration[0]) hrs" : "") + (duration[0] > 0 && duration[1] > 0 ? " " : "") + (duration[1] > 0 ? "\(duration[1]) mins" : "")
-                let content = Team3Helper.createNotificationContent(title: "Scheduler", message: "\(SchedulerDetailsViewController.exercises[exercise]) - \(timeMsg)")
+                let content = Team3Helper.createNotificationContent(title: "Scheduler", message: "\(exercise) - \(timeMsg)")
                 
                 var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date())
                 dateComponents.hour = timeComp.hour
@@ -278,7 +254,7 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
     @objc func pickerDoneClick() {
         if self.currentTextFieldPicker == "exercise" {
             self.selectedExercise = exercisePicker.selectedRow(inComponent: 0)
-            self.exerciseTextField.text = SchedulerDetailsViewController.exercises[self.selectedExercise]
+            self.exerciseTextField.text = self.exercises[self.selectedExercise].exName
             self.exerciseTextField.resignFirstResponder()
         } else if self.currentTextFieldPicker == "day" {
             self.selectedDay = dayPicker.selectedRow(inComponent: 0)
@@ -327,6 +303,17 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         textField.inputAccessoryView = toolBar
+    }
+    
+    func loadExercises(_ onComplete: (()-> Void)?) {
+        self.exercises = []
+        DataManager.ExerciseClass.loadExercises { (exercises) in
+            self.exercises = exercises
+            DispatchQueue.main.async {
+                self.exercisePicker.reloadAllComponents()
+                onComplete?()
+            }
+        }
     }
     
     /*

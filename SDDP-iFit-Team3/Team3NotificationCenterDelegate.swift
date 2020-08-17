@@ -69,7 +69,7 @@ class Team3NotificationCenterDelegate: NSObject, UNUserNotificationCenterDelegat
         let duration = schedule.duration
             
         let timeMsg = (duration[0] > 0 ? "\(duration[0]) hrs" : "") + (duration[0] > 0 && duration[1] > 0 ? " " : "") + (duration[1] > 0 ? "\(duration[1]) mins" : "")
-        let content = Team3Helper.createNotificationContent(title: "Scheduler", message: "\(SchedulerDetailsViewController.exercises[schedule.exerciseId]) - \(timeMsg)")
+        let content = Team3Helper.createNotificationContent(title: "Scheduler", message: "\(schedule.exerciseName) - \(timeMsg)")
         
         var dateComponents = Calendar.current.dateComponents([.hour, .minute], from: Date())
         dateComponents.hour = schedule.time[0]

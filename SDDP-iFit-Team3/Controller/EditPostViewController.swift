@@ -33,6 +33,11 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
     var postItem : Post?
     var locationManager:CLLocationManager!
     var userName : String = ""
+    
+      var comments : [Comment] = []
+    var list_comment = [Any]()
+    var posting : [ Post] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,9 +57,7 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
         // Do any additional setup after loading the view.
          if let postss = postItem  {
                textcontent.text = postss.pcontent
-               
-               
-               
+            
            }
         
         getUserName()
@@ -71,7 +74,11 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
     textcontent.text = postItem?.pcontent
     postimage.sd_setImage(with: URL(string : postItem!.pimageName))
         
-    
+        //comments = postItem!.commentPost
+        
+        print(comments)
+        
+        
         
     self.navigationItem.title = "Edit Post"
         
@@ -206,7 +213,16 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
                     //print(metaImageUrl)
                     let photo = metaImageUrl
                     let name = self.userName
-                    let  posts = Post(userId: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: photo ,opened:false , profileImg: "", commentPost: [ ] )
+                    
+                    
+                    
+                    self.comments = self.postItem!.commentPost
+                    
+                    print("KGF",self.comments)
+                
+                    
+                    
+                    let  posts = Post(userId: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: photo ,opened:false , profileImg: "", commentPost: self.comments  )
         
                     if self.postItem != nil {
                        // Update

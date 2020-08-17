@@ -179,21 +179,6 @@ class TrainingPlanTimerViewController: UIViewController {
 //        playButton.backgroundColor = .green
     }
     
-    
-    @IBAction func skipButtonPressed(_ sender: Any) {
-//        skipsNo += 1
-        if currentRepsExercise < maxOneRep {
-            currentRepsExercise += 1
-            exerciseName.text = trainingPlan?.tpExercises[currentRepsExercise]
-            matchExerciseImage()
-        }
-        else if currentRepsExercise == maxOneRep {
-            currentRepsExercise = 0
-            exerciseName.text = trainingPlan?.tpExercises[currentRepsExercise]
-            matchExerciseImage()
-        }
-        
-    }
     /*
     // MARK: - Navigation
 
