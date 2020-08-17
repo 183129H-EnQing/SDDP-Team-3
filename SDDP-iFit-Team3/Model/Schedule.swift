@@ -10,13 +10,13 @@ import Foundation
 
 class Schedule {
     var id: String?; // come from Firebase's auto generate id for documents
-    var exerciseId: Int;
+    var exerciseName: String;
     var duration: [Int]; // hour, minute
     var day: Int; // Commment: 0 to 6, Monday to Sunday
     var time: [Int]; // hour:minute, will be in 24hr-style
     
-    init(exerciseId: Int, duration: [Int], day: Int, time: [Int]) {
-        self.exerciseId = exerciseId;
+    init(exerciseName: String, duration: [Int], day: Int, time: [Int]) {
+        self.exerciseName = exerciseName;
         self.duration = duration;
         self.day = day;
         self.time = time;

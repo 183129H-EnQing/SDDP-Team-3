@@ -58,7 +58,7 @@ class SchedulerViewController: UIViewController, UITableViewDelegate, UITableVie
         let schedule = self.schedules[day]![indexPath.row]
         
         // Set exercise as title label,sStyle the duration string
-        let exerciseName = SchedulerDetailsViewController.exercises[schedule.exerciseId]
+        let exerciseName = schedule.exerciseName
         
         // Set duration
         let durationHr = schedule.duration[0]
