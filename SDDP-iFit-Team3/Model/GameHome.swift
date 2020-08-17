@@ -88,21 +88,21 @@ class GameHome: SKScene {
         battleText.zPosition = 3
         self.addChild(battleText)
         
-        let researchButton = SKSpriteNode(imageNamed: "bluebutton")
-        researchButton.name = "researchButton"
-        researchButton.size = CGSize(width: 400, height: 150)
-        researchButton.position = CGPoint(x: self.size.width * 0.63, y: self.size.height * 0.27)
-        researchButton.zPosition = 2
-        researchButton.setScale(0.9)
-        self.addChild(researchButton)
-        
-        let researchText = SKLabelNode(fontNamed: "The Bold Font")
-        researchText.text = "RESEARCH"
-        researchText.fontSize = 55
-        researchText.fontColor = SKColor.white
-        researchText.position = CGPoint(x: self.size.width * 0.63, y: self.size.height * 0.255)
-        researchText.zPosition = 3
-        self.addChild(researchText)
+//        let researchButton = SKSpriteNode(imageNamed: "bluebutton")
+//        researchButton.name = "researchButton"
+//        researchButton.size = CGSize(width: 400, height: 150)
+//        researchButton.position = CGPoint(x: self.size.width * 0.63, y: self.size.height * 0.27)
+//        researchButton.zPosition = 2
+//        researchButton.setScale(0.9)
+//        self.addChild(researchButton)
+//        
+//        let researchText = SKLabelNode(fontNamed: "The Bold Font")
+//        researchText.text = "RESEARCH"
+//        researchText.fontSize = 55
+//        researchText.fontColor = SKColor.white
+//        researchText.position = CGPoint(x: self.size.width * 0.63, y: self.size.height * 0.255)
+//        researchText.zPosition = 3
+//        self.addChild(researchText)
         
         let discoverButton = SKSpriteNode(imageNamed: "yellowbutton")
         discoverButton.name = "discoverButton"

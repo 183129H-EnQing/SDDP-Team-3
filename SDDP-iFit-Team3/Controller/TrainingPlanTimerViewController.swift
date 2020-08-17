@@ -19,6 +19,7 @@ class TrainingPlanTimerViewController: UIViewController {
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var skipButton: UIButton!
     
+    @IBOutlet weak var exitButton: UIButton!
     //    override var preferredStatusBarStyle: UIStatusBarStyle { return .lightContent}
     
     var isTimerOn = false
@@ -177,6 +178,21 @@ class TrainingPlanTimerViewController: UIViewController {
         //for pause and play
 //        playButton.setImage(UIImage(named: "playIcon"), for: .normal)
 //        playButton.backgroundColor = .green
+    }
+    @IBAction func exitButtonPressed(_ sender: Any) {
+        let exitAlert = UIAlertController(title: "Confirm Exit?", message: "Your reps might not be complete", preferredStyle: UIAlertController.Style.alert)
+        
+        exitAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+            print("Ok")
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        exitAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Cancel")
+        }))
+        
+        present(exitAlert, animated: true, completion: nil)
+    
     }
     
     /*

@@ -89,7 +89,18 @@ class GoalDetailsViewController: UIViewController {
         DataManager.Goals.updateGoalStatus(status: status, goalId: goalId){ (isSuccess) in
                 self.afterDbOperation(parent: parent, isSuccess: isSuccess, isUpdating: false)
             }
-
+            if let user = UserAuthentication.getLoggedInUser() {
+                
+                 var playerGameData: Game = Game(armyCount: 0, planets: 0, userId: "", points: 0, score: 0)
+                DataManager.GamesClass.loadGame(userId: user.uid) { (data) in
+                    
+                    playerGameData = data!
+                    
+                    DataManager.GamesClass.updateGame(userId: user.uid, game: Game(armyCount: playerGameData.armyCount, planets: playerGameData.planets, userId: user.uid, points: playerGameData.points + 10, score: playerGameData.score)) { (success) in
+                        print("updated db")
+                    }
+                }
+            }
        
 
     }
