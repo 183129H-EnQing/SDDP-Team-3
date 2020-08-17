@@ -254,9 +254,9 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             self.present(alert, animated: true, completion: nil)
             return
         }
-        print(activityType)
-        print(activityName.text!)
-         print(activityType.contains(activityName.text!))
+//        print(activityType)
+//        print(activityName.text!)
+//         print(activityType.contains(activityName.text!))
         let viewControllers = self.navigationController?.viewControllers
         let parent = viewControllers?[1] as! GoalViewController
 

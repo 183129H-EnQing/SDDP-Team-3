@@ -91,7 +91,10 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         var processPercent : Double = 0
         var totalSteps : Double = 0
         var totalCalories : Double = 0
-          
+        var totalRunningWalkingDistance : Double = 0
+        var totalSquat : Int = 0
+        var processPercentString = ""
+        var processPercentTwoDpDouble : Double = 0
         // Move to a background thread to do some long running work
         DispatchQueue.global(qos: .utility).async {
                for activityData in self.healthKitActivityList{
@@ -101,40 +104,59 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                            //print(startEndDateRange.contains(activityData.dateSaved))
                            totalSteps += activityData.todayStep
                            totalCalories += activityData.todayCaloriesBurnt
+                           totalRunningWalkingDistance += activityData.todayRunningWalkingDistance
+                           totalSquat += activityData.todaySquat
                       }
                 }
                 else{
                     if (startToLastOfYearDateRange.contains(activityData.dateSaved)){
                         totalSteps += activityData.todayStep
                         totalCalories += activityData.todayCaloriesBurnt
+                        totalRunningWalkingDistance += activityData.todayRunningWalkingDistance
+                        totalSquat += activityData.todaySquat
                     }
                     if (firstOfNextYearToEndDateRange.contains(activityData.dateSaved)){
                         totalSteps += activityData.todayStep
                         totalCalories += activityData.todayCaloriesBurnt
+                        totalRunningWalkingDistance += activityData.todayRunningWalkingDistance
+                        totalSquat += activityData.todaySquat
                     }
                    
                 }
                       
                     }
             
+                // for now one by one, in the future can create a function to do it
                 if (g.activityName == "Steps"){
                     //print(totalSteps)
                     //print(g.totalExerciseAmount)
                     processPercent = totalSteps / Double(g.totalExerciseAmount)
+                    processPercentString = String(format: "%.2f", processPercent * 100)
+                    processPercentTwoDpDouble = Double(processPercentString)!
+                    print(processPercentTwoDpDouble)
                     //print(totalSteps / Double(g.totalExerciseAmount))
                     //print("hello")
-                    self.updateGoalProcessPercent(goalId: goalId,processPercent: processPercent)
-                    self.processPercentArray.append(processPercent)
+                    self.updateGoalProcessPercent(goalId: goalId,processPercent: processPercentTwoDpDouble)
+                    self.processPercentArray.append(processPercentTwoDpDouble)
                 }
                 if (g.activityName == "Running"){
-                    processPercent = totalCalories / Double(g.totalExerciseAmount)
-                    self.updateGoalProcessPercent(goalId:goalId,processPercent: processPercent)
-                    self.processPercentArray.append(processPercent)
+                    let distanceToKm = Double(totalRunningWalkingDistance) / 1000
+                    processPercent = distanceToKm / Double(g.totalExerciseAmount)
+                    processPercentString = String(format: "%.2f", processPercent * 100)
+                    processPercentTwoDpDouble = Double(processPercentString)!
+                    print(processPercentTwoDpDouble)
+                    self.updateGoalProcessPercent(goalId:goalId,processPercent: processPercentTwoDpDouble)
+                    self.processPercentArray.append(processPercentTwoDpDouble)
                 }
-//                if (g.activityName == ""){
-//                    processPercent =
-//                    self.updateGoalProcessPercent(goalId: goalId,)
-//                }
+            
+                if (g.activityName == "Squat"){
+                    processPercent = Double(totalSquat) / Double(g.totalExerciseAmount)
+                    processPercentString = String(format: "%.2f", processPercent * 100)
+                    processPercentTwoDpDouble = Double(processPercentString)!
+                    print(processPercentTwoDpDouble)
+                    self.updateGoalProcessPercent(goalId: goalId,processPercent: processPercentTwoDpDouble)
+                    self.processPercentArray.append(processPercentTwoDpDouble)
+                }
 //               update progress
             
             
@@ -209,6 +231,8 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
 
                 let goal = self.goalList[indexPath!.row]
                 detailViewController.goal = goal
+                print(processPercentArray.count)
+                print(processPercentArray)
                 detailViewController.processPercent = processPercentArray[indexPath!.row]
                 //detailViewController.activityType = activityType
          

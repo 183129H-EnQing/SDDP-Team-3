@@ -536,6 +536,8 @@ class DataManager {
                             "userId": userId,
                             "todayStep": healthKitActivity.todayStep,
                             "todayCaloriesBurnt": healthKitActivity.todayCaloriesBurnt,
+                            "todaySquat" : healthKitActivity.todaySquat,
+                            "todayRunningWalkingDistance" : healthKitActivity.todayRunningWalkingDistance,
                             "dateSaved": healthKitActivity.dateSaved,
                             "timeSaved": healthKitActivity.timeSaved,
                             "hasUpdatedForYtd" : healthKitActivity.hasUpdatedForYtd
@@ -575,11 +577,13 @@ class DataManager {
           
                                     let todayStep : Double = data["todayStep"] as! Double
                                     let todayCaloriesBurnt : Double = data["todayCaloriesBurnt"] as! Double
+                                    let todaySquat : Int = data["todaySquat"] as! Int
+                                    let todayRunningWalkingDistance: Double = data["todayRunningDistance"] as! Double
                                     let dateSaved : String = data["dateSaved"] as! String
                                     let timeSaved : String = data["timeSaved"] as! String
                                     let hasUpdatedForYtd : Bool = data["hasUpdatedForYtd"] as! Bool
-                                    
-                                    let healthKitActivity = HealthKitActivity(todayStep: todayStep, todayCaloriesBurnt: todayCaloriesBurnt, timeSaved: timeSaved, dateSaved: dateSaved,hasUpdatedForYtd: hasUpdatedForYtd)
+                
+                                    let healthKitActivity = HealthKitActivity(todayStep: todayStep, todayCaloriesBurnt: todayCaloriesBurnt, todaySquat:todaySquat,todayRunningWalkingDistance:todayRunningWalkingDistance,timeSaved: timeSaved, dateSaved: dateSaved,hasUpdatedForYtd: hasUpdatedForYtd)
                                     
                                     healthKitActivity.healthKitActivityId = document.documentID
                               
@@ -600,6 +604,7 @@ class DataManager {
             db.collection(tableName).document(healthKitActivityId).updateData([
                                     "todayStep": healthKitActivityData.todayStep,
                                     "todayCaloriesBurnt": healthKitActivityData.todayCaloriesBurnt,
+                                    "todayRunningDistance" :healthKitActivityData.todayRunningWalkingDistance,
                                     "timeSaved": healthKitActivityData.timeSaved,
                                     "hasUpdatedForYtd": healthKitActivityData.hasUpdatedForYtd
                              ]) { (err) in

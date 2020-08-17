@@ -66,6 +66,7 @@ class HealthKitManager{
     static let group = DispatchGroup()
     static var todaySteps:Double = 0
     static var todayCalories:Double = 0
+    static var todayRunningDistance:Double = 0
     static var dateArray : [String] = []
     static var count = 0
     static let user = UserAuthentication.getLoggedInUser()
@@ -91,6 +92,16 @@ class HealthKitManager{
                  group.leave()
                         }
       
+        }
+        
+        group.enter()
+        queue.async {
+            getTodayRunningDistance(){
+                (distances) in
+                todayRunningDistance = distances
+                print(todayRunningDistance)
+                group.leave()
+            }
         }
         
         
@@ -180,14 +191,14 @@ class HealthKitManager{
     }
     
     static func insertHealthKitData(todayTime : String, todayDateString: String){
-        let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: todayTime , dateSaved: todayDateString,hasUpdatedForYtd: false)
+        let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories,todaySquat:0,todayRunningWalkingDistance:todayRunningDistance, timeSaved: todayTime , dateSaved: todayDateString,hasUpdatedForYtd: false)
           
                                  DataManager.HealthKitActivities.insertHealthKitActivity(userId: user!.uid, newHealthKitActivity){ (isSuccess) in
                                    print("insert")
                                         }
     }
     static func updateHealthKitData(yesterdayDateString : String, hasUpdatedForYtd: Bool, healthKitActivityId: String,time: String){
-        let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories, timeSaved: time , dateSaved: yesterdayDateString,hasUpdatedForYtd : hasUpdatedForYtd)
+        let newHealthKitActivity = HealthKitActivity(todayStep: todaySteps, todayCaloriesBurnt: todayCalories,todaySquat:0,todayRunningWalkingDistance:todayRunningDistance, timeSaved: time , dateSaved: yesterdayDateString,hasUpdatedForYtd : hasUpdatedForYtd)
 
              DataManager.HealthKitActivities.updateHealthKitData(healthKitActivityId: healthKitActivityId,healthKitActivityData:newHealthKitActivity){ (isSuccess) in
               print("update")
@@ -245,6 +256,29 @@ class HealthKitManager{
     }
     
     
+    static func getTodayRunningDistance(completion: @escaping (Double) -> Void){
+        let runningDistance = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!
+        let now = Date()
+       // print("now:",now)
+           let startOfDay = Calendar.current.startOfDay(for: now)
+        //   print("startDay :" ,startOfDay)
+           // predicate is to help fliter the data within a time range
+           let predicate = HKQuery.predicateForSamples(withStart: startOfDay, end: now, options: .strictStartDate)
+
+           //HKStatisticsCollectionQuery is better suited to use when you want to retrieve data over a time span.
+           // Use HKStatisticsQuery to just get the steps for a specific date.
+           let query = HKStatisticsQuery(quantityType: runningDistance, quantitySamplePredicate: predicate, options: .cumulativeSum) { _, result, _ in
+              
+               guard let result = result, let sum = result.sumQuantity() else {
+                   completion(0.0)
+                   return
+               }
+               
+            completion(sum.doubleValue(for: HKUnit.meter()))
+           }
+
+           healthStore.execute(query)
+    }
     static func addStepsToHealthKit(steps : Double) {
 
       // 1.set the type of data we want to insert into healthkit
