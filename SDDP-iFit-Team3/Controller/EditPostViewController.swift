@@ -33,6 +33,9 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
     var postItem : Post?
     var locationManager:CLLocationManager!
     var userName : String = ""
+    
+      var comments : [Comment] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,7 +74,7 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
     textcontent.text = postItem?.pcontent
     postimage.sd_setImage(with: URL(string : postItem!.pimageName))
         
-    
+        
         
     self.navigationItem.title = "Edit Post"
         
@@ -206,7 +209,10 @@ class EditPostViewController: UIViewController,UIImagePickerControllerDelegate, 
                     //print(metaImageUrl)
                     let photo = metaImageUrl
                     let name = self.userName
-                    let  posts = Post(userId: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: photo ,opened:false , profileImg: "", commentPost: [ ] )
+                    
+                    self.comments = self.postItem!.commentPost
+                    
+                    let  posts = Post(userId: name, pcontent: content, pdatetime: datetime, userLocation: loca, pimageName: photo ,opened:false , profileImg: "", commentPost: self.comments)
         
                     if self.postItem != nil {
                        // Update

@@ -56,9 +56,9 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
               cell.vusername?.text = p.userId
               cell.vcomment?.text = "\(p.comment) "
               cell.vdate.text = "\(p.pdatetime)"
-          
-
-              return cell
+              cell.pimg.sd_setImage(with: URL(string: p.profile))
+    
+                                   return cell
       
       }
     

@@ -742,8 +742,9 @@ class DataManager {
                                                                  let commentText = commentObj["comment"]!
                                                                  let pDateTime = commentObj["pdatetime"]!
                                                                  let commentOwnerId = commentObj["userId"]!
-                                                                 
-                                                                 commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime))
+                                                                 let profilepic = commentObj["profile"]!
+                                                                
+                                                                 commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime, profile: profilepic))
                                                                  print("comment: \(commentObj)")
                                                              }
 
@@ -800,8 +801,9 @@ class DataManager {
                             let commentText = commentObj["comment"]!
                             let pDateTime = commentObj["pdatetime"]!
                             let commentOwnerId = commentObj["userId"]!
+                            let profilepic = commentObj["profile"]!
                             
-                            commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime))
+                            commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime , profile: profilepic ))
                             print("comment: \(commentObj)")
                         }
 
@@ -841,8 +843,8 @@ class DataManager {
                                                       let commentText = commentObj["comment"]!
                                                       let pDateTime = commentObj["pdatetime"]!
                                                       let commentOwnerId = commentObj["userId"]!
-                                                      
-                                                      commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime))
+                                                        let profilepic = commentObj["profile"]!
+                                                      commentPost.append(Comment(userId: commentOwnerId, comment: commentText, pdatetime: pDateTime,profile: profilepic ))
                                                       print("comment: \(commentObj)")
                                                   }
                                    
