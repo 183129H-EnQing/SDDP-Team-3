@@ -90,6 +90,7 @@
 		DCFDCE6B24A1C0AF008E8C8A /* TrainingPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */; };
 		E300F7FA24B6192E00315219 /* GoalDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */; };
 		E30440E824A609110013D053 /* CardDesign.swift in Sources */ = {isa = PBXBuildFile; fileRef = E30440E724A609110013D053 /* CardDesign.swift */; };
+		E31466A824EB3DF3001A82E7 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E31466A724EB3DF3001A82E7 /* CircularProgressView.swift */; };
 		E320D17524AC6F95003DDA96 /* Goal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17424AC6F95003DDA96 /* Goal.swift */; };
 		E320D17724AC6FBA003DDA96 /* Challenge.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17624AC6FBA003DDA96 /* Challenge.swift */; };
 		E320D17924AC6FD0003DDA96 /* Leaderboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E320D17824AC6FD0003DDA96 /* Leaderboard.swift */; };
@@ -189,6 +190,7 @@
 		DCFDCE6A24A1C0AF008E8C8A /* TrainingPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingPlan.swift; sourceTree = "<group>"; };
 		E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalDetailsViewController.swift; sourceTree = "<group>"; };
 		E30440E724A609110013D053 /* CardDesign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDesign.swift; sourceTree = "<group>"; };
+		E31466A724EB3DF3001A82E7 /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		E320D17424AC6F95003DDA96 /* Goal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Goal.swift; sourceTree = "<group>"; };
 		E320D17624AC6FBA003DDA96 /* Challenge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Challenge.swift; sourceTree = "<group>"; };
 		E320D17824AC6FD0003DDA96 /* Leaderboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaderboard.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				DCEEAD9224C97E9500CF5FD5 /* PoseEstimationFast1595485568+Fritz.swift */,
 				DCEEAD9024C97E3B00CF5FD5 /* PoseEstimationFast1595485568.mlmodel */,
 				DCBA1EA224CD601400AF4743 /* TrainingPlanTimerViewController.swift */,
+				E31466A724EB3DF3001A82E7 /* CircularProgressView.swift */,
 				DCE0E33E24B45A4800B23C46 /* ExerciseViewController.swift */,
 				DCE0E34224B45CE000B23C46 /* ExerciseCollectionViewCell.swift */,
 				DCD142C524B7224B00AE431A /* ExerciseDetailViewController.swift */,
@@ -592,6 +595,7 @@
 				DCD3C81524A329DA0066F6E7 /* TrainingPlanDetailViewController.swift in Sources */,
 				7DC360E724BAE3E200280315 /* ProfileViewController.swift in Sources */,
 				E30440E824A609110013D053 /* CardDesign.swift in Sources */,
+				E31466A824EB3DF3001A82E7 /* CircularProgressView.swift in Sources */,
 				343BEC9C24A97FB70041352F /* AchievementViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
