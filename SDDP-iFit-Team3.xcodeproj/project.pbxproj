@@ -310,14 +310,6 @@
 				E320D17824AC6FD0003DDA96 /* Leaderboard.swift */,
 				E320D17A24AC7128003DDA96 /* Activity.swift */,
 				DC3B4E1524C3391B000B2502 /* Game.swift */,
-				DCC80B7324ADEDA5008AF933 /* GameScene.swift */,
-				DC7A37AB24BDA79300CB9A13 /* GameHome.swift */,
-				DCCA915724BEC45100C3A816 /* GameResearch.swift */,
-				DCE67B6C24BF280600B2DD27 /* GameLoad.swift */,
-				DCE67B7024BF31FA00B2DD27 /* GameResult.swift */,
-				DC0B46BE24C3140E001BB221 /* GameDiscover.swift */,
-				DCF73FAF24C43E5B00530EE5 /* GamePlanet.swift */,
-				DCC040AE24E9203800C8D78F /* GameLeaderboard.swift */,
 				7D236F0324BD688C00C3CD2B /* User.swift */,
 				E3F1688024C0F1B000B2C42A /* HealthKitActivity.swift */,
 			);
@@ -372,6 +364,14 @@
 				DC0B46C024C31423001BB221 /* GameDiscoverViewController.swift */,
 				DCF73FB124C43E8600530EE5 /* GamePlanetViewController.swift */,
 				E300F7F924B6192E00315219 /* GoalDetailsViewController.swift */,
+				DCC80B7324ADEDA5008AF933 /* GameScene.swift */,
+				DC7A37AB24BDA79300CB9A13 /* GameHome.swift */,
+				DCCA915724BEC45100C3A816 /* GameResearch.swift */,
+				DCE67B6C24BF280600B2DD27 /* GameLoad.swift */,
+				DCE67B7024BF31FA00B2DD27 /* GameResult.swift */,
+				DC0B46BE24C3140E001BB221 /* GameDiscover.swift */,
+				DCF73FAF24C43E5B00530EE5 /* GamePlanet.swift */,
+				DCC040AE24E9203800C8D78F /* GameLeaderboard.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

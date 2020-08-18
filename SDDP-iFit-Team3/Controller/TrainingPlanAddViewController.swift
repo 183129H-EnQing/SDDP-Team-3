@@ -24,7 +24,7 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     var existTP: Bool = false
     
     var newTrainingPlan : TrainingPlan?
-    var exerciseListFrom : [String] = ["he"]
+    var exerciseListFrom : [String] = []
     
     var uploadImage: UIImage?
 //    var uploadImageUUID: String?
@@ -66,7 +66,7 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
-        print("HIIII", exerciseListFrom)
+        print("reload table", exerciseListFrom)
     }
     
     @IBAction func takePicturePressed(_ sender: Any) {
@@ -247,9 +247,10 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         
         if(segue.identifier == "ShowExercises"){
             let exVC = segue.destination as! TrainingPlanAddExerciseViewController
-            
-            let exItem = exisitngTP?.tpExercises
-            exVC.existingTPExercise = exItem
+
+            exVC.existingTPExercise = exerciseListFrom
+            print("smlj" , exerciseListFrom)
+            print("prepare")
             
         }
     }

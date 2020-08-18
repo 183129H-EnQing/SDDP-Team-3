@@ -31,7 +31,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         if existingTPExercise != nil {
             exisitTP = true
             tickExercise = existingTPExercise!
-            print("hiiiiiii", tickExercise)
+            print("ticked ", tickExercise)
             
             for i in 0..<filterList.count {
                 for j in 0..<existingTPExercise!.count {
@@ -62,7 +62,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
   
-        print("runnnnnnn")
+        print("tick checking")
         if (tableView.cellForRow(at: indexPath)?.accessoryType == UITableViewCell.AccessoryType.none) {
             tableView.cellForRow(at: indexPath)?.accessoryType = UITableViewCell.AccessoryType.checkmark
             tickExercise.append(filterList[indexPath.row])
@@ -110,7 +110,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
         var addTPVC: TrainingPlanAddViewController
         
         if exisitTP == true {
-            addTPVC = viewControllers![2] as! TrainingPlanAddViewController
+            addTPVC = viewControllers![1] as! TrainingPlanAddViewController
         }
         else{
             addTPVC = viewControllers![1] as! TrainingPlanAddViewController
@@ -122,7 +122,7 @@ class TrainingPlanAddExerciseViewController: UIViewController, UITableViewDelega
 
             if success{
                 addTPVC.exerciseListFrom = tickExercise
-                print("EEEEE ", addTPVC.exerciseListFrom)
+                print("success transfer", addTPVC.exerciseListFrom)
                 addTPVC.tableView.reloadData()
             }
         }
