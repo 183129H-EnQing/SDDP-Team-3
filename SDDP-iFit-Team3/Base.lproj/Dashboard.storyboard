@@ -599,7 +599,7 @@
                                                             <view contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="LDs-my-OSv" customClass="CircularProgressView" customModule="SDDP_iFit_Team3" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="146" height="110"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/3 goals completed" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-4r-YVP">
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/3 goals completed" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="6" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeE-4r-YVP">
                                                                         <rect key="frame" x="10" y="0.0" width="136" height="110"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                         <nil key="textColor"/>

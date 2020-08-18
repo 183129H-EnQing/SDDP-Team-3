@@ -90,7 +90,7 @@ class TrainingPlanTimerViewController: UIViewController {
     }
     
     @objc func imageValidation(){
-        let vc = SFSafariViewController(url: URL(string: "https://editor.p5js.org/182452K/sketches/EHF_lPwP6")!)
+        let vc = SFSafariViewController(url: URL(string: "https://editor.p5js.org/182452K/present/EHF_lPwP6")!)
         present(vc, animated: true)
     }
     
