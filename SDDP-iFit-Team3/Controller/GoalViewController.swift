@@ -97,6 +97,7 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         var processPercentTwoDpDouble : Double = 0
         // Move to a background thread to do some long running work
         DispatchQueue.global(qos: .utility).async {
+           
                for activityData in self.healthKitActivityList{
                         // Check whether the date is in between or start or end, if true - do something to the data, false-ignore data
                 if (status == 0){
@@ -165,18 +166,20 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                     print("333")
                 }
             
-            
-               // Bounce back to the main thread to update the UI
-               DispatchQueue.main.async {
-                   let processPercentString = String(format: "%.2f", processPercent * 100)
-                   cell.goalTitle.text = g.goalTitle;
-                   cell.percentageLabel.text = "\(processPercentString)%";
-                   cell.duration.text = "Duration: \(g.duration) Days"
-                   cell.goalStatus.text = "\(goalStatus)"
-                   cell.dateRange.text = "Starting Date: \(g.date)"
-                   cell.progressView.setProgress(Float(processPercent) , animated: false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        // Bounce back to the main thread to update the UI
+                                        DispatchQueue.main.async {
+                                            let processPercentString = String(format: "%.2f", processPercent * 100)
+                                            cell.goalTitle.text = g.goalTitle;
+                                            cell.percentageLabel.text = "\(processPercentString)%";
+                                            cell.duration.text = "Duration: \(g.duration) Days"
+                                            cell.goalStatus.text = "\(goalStatus)"
+                                            cell.dateRange.text = "Starting Date: \(g.date)"
+                                            cell.progressView.setProgress(Float(processPercent) , animated: false)
 
-               }
+                                        }
+
+                                              }
            }
         
         return cell
@@ -192,7 +195,12 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         
         if let user = UserAuthentication.getLoggedInUser() {
             //print("User is logged in")
-        
+            if (!self.processPercentArray.isEmpty) {
+                          self.processPercentArray.removeAll()
+                   }
+            if (!self.activityType.isEmpty) {
+                            self.activityType.removeAll()
+                     }
             DataManager.Goals.loadGoals(userId: user.uid) { (data) in
                     if data.count > 0 {
                        // print("data loaded")

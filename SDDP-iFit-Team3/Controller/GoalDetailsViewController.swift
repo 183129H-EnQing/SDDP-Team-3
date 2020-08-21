@@ -116,6 +116,7 @@ class GoalDetailsViewController: UIViewController {
                 parent.loadGoals()
                 self.navigationController?.popViewController(animated: true)
             }
+ 
   
     /*
     // MARK: - Navigation
