@@ -23,6 +23,8 @@ class DashboardViewController: UIViewController {
     var goalFinishedList : [String] = []
     var totalGoalCount : Int = 0
     var functionCalling : Int = 0 // preventviewdidload call the function twice
+    var percent = ""
+    var completedGoalCount : Int = 0
     @IBOutlet weak var goalCompletedLabel: UILabel!
     @IBOutlet weak var squatDataLabel: UILabel!
     @IBOutlet weak var runningDataLabel: UILabel!
@@ -34,7 +36,8 @@ class DashboardViewController: UIViewController {
      let group = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
-  
+        self.CircularProgress.trackColor = UIColor.lightGray
+        self.CircularProgress.progressColor = UIColor.purple
         authorizeAndGetHealthKit()
         // Do any additional setup after loading the view.
         //Team3Helper.makeImgViewRound(profileBarButton!)
@@ -95,7 +98,9 @@ class DashboardViewController: UIViewController {
                         self.group.enter()
                         self.queue.async {
                             self.loadGoalData()
+                            self.group.leave()
                         }
+                        
                        }
                       
                    }
@@ -107,8 +112,6 @@ class DashboardViewController: UIViewController {
                    }
            }
     func loadGoalData(){
-
-            DispatchQueue.global(qos: .userInitiated).async {
                                                                     
                         if let user = UserAuthentication.getLoggedInUser() {
                                    //print("User is logged in")
@@ -127,33 +130,32 @@ class DashboardViewController: UIViewController {
                                                       self.goalFinishedList.append("1")
                                                   }
                                               }
+
+                                            }
+                                    
+
+                                           DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                               self.completedGoalCount = self.goalFinishedList.count
+                                            print(self.totalGoalCount)
+                                               print(self.completedGoalCount,"completed goals")
+                                               if self.completedGoalCount != 0 {
+                                                   self.percent = String(format: "%.2f", Double(self.completedGoalCount) / Double(self.totalGoalCount))
+                                               }else{
+                                                   self.percent = "0"
+                                               }
+                                               print("testing squat\(self.todaySquat)")
+                                                //var completedGoalCount = 0
+                                           
+                                    
+                                     
+                                            //print(Float(self.percent))
+                                              self.CircularProgress.setProgressWithAnimation(duration: 0.0, value: Float(self.percent)!)
+                                                self.goalCompletedLabel.text = "\(self.completedGoalCount)/\(self.totalGoalCount) goals completed"
                                               
                                            }
-                                       }
+                                       
                                }
                       
-                
-
-
-                        DispatchQueue.main.async {
-                         print("testing squat\(self.todaySquat)")
-                            //var completedGoalCount = 0
-                       
-                            let completedGoalCount = self.goalFinishedList.count
-                            print(completedGoalCount,"completed goals")
-                            var percent = ""
-                            if completedGoalCount != 0 {
-                                percent = String(format: "%.2f", completedGoalCount / self.totalGoalCount)
-                            }else{
-                                percent = "0"
-                            }
-                            self.CircularProgress.trackColor = UIColor.lightGray
-                            self.CircularProgress.progressColor = UIColor.purple
-                            //print(Float(percent))
-                            self.CircularProgress.setProgressWithAnimation(duration: 0.0, value: Float(percent)!)
-                           self.goalCompletedLabel.text = "\(completedGoalCount)/\(self.totalGoalCount) goals completed"
-                     
-                        }
         }
     
     }

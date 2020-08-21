@@ -229,9 +229,8 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                               print("success i guess")
                           }
     }
-    func addActivityDataToVariable(){
-        
-    }
+
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowGoalDetails" {
             let detailViewController = segue.destination as! GoalDetailsViewController
