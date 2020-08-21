@@ -32,7 +32,8 @@ class ActivityViewController: UIViewController {
         super.viewDidLoad()
    
         // Do any additional setup after loading the view.
-        authorizeAndGetHealthKit()
+        //authorizeAndGetHealthKit()
+        loadData()
     }
     
     func authorizeAndGetHealthKit() {
@@ -48,25 +49,27 @@ class ActivityViewController: UIViewController {
                         print("testing1")
                                           
                             }
-                    sleep(1);
-                DataManager.HealthKitActivities.loadHealthKitActivity(userId: UserAuthentication.user!.userId){
-                            (data) in
-                        if data.count > 0 {
-                         print("pui pui pui pui")
-                            //let calendar = Calendar.current
-                         self.healthKitActivityList = data
-                         self.displayData()
-
-                         }
-
-                     }
-                    
-                
-
+  
+              DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                  // Put your code which should be executed with a delay here
+           
+                }
+               
             }
         }
 
     }
+    
+    func loadData(){
+        DataManager.HealthKitActivities.loadHealthKitActivity(userId: UserAuthentication.user!.userId){
+                      (data) in
+                          if data.count > 0 {
+                           self.healthKitActivityList = data
+                           self.displayData()
+                        }
+               }
+    }
+    
     func displayData(){
         let formatter = DateFormatter()
         formatter.timeZone  = TimeZone(identifier: "Asia/Singapore") // US_POSIX - usa , en_SG
@@ -75,7 +78,7 @@ class ActivityViewController: UIViewController {
            //let todayDate = formatter.date(from: todayDateString)!
                //self.healthKitActivityList = data
 
-        DispatchQueue.global(qos: .userInitiated).async {
+        DispatchQueue.global(qos: .utility).async {
                for activityData in self.healthKitActivityList{
                      print(todayDateString,activityData.dateSaved,"ggg")
                  if (activityData.dateSaved == todayDateString){
@@ -95,7 +98,7 @@ class ActivityViewController: UIViewController {
             self.squatDataLabel.text = "\(self.todaySquat)"
             print("hello111111")
             // self.group.leave()
-         
+    
        }
            }
     }
@@ -166,26 +169,5 @@ class ActivityViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    func addWaterAmountToHealthKit(ounces : Double) {
-      // 1
-      let quantityType = HKQuantityType.quantityType(forIdentifier: .dietaryWater)
-      
-      // string value represents US fluid
-      // 2
-        let quanitytUnit = HKUnit(from: "fl_oz_us")
-      let quantityAmount = HKQuantity(unit: quanitytUnit, doubleValue: ounces)
-      let now = Date()
-      // 3
-      let sample = HKQuantitySample(type: quantityType!, quantity: quantityAmount, start: now, end: now)
-      let correlationType = HKObjectType.correlationType(forIdentifier: HKCorrelationTypeIdentifier.food)
-      // 4
-      let waterCorrelationForWaterAmount = HKCorrelation(type: correlationType!, start: now, end: now, objects: [sample])
-      // Send water intake data to healthStore…aka ‘Health’ app
-      // 5
-        self.healthStore.save(waterCorrelationForWaterAmount, withCompletion: { (success, error) in
-        if (error != nil) {
-            print("error occer")
-        }
-      })
-    }
+
 }

@@ -128,8 +128,10 @@ class HealthKitManager{
                                              let todayTime = formatter.string(from: Date())
                                      insertHealthKitData(todayTime: todayTime, todayDateString: todayDateString)
                                   }
+                        group.leave()
                     
                               }
+            
                   }
        
         }
@@ -198,7 +200,7 @@ class HealthKitManager{
           
                                  DataManager.HealthKitActivities.insertHealthKitActivity(userId: user!.uid, newHealthKitActivity){ (isSuccess) in
                                    print("insert")
-                                         group.leave()
+                             
                                         }
     }
     static func updateHealthKitData(yesterdayDateString : String, hasUpdatedForYtd: Bool, healthKitActivityId: String,time: String){
@@ -206,7 +208,7 @@ class HealthKitManager{
 
              DataManager.HealthKitActivities.updateHealthKitData(healthKitActivityId: healthKitActivityId,healthKitActivityData:newHealthKitActivity){ (isSuccess) in
               print("update")
-                     group.leave()
+                
             }
     }
       //https://stackoverflow.com/questions/36559581/healthkit-swift-getting-todays-steps/44111542

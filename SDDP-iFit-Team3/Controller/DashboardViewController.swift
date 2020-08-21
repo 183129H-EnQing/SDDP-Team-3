@@ -30,8 +30,8 @@ class DashboardViewController: UIViewController {
 
               CircularProgress.trackColor = UIColor.white
               CircularProgress.progressColor = UIColor.purple
-        CircularProgress.setProgressWithAnimation(duration: 0.0, value: 0.3)
-        
+              CircularProgress.setProgressWithAnimation(duration: 0.0, value: 0.3)
+        authorizeAndGetHealthKit()
         // Do any additional setup after loading the view.
         //Team3Helper.makeImgViewRound(profileBarButton!)
     }
@@ -41,7 +41,37 @@ class DashboardViewController: UIViewController {
           cP.setProgressWithAnimation(duration: 0, value: 0.7)
           
     }
-        
+        func authorizeAndGetHealthKit() {
+
+               HealthKitManager.authorizeHealthKit(){ (authorizeStatus) in
+                   print("hello",authorizeStatus!)
+                   let authoriseStatusValue = authorizeStatus!
+                   if (!authoriseStatusValue){
+                       self.presentHealthDataNotAvailableError()
+                   }else{
+              
+                         HealthKitManager.getHealthKitData(){print("testing1")}
+         
+                     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                         // Put your code which should be executed with a delay here
+                       DataManager.HealthKitActivities.loadHealthKitActivity(userId: UserAuthentication.user!.userId){
+                                                  (data) in
+                                              if data.count > 0 {
+                                               print("pui pui pui pui")
+                                                  //let calendar = Calendar.current
+                                           //    self.healthKitActivityList = data
+                                           //    self.displayData()
+
+                                               }
+
+                                           }
+                       }
+                      
+                   }
+               }
+
+           }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -60,7 +90,16 @@ class DashboardViewController: UIViewController {
     }
 
     
-   
+   private func presentHealthDataNotAvailableError() {
+          let title = "Health Data Unavailable"
+          let message = "Aw, shucks! We are unable to access health data on this device. Make sure you are using device with HealthKit capabilities."
+          let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+          let action = UIAlertAction(title: "Dismiss", style: .default)
+          
+          alertController.addAction(action)
+          
+          present(alertController, animated: true)
+      }
 //    @IBSegueAction func hello(_ coder: NSCoder) -> UIViewController? {
 //   
 //        return UIHostingController(coder: coder, rootView: testingView())
