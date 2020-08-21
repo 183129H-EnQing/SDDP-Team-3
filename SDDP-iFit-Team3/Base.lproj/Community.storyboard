@@ -191,6 +191,13 @@
                                     <outlet property="delegate" destination="X5e-hy-piL" id="SBX-AD-tgg"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Havent Created Your Post  " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Vsy-rC-yxq">
+                                <rect key="frame" x="0.0" y="418" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -203,6 +210,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Hs6-Ju-j6C"/>
                     <connections>
+                        <outlet property="noPostLabel" destination="Vsy-rC-yxq" id="BD6-fp-IA5"/>
                         <outlet property="taleview" destination="vTC-hk-D6K" id="AwL-FA-8XQ"/>
                     </connections>
                 </viewController>
