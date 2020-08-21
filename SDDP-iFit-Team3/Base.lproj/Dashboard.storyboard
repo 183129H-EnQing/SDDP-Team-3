@@ -646,8 +646,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kpc-HE-dqw">
                                                         <rect key="frame" x="191" y="0.0" width="181" height="100"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Steps" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hW0-do-kWB">
-                                                                <rect key="frame" x="48" y="0.0" width="85.5" height="79.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total DIstance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hW0-do-kWB">
+                                                                <rect key="frame" x="36" y="0.0" width="109" height="79.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -827,7 +827,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="CircularProgress" destination="LDs-my-OSv" id="UWt-cs-UBt"/>
+                        <outlet property="energyBurnDataLabel" destination="QXQ-KL-JWJ" id="l9K-hX-hFf"/>
                         <outlet property="profileBarButton" destination="gDJ-XF-Cxo" id="51F-st-XF3"/>
+                        <outlet property="runningDataLabel" destination="Cfr-bN-t0Q" id="Jc1-zU-HRY"/>
+                        <outlet property="squatDataLabel" destination="ARe-c7-XNV" id="UsB-TH-ssF"/>
+                        <outlet property="stepsDataLabel" destination="Nv6-5u-cAf" id="3JI-pa-qrb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FKc-GB-ubL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -843,13 +847,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQu-6D-C19">
-                                <rect key="frame" x="0.0" y="64" width="414" height="150"/>
+                                <rect key="frame" x="0.0" y="64" width="1500" height="150"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h7e-2J-ql5">
-                                        <rect key="frame" x="15" y="0.0" width="414" height="128"/>
+                                        <rect key="frame" x="15" y="0.0" width="1500" height="128"/>
                                         <subviews>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NBG-LH-bUu">
-                                                <rect key="frame" x="0.0" y="49" width="414" height="80"/>
+                                                <rect key="frame" x="0.0" y="49" width="1500" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="1500" id="trI-Q5-CnJ"/>
                                                 </constraints>

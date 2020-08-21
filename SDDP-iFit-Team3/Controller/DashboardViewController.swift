@@ -16,6 +16,15 @@ class DashboardViewController: UIViewController {
     @IBOutlet weak var profileBarButton: UIBarButtonItem!
     
     @IBOutlet weak var CircularProgress: CircularProgressView!
+    var todaySquat :Int = 0
+    var todaySteps :Double = 0
+    var todayCaloriesBurnt : Double = 0
+    var todayRunningWalkingDistance : Double = 0
+    @IBOutlet weak var squatDataLabel: UILabel!
+    @IBOutlet weak var runningDataLabel: UILabel!
+    
+    @IBOutlet weak var stepsDataLabel: UILabel!
+    @IBOutlet weak var energyBurnDataLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 //        let cp = CircularProgressView(frame: CGRect(x: 10.0, y: 10.0, width: 100.0, height: 100.0))
@@ -36,11 +45,11 @@ class DashboardViewController: UIViewController {
         //Team3Helper.makeImgViewRound(profileBarButton!)
     }
     
-    @objc func animateProgress() {
-          let cP = self.view.viewWithTag(101) as! CircularProgressView
-          cP.setProgressWithAnimation(duration: 0, value: 0.7)
-          
-    }
+//    @objc func animateProgress() {
+//          let cP = self.view.viewWithTag(101) as! CircularProgressView
+//          cP.setProgressWithAnimation(duration: 0, value: 0.7)
+//
+//    }
         func authorizeAndGetHealthKit() {
 
                HealthKitManager.authorizeHealthKit(){ (authorizeStatus) in
@@ -58,10 +67,28 @@ class DashboardViewController: UIViewController {
                                                   (data) in
                                               if data.count > 0 {
                                                print("pui pui pui pui")
-                                                  //let calendar = Calendar.current
-                                           //    self.healthKitActivityList = data
-                                           //    self.displayData()
-
+                                   
+                                                DispatchQueue.global(qos: .utility).async {
+                                                             for activityData in data{
+                                                                   self.todaySquat += activityData.todaySquat
+                                                                   self.todaySteps += activityData.todayStep
+                                                                   self.todayCaloriesBurnt += activityData.todayCaloriesBurnt
+                                                                   self.todayRunningWalkingDistance += activityData.todayRunningWalkingDistance
+                                                       
+                                                                  print("\(activityData.todayStep) pui pui")
+                                                              
+                                                          }
+                                                     DispatchQueue.main.async {
+                                                      print("testing squat\(self.todaySquat)")
+                                                          self.energyBurnDataLabel.text = "\(self.todayCaloriesBurnt)"
+                                                          self.stepsDataLabel.text = "\(self.todaySteps)"
+                                                          self.runningDataLabel.text = "\(self.todayRunningWalkingDistance)km"
+                                                          self.squatDataLabel.text = "\(self.todaySquat)"
+                                                          print("hello111111")
+                                                          // self.group.leave()
+                                                  
+                                                     }
+                                                }
                                                }
 
                                            }
