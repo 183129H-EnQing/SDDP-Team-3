@@ -20,40 +20,30 @@ class DashboardViewController: UIViewController {
     var todaySteps :Double = 0
     var todayCaloriesBurnt : Double = 0
     var todayRunningWalkingDistance : Double = 0
+    var goalFinishedList : [String] = []
+    var totalGoalCount : Int = 0
+    var functionCalling : Int = 0 // preventviewdidload call the function twice
+    @IBOutlet weak var goalCompletedLabel: UILabel!
     @IBOutlet weak var squatDataLabel: UILabel!
     @IBOutlet weak var runningDataLabel: UILabel!
     
     @IBOutlet weak var stepsDataLabel: UILabel!
     @IBOutlet weak var energyBurnDataLabel: UILabel!
+    
+     let queue = DispatchQueue(label: "Serial queue")
+     let group = DispatchGroup()
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let cp = CircularProgressView(frame: CGRect(x: 10.0, y: 10.0, width: 100.0, height: 100.0))
-//              cp.trackColor = UIColor.white
-//              cp.progressColor = UIColor(red: 252.0/255.0, green: 141.0/255.0, blue: 165.0/255.0, alpha: 1.0)
-//
-//              cp.tag = 101
-//              self.view.addSubview(cp)
-//              cp.center = self.view.center
-//
-//              self.perform(#selector(animateProgress), with: nil, afterDelay: 2.0)
-
-              CircularProgress.trackColor = UIColor.white
-              CircularProgress.progressColor = UIColor.purple
-              CircularProgress.setProgressWithAnimation(duration: 0.0, value: 0.3)
+  
         authorizeAndGetHealthKit()
         // Do any additional setup after loading the view.
         //Team3Helper.makeImgViewRound(profileBarButton!)
     }
-    
-//    @objc func animateProgress() {
-//          let cP = self.view.viewWithTag(101) as! CircularProgressView
-//          cP.setProgressWithAnimation(duration: 0, value: 0.7)
-//
-//    }
+
         func authorizeAndGetHealthKit() {
 
                HealthKitManager.authorizeHealthKit(){ (authorizeStatus) in
-                   print("hello",authorizeStatus!)
+                   //print("hello",authorizeStatus!)
                    let authoriseStatusValue = authorizeStatus!
                    if (!authoriseStatusValue){
                        self.presentHealthDataNotAvailableError()
@@ -63,45 +53,121 @@ class DashboardViewController: UIViewController {
          
                      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                          // Put your code which should be executed with a delay here
-                       DataManager.HealthKitActivities.loadHealthKitActivity(userId: UserAuthentication.user!.userId){
-                                                  (data) in
-                                              if data.count > 0 {
-                                               print("pui pui pui pui")
+                        self.group.enter()
+                        self.queue.async {
+                           DataManager.HealthKitActivities.loadHealthKitActivity(userId: UserAuthentication.user!.userId){
+                                      (data) in
+                                  if data.count > 0 {
                                    
-                                                DispatchQueue.global(qos: .utility).async {
-                                                             for activityData in data{
-                                                                   self.todaySquat += activityData.todaySquat
-                                                                   self.todaySteps += activityData.todayStep
-                                                                   self.todayCaloriesBurnt += activityData.todayCaloriesBurnt
-                                                                   self.todayRunningWalkingDistance += activityData.todayRunningWalkingDistance
-                                                       
-                                                                  print("\(activityData.todayStep) pui pui")
-                                                              
-                                                          }
-                                                     DispatchQueue.main.async {
-                                                      print("testing squat\(self.todaySquat)")
-                                                          self.energyBurnDataLabel.text = "\(self.todayCaloriesBurnt)"
-                                                          self.stepsDataLabel.text = "\(self.todaySteps)"
-                                                          self.runningDataLabel.text = "\(self.todayRunningWalkingDistance)km"
-                                                          self.squatDataLabel.text = "\(self.todaySquat)"
-                                                          print("hello111111")
-                                                          // self.group.leave()
-                                                  
-                                                     }
-                                                }
-                                               }
-
-                                           }
+                                    self.todaySquat = 0
+                                    self.todaySteps = 0
+                                    self.todayCaloriesBurnt = 0
+                                    self.todayRunningWalkingDistance = 0
+                                    DispatchQueue.global(qos: .utility).async {
+                                        
+                                                 for activityData in data{
+                                                       self.todaySquat += activityData.todaySquat
+                                                       self.todaySteps += activityData.todayStep
+                                                       self.todayCaloriesBurnt += activityData.todayCaloriesBurnt
+                                                       self.todayRunningWalkingDistance += activityData.todayRunningWalkingDistance
+                                           
+                                              }
+                                    
+                                            self.loadGoalData()
+                                         DispatchQueue.main.async {
+                                          print("testing squat\(self.todaySquat)")
+                                         
+                                              self.energyBurnDataLabel.text = "\(self.todayCaloriesBurnt)"
+                                              self.stepsDataLabel.text = "\(self.todaySteps)"
+                                              self.runningDataLabel.text = "\(self.todayRunningWalkingDistance)km"
+                                              self.squatDataLabel.text = "\(self.todaySquat)"
+                                             // print("hello111111")
+                                              // self.group.leave()
+                                      
+                                         }
+                                    }
+                                   }
+                               }
+                            self.group.leave()
+                             }
+                        
+                        
+                        self.group.enter()
+                        self.queue.async {
+                            self.loadGoalData()
+                        }
                        }
                       
                    }
                }
-
+            
+            self.group.notify(queue: queue) {
+                       print("All tasks done")
+                       
+                   }
            }
+    func loadGoalData(){
+
+            DispatchQueue.global(qos: .userInitiated).async {
+                                                                    
+                        if let user = UserAuthentication.getLoggedInUser() {
+                                   //print("User is logged in")
+                               
+                                   DataManager.Goals.loadGoals(userId: user.uid) { (data) in
+                                        if (!self.goalFinishedList.isEmpty) {
+                                                self.goalFinishedList.removeAll()
+                                            }
+                                           if data.count > 0 {
+                                            self.totalGoalCount = data.count
+                                              for goal in data{
+                                                print(goal.status)
+                                        
+                                                  if (goal.status == "Finish Goal"){
+                                                      // Purpose of this to make the process faster rather than appending the whole goal as we just need to count.
+                                                      self.goalFinishedList.append("1")
+                                                  }
+                                              }
+                                              
+                                           }
+                                       }
+                               }
+                      
+                
+
+
+                        DispatchQueue.main.async {
+                         print("testing squat\(self.todaySquat)")
+                            //var completedGoalCount = 0
+                       
+                            let completedGoalCount = self.goalFinishedList.count
+                            print(completedGoalCount,"completed goals")
+                            var percent = ""
+                            if completedGoalCount != 0 {
+                                percent = String(format: "%.2f", completedGoalCount / self.totalGoalCount)
+                            }else{
+                                percent = "0"
+                            }
+                            self.CircularProgress.trackColor = UIColor.lightGray
+                            self.CircularProgress.progressColor = UIColor.purple
+                            //print(Float(percent))
+                            self.CircularProgress.setProgressWithAnimation(duration: 0.0, value: Float(percent)!)
+                           self.goalCompletedLabel.text = "\(completedGoalCount)/\(self.totalGoalCount) goals completed"
+                     
+                        }
+        }
+    
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        if functionCalling != 0 {
+            authorizeAndGetHealthKit()
+            loadGoalData()
+        }else{
+            functionCalling = functionCalling + 1
+        }
+  
         DispatchQueue.global(qos: .userInitiated).async {
             if let user = UserAuthentication.user, let url = user.avatarURL {
                 if let data = try? Data(contentsOf: url) {

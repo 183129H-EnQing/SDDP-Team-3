@@ -464,14 +464,16 @@ class DataManager {
                    */
                   db.collection(tableName).getDocuments { (snapshot, err) in
                       var goals: [Goal] = []
+                      
                       // var count = 0
                       if let err = err {
                           print("Error for \(tableName): \(err)")
                       } else if let snapshot = snapshot, snapshot.count > 0 {
-                          
-                          //print("Got data: \(snapshot.count)")
+                        print(snapshot.count,"testing snapshot")
+       
                           for document in snapshot.documents {
                              // print("Retrieving a document")
+                     
                               let data = document.data()
                               if userId.elementsEqual(data["userId"] as! String) {
                                 //  print("Document's creator matched")
@@ -486,9 +488,9 @@ class DataManager {
                                 let goal = Goal(goalTitle: goalTitle, activityName: activityName, date: date, duration: duration, progressPercent: processPercent, totalExerciseAmount: totalExerciseAmount,status: status)
                                 
                                 goal.goalId = document.documentID
-                                if status == "onGoing" {
+                              
                                     goals.append(goal)
-                                }
+                                
                                print(activityName,status)
                              
                               }
@@ -497,7 +499,7 @@ class DataManager {
                           print("No data for \(tableName)")
                       }
                       
-                      onComplete?(goals)
+                    onComplete?(goals)
                   }
               }
         

@@ -828,6 +828,7 @@
                     <connections>
                         <outlet property="CircularProgress" destination="LDs-my-OSv" id="UWt-cs-UBt"/>
                         <outlet property="energyBurnDataLabel" destination="QXQ-KL-JWJ" id="l9K-hX-hFf"/>
+                        <outlet property="goalCompletedLabel" destination="PeE-4r-YVP" id="dHT-9o-qsw"/>
                         <outlet property="profileBarButton" destination="gDJ-XF-Cxo" id="51F-st-XF3"/>
                         <outlet property="runningDataLabel" destination="Cfr-bN-t0Q" id="Jc1-zU-HRY"/>
                         <outlet property="squatDataLabel" destination="ARe-c7-XNV" id="UsB-TH-ssF"/>

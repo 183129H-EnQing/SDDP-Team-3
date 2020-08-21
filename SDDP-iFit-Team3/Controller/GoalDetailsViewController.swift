@@ -55,7 +55,8 @@ class GoalDetailsViewController: UIViewController {
             // exercise done / totalAmountExercise = Total Exercise Done
             let processPercentString = String(format: "%.2f", processPercent * 100)
             exerciseProgressPercent.text = "\(processPercentString)%"
-            totalAmountExerciseDone.text = "\(processPercent * Double(unwrappedGoal.totalExerciseAmount))"
+            let totalAmountExeciseDoneRoundOff = (processPercent * Double(unwrappedGoal.totalExerciseAmount)).rounded()
+            totalAmountExerciseDone.text = "\(totalAmountExeciseDoneRoundOff)"
             
             exerciseProgressBar.setProgress(Float(processPercent) , animated: false)
             exerciseProgressBar.transform = exerciseProgressBar.transform.scaledBy(x: 1, y: 10)

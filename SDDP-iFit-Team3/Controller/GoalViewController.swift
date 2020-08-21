@@ -63,8 +63,8 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
         let todayToEndDayLeft = calendar.dateComponents([.day], from: todayDate, to: endDate)
         let todayToEndDayLeftString = String(todayToEndDayLeft.day!)
         activityType.append(g.activityName)
-        print(todayToEndDayLeftString.contains("-"))
-        print(todayToEndDayLeftString)
+        //print(todayToEndDayLeftString.contains("-"))
+        //print(todayToEndDayLeftString)
         if (todayToEndDayLeftString.contains("-")){
             goalStatus = "Finish"
         }
@@ -133,10 +133,12 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                     processPercent = totalSteps / Double(g.totalExerciseAmount)
                     processPercentString = String(format: "%.2f", processPercent * 100)
                     processPercentTwoDpDouble = Double(processPercentString)!
-                    print(processPercentTwoDpDouble)
+                    //print(processPercentTwoDpDouble)
                     //print(totalSteps / Double(g.totalExerciseAmount))
                     //print("hello")
+                    print("11")
                     self.updateGoalProcessPercent(goalId: goalId,processPercent: processPercentTwoDpDouble)
+                    processPercentTwoDpDouble = processPercentTwoDpDouble / 100
                     self.processPercentArray.append(processPercentTwoDpDouble)
                 }
                 if (g.activityName == "Running"){
@@ -144,27 +146,30 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
                     processPercent = distanceToKm / Double(g.totalExerciseAmount)
                     processPercentString = String(format: "%.2f", processPercent * 100)
                     processPercentTwoDpDouble = Double(processPercentString)!
-                    print(processPercentTwoDpDouble)
+                    //print(processPercentTwoDpDouble)
+                    print("22")
                     self.updateGoalProcessPercent(goalId:goalId,processPercent: processPercentTwoDpDouble)
+                    processPercentTwoDpDouble = processPercentTwoDpDouble / 100
                     self.processPercentArray.append(processPercentTwoDpDouble)
+                    print("222")
                 }
             
                 if (g.activityName == "Squat"){
                     processPercent = Double(totalSquat) / Double(g.totalExerciseAmount)
                     processPercentString = String(format: "%.2f", processPercent * 100)
                     processPercentTwoDpDouble = Double(processPercentString)!
-                    print(processPercentTwoDpDouble)
+                    print("33")
                     self.updateGoalProcessPercent(goalId: goalId,processPercent: processPercentTwoDpDouble)
+                    processPercentTwoDpDouble = processPercentTwoDpDouble / 100
                     self.processPercentArray.append(processPercentTwoDpDouble)
+                    print("333")
                 }
-//               update progress
             
             
                // Bounce back to the main thread to update the UI
                DispatchQueue.main.async {
                    let processPercentString = String(format: "%.2f", processPercent * 100)
                    cell.goalTitle.text = g.goalTitle;
-                   print(processPercentString) // fetch data slow maybe need change something
                    cell.percentageLabel.text = "\(processPercentString)%";
                    cell.duration.text = "Duration: \(g.duration) Days"
                    cell.goalStatus.text = "\(goalStatus)"
@@ -191,7 +196,12 @@ class GoalViewController: UIViewController,UITableViewDelegate, UITableViewDataS
             DataManager.Goals.loadGoals(userId: user.uid) { (data) in
                     if data.count > 0 {
                        // print("data loaded")
-                        self.goalList = data
+                        for goalData in data {
+                            if goalData.status == "onGoing" {
+                                self.goalList.append(goalData)
+                            }
+                        }
+                       
                       //  print(data.count)
                         DispatchQueue.main.async {
                             print("async tableview label")
