@@ -15,6 +15,8 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
     
     @IBOutlet weak var taleview: UITableView!
     
+    @IBOutlet weak var noPostLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -171,6 +173,8 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
            
            self.taleview.isHidden = true
         
+           self.noPostLabel.isHidden = false
+        
            
            if let user = UserAuthentication.getLoggedInUser() {
                print("User is logged in")
@@ -185,7 +189,7 @@ class PersonalViewController: UIViewController , UITableViewDelegate, UITableVie
                                print("async tableview label")
                                self.taleview.reloadData()
                                self.taleview.isHidden = false
-                               
+                               self.noPostLabel.isHidden = true
                             
                            }
                        }

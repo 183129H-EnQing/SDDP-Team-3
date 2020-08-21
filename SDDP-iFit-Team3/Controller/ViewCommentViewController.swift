@@ -12,6 +12,8 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
 
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var noComments: UILabel!
+    
     var postList : [Post] = []
     var comments : [Comment] = []
     var postItem : Post?
@@ -37,15 +39,17 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
     
  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       
-      
-      
-     
+    
           return comments.count
+  
+      }
+    
+
      
       
  
       
-  }
+  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       // First we query the table view to see if there are // any UITableViewCells that can be reused. iOS will // create a new one if there aren't any. //
       //let cell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath)
@@ -66,7 +70,9 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
     
      func loadComments() {
            self.comments = []
-           self.tableView.isHidden = true
+     
+        
+         
         
            
            if let user = UserAuthentication.getLoggedInUser() {
@@ -84,7 +90,8 @@ class ViewCommentViewController: UIViewController, UITableViewDelegate, UITableV
                                print("async tableview label")
                                self.tableView.reloadData()
                                self.tableView.isHidden = false
-                               
+                            
+                        
                             
                            }
                        }
