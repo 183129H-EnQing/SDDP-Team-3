@@ -622,6 +622,20 @@ class DataManager {
                                  }
                              }
                          }
+        
+        static func updateSquat(healthKitActivityId: String ,healthKitActivityData: HealthKitActivity,  onComplete: ((_ isSuccess:Bool)-> Void)?) {
+                   
+                 db.collection(tableName).document(healthKitActivityId).updateData([
+                                         "todaySquat": healthKitActivityData.todaySquat,
+                                  ]) { (err) in
+                                      if let err = err {
+                                          print("Error updating goal status: \(err)")
+                                          onComplete?(false)
+                                      } else {
+                                          onComplete?(true)
+                                      }
+                                  }
+                              }
     }
     
     class Posts {
