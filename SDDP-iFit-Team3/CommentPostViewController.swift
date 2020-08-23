@@ -101,6 +101,12 @@ class CommentPostViewController: UIViewController,UITextViewDelegate{
             //let name = user.username
               // let loca = location.text ?? ""
             let com = textbox.text ?? ""
+            
+            if com == "" {
+                let alert = Team3Helper.makeAlert("Comment cannot be empty")
+                self.present(alert, animated: true, completion: nil)
+                return
+            }
                
                    let viewControllers = self.navigationController?.viewControllers
                 

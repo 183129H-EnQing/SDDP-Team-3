@@ -146,8 +146,11 @@ class SchedulerDetailsViewController: UIViewController, UIPickerViewDataSource, 
             }
             
             if !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) || !Team3Helper.ifInputIsInt(someInput: minsTextField.text!) {
-                Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
-                Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
+                if !Team3Helper.ifInputIsInt(someInput: hrsTextField.text!) {
+                    Team3Helper.colorTextFieldBorder(textField: hrsTextField, isRed: true)
+                } else {
+                    Team3Helper.colorTextFieldBorder(textField: minsTextField, isRed: true)
+                }
                 
                 let alert = Team3Helper.makeAlert("Only numbers allowed in 'Duration' text fields")
                 self.present(alert, animated: true, completion: nil)

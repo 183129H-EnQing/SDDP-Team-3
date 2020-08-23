@@ -231,6 +231,10 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             let alert = Team3Helper.makeAlert("Duration Cannot more than 365 days")
             self.present(alert, animated: true, completion: nil)
             return
+        } else if (Int(duration.text!)! <= 0) { // Check if less than 1
+            let alert = Team3Helper.makeAlert("Duration TextField Cannot less than 1 day")
+            self.present(alert, animated: true, completion: nil)
+            return
         }
  
         // Just in case someone manage to delete the text from the picker hmm
@@ -244,6 +248,10 @@ class AddGoalViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
          // Check if it is int or not
          if (!Team3Helper.ifInputIsInt(someInput: totalExerciseAmount.text!)){
              let alert = Team3Helper.makeAlert("TotalExerciseAmount TextField Got Letter inside")
+             self.present(alert, animated: true, completion: nil)
+             return
+         } else if (Int(totalExerciseAmount.text!)! <= 0) { // Check if less than 1
+             let alert = Team3Helper.makeAlert("TotalExerciseAmount TextField Cannot less than 1")
              self.present(alert, animated: true, completion: nil)
              return
          }

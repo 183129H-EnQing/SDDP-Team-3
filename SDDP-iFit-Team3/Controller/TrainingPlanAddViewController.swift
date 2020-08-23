@@ -238,7 +238,15 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
             self.present(alert, animated: true, completion: nil)
             
             errors = true
+        } else if Int(repsLabel.text!)! <= 0 {
+            Team3Helper.colorTextFieldBorder(textField: repsLabel, isRed: true)
+            
+            let alert = Team3Helper.makeAlert("Reps must be more than 0!")
+            self.present(alert, animated: true, completion: nil)
+            
+            errors = true
         }
+        
         return errors
     }
     
