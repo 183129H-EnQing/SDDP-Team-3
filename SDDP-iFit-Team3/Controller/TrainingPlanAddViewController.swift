@@ -223,12 +223,10 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
         if repsLabel.text == ""{
             Team3Helper.colorTextFieldBorder(textField: repsLabel, isRed: true)
             
-            errors = true
-        }
-        
-        if errors == true {
             let alert = Team3Helper.makeAlert("Please fill in all fields!")
             self.present(alert, animated: true, completion: nil)
+            
+            errors = true
         }
         
         if !Team3Helper.ifInputIsInt(someInput: repsLabel.text!){
@@ -242,6 +240,13 @@ class TrainingPlanAddViewController: UIViewController, UIImagePickerControllerDe
             Team3Helper.colorTextFieldBorder(textField: repsLabel, isRed: true)
             
             let alert = Team3Helper.makeAlert("Reps must be more than 0!")
+            self.present(alert, animated: true, completion: nil)
+            
+            errors = true
+        }
+        
+        if exerciseListFrom.count <= 0 {
+            let alert = Team3Helper.makeAlert("An exercise must be selected!")
             self.present(alert, animated: true, completion: nil)
             
             errors = true
